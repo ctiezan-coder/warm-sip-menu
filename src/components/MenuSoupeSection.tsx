@@ -65,12 +65,12 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               <span className="font-body text-xs uppercase tracking-[0.2em] text-accent font-semibold">Plat du jour</span>
             </div>
             <div className="flex items-baseline gap-1.5">
-              <span className="font-body text-sm text-foreground font-semibold">{items[platDuJour].name}</span>
+              <span className="font-body text-base sm:text-lg text-foreground font-semibold">{items[platDuJour].name}</span>
               <span className="flex-1 border-b border-dotted border-accent/30 min-w-[12px] translate-y-[-2px]" />
-              <span className="font-body text-sm font-bold text-accent whitespace-nowrap">{items[platDuJour].price}</span>
+              <span className="font-body text-base sm:text-lg font-bold text-accent whitespace-nowrap">{items[platDuJour].price}</span>
             </div>
             {items[platDuJour].description && (
-              <p className="text-[11px] text-muted-foreground mt-0.5 italic">{items[platDuJour].description}</p>
+              <p className="text-xs text-muted-foreground mt-0.5 italic">{items[platDuJour].description}</p>
             )}
           </motion.li>
         )}
