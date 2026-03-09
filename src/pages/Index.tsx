@@ -164,11 +164,16 @@ const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; 
     whileInView={{ opacity: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.6, delay }}
-    className="scroll-mt-20 pt-4"
+    className="scroll-mt-20 pt-6"
   >
-    <h2 className="ornament-divider font-display text-xl sm:text-2xl md:text-3xl font-bold text-primary text-center mb-4 sm:mb-6">
-      <span>{children}</span>
-    </h2>
+    {/* Chalk-style header block */}
+    <div className="relative border-2 border-primary/40 rounded-sm py-3 px-4 mb-4">
+      <div className="absolute -top-[1px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+      <div className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+      <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center uppercase tracking-wider">
+        {children}
+      </h2>
+    </div>
   </motion.div>
 );
 
