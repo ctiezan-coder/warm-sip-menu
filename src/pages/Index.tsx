@@ -143,7 +143,7 @@ const soupe = [
 ];
 
 const navItems = [
-  { label: "Menu", emoji: "☕", targetId: "menu-boissons" },
+  { label: "Petit Déj.", emoji: "☕", targetId: "menu-boissons" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
   { label: "Tchêp", emoji: "🍛", targetId: "tchep" },
   { label: "Yassa", emoji: "🍗", targetId: "yassa" },
@@ -241,7 +241,7 @@ const Index = () => {
       <main className="max-w-2xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 space-y-6 mt-4 sm:mt-6">
 
         {/* ── MENU CHAUD & FROID ── */}
-        <SectionTitle id="menu-boissons">☕ Menu Chaud & Froid</SectionTitle>
+        <SectionTitle id="menu-boissons">☕ Menu Petit Déjeuner</SectionTitle>
 
         <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest mt-2">🔥 Chaud</h3>
         <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
