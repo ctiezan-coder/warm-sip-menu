@@ -206,7 +206,7 @@ const Index = () => {
           <img
             src={logo}
             alt="Neriya — La bouchée gourmande"
-            className="w-40 sm:w-56 md:w-64 rounded-2xl shadow-lg shadow-primary/10"
+            className="w-48 sm:w-64 md:w-72"
           />
         </div>
         <motion.p
