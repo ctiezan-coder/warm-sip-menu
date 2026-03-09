@@ -301,7 +301,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="text-center py-8 border-t border-border">
-        <p className="font-script text-primary text-lg">Neriyo</p>
+        <p className="font-script text-primary text-lg">Neriya</p>
         <p className="font-body text-xs text-muted-foreground mt-1">
           © 2026 — La bouchée gourmande
         </p>
