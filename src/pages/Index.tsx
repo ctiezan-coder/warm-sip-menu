@@ -294,7 +294,7 @@ const Index = () => {
 
         {/* ── SOUPE ── */}
         <SectionTitle id="soupe" delay={0.1}>🍲 Soupe</SectionTitle>
-        <MenuSection title="Nos Soupes" items={soupe} delay={0.1} />
+        <MenuSoupeSection items={soupe} delay={0.1} />
       </main>
 
       {/* Footer */}
