@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -41,8 +41,8 @@
     --chalk: 35 50% 92%;
     --charcoal: 28 30% 22%;
     --slate-warm: 28 22% 30%;
-    --font-display: 'Cormorant Garamond', serif;
-    --font-body: 'Josefin Sans', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Nunito', sans-serif;
     --font-script: 'Dancing Script', cursive;
 
     --sidebar-background: 0 0% 98%;

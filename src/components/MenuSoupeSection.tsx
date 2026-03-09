@@ -28,7 +28,7 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
       {/* Section sub-title */}
       <div className="flex items-center gap-3 mb-3">
         <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-primary/30" />
-        <h3 className="font-display text-base sm:text-lg font-semibold uppercase tracking-wider text-primary">
+        <h3 className="font-display text-lg sm:text-xl font-semibold uppercase tracking-wider text-primary">
           {title}
         </h3>
         <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-primary/30" />
@@ -51,7 +51,7 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
       </div>
 
       {/* Items */}
-      <ul className="space-y-1">
+      <ul className="space-y-2">
         {/* Highlighted plat du jour */}
         {platDuJour !== null && (
           <motion.li
@@ -62,15 +62,15 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
           >
             <div className="flex items-center gap-1.5 mb-0.5">
               <Star size={12} className="text-accent fill-accent" />
-              <span className="font-body text-[10px] uppercase tracking-[0.2em] text-accent font-semibold">Plat du jour</span>
+              <span className="font-body text-xs uppercase tracking-[0.2em] text-accent font-semibold">Plat du jour</span>
             </div>
             <div className="flex items-baseline gap-1.5">
-              <span className="font-body text-sm text-foreground font-semibold">{items[platDuJour].name}</span>
+              <span className="font-body text-base sm:text-lg text-foreground font-semibold">{items[platDuJour].name}</span>
               <span className="flex-1 border-b border-dotted border-accent/30 min-w-[12px] translate-y-[-2px]" />
-              <span className="font-body text-sm font-bold text-accent whitespace-nowrap">{items[platDuJour].price}</span>
+              <span className="font-body text-base sm:text-lg font-bold text-accent whitespace-nowrap">{items[platDuJour].price}</span>
             </div>
             {items[platDuJour].description && (
-              <p className="text-[11px] text-muted-foreground mt-0.5 italic">{items[platDuJour].description}</p>
+              <p className="text-xs text-muted-foreground mt-0.5 italic">{items[platDuJour].description}</p>
             )}
           </motion.li>
         )}
@@ -86,12 +86,12 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               transition={{ duration: 0.25, delay: delay + i * 0.02 }}
             >
               <div className="flex items-baseline gap-1.5">
-                <span className="font-body text-sm text-foreground leading-relaxed">{item.name}</span>
+                <span className="font-body text-base sm:text-lg text-foreground leading-relaxed font-medium">{item.name}</span>
                 <span className="flex-1 border-b border-dotted border-foreground/15 min-w-[12px] translate-y-[-2px]" />
-                <span className="font-body text-sm font-bold text-primary whitespace-nowrap">{item.price}</span>
+                <span className="font-body text-base sm:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
               </div>
               {item.description && (
-                <p className="text-[11px] text-muted-foreground ml-1 italic leading-tight">{item.description}</p>
+                <p className="text-xs text-muted-foreground ml-1 italic leading-tight">{item.description}</p>
               )}
             </motion.li>
           );
