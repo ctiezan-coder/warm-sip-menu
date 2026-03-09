@@ -244,11 +244,11 @@ const Index = () => {
         /* ═══ HOME / HERO VIEW ═══ */
         <>
           {/* Hero Section */}
-          <div className="relative h-[55vh] sm:h-[60vh] overflow-hidden">
+          <div className="relative h-[45vh] sm:h-[50vh] overflow-hidden">
             <img
               src={heroImg}
               alt="Neriya — La bouchée gourmande"
-              className="w-full h-full object-cover object-[center_30%]"
+              className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background" />
 
