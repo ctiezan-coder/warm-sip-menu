@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import logo from "@/assets/neriyo-logo.jpeg";
 import MenuSection from "@/components/MenuSection";
+import MenuNavLink from "@/components/MenuNavLink";
 
+// ─── BOISSONS ────────────────────────────────────────────
 const cafeChaud = [
   { name: "Expresso", price: "500 Fr" },
   { name: "Double Expresso", price: "1 000 Fr" },
@@ -30,67 +33,237 @@ const theFroid = [
   { name: "Thé Mojito Pêche", price: "1 500 Fr", emoji: "🍑" },
   { name: "Thé Mojito Fraise", price: "1 500 Fr", emoji: "🍓" },
   { name: "Thé Mojito Orange", price: "1 500 Fr", emoji: "🍊" },
+  { name: "Thé Fruit de la Passion Coco", price: "2 000 Fr", emoji: "🥥" },
 ];
 
+const chocolatChaud = [
+  { name: "Chocolat Chaud Classique", price: "2 000 Fr" },
+  { name: "Chocolat Chaud Chantilly", price: "2 500 Fr" },
+  { name: "Crazy Chocolat – Guimauve & Chantilly", price: "3 500 Fr" },
+];
+
+const milkshakes = [
+  { name: "Vanille", price: "2 000 Fr" },
+  { name: "Menthe", price: "2 000 Fr" },
+  { name: "Fraise", price: "2 500 Fr", emoji: "🍓" },
+  { name: "Kinder Bueno", price: "2 500 Fr" },
+  { name: "Spéculoos Caramel Beurre Salé", price: "2 500 Fr" },
+  { name: "Chocolat Oreo", price: "2 500 Fr" },
+  { name: "Coco Bounty", price: "2 500 Fr" },
+];
+
+const jusNaturel = [
+  { name: "Bissap", price: "1 000 Fr" },
+  { name: "Gingembre", price: "1 000 Fr" },
+  { name: "Citron", price: "1 000 Fr" },
+  { name: "Sucrerie", price: "1 000 Fr" },
+  { name: "Eau Minérale", price: "1 000 Fr" },
+  { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr" },
+  { name: "Cocktail de Fruits", price: "2 000 Fr" },
+];
+
+// ─── DESSERTS ────────────────────────────────────────────
+const pancakes = [
+  { name: "Pancakes Nature", price: "1 000 Fr" },
+  { name: "Pancakes Miel ou Caramel", price: "1 500 Fr" },
+  { name: "Pancakes Nutella", price: "2 000 Fr" },
+  { name: "Pancakes Caramel Fruit (saison)", price: "2 000 Fr" },
+];
+
+const croissantGauffre = [
+  { name: "Vanille Spéculoos", price: "2 500 Fr" },
+  { name: "Oreo", price: "2 500 Fr" },
+  { name: "Fruits Rouges", price: "3 000 Fr" },
+];
+
+const crepes = [
+  { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr" },
+  { name: "Crêpe Nutella", price: "1 500 Fr" },
+  { name: "Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat" },
+  { name: "Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis chocolat" },
+  { name: "Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis chocolat" },
+  { name: "Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats" },
+  { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits, biscottes, boule de glace" },
+];
+
+const autresDesserts = [
+  { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos" },
+  { name: "Croissant Vanille Pistache", price: "2 500 Fr" },
+];
+
+// ─── PLATS ───────────────────────────────────────────────
+const tchep = [
+  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr" },
+  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr" },
+  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr" },
+  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr" },
+  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr" },
+];
+
+const yassa = [
+  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚" },
+  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr" },
+  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚" },
+  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr" },
+  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚" },
+  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr" },
+];
+
+const mafe = [
+  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr" },
+  { name: "½ Pondeuse Fumée (riz / Fonio)", price: "4 500 / 6 000 Fr" },
+  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr" },
+  { name: "Poisson Fumé (riz / Fonio)", price: "2 500 / 3 500 Fr" },
+  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
+  { name: "Sauce Tomate Boulette Riz", price: "2 500 Fr", emoji: "🍚" },
+  { name: "Sauce Feuille Bœuf Riz", price: "2 500 Fr" },
+];
+
+const navItems = [
+  { label: "Café", emoji: "☕", targetId: "cafe" },
+  { label: "Thé", emoji: "🍵", targetId: "the" },
+  { label: "Chocolat", emoji: "🍫", targetId: "chocolat" },
+  { label: "Milkshake", emoji: "🥤", targetId: "milkshake" },
+  { label: "Jus", emoji: "🧃", targetId: "jus" },
+  { label: "Desserts", emoji: "🍰", targetId: "desserts" },
+  { label: "Plats", emoji: "🍛", targetId: "plats" },
+];
+
+const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; id: string; delay?: number }) => (
+  <motion.div
+    id={id}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay }}
+    className="scroll-mt-20 pt-4"
+  >
+    <h2 className="ornament-divider font-display text-2xl md:text-3xl font-bold text-primary text-center mb-6">
+      <span>{children}</span>
+    </h2>
+  </motion.div>
+);
+
 const Index = () => {
+  const [activeSection, setActiveSection] = useState("cafe");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-100px 0px -60% 0px" }
+    );
+    navItems.forEach(({ targetId }) => {
+      const el = document.getElementById(targetId);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen chalkboard-bg">
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex flex-col items-center pt-10 pb-6 px-4"
+        transition={{ duration: 0.8 }}
+        className="flex flex-col items-center pt-10 pb-4 px-4"
       >
-        <img
-          src={logo}
-          alt="Neriyo - la bouchée gourmande"
-          className="w-64 md:w-80 mb-4"
-        />
-        <p className="font-body text-muted-foreground text-sm tracking-widest uppercase">
-          Menu des boissons
-        </p>
+        <div className="relative">
+          <img
+            src={logo}
+            alt="Neriyo — La bouchée gourmande"
+            className="w-48 md:w-56 rounded-full border-2 border-primary/30 shadow-lg shadow-primary/10"
+          />
+          <div className="absolute inset-0 rounded-full ring-1 ring-primary/10 ring-offset-4 ring-offset-background" />
+        </div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="font-script text-primary text-2xl mt-4"
+        >
+          La bouchée gourmande
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="font-body text-muted-foreground text-xs tracking-[0.3em] uppercase mt-1"
+        >
+          Notre Menu
+        </motion.p>
       </motion.header>
 
-      {/* Menu */}
-      <main className="max-w-2xl mx-auto px-4 pb-16 space-y-10">
-        {/* Café */}
-        <section>
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="font-display text-2xl font-bold text-chocolate text-center mb-6"
-          >
-            ☕ Café
-          </motion.h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <MenuSection title="Chaud 🔥" icon="☕" items={cafeChaud} variant="hot" delay={0.3} />
-            <MenuSection title="Glacé ❄️" icon="🧊" items={cafeGlace} variant="cold" delay={0.4} />
-          </div>
-        </section>
+      {/* Sticky Nav */}
+      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border py-2.5 px-4">
+        <div className="max-w-3xl mx-auto flex gap-2 overflow-x-auto no-scrollbar">
+          {navItems.map((item) => (
+            <MenuNavLink key={item.targetId} {...item} isActive={activeSection === item.targetId} />
+          ))}
+        </div>
+      </nav>
 
-        {/* Thé */}
-        <section>
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="font-display text-2xl font-bold text-chocolate text-center mb-6"
-          >
-            🍵 Thé
-          </motion.h2>
-          <div className="grid gap-6 sm:grid-cols-2">
-            <MenuSection title="Chaud 🔥" icon="🍵" items={theChaud} variant="hot" delay={0.5} />
-            <MenuSection title="Froids ❄️" icon="🧊" items={theFroid} variant="cold" delay={0.6} />
-          </div>
-        </section>
+      {/* Menu Content */}
+      <main className="max-w-3xl mx-auto px-4 pb-16 space-y-10 mt-6">
+
+        {/* ── CAFÉ ── */}
+        <SectionTitle id="cafe">☕ Café</SectionTitle>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <MenuSection title="Chaud 🔥" items={cafeChaud} variant="hot" delay={0.1} />
+          <MenuSection title="Glacé ❄️" items={cafeGlace} variant="cold" delay={0.15} />
+        </div>
+
+        {/* ── THÉ ── */}
+        <SectionTitle id="the">🍵 Thé</SectionTitle>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <MenuSection title="Chaud 🔥" items={theChaud} variant="hot" delay={0.1} />
+          <MenuSection title="Froid ❄️" items={theFroid} variant="cold" delay={0.15} />
+        </div>
+
+        {/* ── CHOCOLAT CHAUD ── */}
+        <SectionTitle id="chocolat">🍫 Chocolat Chaud</SectionTitle>
+        <MenuSection title="Nos Chocolats" items={chocolatChaud} variant="hot" delay={0.1} />
+
+        {/* ── MILKSHAKE ── */}
+        <SectionTitle id="milkshake">🥤 Milkshake</SectionTitle>
+        <MenuSection title="Saveurs" items={milkshakes} variant="cold" delay={0.1} />
+
+        {/* ── JUS NATUREL ── */}
+        <SectionTitle id="jus">🧃 Jus Naturel</SectionTitle>
+        <MenuSection title="Jus & Boissons Fraîches" items={jusNaturel} delay={0.1} />
+
+        {/* ── DESSERTS ── */}
+        <SectionTitle id="desserts">🍰 Desserts</SectionTitle>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
+          <MenuSection title="Croissant Gauffre" items={croissantGauffre} delay={0.15} />
+        </div>
+        <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
+        <MenuSection title="Spécialités" items={autresDesserts} delay={0.25} />
+
+        {/* ── PLATS ── */}
+        <SectionTitle id="plats" delay={0.1}>🍛 Menu Déjeuner</SectionTitle>
+        <p className="text-center text-muted-foreground text-xs italic -mt-4 mb-4">
+          Spécialités sénégalaises — du lundi au vendredi
+        </p>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <MenuSection title="Tchêp" items={tchep} delay={0.1} />
+          <MenuSection title="Yassa" items={yassa} delay={0.15} />
+          <MenuSection title="Mafé (sauce arachide)" items={mafe} delay={0.2} />
+        </div>
       </main>
 
       {/* Footer */}
       <footer className="text-center py-8 border-t border-border">
-        <p className="font-body text-sm text-muted-foreground">
-          © 2026 Neriyo — La bouchée gourmande
+        <p className="font-script text-primary text-lg">Neriyo</p>
+        <p className="font-body text-xs text-muted-foreground mt-1">
+          © 2026 — La bouchée gourmande
         </p>
       </footer>
     </div>
