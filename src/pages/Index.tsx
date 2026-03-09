@@ -238,7 +238,7 @@ const Index = () => {
       </nav>
 
       {/* Menu Content */}
-      <main className="max-w-3xl mx-auto px-4 pb-16 space-y-10 mt-6">
+      <main className="max-w-3xl mx-auto px-3 sm:px-4 pb-24 sm:pb-16 space-y-8 sm:space-y-10 mt-4 sm:mt-6">
 
         {/* ── CAFÉ ── */}
         <SectionTitle id="cafe">☕ Café</SectionTitle>
