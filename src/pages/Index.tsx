@@ -110,13 +110,31 @@ const yassa = [
 ];
 
 const mafe = [
-  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr" },
-  { name: "½ Pondeuse Fumée (riz / Fonio)", price: "4 500 / 6 000 Fr" },
-  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr" },
-  { name: "Poisson Fumé (riz / Fonio)", price: "2 500 / 3 500 Fr" },
+  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚" },
+  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr" },
+  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr" },
+  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", emoji: "🍚" },
   { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
-  { name: "Sauce Tomate Boulette Riz", price: "2 500 Fr", emoji: "🍚" },
-  { name: "Sauce Feuille Bœuf Riz", price: "2 500 Fr" },
+];
+
+const sauceTomate = [
+  { name: "Sauce Tomate Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚" },
+  { name: "Sauce Feuille de Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚" },
+];
+
+const sauceLegume = [
+  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚" },
+  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr" },
+  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr" },
+  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
+];
+
+const soupe = [
+  { name: "½ Pondeuse (riz, attiéké)", price: "5 000 Fr" },
+  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr" },
+  { name: "Soupe Poulet Chair ½ (attiéké, riz)", price: "3 500 Fr" },
+  { name: "Soupe Poulet Chair 1 entier (attiéké, riz)", price: "6 500 Fr" },
+  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", description: "Prix selon le poisson du jour" },
 ];
 
 const navItems = [
