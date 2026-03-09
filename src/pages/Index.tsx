@@ -1,15 +1,19 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { MessageCircle } from "lucide-react";
+import { useState } from "react";
+import { MessageCircle, ArrowLeft, ChevronRight } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
+import heroImg from "@/assets/hero-food.jpg";
+import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
+import catDejeuner from "@/assets/cat-dejeuner.jpg";
+import catDiner from "@/assets/cat-diner.jpg";
+import catDessert from "@/assets/cat-dessert.jpg";
+import catBoissons from "@/assets/cat-boissons.jpg";
 import MenuSection from "@/components/MenuSection";
 import MenuSoupeSection from "@/components/MenuSoupeSection";
-import MenuNavLink from "@/components/MenuNavLink";
 
-// Alias for readability
 const MenuPlatDuJourSection = MenuSoupeSection;
 
-// ─── BOISSONS ────────────────────────────────────────────
+// ─── DATA ─────────────────────────────────────────────────
 const cafeChaud = [
   { name: "Expresso", price: "500 Fr" },
   { name: "Double Expresso", price: "1 000 Fr" },
@@ -18,7 +22,6 @@ const cafeChaud = [
   { name: "Cappuccino", price: "1 500 Fr" },
   { name: "Moca", price: "2 000 Fr" },
 ];
-
 const cafeGlace = [
   { name: "Americano", price: "2 000 Fr" },
   { name: "Café Latté", price: "2 500 Fr" },
@@ -26,13 +29,11 @@ const cafeGlace = [
   { name: "Moca", price: "2 500 Fr" },
   { name: "Café Latté Caramel Spéculoos", price: "3 000 Fr" },
 ];
-
 const theChaud = [
   { name: "Thé Lipton", price: "500 Fr" },
   { name: "Thé Infusion Neriya", price: "1 000 Fr" },
   { name: "Thé Infusion Gingembre Menthe", price: "1 500 Fr" },
 ];
-
 const theFroid = [
   { name: "Thé Mojito Citron", price: "1 500 Fr", emoji: "🍋" },
   { name: "Thé Mojito Pêche", price: "1 500 Fr", emoji: "🍑" },
@@ -40,13 +41,11 @@ const theFroid = [
   { name: "Thé Mojito Orange", price: "1 500 Fr", emoji: "🍊" },
   { name: "Thé Fruit de la Passion Coco", price: "2 000 Fr", emoji: "🥥" },
 ];
-
 const chocolatChaud = [
   { name: "Chocolat Chaud Classique", price: "2 000 Fr" },
   { name: "Chocolat Chaud Chantilly", price: "2 500 Fr" },
   { name: "Crazy Chocolat – Guimauve & Chantilly", price: "3 500 Fr" },
 ];
-
 const milkshakes = [
   { name: "Vanille", price: "2 000 Fr" },
   { name: "Menthe", price: "2 000 Fr" },
@@ -56,7 +55,6 @@ const milkshakes = [
   { name: "Chocolat Oreo", price: "2 500 Fr" },
   { name: "Coco Bounty", price: "2 500 Fr" },
 ];
-
 const jusNaturel = [
   { name: "Bissap", price: "1 000 Fr" },
   { name: "Gingembre", price: "1 000 Fr" },
@@ -66,21 +64,17 @@ const jusNaturel = [
   { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr" },
   { name: "Cocktail de Fruits", price: "2 000 Fr" },
 ];
-
-// ─── DESSERTS ────────────────────────────────────────────
 const pancakes = [
   { name: "Pancakes Nature", price: "1 000 Fr" },
   { name: "Pancakes Miel ou Caramel", price: "1 500 Fr" },
   { name: "Pancakes Nutella", price: "2 000 Fr" },
   { name: "Pancakes Caramel Fruit (saison)", price: "2 000 Fr" },
 ];
-
 const croissantGauffre = [
   { name: "Vanille Spéculoos", price: "2 500 Fr" },
   { name: "Oreo", price: "2 500 Fr" },
   { name: "Fruits Rouges", price: "3 000 Fr" },
 ];
-
 const crepes = [
   { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr" },
   { name: "Crêpe Nutella", price: "1 500 Fr" },
@@ -90,13 +84,10 @@ const crepes = [
   { name: "Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats" },
   { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits, biscottes, boule de glace" },
 ];
-
 const autresDesserts = [
   { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos" },
   { name: "Croissant Vanille Pistache", price: "2 500 Fr" },
 ];
-
-// ─── PLATS ───────────────────────────────────────────────
 const tchep = [
   { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr" },
   { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr" },
@@ -104,7 +95,6 @@ const tchep = [
   { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr" },
   { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr" },
 ];
-
 const yassa = [
   { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚" },
   { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr" },
@@ -113,7 +103,6 @@ const yassa = [
   { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚" },
   { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr" },
 ];
-
 const mafe = [
   { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚" },
   { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr" },
@@ -121,19 +110,16 @@ const mafe = [
   { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", emoji: "🍚" },
   { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
 ];
-
 const sauceTomate = [
   { name: "Sauce Tomate Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚" },
   { name: "Sauce Feuille de Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚" },
 ];
-
 const sauceLegume = [
   { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚" },
   { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr" },
   { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr" },
   { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
 ];
-
 const soupe = [
   { name: "½ Pondeuse (riz, attiéké)", price: "5 000 Fr" },
   { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr" },
@@ -142,150 +128,208 @@ const soupe = [
   { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", description: "Prix selon le poisson du jour" },
 ];
 
-const navItems = [
-  { label: "Petit Déj.", emoji: "☕", targetId: "menu-boissons" },
-  { label: "Jus", emoji: "🧃", targetId: "jus-boissons" },
-  { label: "Desserts", emoji: "🍰", targetId: "desserts" },
-  { label: "Déjeuner", emoji: "🍛", targetId: "menu-dejeuner" },
+// ─── CATEGORIES ────────────────────────────────────────────
+type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
+
+const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
+  { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "☕", image: catPetitDej, description: "Cafés, thés, chocolats & viennoiseries" },
+  { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Tchêp, Yassa, Mafé, Sauces & Soupes" },
+  { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
+  { key: "dessert", label: "Desserts", emoji: "🍰", image: catDessert, description: "Pancakes, crêpes, gaufres & spécialités" },
+  { key: "boissons", label: "Boissons", emoji: "🧃", image: catBoissons, description: "Jus naturels, milkshakes & boissons fraîches" },
 ];
 
-const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; id: string; delay?: number }) => (
-  <motion.div
-    id={id}
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay }}
-    className="scroll-mt-20 pt-6"
-  >
-    {/* Chalk-style header block */}
-    <div className="relative border-2 border-primary/40 rounded-sm py-3 px-4 mb-4">
-      <div className="absolute -top-[1px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
-      <div className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
-      <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center uppercase tracking-wider">
-        {children}
-      </h2>
-    </div>
-  </motion.div>
-);
+// ─── CATEGORY CONTENT ─────────────────────────────────────
+const CategoryContent = ({ category }: { category: CategoryKey }) => {
+  switch (category) {
+    case "petit-dejeuner":
+      return (
+        <div className="space-y-6">
+          <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest">🔥 Chaud</h3>
+          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
+          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
+          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
+          <div className="chalk-line my-4" />
+          <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
+          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.1} />
+          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.15} />
+        </div>
+      );
+    case "dejeuner":
+      return (
+        <div className="space-y-6">
+          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
+          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
+          <div className="chalk-line my-4" />
+          <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
+          <MenuPlatDuJourSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
+          <MenuPlatDuJourSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
+          <div className="chalk-line my-4" />
+          <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.35} />
+        </div>
+      );
+    case "diner":
+      return (
+        <div className="space-y-6">
+          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
+          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
+          <div className="chalk-line my-4" />
+          <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.2} />
+        </div>
+      );
+    case "dessert":
+      return (
+        <div className="space-y-6">
+          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
+          <MenuSection title="Croissant Gauffre" items={croissantGauffre} delay={0.15} />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
+          <MenuSection title="Spécialités" items={autresDesserts} delay={0.25} />
+        </div>
+      );
+    case "boissons":
+      return (
+        <div className="space-y-6">
+          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.1} />
+          <MenuSection title="Jus & Boissons Fraîches 🧃" items={jusNaturel} delay={0.15} />
+        </div>
+      );
+  }
+};
 
+// ─── MAIN COMPONENT ───────────────────────────────────────
 const Index = () => {
-  const [activeSection, setActiveSection] = useState("cafe");
+  const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-100px 0px -60% 0px" }
-    );
-    navItems.forEach(({ targetId }) => {
-      const el = document.getElementById(targetId);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
+  const activeCat = categories.find((c) => c.key === activeCategory);
 
   return (
     <div className="min-h-screen chalkboard-bg">
-      {/* Header */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="flex flex-col items-center pt-6 sm:pt-10 pb-4 px-3 sm:px-4"
-      >
-        <div className="relative">
-          <img
-            src={logo}
-            alt="Neriya — La bouchée gourmande"
-            className="w-48 sm:w-64 md:w-72"
-          />
-        </div>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="font-script text-primary text-xl sm:text-2xl mt-3 sm:mt-4"
+      {/* ═══ CATEGORY DETAIL VIEW ═══ */}
+      {activeCategory && activeCat ? (
+        <motion.div
+          key={activeCategory}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.35 }}
         >
-          La bouchée gourmande
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="font-body text-muted-foreground text-xs tracking-[0.3em] uppercase mt-1"
-        >
-          Notre Menu
-        </motion.p>
-      </motion.header>
+          {/* Header with image */}
+          <div className="relative h-48 sm:h-64 overflow-hidden">
+            <img
+              src={activeCat.image}
+              alt={activeCat.label}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-background" />
+            <button
+              onClick={() => setActiveCategory(null)}
+              className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-background/70 backdrop-blur-sm text-foreground font-body text-sm px-3 py-2 rounded-full hover:bg-background/90 transition-colors"
+            >
+              <ArrowLeft size={18} />
+              Retour
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 text-center">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-wider drop-shadow-lg">
+                {activeCat.emoji} {activeCat.label}
+              </h1>
+            </div>
+          </div>
 
-      {/* Sticky Nav */}
-      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border py-2 sm:py-2.5 px-2 sm:px-4">
-        <div className="max-w-3xl mx-auto flex gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar">
-          {navItems.map((item) => (
-            <MenuNavLink key={item.targetId} {...item} isActive={activeSection === item.targetId} />
-          ))}
-        </div>
-      </nav>
+          {/* Content */}
+          <main className="max-w-2xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 space-y-6 mt-6">
+            <CategoryContent category={activeCategory} />
+          </main>
+        </motion.div>
+      ) : (
+        /* ═══ HOME / HERO VIEW ═══ */
+        <>
+          {/* Hero Section */}
+          <div className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
+            <img
+              src={heroImg}
+              alt="Plats gastronomiques Neriya"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-background" />
 
-      {/* Menu Content */}
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 space-y-6 mt-4 sm:mt-6">
+            {/* Logo + MENU */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+              <motion.img
+                src={logo}
+                alt="Neriya"
+                className="w-36 sm:w-48 md:w-56 mb-4"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+              />
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-2xl"
+              >
+                Menu
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="font-script text-primary text-xl sm:text-2xl mt-2 drop-shadow-lg"
+              >
+                La bouchée gourmande
+              </motion.p>
+            </div>
+          </div>
 
-        {/* ── MENU CHAUD & FROID ── */}
-        <SectionTitle id="menu-boissons">☕ Menu Petit Déjeuner</SectionTitle>
+          {/* Category Cards */}
+          <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 -mt-16 sm:-mt-20 relative z-10">
+            <div className="grid gap-4 sm:gap-5">
+              {categories.map((cat, i) => (
+                <motion.button
+                  key={cat.key}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
+                  onClick={() => {
+                    setActiveCategory(cat.key);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="group relative overflow-hidden rounded-xl h-28 sm:h-32 text-left transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  {/* Background image */}
+                  <img
+                    src={cat.image}
+                    alt={cat.label}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/30 group-hover:from-black/65 transition-colors" />
 
-        <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest mt-2">🔥 Chaud</h3>
-        <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
-        <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
-        <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
+                  {/* Content */}
+                  <div className="relative h-full flex items-center justify-between px-5 sm:px-8">
+                    <div>
+                      <span className="text-3xl sm:text-4xl mr-3">{cat.emoji}</span>
+                      <h2 className="inline font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider">
+                        {cat.label}
+                      </h2>
+                      <p className="font-body text-sm text-white/70 mt-1">{cat.description}</p>
+                    </div>
+                    <ChevronRight size={28} className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all shrink-0" />
+                  </div>
+                </motion.button>
+              ))}
+            </div>
+          </main>
 
-        <div className="chalk-line my-4" />
-
-        <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
-        <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.1} />
-        <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.15} />
-        <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.2} />
-
-        {/* ── JUS & BOISSONS ── */}
-        <SectionTitle id="jus-boissons">🧃 Jus & Boissons</SectionTitle>
-        <MenuSection title="Jus & Boissons Fraîches" items={jusNaturel} delay={0.1} />
-
-        {/* ── DESSERTS ── */}
-        <SectionTitle id="desserts">🍰 Desserts</SectionTitle>
-        <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
-        <MenuSection title="Croissant Gauffre" items={croissantGauffre} delay={0.15} />
-        <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
-        <MenuSection title="Spécialités" items={autresDesserts} delay={0.25} />
-
-        {/* ── MENU DÉJEUNER ── */}
-        <SectionTitle id="menu-dejeuner" delay={0.1}>🍛 Menu Déjeuner</SectionTitle>
-
-        <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
-        <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
-
-        <div className="chalk-line my-4" />
-
-        <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
-        <MenuPlatDuJourSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
-        <MenuPlatDuJourSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
-
-        <div className="chalk-line my-4" />
-
-        <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.35} />
-      </main>
-
-      {/* Footer */}
-      <footer className="text-center py-8 border-t border-border">
-        <p className="font-script text-primary text-lg">Neriya</p>
-        <p className="font-body text-xs text-muted-foreground mt-1">
-          © 2026 — La bouchée gourmande
-        </p>
-      </footer>
+          {/* Footer */}
+          <footer className="text-center py-8 border-t border-border">
+            <p className="font-script text-primary text-lg">Neriya</p>
+            <p className="font-body text-xs text-muted-foreground mt-1">
+              © 2026 — La bouchée gourmande
+            </p>
+          </footer>
+        </>
+      )}
 
       {/* WhatsApp Floating Button */}
       <a
