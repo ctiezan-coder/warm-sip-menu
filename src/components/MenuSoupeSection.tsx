@@ -98,4 +98,4 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
   );
 };
 
-export default MenuSoupeSection;
+export default MenuPlatDuJourSection;
