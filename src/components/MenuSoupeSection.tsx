@@ -8,12 +8,13 @@ interface SoupeItem {
   description?: string;
 }
 
-interface MenuSoupeSectionProps {
+interface MenuPlatDuJourSectionProps {
+  title: string;
   items: SoupeItem[];
   delay?: number;
 }
 
-const MenuSoupeSection = ({ items, delay = 0 }: MenuSoupeSectionProps) => {
+const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectionProps) => {
   const [platDuJour, setPlatDuJour] = useState<number | null>(null);
 
   return (
