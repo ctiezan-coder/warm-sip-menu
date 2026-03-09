@@ -204,7 +204,7 @@ const Index = () => {
       <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border py-2.5 px-4">
         <div className="max-w-3xl mx-auto flex gap-2 overflow-x-auto no-scrollbar">
           {navItems.map((item) => (
-            <NavLink key={item.targetId} {...item} isActive={activeSection === item.targetId} />
+            <MenuNavLink key={item.targetId} {...item} isActive={activeSection === item.targetId} />
           ))}
         </div>
       </nav>
