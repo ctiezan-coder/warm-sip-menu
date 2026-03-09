@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
 import logo from "@/assets/neriyo-logo.jpeg";
 import MenuSection from "@/components/MenuSection";
+import MenuSoupeSection from "@/components/MenuSoupeSection";
 import MenuNavLink from "@/components/MenuNavLink";
 
 // ─── BOISSONS ────────────────────────────────────────────
@@ -293,7 +294,7 @@ const Index = () => {
 
         {/* ── SOUPE ── */}
         <SectionTitle id="soupe" delay={0.1}>🍲 Soupe</SectionTitle>
-        <MenuSection title="Nos Soupes" items={soupe} delay={0.1} />
+        <MenuSoupeSection items={soupe} delay={0.1} />
       </main>
 
       {/* Footer */}
