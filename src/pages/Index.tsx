@@ -200,7 +200,7 @@ const Index = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="flex flex-col items-center pt-10 pb-4 px-4"
+        className="flex flex-col items-center pt-6 sm:pt-10 pb-4 px-3 sm:px-4"
       >
         <div className="relative">
           <img
