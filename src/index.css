@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,45 +6,45 @@
 
 @layer base {
   :root {
-    --background: 30 25% 96%;
-    --foreground: 20 30% 15%;
+    --background: 30 8% 12%;
+    --foreground: 40 30% 90%;
 
-    --card: 30 20% 99%;
-    --card-foreground: 20 30% 15%;
+    --card: 30 8% 16%;
+    --card-foreground: 40 30% 90%;
 
-    --popover: 30 20% 99%;
-    --popover-foreground: 20 30% 15%;
+    --popover: 30 8% 16%;
+    --popover-foreground: 40 30% 90%;
 
-    --primary: 20 56% 28%;
-    --primary-foreground: 40 30% 95%;
+    --primary: 38 72% 58%;
+    --primary-foreground: 30 8% 10%;
 
-    --secondary: 30 60% 90%;
-    --secondary-foreground: 20 56% 28%;
+    --secondary: 30 10% 22%;
+    --secondary-foreground: 40 30% 85%;
 
-    --muted: 30 20% 92%;
-    --muted-foreground: 20 10% 50%;
+    --muted: 30 8% 20%;
+    --muted-foreground: 30 15% 55%;
 
-    --accent: 25 85% 55%;
+    --accent: 16 80% 58%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 20% 88%;
-    --input: 30 20% 88%;
-    --ring: 20 56% 28%;
+    --border: 30 10% 25%;
+    --input: 30 10% 25%;
+    --ring: 38 72% 58%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --green-leaf: 130 55% 35%;
-    --warm-orange: 25 85% 55%;
-    --chocolate: 20 56% 28%;
-    --cream: 40 40% 95%;
-    --hot-gradient: linear-gradient(135deg, hsl(20 56% 28%), hsl(25 85% 55%));
-    --cold-gradient: linear-gradient(135deg, hsl(200 60% 50%), hsl(190 70% 65%));
+    --gold: 38 72% 58%;
+    --copper: 16 80% 58%;
+    --chalk: 40 30% 90%;
+    --charcoal: 30 8% 12%;
+    --slate-warm: 30 8% 20%;
 
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Lato', sans-serif;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Josefin Sans', sans-serif;
+    --font-script: 'Dancing Script', cursive;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -68,4 +68,45 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
   }
+}
+
+/* Chalkboard texture overlay */
+.chalkboard-bg {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, hsla(30, 8%, 18%, 0.8) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, hsla(30, 8%, 15%, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, hsla(30, 8%, 14%, 0.7) 0%, transparent 50%);
+  background-color: hsl(30, 8%, 12%);
+}
+
+/* Chalk line effect */
+.chalk-line {
+  background: linear-gradient(90deg, transparent, hsl(40 30% 90% / 0.15), hsl(40 30% 90% / 0.3), hsl(40 30% 90% / 0.15), transparent);
+  height: 1px;
+}
+
+/* Gold ornament divider */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(38 72% 58% / 0.5), transparent);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(30, 8%, 12%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(38, 72%, 58%, 0.3);
+  border-radius: 3px;
 }
