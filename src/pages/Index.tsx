@@ -166,7 +166,7 @@ const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; 
     transition={{ duration: 0.6, delay }}
     className="scroll-mt-20 pt-4"
   >
-    <h2 className="ornament-divider font-display text-2xl md:text-3xl font-bold text-primary text-center mb-6">
+    <h2 className="ornament-divider font-display text-xl sm:text-2xl md:text-3xl font-bold text-primary text-center mb-4 sm:mb-6">
       <span>{children}</span>
     </h2>
   </motion.div>
