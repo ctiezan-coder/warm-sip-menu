@@ -143,11 +143,8 @@ const soupe = [
 ];
 
 const navItems = [
-  { label: "Café", emoji: "☕", targetId: "cafe" },
-  { label: "Thé", emoji: "🍵", targetId: "the" },
-  { label: "Chocolat", emoji: "🍫", targetId: "chocolat" },
-  { label: "Milkshake", emoji: "🥤", targetId: "milkshake" },
-  { label: "Jus", emoji: "🧃", targetId: "jus" },
+  { label: "Chaud", emoji: "🔥", targetId: "menu-chaud" },
+  { label: "Froid", emoji: "❄️", targetId: "menu-froid" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
   { label: "Tchêp", emoji: "🍛", targetId: "tchep" },
   { label: "Yassa", emoji: "🍗", targetId: "yassa" },
