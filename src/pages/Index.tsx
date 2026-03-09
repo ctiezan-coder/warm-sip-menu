@@ -166,7 +166,7 @@ const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; 
     transition={{ duration: 0.6, delay }}
     className="scroll-mt-20 pt-4"
   >
-    <h2 className="ornament-divider font-display text-2xl md:text-3xl font-bold text-primary text-center mb-6">
+    <h2 className="ornament-divider font-display text-xl sm:text-2xl md:text-3xl font-bold text-primary text-center mb-4 sm:mb-6">
       <span>{children}</span>
     </h2>
   </motion.div>
@@ -200,13 +200,13 @@ const Index = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="flex flex-col items-center pt-10 pb-4 px-4"
+        className="flex flex-col items-center pt-6 sm:pt-10 pb-4 px-3 sm:px-4"
       >
         <div className="relative">
           <img
             src={logo}
             alt="Neriyo — La bouchée gourmande"
-            className="w-48 md:w-56 rounded-full border-2 border-primary/30 shadow-lg shadow-primary/10"
+            className="w-32 sm:w-48 md:w-56 rounded-full border-2 border-primary/30 shadow-lg shadow-primary/10"
           />
           <div className="absolute inset-0 rounded-full ring-1 ring-primary/10 ring-offset-4 ring-offset-background" />
         </div>
@@ -214,7 +214,7 @@ const Index = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="font-script text-primary text-2xl mt-4"
+          className="font-script text-primary text-xl sm:text-2xl mt-3 sm:mt-4"
         >
           La bouchée gourmande
         </motion.p>
@@ -229,8 +229,8 @@ const Index = () => {
       </motion.header>
 
       {/* Sticky Nav */}
-      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border py-2.5 px-4">
-        <div className="max-w-3xl mx-auto flex gap-2 overflow-x-auto no-scrollbar">
+      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border py-2 sm:py-2.5 px-2 sm:px-4">
+        <div className="max-w-3xl mx-auto flex gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar">
           {navItems.map((item) => (
             <MenuNavLink key={item.targetId} {...item} isActive={activeSection === item.targetId} />
           ))}
@@ -238,7 +238,7 @@ const Index = () => {
       </nav>
 
       {/* Menu Content */}
-      <main className="max-w-3xl mx-auto px-4 pb-16 space-y-10 mt-6">
+      <main className="max-w-3xl mx-auto px-3 sm:px-4 pb-24 sm:pb-16 space-y-8 sm:space-y-10 mt-4 sm:mt-6">
 
         {/* ── CAFÉ ── */}
         <SectionTitle id="cafe">☕ Café</SectionTitle>
@@ -313,7 +313,7 @@ const Index = () => {
         href="https://wa.me/2250789288202?text=Bonjour%20Neriyo%20!%20Je%20souhaite%20passer%20une%20commande%20🍽️"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-semibold text-sm px-5 py-3 rounded-full shadow-lg shadow-black/30 transition-all hover:scale-105 active:scale-95"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-semibold text-xs sm:text-sm px-4 py-2.5 sm:px-5 sm:py-3 rounded-full shadow-lg shadow-black/30 transition-all hover:scale-105 active:scale-95"
       >
         <MessageCircle size={22} fill="white" strokeWidth={0} />
         Commander
