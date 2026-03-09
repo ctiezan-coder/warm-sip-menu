@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { MessageCircle } from "lucide-react";
 import logo from "@/assets/neriyo-logo.jpeg";
 import MenuSection from "@/components/MenuSection";
 import MenuNavLink from "@/components/MenuNavLink";
