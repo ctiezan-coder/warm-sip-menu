@@ -28,7 +28,7 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
       {/* Section sub-title */}
       <div className="flex items-center gap-3 mb-3">
         <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-primary/30" />
-        <h3 className="font-display text-base sm:text-lg font-semibold uppercase tracking-wider text-primary">
+        <h3 className="font-display text-lg sm:text-xl font-semibold uppercase tracking-wider text-primary">
           {title}
         </h3>
         <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-primary/30" />
