@@ -244,40 +244,24 @@ const Index = () => {
         /* ═══ HOME / HERO VIEW ═══ */
         <>
           {/* Hero Section */}
-          <div className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
+          <div className="relative h-[70vh] sm:h-[80vh] overflow-hidden">
             <img
               src={heroImg}
-              alt="Plats gastronomiques Neriya"
+              alt="Neriya — La bouchée gourmande"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-background" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background" />
 
-            {/* Logo + MENU */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-              <motion.img
-                src={logo}
-                alt="Neriya"
-                className="w-36 sm:w-48 md:w-56 mb-4"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-              />
+            {/* MENU title at bottom */}
+            <div className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-2xl"
+                className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white uppercase tracking-[0.2em] drop-shadow-2xl"
               >
                 Menu
               </motion.h1>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="font-script text-primary text-xl sm:text-2xl mt-2 drop-shadow-lg"
-              >
-                La bouchée gourmande
-              </motion.p>
             </div>
           </div>
 
