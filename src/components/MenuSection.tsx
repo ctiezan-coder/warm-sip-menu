@@ -31,16 +31,16 @@ const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSecti
       className="relative"
     >
       {/* Section sub-title */}
-      <div className="flex items-center gap-3 mb-3">
+      <div className="flex items-center gap-3 mb-4">
         <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-primary/30" />
-        <h3 className={`font-display text-base sm:text-lg font-semibold uppercase tracking-wider ${accentColor[variant]}`}>
+        <h3 className={`font-display text-lg sm:text-xl font-semibold uppercase tracking-wider ${accentColor[variant]}`}>
           {title}
         </h3>
         <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-primary/30" />
       </div>
 
       {/* Items */}
-      <ul className="space-y-1">
+      <ul className="space-y-2">
         {items.map((item, i) => (
           <motion.li
             key={item.name + i}
@@ -50,17 +50,17 @@ const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSecti
             transition={{ duration: 0.25, delay: delay + i * 0.02 }}
           >
             <div className="flex items-baseline gap-1.5">
-              <span className="font-body text-sm text-foreground leading-relaxed">
+              <span className="font-body text-base sm:text-lg text-foreground leading-relaxed font-medium">
                 {item.emoji && <span className="mr-1">{item.emoji}</span>}
                 {item.name}
               </span>
               <span className="flex-1 border-b border-dotted border-foreground/15 min-w-[12px] translate-y-[-2px]" />
-              <span className="font-body text-sm font-bold text-primary whitespace-nowrap">
+              <span className="font-body text-base sm:text-lg font-bold text-primary whitespace-nowrap">
                 {item.price}
               </span>
             </div>
             {item.description && (
-              <p className="text-[11px] text-muted-foreground ml-1 italic leading-tight">{item.description}</p>
+              <p className="text-xs text-muted-foreground ml-1 italic leading-tight">{item.description}</p>
             )}
           </motion.li>
         ))}
