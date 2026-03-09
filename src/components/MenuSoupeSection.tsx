@@ -19,22 +19,29 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay }}
-      className="rounded-lg border border-border bg-card/50 p-5"
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.4, delay }}
+      className="relative"
     >
-      <h3 className="font-script text-xl mb-3 text-primary">{title}</h3>
+      {/* Section sub-title */}
+      <div className="flex items-center gap-3 mb-3">
+        <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-primary/30" />
+        <h3 className="font-display text-base sm:text-lg font-semibold uppercase tracking-wider text-primary">
+          {title}
+        </h3>
+        <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-primary/30" />
+      </div>
 
-      {/* Dropdown plat du jour */}
-      <div className="mb-4 flex items-center gap-2">
-        <Star size={16} className="text-gold shrink-0" />
-        <label className="font-body text-xs text-muted-foreground whitespace-nowrap">Plat du jour :</label>
+      {/* Plat du jour selector */}
+      <div className="mb-3 flex items-center gap-2">
+        <Star size={14} className="text-accent shrink-0" />
+        <label className="font-body text-[11px] text-muted-foreground whitespace-nowrap uppercase tracking-wider">Plat du jour :</label>
         <select
           value={platDuJour ?? ""}
           onChange={(e) => setPlatDuJour(e.target.value === "" ? null : Number(e.target.value))}
-          className="flex-1 bg-background/60 border border-primary/20 rounded-md px-2 py-1 font-body text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary/40"
+          className="flex-1 bg-background/60 border border-primary/20 rounded px-2 py-1 font-body text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary/40"
         >
           <option value="">— Aucun —</option>
           {items.map((item, i) => (
@@ -43,35 +50,31 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
         </select>
       </div>
 
-      <ul className="space-y-2.5">
-        {/* Plat du jour en premier, mis en avant */}
+      {/* Items */}
+      <ul className="space-y-1">
+        {/* Highlighted plat du jour */}
         {platDuJour !== null && (
           <motion.li
             key="plat-du-jour"
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative rounded-md border border-gold/30 bg-gold/10 p-3 mb-3"
+            className="relative border border-accent/30 rounded px-3 py-2 mb-2 bg-accent/5"
           >
-            <div className="flex items-center gap-1.5 mb-1">
-              <Star size={14} className="text-gold fill-gold" />
-              <span className="font-body text-[10px] uppercase tracking-widest text-gold font-semibold">Plat du jour</span>
+            <div className="flex items-center gap-1.5 mb-0.5">
+              <Star size={12} className="text-accent fill-accent" />
+              <span className="font-body text-[10px] uppercase tracking-[0.2em] text-accent font-semibold">Plat du jour</span>
             </div>
-            <div className="flex justify-between items-baseline gap-2">
-              <span className="font-body text-[14px] text-foreground font-semibold">
-                {items[platDuJour].name}
-              </span>
-              <span className="flex-1 border-b border-dotted border-gold/30 min-w-[1rem] mx-1 translate-y-[-3px]" />
-              <span className="font-body text-[14px] font-bold text-gold whitespace-nowrap">
-                {items[platDuJour].price}
-              </span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="font-body text-sm text-foreground font-semibold">{items[platDuJour].name}</span>
+              <span className="flex-1 border-b border-dotted border-accent/30 min-w-[12px] translate-y-[-2px]" />
+              <span className="font-body text-sm font-bold text-accent whitespace-nowrap">{items[platDuJour].price}</span>
             </div>
             {items[platDuJour].description && (
-              <p className="text-xs text-muted-foreground mt-0.5 italic">{items[platDuJour].description}</p>
+              <p className="text-[11px] text-muted-foreground mt-0.5 italic">{items[platDuJour].description}</p>
             )}
           </motion.li>
         )}
 
-        {/* Reste des items */}
         {items.map((item, i) => {
           if (i === platDuJour) return null;
           return (
@@ -80,15 +83,15 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: delay + i * 0.03 }}
+              transition={{ duration: 0.25, delay: delay + i * 0.02 }}
             >
-              <div className="flex justify-between items-baseline gap-2">
-                <span className="font-body text-[14px] text-foreground">{item.name}</span>
-                <span className="flex-1 border-b border-dotted border-muted-foreground/20 min-w-[1rem] mx-1 translate-y-[-3px]" />
-                <span className="font-body text-[14px] font-semibold text-primary whitespace-nowrap">{item.price}</span>
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-body text-sm text-foreground leading-relaxed">{item.name}</span>
+                <span className="flex-1 border-b border-dotted border-foreground/15 min-w-[12px] translate-y-[-2px]" />
+                <span className="font-body text-sm font-bold text-primary whitespace-nowrap">{item.price}</span>
               </div>
               {item.description && (
-                <p className="text-xs text-muted-foreground mt-0.5 italic">{item.description}</p>
+                <p className="text-[11px] text-muted-foreground ml-1 italic leading-tight">{item.description}</p>
               )}
             </motion.li>
           );
