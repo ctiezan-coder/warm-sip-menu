@@ -29,7 +29,7 @@ const cafeGlace = [
 
 const theChaud = [
   { name: "Thé Lipton", price: "500 Fr" },
-  { name: "Thé Infusion Neriyo", price: "1 000 Fr" },
+  { name: "Thé Infusion Neriya", price: "1 000 Fr" },
   { name: "Thé Infusion Gingembre Menthe", price: "1 500 Fr" },
 ];
 
