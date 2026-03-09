@@ -242,28 +242,24 @@ const Index = () => {
       </nav>
 
       {/* Menu Content */}
-      <main className="max-w-3xl mx-auto px-3 sm:px-4 pb-24 sm:pb-16 space-y-8 sm:space-y-10 mt-4 sm:mt-6">
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 space-y-6 mt-4 sm:mt-6">
 
         {/* ── CAFÉ ── */}
-        <SectionTitle id="cafe">☕ Café</SectionTitle>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <MenuSection title="Chaud 🔥" items={cafeChaud} variant="hot" delay={0.1} />
-          <MenuSection title="Glacé ❄️" items={cafeGlace} variant="cold" delay={0.15} />
-        </div>
+        <SectionTitle id="cafe">☕ Les Cafés</SectionTitle>
+        <MenuSection title="Chaud 🔥" items={cafeChaud} variant="hot" delay={0.1} />
+        <MenuSection title="Glacé ❄️" items={cafeGlace} variant="cold" delay={0.15} />
 
         {/* ── THÉ ── */}
-        <SectionTitle id="the">🍵 Thé</SectionTitle>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <MenuSection title="Chaud 🔥" items={theChaud} variant="hot" delay={0.1} />
-          <MenuSection title="Froid ❄️" items={theFroid} variant="cold" delay={0.15} />
-        </div>
+        <SectionTitle id="the">🍵 Les Thés</SectionTitle>
+        <MenuSection title="Chaud 🔥" items={theChaud} variant="hot" delay={0.1} />
+        <MenuSection title="Froid ❄️" items={theFroid} variant="cold" delay={0.15} />
 
         {/* ── CHOCOLAT CHAUD ── */}
-        <SectionTitle id="chocolat">🍫 Chocolat Chaud</SectionTitle>
-        <MenuSection title="Nos Chocolats" items={chocolatChaud} variant="hot" delay={0.1} />
+        <SectionTitle id="chocolat">🍫 Chocolats</SectionTitle>
+        <MenuSection title="Chauds / Frappés" items={chocolatChaud} variant="hot" delay={0.1} />
 
         {/* ── MILKSHAKE ── */}
-        <SectionTitle id="milkshake">🥤 Milkshake</SectionTitle>
+        <SectionTitle id="milkshake">🥤 Milkshakes</SectionTitle>
         <MenuSection title="Saveurs" items={milkshakes} variant="cold" delay={0.1} />
 
         {/* ── JUS NATUREL ── */}
@@ -272,10 +268,8 @@ const Index = () => {
 
         {/* ── DESSERTS ── */}
         <SectionTitle id="desserts">🍰 Desserts</SectionTitle>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
-          <MenuSection title="Croissant Gauffre" items={croissantGauffre} delay={0.15} />
-        </div>
+        <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
+        <MenuSection title="Croissant Gauffre" items={croissantGauffre} delay={0.15} />
         <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
         <MenuSection title="Spécialités" items={autresDesserts} delay={0.25} />
 
@@ -288,8 +282,8 @@ const Index = () => {
         <MenuSection title="Nos Yassa" items={yassa} delay={0.1} />
 
         {/* ── MAFÉ ── */}
-        <SectionTitle id="mafe" delay={0.1}>🥜 Mafé (sauce arachide)</SectionTitle>
-        <MenuPlatDuJourSection title="Nos Mafé" items={mafe} delay={0.1} />
+        <SectionTitle id="mafe" delay={0.1}>🥜 Mafé</SectionTitle>
+        <MenuPlatDuJourSection title="Sauce Arachide" items={mafe} delay={0.1} />
 
         {/* ── SAUCE TOMATE ── */}
         <SectionTitle id="sauce-tomate" delay={0.1}>🍅 Sauce Tomate</SectionTitle>
