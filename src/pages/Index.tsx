@@ -143,8 +143,7 @@ const soupe = [
 ];
 
 const navItems = [
-  { label: "Chaud", emoji: "🔥", targetId: "menu-chaud" },
-  { label: "Froid", emoji: "❄️", targetId: "menu-froid" },
+  { label: "Menu", emoji: "☕", targetId: "menu-boissons" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
   { label: "Tchêp", emoji: "🍛", targetId: "tchep" },
   { label: "Yassa", emoji: "🍗", targetId: "yassa" },
@@ -241,14 +240,17 @@ const Index = () => {
       {/* Menu Content */}
       <main className="max-w-2xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 space-y-6 mt-4 sm:mt-6">
 
-        {/* ── MENU CHAUD ── */}
-        <SectionTitle id="menu-chaud">🔥 Menu Chaud</SectionTitle>
+        {/* ── MENU CHAUD & FROID ── */}
+        <SectionTitle id="menu-boissons">☕ Menu Chaud & Froid</SectionTitle>
+
+        <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest mt-2">🔥 Chaud</h3>
         <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
         <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
         <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
 
-        {/* ── MENU FROID ── */}
-        <SectionTitle id="menu-froid">❄️ Menu Froid</SectionTitle>
+        <div className="chalk-line my-4" />
+
+        <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
         <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.1} />
         <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.15} />
         <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.2} />
