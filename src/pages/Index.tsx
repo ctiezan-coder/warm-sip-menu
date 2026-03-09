@@ -248,7 +248,7 @@ const Index = () => {
             <img
               src={heroImg}
               alt="Neriya — La bouchée gourmande"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-[center_30%]"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background" />
 
