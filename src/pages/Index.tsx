@@ -145,12 +145,7 @@ const soupe = [
 const navItems = [
   { label: "Petit Déj.", emoji: "☕", targetId: "menu-boissons" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
-  { label: "Tchêp", emoji: "🍛", targetId: "tchep" },
-  { label: "Yassa", emoji: "🍗", targetId: "yassa" },
-  { label: "Mafé", emoji: "🥜", targetId: "mafe" },
-  { label: "Sauce Tom.", emoji: "🍅", targetId: "sauce-tomate" },
-  { label: "Sauce Lég.", emoji: "🥬", targetId: "sauce-legume" },
-  { label: "Soupe", emoji: "🍲", targetId: "soupe" },
+  { label: "Déjeuner", emoji: "🍛", targetId: "menu-dejeuner" },
 ];
 
 const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; id: string; delay?: number }) => (
