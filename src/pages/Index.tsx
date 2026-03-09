@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import logo from "@/assets/neriyo-logo.jpeg";
 import MenuSection from "@/components/MenuSection";
-import NavLink from "@/components/NavLink";
+import MenuNavLink from "@/components/MenuNavLink";
 
 // ─── BOISSONS ────────────────────────────────────────────
 const cafeChaud = [
