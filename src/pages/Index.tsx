@@ -206,9 +206,8 @@ const Index = () => {
           <img
             src={logo}
             alt="Neriyo — La bouchée gourmande"
-            className="w-32 sm:w-48 md:w-56 rounded-full border-2 border-primary/30 shadow-lg shadow-primary/10"
+            className="w-40 sm:w-56 md:w-64 rounded-2xl shadow-lg shadow-primary/10"
           />
-          <div className="absolute inset-0 rounded-full ring-1 ring-primary/10 ring-offset-4 ring-offset-background" />
         </div>
         <motion.p
           initial={{ opacity: 0 }}
