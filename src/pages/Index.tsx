@@ -285,15 +285,15 @@ const Index = () => {
 
         {/* ── MAFÉ ── */}
         <SectionTitle id="mafe" delay={0.1}>🥜 Mafé (sauce arachide)</SectionTitle>
-        <MenuSection title="Nos Mafé" items={mafe} delay={0.1} />
+        <MenuPlatDuJourSection title="Nos Mafé" items={mafe} delay={0.1} />
 
         {/* ── SAUCE TOMATE ── */}
         <SectionTitle id="sauce-tomate" delay={0.1}>🍅 Sauce Tomate</SectionTitle>
-        <MenuSection title="Nos Sauces Tomate" items={sauceTomate} delay={0.1} />
+        <MenuPlatDuJourSection title="Nos Sauces Tomate" items={sauceTomate} delay={0.1} />
 
         {/* ── SAUCE LÉGUME ── */}
         <SectionTitle id="sauce-legume" delay={0.1}>🥬 Sauce Légume</SectionTitle>
-        <MenuSection title="Nos Sauces Légume" items={sauceLegume} delay={0.1} />
+        <MenuPlatDuJourSection title="Nos Sauces Légume" items={sauceLegume} delay={0.1} />
 
         {/* ── SOUPE ── */}
         <SectionTitle id="soupe" delay={0.1}>🍲 Soupe</SectionTitle>
