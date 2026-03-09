@@ -303,7 +303,17 @@ const Index = () => {
           © 2026 — La bouchée gourmande
         </p>
       </footer>
-    </div>
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://wa.me/2250789288202?text=Bonjour%20Neriyo%20!%20Je%20souhaite%20passer%20une%20commande%20🍽️"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-semibold text-sm px-5 py-3 rounded-full shadow-lg shadow-black/30 transition-all hover:scale-105 active:scale-95"
+      >
+        <MessageCircle size={22} fill="white" strokeWidth={0} />
+        Commander
+      </a>
   );
 };
 
