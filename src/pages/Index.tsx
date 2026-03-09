@@ -6,6 +6,9 @@ import MenuSection from "@/components/MenuSection";
 import MenuSoupeSection from "@/components/MenuSoupeSection";
 import MenuNavLink from "@/components/MenuNavLink";
 
+// Alias for readability
+const MenuPlatDuJourSection = MenuSoupeSection;
+
 // ─── BOISSONS ────────────────────────────────────────────
 const cafeChaud = [
   { name: "Expresso", price: "500 Fr" },
