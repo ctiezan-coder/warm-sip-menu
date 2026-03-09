@@ -205,7 +205,7 @@ const Index = () => {
         <div className="relative">
           <img
             src={logo}
-            alt="Neriyo — La bouchée gourmande"
+            alt="Neriya — La bouchée gourmande"
             className="w-40 sm:w-56 md:w-64 rounded-2xl shadow-lg shadow-primary/10"
           />
         </div>
