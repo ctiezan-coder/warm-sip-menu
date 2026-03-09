@@ -314,6 +314,7 @@ const Index = () => {
         <MessageCircle size={22} fill="white" strokeWidth={0} />
         Commander
       </a>
+    </div>
   );
 };
 
