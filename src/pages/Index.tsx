@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
-import logo from "@/assets/neriyo-logo.png";
+import logo from "@/assets/neriya-logo.png";
 import MenuSection from "@/components/MenuSection";
 import MenuSoupeSection from "@/components/MenuSoupeSection";
 import MenuNavLink from "@/components/MenuNavLink";
@@ -29,7 +29,7 @@ const cafeGlace = [
 
 const theChaud = [
   { name: "Thé Lipton", price: "500 Fr" },
-  { name: "Thé Infusion Neriyo", price: "1 000 Fr" },
+  { name: "Thé Infusion Neriya", price: "1 000 Fr" },
   { name: "Thé Infusion Gingembre Menthe", price: "1 500 Fr" },
 ];
 
@@ -205,7 +205,7 @@ const Index = () => {
         <div className="relative">
           <img
             src={logo}
-            alt="Neriyo — La bouchée gourmande"
+            alt="Neriya — La bouchée gourmande"
             className="w-40 sm:w-56 md:w-64 rounded-2xl shadow-lg shadow-primary/10"
           />
         </div>
@@ -301,7 +301,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="text-center py-8 border-t border-border">
-        <p className="font-script text-primary text-lg">Neriyo</p>
+        <p className="font-script text-primary text-lg">Neriya</p>
         <p className="font-body text-xs text-muted-foreground mt-1">
           © 2026 — La bouchée gourmande
         </p>
@@ -309,7 +309,7 @@ const Index = () => {
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/2250789288202?text=Bonjour%20Neriyo%20!%20Je%20souhaite%20passer%20une%20commande%20🍽️"
+        href="https://wa.me/2250789288202?text=Bonjour%20Neriya%20!%20Je%20souhaite%20passer%20une%20commande%20🍽️"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-semibold text-xs sm:text-sm px-4 py-2.5 sm:px-5 sm:py-3 rounded-full shadow-lg shadow-black/30 transition-all hover:scale-105 active:scale-95"
