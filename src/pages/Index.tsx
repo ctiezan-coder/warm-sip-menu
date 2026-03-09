@@ -294,9 +294,12 @@ const Index = () => {
           </main>
 
           {/* Footer */}
-          <footer className="text-center py-8 border-t border-border">
+          <footer className="text-center py-8 border-t border-border space-y-2">
+            <p className="font-body text-xs text-muted-foreground italic tracking-wide">
+              Tous les prix sont en FCFA · Service compris
+            </p>
             <p className="font-script text-primary text-lg">Neriya</p>
-            <p className="font-body text-xs text-muted-foreground mt-1">
+            <p className="font-body text-xs text-muted-foreground">
               © 2026 — La bouchée gourmande
             </p>
           </footer>
