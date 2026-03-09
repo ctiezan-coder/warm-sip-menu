@@ -8,12 +8,13 @@ interface SoupeItem {
   description?: string;
 }
 
-interface MenuSoupeSectionProps {
+interface MenuPlatDuJourSectionProps {
+  title: string;
   items: SoupeItem[];
   delay?: number;
 }
 
-const MenuSoupeSection = ({ items, delay = 0 }: MenuSoupeSectionProps) => {
+const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectionProps) => {
   const [platDuJour, setPlatDuJour] = useState<number | null>(null);
 
   return (
@@ -24,7 +25,7 @@ const MenuSoupeSection = ({ items, delay = 0 }: MenuSoupeSectionProps) => {
       transition={{ duration: 0.5, delay }}
       className="rounded-lg border border-border bg-card/50 p-5"
     >
-      <h3 className="font-script text-xl mb-3 text-primary">Nos Soupes</h3>
+      <h3 className="font-script text-xl mb-3 text-primary">{title}</h3>
 
       {/* Dropdown plat du jour */}
       <div className="mb-4 flex items-center gap-2">
@@ -97,4 +98,4 @@ const MenuSoupeSection = ({ items, delay = 0 }: MenuSoupeSectionProps) => {
   );
 };
 
-export default MenuSoupeSection;
+export default MenuPlatDuJourSection;
