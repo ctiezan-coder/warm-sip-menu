@@ -57,11 +57,11 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               <span className="font-body text-[10px] uppercase tracking-widest text-gold font-semibold">Plat du jour</span>
             </div>
             <div className="flex justify-between items-baseline gap-2">
-              <span className="font-body text-sm text-foreground font-semibold">
+              <span className="font-body text-[14px] text-foreground font-semibold">
                 {items[platDuJour].name}
               </span>
               <span className="flex-1 border-b border-dotted border-gold/30 min-w-[1rem] mx-1 translate-y-[-3px]" />
-              <span className="font-body text-sm font-bold text-gold whitespace-nowrap">
+              <span className="font-body text-[14px] font-bold text-gold whitespace-nowrap">
                 {items[platDuJour].price}
               </span>
             </div>
