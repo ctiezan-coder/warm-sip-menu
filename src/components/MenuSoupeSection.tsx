@@ -51,7 +51,7 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
       </div>
 
       {/* Items */}
-      <ul className="space-y-1">
+      <ul className="space-y-2">
         {/* Highlighted plat du jour */}
         {platDuJour !== null && (
           <motion.li
