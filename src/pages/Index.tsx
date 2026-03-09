@@ -144,7 +144,12 @@ const navItems = [
   { label: "Milkshake", emoji: "🥤", targetId: "milkshake" },
   { label: "Jus", emoji: "🧃", targetId: "jus" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
-  { label: "Plats", emoji: "🍛", targetId: "plats" },
+  { label: "Tchêp", emoji: "🍛", targetId: "tchep" },
+  { label: "Yassa", emoji: "🍗", targetId: "yassa" },
+  { label: "Mafé", emoji: "🥜", targetId: "mafe" },
+  { label: "Sauce Tom.", emoji: "🍅", targetId: "sauce-tomate" },
+  { label: "Sauce Lég.", emoji: "🥬", targetId: "sauce-legume" },
+  { label: "Soupe", emoji: "🍲", targetId: "soupe" },
 ];
 
 const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; id: string; delay?: number }) => (
@@ -265,23 +270,29 @@ const Index = () => {
         <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
         <MenuSection title="Spécialités" items={autresDesserts} delay={0.25} />
 
-        {/* ── PLATS ── */}
-        <SectionTitle id="plats" delay={0.1}>🍛 Menu Déjeuner</SectionTitle>
-        <p className="text-center text-muted-foreground text-xs italic -mt-4 mb-4">
-          Spécialités sénégalaises — du lundi au vendredi
-        </p>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <MenuSection title="Tchêp" items={tchep} delay={0.1} />
-          <MenuSection title="Yassa" items={yassa} delay={0.15} />
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <MenuSection title="Mafé (sauce arachide) 🥜" items={mafe} delay={0.2} />
-          <MenuSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <MenuSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
-          <MenuSection title="Soupe 🍲" items={soupe} delay={0.35} />
-        </div>
+        {/* ── TCHÊP ── */}
+        <SectionTitle id="tchep" delay={0.1}>🍛 Tchêp</SectionTitle>
+        <MenuSection title="Nos Tchêp" items={tchep} delay={0.1} />
+
+        {/* ── YASSA ── */}
+        <SectionTitle id="yassa" delay={0.1}>🍗 Yassa</SectionTitle>
+        <MenuSection title="Nos Yassa" items={yassa} delay={0.1} />
+
+        {/* ── MAFÉ ── */}
+        <SectionTitle id="mafe" delay={0.1}>🥜 Mafé (sauce arachide)</SectionTitle>
+        <MenuSection title="Nos Mafé" items={mafe} delay={0.1} />
+
+        {/* ── SAUCE TOMATE ── */}
+        <SectionTitle id="sauce-tomate" delay={0.1}>🍅 Sauce Tomate</SectionTitle>
+        <MenuSection title="Nos Sauces Tomate" items={sauceTomate} delay={0.1} />
+
+        {/* ── SAUCE LÉGUME ── */}
+        <SectionTitle id="sauce-legume" delay={0.1}>🥬 Sauce Légume</SectionTitle>
+        <MenuSection title="Nos Sauces Légume" items={sauceLegume} delay={0.1} />
+
+        {/* ── SOUPE ── */}
+        <SectionTitle id="soupe" delay={0.1}>🍲 Soupe</SectionTitle>
+        <MenuSection title="Nos Soupes" items={soupe} delay={0.1} />
       </main>
 
       {/* Footer */}
