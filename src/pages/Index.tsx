@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { MessageCircle, ArrowLeft, ChevronRight } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
-import heroImg from "@/assets/hero-food.jpg";
+import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
 import catDejeuner from "@/assets/cat-dejeuner.jpg";
 import catDiner from "@/assets/cat-diner.jpg";
