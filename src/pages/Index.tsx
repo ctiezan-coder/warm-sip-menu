@@ -214,7 +214,7 @@ const Index = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="font-script text-primary text-2xl mt-4"
+          className="font-script text-primary text-xl sm:text-2xl mt-3 sm:mt-4"
         >
           La bouchée gourmande
         </motion.p>
