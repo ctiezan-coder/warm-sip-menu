@@ -270,10 +270,17 @@ const Index = () => {
         <p className="text-center text-muted-foreground text-xs italic -mt-4 mb-4">
           Spécialités sénégalaises — du lundi au vendredi
         </p>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2">
           <MenuSection title="Tchêp" items={tchep} delay={0.1} />
           <MenuSection title="Yassa" items={yassa} delay={0.15} />
-          <MenuSection title="Mafé (sauce arachide)" items={mafe} delay={0.2} />
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <MenuSection title="Mafé (sauce arachide) 🥜" items={mafe} delay={0.2} />
+          <MenuSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <MenuSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
+          <MenuSection title="Soupe 🍲" items={soupe} delay={0.35} />
         </div>
       </main>
 
