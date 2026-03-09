@@ -25,7 +25,7 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
       transition={{ duration: 0.5, delay }}
       className="rounded-lg border border-border bg-card/50 p-5"
     >
-      <h3 className="font-script text-xl mb-3 text-primary">Nos Soupes</h3>
+      <h3 className="font-script text-xl mb-3 text-primary">{title}</h3>
 
       {/* Dropdown plat du jour */}
       <div className="mb-4 flex items-center gap-2">
