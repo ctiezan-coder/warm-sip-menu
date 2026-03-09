@@ -255,7 +255,7 @@ const Index = () => {
           </div>
 
           {/* Category Cards */}
-          <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 -mt-16 sm:-mt-20 relative z-10">
+          <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 -mt-6 sm:-mt-8 relative z-10">
             <div className="grid gap-4 sm:gap-5">
               {categories.map((cat, i) => (
                 <motion.button
