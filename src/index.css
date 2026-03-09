@@ -6,41 +6,41 @@
 
 @layer base {
   :root {
-    --background: 20 35% 14%;
-    --foreground: 38 40% 88%;
+    --background: 28 30% 22%;
+    --foreground: 35 50% 92%;
 
-    --card: 20 30% 18%;
-    --card-foreground: 38 40% 88%;
+    --card: 26 28% 26%;
+    --card-foreground: 35 50% 92%;
 
-    --popover: 20 30% 18%;
-    --popover-foreground: 38 40% 88%;
+    --popover: 26 28% 26%;
+    --popover-foreground: 35 50% 92%;
 
-    --primary: 40 65% 62%;
-    --primary-foreground: 20 40% 10%;
+    --primary: 42 60% 68%;
+    --primary-foreground: 25 35% 12%;
 
-    --secondary: 20 25% 22%;
-    --secondary-foreground: 38 35% 80%;
+    --secondary: 28 22% 30%;
+    --secondary-foreground: 35 40% 85%;
 
-    --muted: 20 20% 22%;
-    --muted-foreground: 25 15% 50%;
+    --muted: 28 18% 32%;
+    --muted-foreground: 30 18% 58%;
 
-    --accent: 25 75% 55%;
+    --accent: 30 65% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 20 20% 26%;
-    --input: 20 20% 26%;
-    --ring: 40 65% 62%;
+    --border: 28 18% 34%;
+    --input: 28 18% 34%;
+    --ring: 42 60% 68%;
 
     --radius: 0.5rem;
 
-    --gold: 40 65% 62%;
-    --copper: 25 75% 55%;
-    --chalk: 38 40% 88%;
-    --charcoal: 20 35% 14%;
-    --slate-warm: 20 20% 22%;
+    --gold: 42 60% 68%;
+    --copper: 30 65% 55%;
+    --chalk: 35 50% 92%;
+    --charcoal: 28 30% 22%;
+    --slate-warm: 28 22% 30%;
     --font-display: 'Cormorant Garamond', serif;
     --font-body: 'Josefin Sans', sans-serif;
     --font-script: 'Dancing Script', cursive;
@@ -69,20 +69,19 @@
   }
 }
 
-/* Brown wood/chalkboard texture */
+/* Light brown wood texture */
 .chalkboard-bg {
   background-image:
-    radial-gradient(ellipse at 15% 30%, hsla(20, 40%, 20%, 0.9) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 70%, hsla(20, 35%, 17%, 0.8) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, hsla(20, 30%, 16%, 0.6) 0%, transparent 70%),
+    radial-gradient(ellipse at 20% 40%, hsla(28, 35%, 28%, 0.6) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 60%, hsla(26, 30%, 25%, 0.5) 0%, transparent 50%),
     repeating-linear-gradient(
-      90deg,
-      hsla(20, 25%, 15%, 0.03) 0px,
-      hsla(20, 30%, 18%, 0.06) 2px,
-      transparent 3px,
-      transparent 8px
+      85deg,
+      hsla(28, 25%, 24%, 0.04) 0px,
+      hsla(28, 30%, 28%, 0.07) 1px,
+      transparent 2px,
+      transparent 6px
     );
-  background-color: hsl(20, 35%, 14%);
+  background-color: hsl(28, 30%, 22%);
 }
 
 /* Chalk line effect */
@@ -110,7 +109,7 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(20, 35%, 14%);
+  background: hsl(28, 30%, 22%);
 }
 ::-webkit-scrollbar-thumb {
   background: hsl(38, 72%, 58%, 0.3);
