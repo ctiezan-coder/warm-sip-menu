@@ -241,27 +241,18 @@ const Index = () => {
       {/* Menu Content */}
       <main className="max-w-2xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 space-y-6 mt-4 sm:mt-6">
 
-        {/* ── CAFÉ ── */}
-        <SectionTitle id="cafe">☕ Les Cafés</SectionTitle>
-        <MenuSection title="Chaud 🔥" items={cafeChaud} variant="hot" delay={0.1} />
-        <MenuSection title="Glacé ❄️" items={cafeGlace} variant="cold" delay={0.15} />
+        {/* ── MENU CHAUD ── */}
+        <SectionTitle id="menu-chaud">🔥 Menu Chaud</SectionTitle>
+        <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
+        <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
+        <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
 
-        {/* ── THÉ ── */}
-        <SectionTitle id="the">🍵 Les Thés</SectionTitle>
-        <MenuSection title="Chaud 🔥" items={theChaud} variant="hot" delay={0.1} />
-        <MenuSection title="Froid ❄️" items={theFroid} variant="cold" delay={0.15} />
-
-        {/* ── CHOCOLAT CHAUD ── */}
-        <SectionTitle id="chocolat">🍫 Chocolats</SectionTitle>
-        <MenuSection title="Chauds / Frappés" items={chocolatChaud} variant="hot" delay={0.1} />
-
-        {/* ── MILKSHAKE ── */}
-        <SectionTitle id="milkshake">🥤 Milkshakes</SectionTitle>
-        <MenuSection title="Saveurs" items={milkshakes} variant="cold" delay={0.1} />
-
-        {/* ── JUS NATUREL ── */}
-        <SectionTitle id="jus">🧃 Jus Naturel</SectionTitle>
-        <MenuSection title="Jus & Boissons Fraîches" items={jusNaturel} delay={0.1} />
+        {/* ── MENU FROID ── */}
+        <SectionTitle id="menu-froid">❄️ Menu Froid</SectionTitle>
+        <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.1} />
+        <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.15} />
+        <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.2} />
+        <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} variant="cold" delay={0.25} />
 
         {/* ── DESSERTS ── */}
         <SectionTitle id="desserts">🍰 Desserts</SectionTitle>
