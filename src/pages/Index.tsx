@@ -144,6 +144,7 @@ const soupe = [
 
 const navItems = [
   { label: "Petit Déj.", emoji: "☕", targetId: "menu-boissons" },
+  { label: "Jus", emoji: "🧃", targetId: "jus-boissons" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
   { label: "Déjeuner", emoji: "🍛", targetId: "menu-dejeuner" },
 ];
