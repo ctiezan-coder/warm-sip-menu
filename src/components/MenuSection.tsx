@@ -50,12 +50,12 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, columns = 1
             className="break-inside-avoid"
           >
             <div className="flex justify-between items-baseline gap-2">
-              <span className="font-body text-sm text-foreground">
+              <span className="font-body text-[14px] text-foreground">
                 {item.emoji && <span className="mr-1">{item.emoji}</span>}
                 {item.name}
               </span>
               <span className="flex-1 border-b border-dotted border-muted-foreground/20 min-w-[1rem] mx-1 translate-y-[-3px]" />
-              <span className="font-body text-sm font-semibold text-primary whitespace-nowrap">
+              <span className="font-body text-[14px] font-semibold text-primary whitespace-nowrap">
                 {item.price}
               </span>
             </div>

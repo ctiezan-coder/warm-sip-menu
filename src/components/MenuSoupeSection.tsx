@@ -83,9 +83,9 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               transition={{ duration: 0.3, delay: delay + i * 0.03 }}
             >
               <div className="flex justify-between items-baseline gap-2">
-                <span className="font-body text-sm text-foreground">{item.name}</span>
+                <span className="font-body text-[14px] text-foreground">{item.name}</span>
                 <span className="flex-1 border-b border-dotted border-muted-foreground/20 min-w-[1rem] mx-1 translate-y-[-3px]" />
-                <span className="font-body text-sm font-semibold text-primary whitespace-nowrap">{item.price}</span>
+                <span className="font-body text-[14px] font-semibold text-primary whitespace-nowrap">{item.price}</span>
               </div>
               {item.description && (
                 <p className="text-xs text-muted-foreground mt-0.5 italic">{item.description}</p>
