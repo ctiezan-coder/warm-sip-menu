@@ -69,13 +69,20 @@
   }
 }
 
-/* Chalkboard texture overlay */
+/* Brown wood/chalkboard texture */
 .chalkboard-bg {
   background-image:
-    radial-gradient(ellipse at 20% 50%, hsla(30, 8%, 18%, 0.8) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, hsla(30, 8%, 15%, 0.6) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, hsla(30, 8%, 14%, 0.7) 0%, transparent 50%);
-  background-color: hsl(30, 8%, 12%);
+    radial-gradient(ellipse at 15% 30%, hsla(20, 40%, 20%, 0.9) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 70%, hsla(20, 35%, 17%, 0.8) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, hsla(20, 30%, 16%, 0.6) 0%, transparent 70%),
+    repeating-linear-gradient(
+      90deg,
+      hsla(20, 25%, 15%, 0.03) 0px,
+      hsla(20, 30%, 18%, 0.06) 2px,
+      transparent 3px,
+      transparent 8px
+    );
+  background-color: hsl(20, 35%, 14%);
 }
 
 /* Chalk line effect */
