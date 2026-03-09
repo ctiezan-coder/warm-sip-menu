@@ -15,52 +15,52 @@ interface MenuSectionProps {
   columns?: 1 | 2;
 }
 
-const MenuSection = ({ title, items, variant = "default", delay = 0, columns = 1 }: MenuSectionProps) => {
-  const variantStyles = {
-    hot: "border-copper/20 bg-copper/5",
-    cold: "border-primary/20 bg-primary/5",
-    default: "border-border bg-card/50",
-  };
-
-  const tagColor = {
-    hot: "text-copper",
+const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSectionProps) => {
+  const accentColor = {
+    hot: "text-accent",
     cold: "text-primary",
     default: "text-primary",
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay }}
-      className={`rounded-lg border p-5 ${variantStyles[variant]}`}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.4, delay }}
+      className="relative"
     >
-      <h3 className={`font-script text-xl mb-4 ${tagColor[variant]}`}>
-        {title}
-      </h3>
-      <ul className={`space-y-2.5 ${columns === 2 ? "sm:columns-2 sm:gap-x-6" : ""}`}>
+      {/* Section sub-title */}
+      <div className="flex items-center gap-3 mb-3">
+        <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-primary/30" />
+        <h3 className={`font-display text-base sm:text-lg font-semibold uppercase tracking-wider ${accentColor[variant]}`}>
+          {title}
+        </h3>
+        <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-primary/30" />
+      </div>
+
+      {/* Items */}
+      <ul className="space-y-1">
         {items.map((item, i) => (
           <motion.li
             key={item.name + i}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: delay + i * 0.03 }}
-            className="break-inside-avoid"
+            transition={{ duration: 0.25, delay: delay + i * 0.02 }}
           >
-            <div className="flex justify-between items-baseline gap-2">
-              <span className="font-body text-[14px] text-foreground">
+            <div className="flex items-baseline gap-1.5">
+              <span className="font-body text-sm text-foreground leading-relaxed">
                 {item.emoji && <span className="mr-1">{item.emoji}</span>}
                 {item.name}
               </span>
-              <span className="flex-1 border-b border-dotted border-muted-foreground/20 min-w-[1rem] mx-1 translate-y-[-3px]" />
-              <span className="font-body text-[14px] font-semibold text-primary whitespace-nowrap">
+              <span className="flex-1 border-b border-dotted border-foreground/15 min-w-[12px] translate-y-[-2px]" />
+              <span className="font-body text-sm font-bold text-primary whitespace-nowrap">
                 {item.price}
               </span>
             </div>
             {item.description && (
-              <p className="text-xs text-muted-foreground mt-0.5 italic">{item.description}</p>
+              <p className="text-[11px] text-muted-foreground ml-1 italic leading-tight">{item.description}</p>
             )}
           </motion.li>
         ))}
