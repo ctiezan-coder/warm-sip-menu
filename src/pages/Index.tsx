@@ -143,8 +143,7 @@ const soupe = [
 ];
 
 const navItems = [
-  { label: "Chaud", emoji: "🔥", targetId: "menu-chaud" },
-  { label: "Froid", emoji: "❄️", targetId: "menu-froid" },
+  { label: "Menu", emoji: "☕", targetId: "menu-boissons" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
   { label: "Tchêp", emoji: "🍛", targetId: "tchep" },
   { label: "Yassa", emoji: "🍗", targetId: "yassa" },
