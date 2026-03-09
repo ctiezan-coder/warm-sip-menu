@@ -250,7 +250,10 @@ const Index = () => {
         <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.1} />
         <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.15} />
         <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.2} />
-        <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} variant="cold" delay={0.25} />
+
+        {/* ── JUS & BOISSONS ── */}
+        <SectionTitle id="jus-boissons">🧃 Jus & Boissons</SectionTitle>
+        <MenuSection title="Jus & Boissons Fraîches" items={jusNaturel} delay={0.1} />
 
         {/* ── DESSERTS ── */}
         <SectionTitle id="desserts">🍰 Desserts</SectionTitle>
