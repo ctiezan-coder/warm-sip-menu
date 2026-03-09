@@ -244,16 +244,16 @@ const Index = () => {
         /* ═══ HOME / HERO VIEW ═══ */
         <>
           {/* Hero Section */}
-          <div className="relative h-[70vh] sm:h-[80vh] overflow-hidden">
+          <div className="relative h-[55vh] sm:h-[60vh] overflow-hidden">
             <img
               src={heroImg}
               alt="Neriya — La bouchée gourmande"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background" />
 
-            {/* MENU title at bottom */}
-            <div className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center">
+            {/* MENU title */}
+            <div className="absolute bottom-16 sm:bottom-20 left-0 right-0 text-center">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
