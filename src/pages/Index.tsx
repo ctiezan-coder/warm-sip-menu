@@ -145,12 +145,7 @@ const soupe = [
 const navItems = [
   { label: "Petit Déj.", emoji: "☕", targetId: "menu-boissons" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
-  { label: "Tchêp", emoji: "🍛", targetId: "tchep" },
-  { label: "Yassa", emoji: "🍗", targetId: "yassa" },
-  { label: "Mafé", emoji: "🥜", targetId: "mafe" },
-  { label: "Sauce Tom.", emoji: "🍅", targetId: "sauce-tomate" },
-  { label: "Sauce Lég.", emoji: "🥬", targetId: "sauce-legume" },
-  { label: "Soupe", emoji: "🍲", targetId: "soupe" },
+  { label: "Déjeuner", emoji: "🍛", targetId: "menu-dejeuner" },
 ];
 
 const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; id: string; delay?: number }) => (
@@ -263,29 +258,21 @@ const Index = () => {
         <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
         <MenuSection title="Spécialités" items={autresDesserts} delay={0.25} />
 
-        {/* ── TCHÊP ── */}
-        <SectionTitle id="tchep" delay={0.1}>🍛 Tchêp</SectionTitle>
-        <MenuSection title="Nos Tchêp" items={tchep} delay={0.1} />
+        {/* ── MENU DÉJEUNER ── */}
+        <SectionTitle id="menu-dejeuner" delay={0.1}>🍛 Menu Déjeuner</SectionTitle>
 
-        {/* ── YASSA ── */}
-        <SectionTitle id="yassa" delay={0.1}>🍗 Yassa</SectionTitle>
-        <MenuSection title="Nos Yassa" items={yassa} delay={0.1} />
+        <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
+        <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
 
-        {/* ── MAFÉ ── */}
-        <SectionTitle id="mafe" delay={0.1}>🥜 Mafé</SectionTitle>
-        <MenuPlatDuJourSection title="Sauce Arachide" items={mafe} delay={0.1} />
+        <div className="chalk-line my-4" />
 
-        {/* ── SAUCE TOMATE ── */}
-        <SectionTitle id="sauce-tomate" delay={0.1}>🍅 Sauce Tomate</SectionTitle>
-        <MenuPlatDuJourSection title="Nos Sauces Tomate" items={sauceTomate} delay={0.1} />
+        <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
+        <MenuPlatDuJourSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
+        <MenuPlatDuJourSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
 
-        {/* ── SAUCE LÉGUME ── */}
-        <SectionTitle id="sauce-legume" delay={0.1}>🥬 Sauce Légume</SectionTitle>
-        <MenuPlatDuJourSection title="Nos Sauces Légume" items={sauceLegume} delay={0.1} />
+        <div className="chalk-line my-4" />
 
-        {/* ── SOUPE ── */}
-        <SectionTitle id="soupe" delay={0.1}>🍲 Soupe</SectionTitle>
-        <MenuPlatDuJourSection title="Nos Soupes" items={soupe} delay={0.1} />
+        <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.35} />
       </main>
 
       {/* Footer */}
