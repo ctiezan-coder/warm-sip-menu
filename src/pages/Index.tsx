@@ -252,17 +252,6 @@ const Index = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background" />
 
-            {/* MENU title */}
-            <div className="absolute bottom-16 sm:bottom-20 left-0 right-0 text-center">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-[0.2em] drop-shadow-2xl"
-              >
-                Menu
-              </motion.h1>
-            </div>
           </div>
 
           {/* Category Cards */}
