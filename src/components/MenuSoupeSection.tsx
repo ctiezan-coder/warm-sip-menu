@@ -62,7 +62,7 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
           >
             <div className="flex items-center gap-1.5 mb-0.5">
               <Star size={12} className="text-accent fill-accent" />
-              <span className="font-body text-[10px] uppercase tracking-[0.2em] text-accent font-semibold">Plat du jour</span>
+              <span className="font-body text-xs uppercase tracking-[0.2em] text-accent font-semibold">Plat du jour</span>
             </div>
             <div className="flex items-baseline gap-1.5">
               <span className="font-body text-sm text-foreground font-semibold">{items[platDuJour].name}</span>
