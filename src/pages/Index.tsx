@@ -144,7 +144,12 @@ const navItems = [
   { label: "Milkshake", emoji: "🥤", targetId: "milkshake" },
   { label: "Jus", emoji: "🧃", targetId: "jus" },
   { label: "Desserts", emoji: "🍰", targetId: "desserts" },
-  { label: "Plats", emoji: "🍛", targetId: "plats" },
+  { label: "Tchêp", emoji: "🍛", targetId: "tchep" },
+  { label: "Yassa", emoji: "🍗", targetId: "yassa" },
+  { label: "Mafé", emoji: "🥜", targetId: "mafe" },
+  { label: "Sauce Tom.", emoji: "🍅", targetId: "sauce-tomate" },
+  { label: "Sauce Lég.", emoji: "🥬", targetId: "sauce-legume" },
+  { label: "Soupe", emoji: "🍲", targetId: "soupe" },
 ];
 
 const SectionTitle = ({ children, id, delay = 0 }: { children: React.ReactNode; id: string; delay?: number }) => (
