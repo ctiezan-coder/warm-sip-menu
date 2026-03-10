@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Lock, Mail } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
-import ThemeToggle from "@/components/ThemeToggle";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -49,7 +48,6 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="absolute top-4 right-4"><ThemeToggle /></div>
       <div className="w-full max-w-md">
         <div className="glass-card rounded-2xl p-8 space-y-6">
           {/* Logo */}
