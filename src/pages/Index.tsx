@@ -245,11 +245,9 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "petit-dejeuner":
       return (
         <div className="space-y-5">
-          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} />
-          </div>
-          <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} />
+          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgPancakesNature} />
+          <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeNature} />
+          <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeFettNutella} />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
@@ -257,8 +255,8 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
       return (
         <div className="space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
-            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
+            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoulet} />
+            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaPoulet} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
@@ -275,8 +273,8 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
       return (
         <div className="space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
-            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
+            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoisson} />
+            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaMouton} />
           </div>
           <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.2} />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
@@ -286,13 +284,13 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
       return (
         <div className="space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
-            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} />
+            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} backgroundImage={imgPancakesFruit} />
+            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} backgroundImage={imgCroissantFruits} />
           </div>
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} backgroundImage={imgCrepePralin} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} />
-            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
+            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} backgroundImage={imgFeuilletePain} />
+            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} backgroundImage={imgDegue} />
           </div>
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
@@ -304,10 +302,10 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
             <span className="font-display text-base font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
+            <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} backgroundImage={imgCappuccino} />
             <div className="space-y-4">
-              <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
-              <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
+              <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} backgroundImage={imgTheChaud} />
+              <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} backgroundImage={imgChocolatCrazy} />
             </div>
           </div>
           <div className="chalk-line my-4" />
@@ -315,17 +313,16 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
             <span className="font-display text-base font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} />
-            <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} />
+            <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} backgroundImage={imgCafeGlace} />
+            <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} backgroundImage={imgTheMojito} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} />
-            <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} />
+            <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} backgroundImage={imgMilkshakeOreo} />
+            <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} backgroundImage={imgJusCocktail} />
           </div>
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
-  }
 };
 
 // ─── DECORATIVE ORNAMENT ──────────────────────────────────
