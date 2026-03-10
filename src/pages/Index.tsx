@@ -244,15 +244,10 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "petit-dejeuner":
       return (
         <div className="space-y-5">
-          {/* 2-column grid for short sections */}
+          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
-            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} />
-          </div>
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} />
-            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
+            <MenuSection title="Crêpe Salée 🧂" items={crepeSalee} delay={0.15} />
+            <MenuSection title="Crêpe Sucrée 🍫" items={crepeSucree} delay={0.2} />
           </div>
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
