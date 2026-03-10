@@ -82,6 +82,9 @@ const Admin = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (imagePreview && imagePreview.startsWith("blob:")) {
+        URL.revokeObjectURL(imagePreview);
+      }
       setImageFile(file);
       setImagePreview(URL.createObjectURL(file));
     }
