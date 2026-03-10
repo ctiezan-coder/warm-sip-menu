@@ -225,60 +225,60 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
   switch (category) {
     case "petit-dejeuner":
       return (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgDejFermier} imagePosition="right" />
           <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeSalee} imagePosition="left" />
           <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeSucree} imagePosition="right" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "dejeuner":
       return (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <MenuSection title="Sauce Feuille 🍚" items={sauceFeuilleDej} delay={0.1} backgroundImage={imgSauceFeuille} imagePosition="right" />
           <MenuSection title="Poulet Rôti 🍗" items={pouletRoti} delay={0.15} backgroundImage={imgPouletRoti} imagePosition="left" />
           <MenuSection title="Chawama 🌯" items={chawama} delay={0.2} backgroundImage={imgChawama} imagePosition="right" />
           <MenuSection title="Burger 🍔" items={burgers} delay={0.25} backgroundImage={imgBurger} imagePosition="left" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "diner":
       return (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <MenuSection title="Spaghetti Kiosque 🍝" items={spaghettiKiosque} delay={0.1} backgroundImage={imgSpaghettiKiosque} imagePosition="right" />
           <MenuSection title="Grill 🐟" items={grill} delay={0.15} backgroundImage={imgGrillPoisson} imagePosition="left" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "dessert":
       return (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} backgroundImage={imgPancakesFruit} imagePosition="right" />
           <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.15} backgroundImage={imgPainPerduCaramel} imagePosition="left" />
           <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} backgroundImage={imgCroissantFruits} imagePosition="right" />
           <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} backgroundImage={imgCrepePralin} imagePosition="left" />
           <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} backgroundImage={imgDegue} imagePosition="right" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "boissons":
       return (
-        <div className="space-y-5">
-          <div className="section-title-banner !mb-4 !bg-accent/10 !border-accent/30">
-            <span className="font-display text-base font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
+        <div className="space-y-6">
+          <div className="section-title-banner !mb-5 !bg-accent/10 !border-accent/30">
+            <span className="font-display text-lg font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
           </div>
           <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} backgroundImage={imgCappuccino} imagePosition="right" />
           <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} backgroundImage={imgTheGingembreMenthe} imagePosition="left" />
           <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} backgroundImage={imgChocolatCrazy} imagePosition="right" />
-          <div className="chalk-line my-4" />
-          <div className="section-title-banner !mb-4 !bg-primary/5 !border-primary/30">
-            <span className="font-display text-base font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
+          <div className="chalk-line my-5" />
+          <div className="section-title-banner !mb-5 !bg-primary/5 !border-primary/30">
+            <span className="font-display text-lg font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
           </div>
           <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} backgroundImage={imgCafeGlace} imagePosition="left" />
           <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} backgroundImage={imgTheMojito} imagePosition="right" />
           <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} backgroundImage={imgMilkshakeOreo} imagePosition="left" />
           <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} backgroundImage={imgJusCocktail} imagePosition="right" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
   }
@@ -310,7 +310,7 @@ const Index = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <div className="relative h-52 sm:h-72 overflow-hidden">
+            <div className="relative h-60 sm:h-80 overflow-hidden">
               <motion.img
                 src={activeCat.image}
                 alt={activeCat.label}
@@ -327,28 +327,28 @@ const Index = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
                 onClick={() => setActiveCategory(null)}
-                className="absolute top-4 left-4 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-4 py-2.5 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
+                className="absolute top-5 left-5 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-5 py-3 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
               >
-                <ArrowLeft size={16} />
+                <ArrowLeft size={18} />
                 Retour
               </motion.button>
               
-              <div className="absolute bottom-6 left-0 right-0 text-center">
+              <div className="absolute bottom-8 left-0 right-0 text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  <span className="text-4xl sm:text-5xl block mb-2">{activeCat.emoji}</span>
-                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
+                  <span className="text-5xl sm:text-6xl block mb-3">{activeCat.emoji}</span>
+                  <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
                     {activeCat.label}
                   </h1>
-                  <p className="font-body text-sm text-white/60 mt-2 tracking-wide">{activeCat.description}</p>
+                  <p className="font-body text-sm sm:text-base text-white/60 mt-3 tracking-wide">{activeCat.description}</p>
                 </motion.div>
               </div>
             </div>
 
-            <main className="max-w-4xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-6 mt-4">
+            <main className="max-w-4xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
               <GoldOrnament />
               <CategoryContent category={activeCategory} />
               <GoldOrnament />
@@ -365,7 +365,7 @@ const Index = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="relative h-[50vh] sm:h-[55vh] overflow-hidden grain-overlay">
+            <div className="relative h-[55vh] sm:h-[60vh] overflow-hidden grain-overlay">
               <motion.img
                 src={heroImg}
                 alt="Neriya — La bouchée gourmande"
@@ -378,12 +378,12 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               
               <motion.div
-                className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center"
+                className="absolute bottom-10 sm:bottom-14 left-0 right-0 text-center"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                <p className="font-script text-primary text-2xl sm:text-3xl drop-shadow-lg">La bouchée gourmande</p>
+                <p className="font-script text-primary text-3xl sm:text-4xl drop-shadow-lg">La bouchée gourmande</p>
               </motion.div>
             </div>
 
@@ -392,16 +392,16 @@ const Index = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="flex items-center justify-center gap-4 mb-6"
+                className="flex items-center justify-center gap-4 mb-8"
               >
-                <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-transparent to-primary/40" />
-                <span className="font-display text-sm uppercase tracking-[0.3em] text-primary/70">Notre Carte</span>
-                <div className="h-px flex-1 max-w-[60px] bg-gradient-to-l from-transparent to-primary/40" />
+                <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-primary/40" />
+                <span className="font-display text-base uppercase tracking-[0.3em] text-primary/80">Notre Carte</span>
+                <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-primary/40" />
               </motion.div>
             </div>
 
             <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 relative z-10">
-              <div className="grid gap-4 sm:gap-5">
+              <div className="grid gap-5 sm:gap-6">
                 {categories.map((cat, i) => (
                   <motion.button
                     key={cat.key}
@@ -412,44 +412,44 @@ const Index = () => {
                       setActiveCategory(cat.key);
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
-                    className="group relative overflow-hidden rounded-xl h-28 sm:h-32 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    className="group relative overflow-hidden rounded-2xl h-36 sm:h-40 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <img
                       src={cat.image}
                       alt={cat.label}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25 group-hover:from-black/70 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20 group-hover:from-black/70 transition-all duration-500" />
 
-                    <div className="relative h-full flex items-center justify-between px-5 sm:px-8">
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl sm:text-4xl drop-shadow-md">{cat.emoji}</span>
-                          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
+                    <div className="relative h-full flex items-center justify-between px-6 sm:px-10">
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-3.5">
+                          <span className="text-4xl sm:text-5xl drop-shadow-md">{cat.emoji}</span>
+                          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
                             {cat.label}
                           </h2>
                         </div>
-                        <p className="font-body text-xs sm:text-sm text-white/55 ml-12 sm:ml-[3.25rem] tracking-wide">{cat.description}</p>
+                        <p className="font-body text-sm sm:text-base text-white/55 ml-14 sm:ml-[4rem] tracking-wide">{cat.description}</p>
                       </div>
-                      <ChevronRight size={24} className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                      <ChevronRight size={28} className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0" />
                     </div>
                   </motion.button>
                 ))}
               </div>
             </main>
 
-            <footer className="relative border-t border-primary/10 py-10 px-4">
-              <div className="max-w-md mx-auto text-center space-y-3">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/30" />
-                  <img src={logo} alt="Neriya" className="h-10 w-10 rounded-full object-cover opacity-70" />
-                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-primary/30" />
+            <footer className="relative border-t border-primary/10 py-12 px-4">
+              <div className="max-w-md mx-auto text-center space-y-4">
+                <div className="flex items-center justify-center gap-4 mb-5">
+                  <div className="h-px w-20 bg-gradient-to-r from-transparent to-primary/30" />
+                  <img src={logo} alt="Neriya" className="h-12 w-12 rounded-full object-cover opacity-75" />
+                  <div className="h-px w-20 bg-gradient-to-l from-transparent to-primary/30" />
                 </div>
-                <p className="font-script text-primary text-xl">Neriya</p>
-                <p className="font-body text-xs text-muted-foreground italic tracking-wide">
+                <p className="font-script text-primary text-2xl">Neriya</p>
+                <p className="font-body text-sm text-muted-foreground italic tracking-wide">
                   Tous les prix sont en FCFA · Service compris
                 </p>
-                <p className="font-body text-[11px] text-muted-foreground/60">
+                <p className="font-body text-xs text-muted-foreground/60">
                   © 2026 — La bouchée gourmande
                 </p>
               </div>
