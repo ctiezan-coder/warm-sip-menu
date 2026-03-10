@@ -8,6 +8,7 @@ import catDejeuner from "@/assets/cat-dejeuner.jpg";
 import catDiner from "@/assets/cat-diner.jpg";
 import catDessert from "@/assets/cat-dessert.jpg";
 import catBoissons from "@/assets/cat-boissons.jpg";
+import imgCrepeSalee from "@/assets/food/crepe-salee.png";
 import MenuSection from "@/components/MenuSection";
 
 
