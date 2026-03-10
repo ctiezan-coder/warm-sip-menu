@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
+import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
