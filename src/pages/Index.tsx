@@ -13,7 +13,6 @@ import imgDejFermier from "@/assets/food/dej-fermier.png";
 import imgCrepeSucree from "@/assets/food/crepe-sucree.png";
 import MenuSection from "@/components/MenuSection";
 
-
 // ─── FOOD IMAGES ──────────────────────────────────────────
 // Petit déjeuner / Desserts
 import imgPainPerdu from "@/assets/food/pain-perdu.png";
@@ -68,8 +67,6 @@ import imgJusCitron from "@/assets/food/jus-citron.png";
 import imgJusPassion from "@/assets/food/jus-passion.png";
 import imgJusCocktail from "@/assets/food/jus-cocktail.png";
 import imgEauMinerale from "@/assets/food/eau-minerale.png";
-
-
 
 // ─── DATA ─────────────────────────────────────────────────
 const cafeChaud = [
@@ -127,30 +124,75 @@ const dejFermier = [
   { name: "Café + Omelette", price: "1 500 Fr", image: imgDejFermier },
   { name: "Café + Œuf au Plat", price: "1 500 Fr", image: imgDejFermier },
   { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr", image: imgDejFermier },
-  { name: "Café + Omelette Farcie", price: "3 500 Fr", description: "Viande hachée, champignons, fromage", image: imgDejFermier },
+  {
+    name: "Café + Omelette Farcie",
+    price: "3 500 Fr",
+    description: "Viande hachée, champignons, fromage",
+    image: imgDejFermier,
+  },
 ];
 // Petit déjeuner - Crêpes salées
 const crepesSalees = [
   { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes", image: imgCrepeSalee },
   { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés", image: imgCrepeSalee },
-  { name: "Crêpe Viande Hachée", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeSalee },
-  { name: "Crêpe Blanc de Poulet", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeSalee },
+  {
+    name: "Crêpe Viande Hachée",
+    price: "3 000 Fr",
+    description: "Fromage, champignons, légumes confits",
+    image: imgCrepeSalee,
+  },
+  {
+    name: "Crêpe Blanc de Poulet",
+    price: "3 000 Fr",
+    description: "Fromage, champignons, légumes confits",
+    image: imgCrepeSalee,
+  },
 ];
 // Crêpes sucrées (petit déj)
 const crepesSucrees = [
   { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr", image: imgCrepeNature },
   { name: "Crêpe Nutella", price: "1 500 Fr", image: imgCrepeNutella },
-  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis de chocolat", image: imgCrepeFettNutella },
-  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis de chocolat", image: imgCrepeFettOreo },
-  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis de chocolat", image: imgCrepeFettSpeculoos },
-  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits de saison, granulats, boule de glace, coulis aux 3 chocolats", image: imgCrepeFettFruits },
-  { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits de saison, biscottes, boule de glace", image: imgCrepePralin },
+  {
+    name: "Crêpe Fettuccine Nutella",
+    price: "3 000 Fr",
+    description: "Nutella, boule de glace, coulis de chocolat",
+    image: imgCrepeFettNutella,
+  },
+  {
+    name: "Crêpe Fettuccine Oreo",
+    price: "4 000 Fr",
+    description: "Biscuits Oreo, boule de glace, coulis de chocolat",
+    image: imgCrepeFettOreo,
+  },
+  {
+    name: "Crêpe Fettuccine Spéculoos",
+    price: "4 000 Fr",
+    description: "Biscuits spéculoos, boule de glace, coulis de chocolat",
+    image: imgCrepeFettSpeculoos,
+  },
+  {
+    name: "Crêpe Fettuccine Fruits Saisonniers",
+    price: "5 500 Fr",
+    description: "Fruits de saison, granulats, boule de glace, coulis aux 3 chocolats",
+    image: imgCrepeFettFruits,
+  },
+  {
+    name: "Crêpe Pralin",
+    price: "6 000 Fr",
+    description: "Crème pâtissière, fruits de saison, biscottes, boule de glace",
+    image: imgCrepePralin,
+  },
 ];
 // Desserts
 const painsPerdu = [
   { name: "Pain Perdu Nature", price: "2 500 Fr", image: imgPainPerdu },
   { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr", image: imgPainPerduCaramel },
-  { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos", image: imgFeuilletePain },
+  {
+    name: "Feuilleté de Pain Fourré",
+    price: "6 000 Fr",
+    description: "Crème pâtissière, boule de glace, fruits, spéculoos",
+    image: imgFeuilletePain,
+  },
 ];
 const pancakes = [
   { name: "Pancakes Nature", price: "1 000 Fr", image: imgPancakesNature },
@@ -167,11 +209,36 @@ const croissantGauffre = [
 const crepes = [
   { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr", image: imgCrepeNature },
   { name: "Crêpe Nutella", price: "1 500 Fr", image: imgCrepeNutella },
-  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat", image: imgCrepeFettNutella },
-  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis chocolat", image: imgCrepeFettOreo },
-  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis chocolat", image: imgCrepeFettSpeculoos },
-  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats", image: imgCrepeFettFruits },
-  { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits, biscottes, boule de glace", image: imgCrepePralin },
+  {
+    name: "Crêpe Fettuccine Nutella",
+    price: "3 000 Fr",
+    description: "Nutella, boule de glace, coulis chocolat",
+    image: imgCrepeFettNutella,
+  },
+  {
+    name: "Crêpe Fettuccine Oreo",
+    price: "4 000 Fr",
+    description: "Biscuits Oreo, boule de glace, coulis chocolat",
+    image: imgCrepeFettOreo,
+  },
+  {
+    name: "Crêpe Fettuccine Spéculoos",
+    price: "4 000 Fr",
+    description: "Biscuits spéculoos, boule de glace, coulis chocolat",
+    image: imgCrepeFettSpeculoos,
+  },
+  {
+    name: "Crêpe Fettuccine Fruits Saisonniers",
+    price: "5 500 Fr",
+    description: "Fruits, granulats, glace, coulis 3 chocolats",
+    image: imgCrepeFettFruits,
+  },
+  {
+    name: "Crêpe Pralin",
+    price: "6 000 Fr",
+    description: "Crème pâtissière, fruits, biscottes, boule de glace",
+    image: imgCrepePralin,
+  },
 ];
 const degue = [
   { name: "Pain Fourré Lait Caillé", price: "1 500 Fr", image: imgPainLaitCaille },
@@ -185,7 +252,12 @@ const sauceFeuilleDej = [
   { name: "Sauce Feuille", price: "2 500 Fr", emoji: "🍚", description: "Viande de bœuf", image: imgSauceFeuille },
 ];
 const pouletRoti = [
-  { name: "1/4 Poulet Rôti", price: "2 500 Fr", description: "Pomme de terre sautées, salade 🥗", image: imgPouletRoti },
+  {
+    name: "1/4 Poulet Rôti",
+    price: "2 500 Fr",
+    description: "Pomme de terre sautées, salade 🥗",
+    image: imgPouletRoti,
+  },
   { name: "1/2 Poulet Rôti", price: "4 000 Fr", description: "Pomme de terre sautées", image: imgPouletRoti },
   { name: "1 Poulet Entier", price: "8 000 Fr", image: imgPouletRoti },
 ];
@@ -194,8 +266,18 @@ const chawama = [
   { name: "Chawama Viande", price: "2 500 Fr", image: imgChawama },
 ];
 const burgers = [
-  { name: "Cheese Burger", price: "4 000 Fr", description: "1 steak, 1 œuf, oignon confit, 1 fromage, frites, cornichons, tomates, salade", image: imgBurger },
-  { name: "Burger NERIYA", price: "8 000 Fr", description: "2 steaks, 3 fromages, 2 œufs, oignons confits, salade, tomates, cornichons, frites", image: imgBurger },
+  {
+    name: "Cheese Burger",
+    price: "4 000 Fr",
+    description: "1 steak, 1 œuf, oignon confit, 1 fromage, frites, cornichons, tomates, salade",
+    image: imgBurger,
+  },
+  {
+    name: "Burger NERIYA",
+    price: "8 000 Fr",
+    description: "2 steaks, 3 fromages, 2 œufs, oignons confits, salade, tomates, cornichons, frites",
+    image: imgBurger,
+  },
 ];
 // Dîner
 const spaghettiKiosque = [
@@ -213,11 +295,35 @@ const grill = [
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
 const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
-  { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "🍳", image: catPetitDej, description: "Déj fermier, crêpes salées & sucrées" },
-  { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Sauce Feuille, Poulet Rôti, Chawama & Burgers" },
+  {
+    key: "petit-dejeuner",
+    label: "Petit Déjeuner",
+    emoji: "🍳",
+    image: catPetitDej,
+    description: "Déj fermier, crêpes salées & sucrées",
+  },
+  {
+    key: "dejeuner",
+    label: "Déjeuner",
+    emoji: "🍛",
+    image: catDejeuner,
+    description: "Sauce Feuille, Poulet Rôti, Chawama & Burgers",
+  },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
-  { key: "dessert", label: "Desserts", emoji: "🍰", image: catDessert, description: "Pancakes, crêpes, gaufres & spécialités" },
-  { key: "boissons", label: "Boissons", emoji: "☕", image: catBoissons, description: "Cafés, thés, chocolats, milkshakes & jus" },
+  {
+    key: "dessert",
+    label: "Desserts",
+    emoji: "🍰",
+    image: catDessert,
+    description: "Pancakes, crêpes, gaufres & spécialités",
+  },
+  {
+    key: "boissons",
+    label: "Boissons",
+    emoji: "☕",
+    image: catBoissons,
+    description: "Cafés, thés, chocolats, milkshakes & jus",
+  },
 ];
 
 // ─── CATEGORY CONTENT ─────────────────────────────────────
@@ -226,38 +332,122 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "petit-dejeuner":
       return (
         <div className="space-y-6">
-          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgDejFermier} imagePosition="right" />
-          <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeSalee} imagePosition="left" />
-          <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeSucree} imagePosition="right" />
+          <MenuSection
+            title="Déj Fermier 🍳"
+            items={dejFermier}
+            delay={0.1}
+            backgroundImage={imgDejFermier}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Crêpe Salée 🧂"
+            items={crepesSalees}
+            delay={0.15}
+            backgroundImage={imgCrepeSalee}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Crêpe Sucrée 🥞"
+            items={crepesSucrees}
+            delay={0.2}
+            backgroundImage={imgCrepeSucree}
+            imagePosition="right"
+          />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "dejeuner":
       return (
         <div className="space-y-6">
-          <MenuSection title="Sauce Feuille 🍚" items={sauceFeuilleDej} delay={0.1} backgroundImage={imgSauceFeuille} imagePosition="right" />
-          <MenuSection title="Poulet Rôti 🍗" items={pouletRoti} delay={0.15} backgroundImage={imgPouletRoti} imagePosition="left" />
-          <MenuSection title="Chawama 🌯" items={chawama} delay={0.2} backgroundImage={imgChawama} imagePosition="right" />
-          <MenuSection title="Burger 🍔" items={burgers} delay={0.25} backgroundImage={imgBurger} imagePosition="left" />
+          <MenuSection
+            title="Sauce Feuille 🍚"
+            items={sauceFeuilleDej}
+            delay={0.1}
+            backgroundImage={imgSauceFeuille}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Poulet Rôti 🍗"
+            items={pouletRoti}
+            delay={0.15}
+            backgroundImage={imgPouletRoti}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Chawama 🌯"
+            items={chawama}
+            delay={0.2}
+            backgroundImage={imgChawama}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Burger 🍔"
+            items={burgers}
+            delay={0.25}
+            backgroundImage={imgBurger}
+            imagePosition="left"
+          />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "diner":
       return (
         <div className="space-y-6">
-          <MenuSection title="Spaghetti Kiosque 🍝" items={spaghettiKiosque} delay={0.1} backgroundImage={imgSpaghettiKiosque} imagePosition="right" />
-          <MenuSection title="Grill 🐟" items={grill} delay={0.15} backgroundImage={imgGrillPoisson} imagePosition="left" />
+          <MenuSection
+            title="Spaghetti Kiosque 🍝"
+            items={spaghettiKiosque}
+            delay={0.1}
+            backgroundImage={imgSpaghettiKiosque}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Grill 🐟"
+            items={grill}
+            delay={0.15}
+            backgroundImage={imgGrillPoisson}
+            imagePosition="left"
+          />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "dessert":
       return (
         <div className="space-y-6">
-          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} backgroundImage={imgPancakesFruit} imagePosition="right" />
-          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.15} backgroundImage={imgPainPerduCaramel} imagePosition="left" />
-          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} backgroundImage={imgCroissantFruits} imagePosition="right" />
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} backgroundImage={imgCrepePralin} imagePosition="left" />
-          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} backgroundImage={imgDegue} imagePosition="right" />
+          <MenuSection
+            title="Pancakes 🥞"
+            items={pancakes}
+            delay={0.1}
+            backgroundImage={imgPancakesFruit}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Pains Perdu 🍞"
+            items={painsPerdu}
+            delay={0.15}
+            backgroundImage={imgPainPerduCaramel}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Croissant Gauffre 🧇"
+            items={croissantGauffre}
+            delay={0.2}
+            backgroundImage={imgCroissantFruits}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Crêpes Sucrées 🥞"
+            items={crepes}
+            delay={0.25}
+            backgroundImage={imgCrepePralin}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Dêguê & Lait Caillé 🥛"
+            items={degue}
+            delay={0.3}
+            backgroundImage={imgDegue}
+            imagePosition="right"
+          />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
@@ -265,19 +455,71 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
       return (
         <div className="space-y-6">
           <div className="section-title-banner !mb-5 !bg-accent/10 !border-accent/30">
-            <span className="font-display text-lg font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
+            <span className="font-display text-lg font-bold uppercase tracking-widest text-accent">
+              🔥 Boissons Chaudes
+            </span>
           </div>
-          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} backgroundImage={imgCappuccino} imagePosition="right" />
-          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} backgroundImage={imgTheGingembreMenthe} imagePosition="left" />
-          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} backgroundImage={imgChocolatCrazy} imagePosition="right" />
+          <MenuSection
+            title="Cafés ☕"
+            items={cafeChaud}
+            variant="hot"
+            delay={0.1}
+            backgroundImage={imgCappuccino}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Thés 🍵"
+            items={theChaud}
+            variant="hot"
+            delay={0.15}
+            backgroundImage={imgTheGingembreMenthe}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Chocolats 🍫"
+            items={chocolatChaud}
+            variant="hot"
+            delay={0.2}
+            backgroundImage={imgChocolatCrazy}
+            imagePosition="right"
+          />
           <div className="chalk-line my-5" />
           <div className="section-title-banner !mb-5 !bg-primary/5 !border-primary/30">
-            <span className="font-display text-lg font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
+            <span className="font-display text-lg font-bold uppercase tracking-widest text-primary">
+              ❄️ Boissons Froides
+            </span>
           </div>
-          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} backgroundImage={imgCafeGlace} imagePosition="left" />
-          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} backgroundImage={imgTheMojito} imagePosition="right" />
-          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} backgroundImage={imgMilkshakeOreo} imagePosition="left" />
-          <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} backgroundImage={imgJusCocktail} imagePosition="right" />
+          <MenuSection
+            title="Cafés Glacés ☕"
+            items={cafeGlace}
+            variant="cold"
+            delay={0.25}
+            backgroundImage={imgCafeGlace}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Thés Froids 🍵"
+            items={theFroid}
+            variant="cold"
+            delay={0.3}
+            backgroundImage={imgTheMojito}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Milkshakes 🥤"
+            items={milkshakes}
+            variant="cold"
+            delay={0.35}
+            backgroundImage={imgMilkshakeOreo}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Jus & Boissons 🧃"
+            items={jusNaturel}
+            delay={0.4}
+            backgroundImage={imgJusCocktail}
+            imagePosition="right"
+          />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
@@ -330,7 +572,7 @@ const Index = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-background" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-              
+
               <motion.button
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -341,7 +583,7 @@ const Index = () => {
                 <ArrowLeft size={18} />
                 Retour
               </motion.button>
-              
+
               <div className="absolute bottom-8 left-0 right-0 text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -352,7 +594,9 @@ const Index = () => {
                   <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
                     {activeCat.label}
                   </h1>
-                  <p className="font-body text-sm sm:text-base text-white/60 mt-3 tracking-wide">{activeCat.description}</p>
+                  <p className="font-body text-sm sm:text-base text-white/60 mt-3 tracking-wide">
+                    {activeCat.description}
+                  </p>
                 </motion.div>
               </div>
             </div>
@@ -385,7 +629,7 @@ const Index = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-              
+
               <motion.div
                 className="absolute bottom-10 sm:bottom-14 left-0 right-0 text-center"
                 initial={{ opacity: 0, y: 15 }}
@@ -418,13 +662,14 @@ const Index = () => {
                   Bienvenue chez Neriya
                 </h2>
                 <p className="font-body text-foreground/85 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
-                  <span className="font-semibold text-primary">Neriya — La Bouchée Gourmande</span>, votre restaurant situé à <span className="font-semibold">Yopougon, Abidjan</span>. 
-                  Savourez une cuisine africaine authentique et généreuse, préparée chaque jour avec des produits frais et beaucoup de passion.
+                  <span className="font-semibold text-primary">Neriya — La Bouchée Gourmande</span>, votre restaurant
+                  situé à <span className="font-semibold">Yopougon, Abidjan</span>. Savourez une cuisine africaine
+                  authentique et généreuse, préparée chaque jour avec des produits frais et beaucoup de passion.
                 </p>
                 <p className="font-body text-foreground/70 text-sm leading-relaxed max-w-xl mx-auto mb-6">
-                  Du petit-déjeuner au dîner, nos plats sont faits pour éveiller vos papilles. 
-                  Que vous passiez pour un repas <span className="text-primary font-semibold">sur place</span> dans notre cadre chaleureux 
-                  ou que vous préfériez la <span className="text-primary font-semibold">livraison</span> directement chez vous, 
+                  Du petit-déjeuner au dîner, nos plats sont faits pour éveiller vos papilles. Que vous passiez pour un
+                  repas <span className="text-primary font-semibold">sur place</span> dans notre cadre chaleureux ou que
+                  vous préfériez la <span className="text-primary font-semibold">livraison</span> directement chez vous,
                   Neriya vous régale à chaque bouchée&nbsp;!
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3">
@@ -490,9 +735,14 @@ const Index = () => {
                             {cat.label}
                           </h2>
                         </div>
-                        <p className="font-body text-sm sm:text-base text-white/55 ml-14 sm:ml-[4rem] tracking-wide">{cat.description}</p>
+                        <p className="font-body text-sm sm:text-base text-white/55 ml-14 sm:ml-[4rem] tracking-wide">
+                          {cat.description}
+                        </p>
                       </div>
-                      <ChevronRight size={28} className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                      <ChevronRight
+                        size={28}
+                        className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0"
+                      />
                     </div>
                   </motion.button>
                 ))}
@@ -506,13 +756,11 @@ const Index = () => {
                   <img src={logo} alt="Neriya" className="h-12 w-12 rounded-full object-cover opacity-75" />
                   <div className="h-px w-20 bg-gradient-to-l from-transparent to-primary/30" />
                 </div>
-                <p className="font-script text-primary text-2xl">Neriya</p>
+                <p className="font-script text-primary text-2xl">Neriya La Bouchée Gourmande</p>
                 <p className="font-body text-sm text-muted-foreground italic tracking-wide">
                   Tous les prix sont en FCFA · Service compris
                 </p>
-                <p className="font-body text-xs text-muted-foreground/60">
-                  © 2026 — La bouchée gourmande
-                </p>
+                <p className="font-body text-xs text-muted-foreground/60">© 2026 — La bouchée gourmande</p>
               </div>
             </footer>
           </motion.div>
