@@ -225,60 +225,60 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
   switch (category) {
     case "petit-dejeuner":
       return (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgDejFermier} imagePosition="right" />
           <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeSalee} imagePosition="left" />
           <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeSucree} imagePosition="right" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "dejeuner":
       return (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <MenuSection title="Sauce Feuille 🍚" items={sauceFeuilleDej} delay={0.1} backgroundImage={imgSauceFeuille} imagePosition="right" />
           <MenuSection title="Poulet Rôti 🍗" items={pouletRoti} delay={0.15} backgroundImage={imgPouletRoti} imagePosition="left" />
           <MenuSection title="Chawama 🌯" items={chawama} delay={0.2} backgroundImage={imgChawama} imagePosition="right" />
           <MenuSection title="Burger 🍔" items={burgers} delay={0.25} backgroundImage={imgBurger} imagePosition="left" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "diner":
       return (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <MenuSection title="Spaghetti Kiosque 🍝" items={spaghettiKiosque} delay={0.1} backgroundImage={imgSpaghettiKiosque} imagePosition="right" />
           <MenuSection title="Grill 🐟" items={grill} delay={0.15} backgroundImage={imgGrillPoisson} imagePosition="left" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "dessert":
       return (
-        <div className="space-y-5">
+        <div className="space-y-6">
           <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} backgroundImage={imgPancakesFruit} imagePosition="right" />
           <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.15} backgroundImage={imgPainPerduCaramel} imagePosition="left" />
           <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} backgroundImage={imgCroissantFruits} imagePosition="right" />
           <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} backgroundImage={imgCrepePralin} imagePosition="left" />
           <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} backgroundImage={imgDegue} imagePosition="right" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "boissons":
       return (
-        <div className="space-y-5">
-          <div className="section-title-banner !mb-4 !bg-accent/10 !border-accent/30">
-            <span className="font-display text-base font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
+        <div className="space-y-6">
+          <div className="section-title-banner !mb-5 !bg-accent/10 !border-accent/30">
+            <span className="font-display text-lg font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
           </div>
           <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} backgroundImage={imgCappuccino} imagePosition="right" />
           <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} backgroundImage={imgTheGingembreMenthe} imagePosition="left" />
           <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} backgroundImage={imgChocolatCrazy} imagePosition="right" />
-          <div className="chalk-line my-4" />
-          <div className="section-title-banner !mb-4 !bg-primary/5 !border-primary/30">
-            <span className="font-display text-base font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
+          <div className="chalk-line my-5" />
+          <div className="section-title-banner !mb-5 !bg-primary/5 !border-primary/30">
+            <span className="font-display text-lg font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
           </div>
           <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} backgroundImage={imgCafeGlace} imagePosition="left" />
           <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} backgroundImage={imgTheMojito} imagePosition="right" />
           <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} backgroundImage={imgMilkshakeOreo} imagePosition="left" />
           <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} backgroundImage={imgJusCocktail} imagePosition="right" />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
   }
