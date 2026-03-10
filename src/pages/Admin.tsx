@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, LogOut, Upload, X, ChevronDown, ChevronRight, Image as ImageIcon } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import logo from "@/assets/neriya-logo.png";
@@ -230,6 +231,7 @@ const Admin = () => {
           <h1 className="font-display text-lg font-bold text-primary">Gestion du Menu</h1>
         </div>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <Button variant="outline" size="sm" onClick={() => navigate("/")} className="text-foreground border-border">
             Voir le menu
           </Button>

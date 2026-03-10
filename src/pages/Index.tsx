@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
@@ -356,6 +357,9 @@ const Index = () => {
                 <ArrowLeft size={16} />
                 Retour
               </motion.button>
+              <div className="absolute top-4 right-4 z-10">
+                <ThemeToggle />
+              </div>
               
               <div className="absolute bottom-6 left-0 right-0 text-center">
                 <motion.div
@@ -401,6 +405,10 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               
+              <div className="absolute top-4 right-4 z-10">
+                <ThemeToggle />
+              </div>
+
               <motion.div
                 className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center"
                 initial={{ opacity: 0, y: 15 }}
