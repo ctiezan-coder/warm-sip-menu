@@ -97,6 +97,9 @@
 
 /* ── Rich dark wood background ── */
 .chalkboard-bg {
+  background-color: hsl(var(--background));
+}
+.dark .chalkboard-bg {
   background-image:
     radial-gradient(ellipse at 15% 30%, hsla(30, 40%, 24%, 0.7) 0%, transparent 50%),
     radial-gradient(ellipse at 85% 70%, hsla(25, 35%, 20%, 0.6) 0%, transparent 50%),
