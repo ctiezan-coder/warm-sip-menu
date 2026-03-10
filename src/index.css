@@ -174,9 +174,9 @@
 
 /* ── Scrollbar styling ── */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: hsl(28, 30%, 18%); }
-::-webkit-scrollbar-thumb { background: hsl(42, 65%, 65%, 0.25); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: hsl(42, 65%, 65%, 0.4); }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.4); }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
