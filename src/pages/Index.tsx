@@ -471,18 +471,18 @@ const Index = () => {
               </div>
             </main>
 
-            <footer className="relative border-t border-primary/10 py-10 px-4">
-              <div className="max-w-md mx-auto text-center space-y-3">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/30" />
-                  <img src={logo} alt="Neriya" className="h-10 w-10 rounded-full object-cover opacity-70" />
-                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-primary/30" />
+            <footer className="relative border-t border-primary/8 py-12 px-4">
+              <div className="max-w-md mx-auto text-center space-y-4">
+                <div className="flex items-center justify-center gap-4 mb-5">
+                  <div className="h-px w-20 bg-gradient-to-r from-transparent via-primary/20 to-primary/30" />
+                  <img src={logo} alt="Neriya" className="h-11 w-11 rounded-full object-cover opacity-80 ring-2 ring-primary/15 ring-offset-2 ring-offset-background" />
+                  <div className="h-px w-20 bg-gradient-to-l from-transparent via-primary/20 to-primary/30" />
                 </div>
                 <p className="font-script text-primary text-xl">Neriya</p>
                 <p className="font-body text-xs text-muted-foreground italic tracking-wide">
                   Tous les prix sont en FCFA · Service compris
                 </p>
-                <p className="font-body text-[11px] text-muted-foreground/60">
+                <p className="font-body text-[11px] text-muted-foreground/50">
                   © 2026 — La bouchée gourmande
                 </p>
               </div>
