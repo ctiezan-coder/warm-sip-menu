@@ -9,7 +9,7 @@ import catDiner from "@/assets/cat-diner.jpg";
 import catDessert from "@/assets/cat-dessert.jpg";
 import catBoissons from "@/assets/cat-boissons.jpg";
 import MenuSection from "@/components/MenuSection";
-import MenuSoupeSection from "@/components/MenuSoupeSection";
+
 
 // ─── FOOD IMAGES ──────────────────────────────────────────
 // Petit déjeuner / Desserts
