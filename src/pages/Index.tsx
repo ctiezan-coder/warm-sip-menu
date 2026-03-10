@@ -228,7 +228,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
         <div className="space-y-5">
           <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgDejFermier} imagePosition="right" />
           <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeSalee} imagePosition="left" />
-          <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeFettNutella} imagePosition="right" />
+          <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeSucree} imagePosition="right" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
