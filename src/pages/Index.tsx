@@ -194,44 +194,16 @@ const burgers = [
   { name: "Cheese Burger", price: "4 000 Fr", description: "1 steak, 1 œuf, oignon confit, 1 fromage, frites, cornichons, tomates, salade", image: imgBurger },
   { name: "Burger NERIYA", price: "8 000 Fr", description: "2 steaks, 3 fromages, 2 œufs, oignons confits, salade, tomates, cornichons, frites", image: imgBurger },
 ];
-const tchep = [
-  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
-  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
-  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr", image: imgTchepBoeuf },
-  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr", image: imgTchepMouton },
-  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr", image: imgTchepBoulette },
+// Dîner
+const spaghettiKiosque = [
+  { name: "Spaghetti Rognon", price: "1 500 Fr", image: imgSpaghettiKiosque },
+  { name: "Spaghetti Viande de Bœuf", price: "2 000 Fr", image: imgSpaghettiKiosque },
+  { name: "Spaghetti Poulet", price: "2 000 Fr", image: imgSpaghettiKiosque },
 ];
-const yassa = [
-  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚", image: imgYassaPoulet },
-  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoulet },
-  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚", image: imgYassaPoisson },
-  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoisson },
-  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚", image: imgYassaMouton },
-  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr", image: imgYassaMouton },
-];
-const mafe = [
-  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚", image: imgMafePondeuse },
-  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgMafePondeuse },
-  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr", image: imgMafePondeuse },
-  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", emoji: "🍚", image: imgMafePoisson },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgMafeBoeuf },
-];
-const sauceTomate = [
-  { name: "Sauce Tomate Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceTomate },
-  { name: "Sauce Feuille de Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceFeuille },
-];
-const sauceLegume = [
-  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚", image: imgSauceLegume },
-  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgSauceLegume },
-  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr", image: imgSauceLegume },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgMafeBoeuf },
-];
-const soupe = [
-  { name: "½ Pondeuse (riz, attiéké)", price: "5 000 Fr", image: imgSoupePoulet },
-  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poulet Chair ½ (attiéké, riz)", price: "3 500 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poulet Chair 1 entier (attiéké, riz)", price: "6 500 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", description: "Prix selon le poisson du jour", image: imgSoupePoisson },
+const grill = [
+  { name: "Sole Braisé", price: "Sur demande", image: imgGrillPoisson },
+  { name: "Thon Frit", price: "1 500 / 2 000 / 2 500 / 3 000 Fr", image: imgGrillPoisson },
+  { name: "Sosso Frit", price: "Sur demande", image: imgGrillPoisson },
 ];
 
 // ─── CATEGORIES ────────────────────────────────────────────
