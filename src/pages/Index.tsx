@@ -311,10 +311,10 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
 
 // ─── DECORATIVE ORNAMENT ──────────────────────────────────
 const GoldOrnament = () => (
-  <div className="flex items-center justify-center gap-3 py-2">
-    <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/40" />
-    <Sparkles size={14} className="text-primary/50" />
-    <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/40" />
+  <div className="flex items-center justify-center gap-4 py-3">
+    <div className="h-px w-16 bg-gradient-to-r from-transparent via-primary/30 to-primary/50" />
+    <Sparkles size={14} className="text-primary/40" />
+    <div className="h-px w-16 bg-gradient-to-l from-transparent via-primary/30 to-primary/50" />
   </div>
 );
 
@@ -335,24 +335,24 @@ const Index = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <div className="relative h-52 sm:h-72 overflow-hidden">
+            <div className="relative h-56 sm:h-80 overflow-hidden">
               <motion.img
                 src={activeCat.image}
                 alt={activeCat.label}
                 className="w-full h-full object-cover"
-                initial={{ scale: 1.1 }}
+                initial={{ scale: 1.15 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: 1, ease: "easeOut" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-background" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-background" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
               
               <motion.button
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.3, duration: 0.4 }}
                 onClick={() => setActiveCategory(null)}
-                className="absolute top-4 left-4 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-4 py-2.5 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
+                className="absolute top-4 left-4 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-4 py-2.5 rounded-full hover:border-primary/20 active:scale-95"
               >
                 <ArrowLeft size={16} />
                 Retour
@@ -361,17 +361,17 @@ const Index = () => {
                 <ThemeToggle />
               </div>
               
-              <div className="absolute bottom-6 left-0 right-0 text-center">
+              <div className="absolute bottom-8 left-0 right-0 text-center">
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
+                  transition={{ delay: 0.25, duration: 0.6, ease: "easeOut" }}
                 >
-                  <span className="text-4xl sm:text-5xl block mb-2">{activeCat.emoji}</span>
-                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
+                  <span className="text-4xl sm:text-5xl block mb-3 drop-shadow-lg">{activeCat.emoji}</span>
+                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-[0.18em] drop-shadow-lg">
                     {activeCat.label}
                   </h1>
-                  <p className="font-body text-sm text-white/60 mt-2 tracking-wide">{activeCat.description}</p>
+                  <p className="font-body text-sm text-white/50 mt-2 tracking-wide max-w-xs mx-auto">{activeCat.description}</p>
                 </motion.div>
               </div>
             </div>
@@ -393,27 +393,27 @@ const Index = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="relative h-[50vh] sm:h-[55vh] overflow-hidden grain-overlay">
+            <div className="relative h-[52vh] sm:h-[58vh] overflow-hidden grain-overlay">
               <motion.img
                 src={heroImg}
                 alt="Neriya — La bouchée gourmande"
                 className="w-full h-full object-cover object-center"
-                initial={{ scale: 1.05 }}
+                initial={{ scale: 1.08 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-background" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
               
               <div className="absolute top-4 right-4 z-10">
                 <ThemeToggle />
               </div>
 
               <motion.div
-                className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center"
-                initial={{ opacity: 0, y: 15 }}
+                className="absolute bottom-10 sm:bottom-14 left-0 right-0 text-center"
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
+                transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
               >
                 <p className="font-script text-primary text-2xl sm:text-3xl drop-shadow-lg">La bouchée gourmande</p>
               </motion.div>
@@ -437,51 +437,52 @@ const Index = () => {
                 {categories.map((cat, i) => (
                   <motion.button
                     key={cat.key}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 35 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: "easeOut" }}
+                    transition={{ delay: 0.35 + i * 0.1, duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
                     onClick={() => {
                       setActiveCategory(cat.key);
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
-                    className="group relative overflow-hidden rounded-xl h-28 sm:h-32 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    className="group relative overflow-hidden rounded-2xl h-28 sm:h-32 text-left gold-glow shimmer-hover hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <img
                       src={cat.image}
                       alt={cat.label}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25 group-hover:from-black/70 transition-all duration-500" />
+                    <div className="absolute inset-0 category-card-overlay group-hover:opacity-90 transition-opacity duration-500" />
 
                     <div className="relative h-full flex items-center justify-between px-5 sm:px-8">
                       <div className="space-y-1">
                         <div className="flex items-center gap-3">
                           <span className="text-3xl sm:text-4xl drop-shadow-md">{cat.emoji}</span>
-                          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
+                          <h2 className="font-display text-2xl sm:text-3xl font-bold text-foreground dark:text-white uppercase tracking-wider drop-shadow-sm">
                             {cat.label}
                           </h2>
                         </div>
-                        <p className="font-body text-xs sm:text-sm text-white/55 ml-12 sm:ml-[3.25rem] tracking-wide">{cat.description}</p>
+                        <p className="font-body text-xs sm:text-sm text-muted-foreground dark:text-white/50 ml-12 sm:ml-[3.25rem] tracking-wide">{cat.description}</p>
                       </div>
-                      <ChevronRight size={24} className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                      <ChevronRight size={24} className="text-primary/50 group-hover:text-primary group-hover:translate-x-1.5 transition-all duration-300 shrink-0" />
                     </div>
                   </motion.button>
                 ))}
               </div>
             </main>
 
-            <footer className="relative border-t border-primary/10 py-10 px-4">
-              <div className="max-w-md mx-auto text-center space-y-3">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/30" />
-                  <img src={logo} alt="Neriya" className="h-10 w-10 rounded-full object-cover opacity-70" />
-                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-primary/30" />
+            <footer className="relative border-t border-primary/8 py-12 px-4">
+              <div className="max-w-md mx-auto text-center space-y-4">
+                <div className="flex items-center justify-center gap-4 mb-5">
+                  <div className="h-px w-20 bg-gradient-to-r from-transparent via-primary/20 to-primary/30" />
+                  <img src={logo} alt="Neriya" className="h-11 w-11 rounded-full object-cover opacity-80 ring-2 ring-primary/15 ring-offset-2 ring-offset-background" />
+                  <div className="h-px w-20 bg-gradient-to-l from-transparent via-primary/20 to-primary/30" />
                 </div>
                 <p className="font-script text-primary text-xl">Neriya</p>
                 <p className="font-body text-xs text-muted-foreground italic tracking-wide">
                   Tous les prix sont en FCFA · Service compris
                 </p>
-                <p className="font-body text-[11px] text-muted-foreground/60">
+                <p className="font-body text-[11px] text-muted-foreground/50">
                   © 2026 — La bouchée gourmande
                 </p>
               </div>

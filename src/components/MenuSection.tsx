@@ -18,13 +18,13 @@ interface MenuSectionProps {
 const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSectionProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, delay }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
       className="menu-section-card"
     >
-      {/* Section title in decorative banner */}
+      {/* Section title */}
       <div className="section-title-banner">
         <h3 className="font-display text-sm sm:text-base font-bold uppercase tracking-[0.15em] text-primary">
           {title}
@@ -36,11 +36,11 @@ const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSecti
         {items.map((item, i) => (
           <motion.div
             key={item.name + i}
-            initial={{ opacity: 0, x: -8 }}
+            initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: delay + i * 0.04 }}
-            className="menu-item-row"
+            transition={{ duration: 0.35, delay: delay + i * 0.04, ease: "easeOut" }}
+            className="menu-item-row group"
           >
             {/* Thumbnail */}
             {item.image && (
@@ -57,9 +57,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSecti
                   {item.name}
                 </span>
                 <span className="dotted-leader" />
-                <span className="price-tag">
-                  {item.price}
-                </span>
+                <span className="price-tag">{item.price}</span>
               </div>
               {item.description && (
                 <p className="text-[11px] text-muted-foreground mt-0.5 italic leading-snug">
