@@ -335,24 +335,24 @@ const Index = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <div className="relative h-52 sm:h-72 overflow-hidden">
+            <div className="relative h-56 sm:h-80 overflow-hidden">
               <motion.img
                 src={activeCat.image}
                 alt={activeCat.label}
                 className="w-full h-full object-cover"
-                initial={{ scale: 1.1 }}
+                initial={{ scale: 1.15 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: 1, ease: "easeOut" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-background" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-background" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
               
               <motion.button
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.3, duration: 0.4 }}
                 onClick={() => setActiveCategory(null)}
-                className="absolute top-4 left-4 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-4 py-2.5 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
+                className="absolute top-4 left-4 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-4 py-2.5 rounded-full hover:border-primary/20 active:scale-95"
               >
                 <ArrowLeft size={16} />
                 Retour
@@ -361,17 +361,17 @@ const Index = () => {
                 <ThemeToggle />
               </div>
               
-              <div className="absolute bottom-6 left-0 right-0 text-center">
+              <div className="absolute bottom-8 left-0 right-0 text-center">
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
+                  transition={{ delay: 0.25, duration: 0.6, ease: "easeOut" }}
                 >
-                  <span className="text-4xl sm:text-5xl block mb-2">{activeCat.emoji}</span>
-                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
+                  <span className="text-4xl sm:text-5xl block mb-3 drop-shadow-lg">{activeCat.emoji}</span>
+                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-[0.18em] drop-shadow-lg">
                     {activeCat.label}
                   </h1>
-                  <p className="font-body text-sm text-white/60 mt-2 tracking-wide">{activeCat.description}</p>
+                  <p className="font-body text-sm text-white/50 mt-2 tracking-wide max-w-xs mx-auto">{activeCat.description}</p>
                 </motion.div>
               </div>
             </div>
