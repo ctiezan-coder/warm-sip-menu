@@ -34,6 +34,9 @@ import imgCrepePralin from "@/assets/food/crepe-pralin.png";
 import imgDegue from "@/assets/food/degue.png";
 import imgPainLaitCaille from "@/assets/food/pain-lait-caille.png";
 // Déjeuner / Dîner
+import imgPouletRoti from "@/assets/food/poulet-roti.png";
+import imgChawama from "@/assets/food/chawama.png";
+import imgBurger from "@/assets/food/burger.png";
 import imgTchepPoulet from "@/assets/food/tchep-poulet.png";
 import imgTchepPoisson from "@/assets/food/tchep-poisson.png";
 import imgTchepBoeuf from "@/assets/food/tchep-boeuf.png";
@@ -188,6 +191,22 @@ const degue = [
   { name: "Dêguê Café Cappuccino", price: "2 000 Fr", image: imgDegue },
   { name: "Dêguê Caramel Granola", price: "2 000 Fr", image: imgDegue },
 ];
+const sauceFeuilleDej = [
+  { name: "Sauce Feuille", price: "2 500 Fr", emoji: "🍚", description: "Viande de bœuf", image: imgSauceFeuille },
+];
+const pouletRoti = [
+  { name: "1/4 Poulet Rôti", price: "2 500 Fr", description: "Pomme de terre sautées, salade 🥗", image: imgPouletRoti },
+  { name: "1/2 Poulet Rôti", price: "4 000 Fr", description: "Pomme de terre sautées", image: imgPouletRoti },
+  { name: "1 Poulet Entier", price: "8 000 Fr", image: imgPouletRoti },
+];
+const chawama = [
+  { name: "Chawama Poulet", price: "2 000 Fr", image: imgChawama },
+  { name: "Chawama Viande", price: "2 500 Fr", image: imgChawama },
+];
+const burgers = [
+  { name: "Cheese Burger", price: "4 000 Fr", description: "1 steak, 1 œuf, oignon confit, 1 fromage, frites, cornichons, tomates, salade", image: imgBurger },
+  { name: "Burger NERIYA", price: "8 000 Fr", description: "2 steaks, 3 fromages, 2 œufs, oignons confits, salade, tomates, cornichons, frites", image: imgBurger },
+];
 const tchep = [
   { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
   { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
@@ -233,7 +252,7 @@ type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boisso
 
 const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
   { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "🍳", image: catPetitDej, description: "Déj fermier, crêpes salées & sucrées" },
-  { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Tchêp, Yassa, Mafé, Sauces & Soupes" },
+  { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Sauce Feuille, Poulet Rôti, Chawama & Burgers" },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
   { key: "dessert", label: "Desserts", emoji: "🍰", image: catDessert, description: "Pancakes, crêpes, gaufres & spécialités" },
   { key: "boissons", label: "Boissons", emoji: "☕", image: catBoissons, description: "Cafés, thés, chocolats, milkshakes & jus" },
@@ -254,12 +273,10 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "dejeuner":
       return (
         <div className="space-y-5">
-          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoulet} imagePosition="right" />
-          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaPoulet} imagePosition="left" />
-          <MenuSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} backgroundImage={imgMafePondeuse} imagePosition="right" />
-          <MenuSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} backgroundImage={imgSauceTomate} imagePosition="left" />
-          <MenuSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} backgroundImage={imgSauceLegume} imagePosition="right" />
-          <MenuSection title="Soupe 🍲" items={soupe} delay={0.35} backgroundImage={imgSoupePoulet} imagePosition="left" />
+          <MenuSection title="Sauce Feuille 🍚" items={sauceFeuilleDej} delay={0.1} backgroundImage={imgSauceFeuille} imagePosition="right" />
+          <MenuSection title="Poulet Rôti 🍗" items={pouletRoti} delay={0.15} backgroundImage={imgPouletRoti} imagePosition="left" />
+          <MenuSection title="Chawama 🌯" items={chawama} delay={0.2} backgroundImage={imgChawama} imagePosition="right" />
+          <MenuSection title="Burger 🍔" items={burgers} delay={0.25} backgroundImage={imgBurger} imagePosition="left" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
