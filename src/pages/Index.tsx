@@ -123,10 +123,10 @@ const jusNaturel = [
 ];
 // Petit déjeuner - Déj Fermier
 const dejFermier = [
-  { name: "Café + Omelette", price: "1 500 Fr", image: imgPancakesNature },
-  { name: "Café + Œuf au Plat", price: "1 500 Fr", image: imgPancakesNature },
-  { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr", image: imgPancakesNature },
-  { name: "Café + Omelette Farcie", price: "3 500 Fr", description: "Viande hachée, champignons, fromage", image: imgPancakesNature },
+  { name: "Café + Omelette", price: "1 500 Fr", image: imgDejFermier },
+  { name: "Café + Œuf au Plat", price: "1 500 Fr", image: imgDejFermier },
+  { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr", image: imgDejFermier },
+  { name: "Café + Omelette Farcie", price: "3 500 Fr", description: "Viande hachée, champignons, fromage", image: imgDejFermier },
 ];
 // Petit déjeuner - Crêpes salées
 const crepesSalees = [
