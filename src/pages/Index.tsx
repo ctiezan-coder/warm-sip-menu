@@ -310,7 +310,7 @@ const Index = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <div className="relative h-52 sm:h-72 overflow-hidden">
+            <div className="relative h-60 sm:h-80 overflow-hidden">
               <motion.img
                 src={activeCat.image}
                 alt={activeCat.label}
@@ -327,28 +327,28 @@ const Index = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
                 onClick={() => setActiveCategory(null)}
-                className="absolute top-4 left-4 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-4 py-2.5 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
+                className="absolute top-5 left-5 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-5 py-3 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
               >
-                <ArrowLeft size={16} />
+                <ArrowLeft size={18} />
                 Retour
               </motion.button>
               
-              <div className="absolute bottom-6 left-0 right-0 text-center">
+              <div className="absolute bottom-8 left-0 right-0 text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  <span className="text-4xl sm:text-5xl block mb-2">{activeCat.emoji}</span>
-                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
+                  <span className="text-5xl sm:text-6xl block mb-3">{activeCat.emoji}</span>
+                  <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
                     {activeCat.label}
                   </h1>
-                  <p className="font-body text-sm text-white/60 mt-2 tracking-wide">{activeCat.description}</p>
+                  <p className="font-body text-sm sm:text-base text-white/60 mt-3 tracking-wide">{activeCat.description}</p>
                 </motion.div>
               </div>
             </div>
 
-            <main className="max-w-4xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-6 mt-4">
+            <main className="max-w-4xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
               <GoldOrnament />
               <CategoryContent category={activeCategory} />
               <GoldOrnament />
