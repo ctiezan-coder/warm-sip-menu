@@ -204,8 +204,8 @@
 
 /* ── Item thumbnail ── */
 .item-thumbnail {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid hsl(42 65% 65% / 0.2);
@@ -215,8 +215,8 @@
 }
 @media (min-width: 640px) {
   .item-thumbnail {
-    width: 4rem;
-    height: 4rem;
+    width: 5.5rem;
+    height: 5.5rem;
   }
 }
 .menu-item-row:hover .item-thumbnail {
