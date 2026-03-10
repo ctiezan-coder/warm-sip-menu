@@ -357,6 +357,9 @@ const Index = () => {
                 <ArrowLeft size={16} />
                 Retour
               </motion.button>
+              <div className="absolute top-4 right-4 z-10">
+                <ThemeToggle />
+              </div>
               
               <div className="absolute bottom-6 left-0 right-0 text-center">
                 <motion.div
