@@ -219,61 +219,90 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
   switch (category) {
     case "petit-dejeuner":
       return (
-        <div className="space-y-6">
-          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.1} />
-          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.15} />
-          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} />
-          <div className="chalk-line my-6" />
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} />
-          <div className="chalk-line my-6" />
-          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
+        <div className="space-y-5">
+          {/* 2-column grid for short sections */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
+            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} />
+          </div>
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} />
+            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
+          </div>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "dejeuner":
       return (
-        <div className="space-y-6">
-          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
-          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
-          <div className="chalk-line my-6" />
-          <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
-          <MenuPlatDuJourSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
-          <MenuPlatDuJourSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
-          <div className="chalk-line my-6" />
+        <div className="space-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
+            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
+            <div className="space-y-4">
+              <MenuPlatDuJourSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
+              <MenuPlatDuJourSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
+            </div>
+          </div>
           <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.35} />
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "diner":
       return (
-        <div className="space-y-6">
-          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
-          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
-          <div className="chalk-line my-6" />
+        <div className="space-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
+            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
+          </div>
           <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.2} />
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "dessert":
       return (
-        <div className="space-y-6">
-          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.1} />
-          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.15} />
-          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} />
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} />
-          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
+        <div className="space-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
+            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} />
+          </div>
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} />
+            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
+          </div>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "boissons":
       return (
-        <div className="space-y-6">
-          <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest">🔥 Chaud</h3>
-          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
-          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
-          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
-          <div className="chalk-line my-6" />
-          <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
-          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} />
-          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} />
-          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} />
-          <MenuSection title="Jus & Boissons Fraîches 🧃" items={jusNaturel} delay={0.4} />
+        <div className="space-y-5">
+          <div className="section-title-banner !mb-4 !bg-accent/10 !border-accent/30">
+            <span className="font-display text-base font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
+            <div className="space-y-4">
+              <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
+              <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
+            </div>
+          </div>
+          <div className="chalk-line my-4" />
+          <div className="section-title-banner !mb-4 !bg-primary/5 !border-primary/30">
+            <span className="font-display text-base font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} />
+            <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} />
+            <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} />
+          </div>
+          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
   }
