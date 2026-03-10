@@ -384,6 +384,16 @@ const Index = () => {
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
                 <p className="font-script text-primary text-3xl sm:text-4xl drop-shadow-lg">La bouchée gourmande</p>
+                <div className="flex items-center justify-center gap-3 mt-3">
+                  <span className="inline-flex items-center gap-1.5 bg-black/40 backdrop-blur-sm border border-primary/20 rounded-full px-3 py-1">
+                    <span className="text-sm">🏠</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/90 tracking-wide">Sur place</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 bg-black/40 backdrop-blur-sm border border-primary/20 rounded-full px-3 py-1">
+                    <span className="text-sm">🛵</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/90 tracking-wide">Livraison</span>
+                  </span>
+                </div>
               </motion.div>
             </div>
 
