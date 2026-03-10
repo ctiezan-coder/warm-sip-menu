@@ -553,6 +553,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen chalkboard-bg">
+      <PlatDuJourPopup
+        name="Tchep Poulet"
+        price="2 500 Fr"
+        description="Notre célèbre riz au poulet grillé, mijoté avec des légumes frais et des épices africaines."
+        image={imgPouletRoti}
+      />
       <AnimatePresence mode="wait">
         {activeCategory && activeCat ? (
           <motion.div
