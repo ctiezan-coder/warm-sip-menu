@@ -129,10 +129,10 @@ const dejFermier = [
 ];
 // Petit déjeuner - Crêpes salées
 const crepesSalees = [
-  { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes", image: imgCrepeNature },
-  { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés", image: imgCrepeNature },
-  { name: "Crêpe Viande Hachée", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeNature },
-  { name: "Crêpe Blanc de Poulet", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeNature },
+  { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes", image: imgCrepeSalee },
+  { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés", image: imgCrepeSalee },
+  { name: "Crêpe Viande Hachée", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeSalee },
+  { name: "Crêpe Blanc de Poulet", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeSalee },
 ];
 // Crêpes sucrées (petit déj)
 const crepesSucrees = [
