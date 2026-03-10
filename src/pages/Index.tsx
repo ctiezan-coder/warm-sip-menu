@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
+import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
@@ -552,6 +553,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen chalkboard-bg">
+      <PlatDuJourPopup
+        name="Tchep Poulet"
+        price="2 500 Fr"
+        description="Notre célèbre riz au poulet grillé, mijoté avec des légumes frais et des épices africaines."
+        image={imgPouletRoti}
+      />
       <AnimatePresence mode="wait">
         {activeCategory && activeCat ? (
           <motion.div
