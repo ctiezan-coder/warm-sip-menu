@@ -397,11 +397,53 @@ const Index = () => {
               </motion.div>
             </div>
 
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 -mt-2 relative z-10">
+            {/* ── Section Présentation ── */}
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10 mb-4"
+            >
+              <div className="menu-section-card-v2 text-center py-8 sm:py-10">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-primary uppercase tracking-[0.15em] mb-4">
+                  Bienvenue chez Neriya
+                </h2>
+                <p className="font-body text-foreground/85 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
+                  <span className="font-semibold text-primary">Neriya — La Bouchée Gourmande</span>, votre restaurant situé à <span className="font-semibold">Yopougon, Abidjan</span>. 
+                  Savourez une cuisine africaine authentique et généreuse, préparée chaque jour avec des produits frais et beaucoup de passion.
+                </p>
+                <p className="font-body text-foreground/70 text-sm leading-relaxed max-w-xl mx-auto mb-6">
+                  Du petit-déjeuner au dîner, nos plats sont faits pour éveiller vos papilles. 
+                  Que vous passiez pour un repas <span className="text-primary font-semibold">sur place</span> dans notre cadre chaleureux 
+                  ou que vous préfériez la <span className="text-primary font-semibold">livraison</span> directement chez vous, 
+                  Neriya vous régale à chaque bouchée&nbsp;!
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                    <span>📍</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/80">Yopougon, Abidjan</span>
+                  </span>
+                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                    <span>🏠</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/80">Sur place</span>
+                  </span>
+                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                    <span>🛵</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/80">Livraison</span>
+                  </span>
+                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                    <span>🔓</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/80">Ouvert au public</span>
+                  </span>
+                </div>
+              </div>
+            </motion.section>
+
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.5 }}
                 className="flex items-center justify-center gap-4 mb-8"
               >
                 <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-primary/40" />
