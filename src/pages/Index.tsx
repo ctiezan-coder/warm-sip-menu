@@ -462,10 +462,10 @@ const Index = () => {
         href="https://wa.me/2250789288202?text=Bonjour%20Neriya%20!%20Je%20souhaite%20passer%20une%20commande%20🍽️"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50 flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-bold text-xs sm:text-sm px-5 py-3 sm:px-6 sm:py-3.5 rounded-full shadow-xl transition-all hover:scale-105 active:scale-95 whatsapp-pulse"
+        className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50 flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 bg-[#25D366] hover:bg-[#1ebe57] text-white rounded-full shadow-xl transition-all hover:scale-110 active:scale-95 whatsapp-pulse"
+        title="Commander sur WhatsApp"
       >
-        <MessageCircle size={20} fill="white" strokeWidth={0} />
-        Commander
+        <MessageCircle size={28} fill="white" strokeWidth={0} />
       </a>
     </div>
   );
