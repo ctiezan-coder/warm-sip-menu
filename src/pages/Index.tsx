@@ -198,8 +198,16 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "boissons":
       return (
         <div className="space-y-6">
-          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.1} />
-          <MenuSection title="Jus & Boissons Fraîches 🧃" items={jusNaturel} delay={0.15} />
+          <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest">🔥 Chaud</h3>
+          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
+          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
+          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
+          <div className="chalk-line my-4" />
+          <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
+          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} />
+          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} />
+          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} />
+          <MenuSection title="Jus & Boissons Fraîches 🧃" items={jusNaturel} delay={0.4} />
         </div>
       );
   }
