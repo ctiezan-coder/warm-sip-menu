@@ -405,6 +405,10 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               
+              <div className="absolute top-4 right-4 z-10">
+                <ThemeToggle />
+              </div>
+
               <motion.div
                 className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center"
                 initial={{ opacity: 0, y: 15 }}
