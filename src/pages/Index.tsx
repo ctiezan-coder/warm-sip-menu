@@ -9,6 +9,7 @@ import catDiner from "@/assets/cat-diner.jpg";
 import catDessert from "@/assets/cat-dessert.jpg";
 import catBoissons from "@/assets/cat-boissons.jpg";
 import imgCrepeSalee from "@/assets/food/crepe-salee.png";
+import imgDejFermier from "@/assets/food/dej-fermier.png";
 import MenuSection from "@/components/MenuSection";
 
 
@@ -122,10 +123,10 @@ const jusNaturel = [
 ];
 // Petit déjeuner - Déj Fermier
 const dejFermier = [
-  { name: "Café + Omelette", price: "1 500 Fr", image: imgPancakesNature },
-  { name: "Café + Œuf au Plat", price: "1 500 Fr", image: imgPancakesNature },
-  { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr", image: imgPancakesNature },
-  { name: "Café + Omelette Farcie", price: "3 500 Fr", description: "Viande hachée, champignons, fromage", image: imgPancakesNature },
+  { name: "Café + Omelette", price: "1 500 Fr", image: imgDejFermier },
+  { name: "Café + Œuf au Plat", price: "1 500 Fr", image: imgDejFermier },
+  { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr", image: imgDejFermier },
+  { name: "Café + Omelette Farcie", price: "3 500 Fr", description: "Viande hachée, champignons, fromage", image: imgDejFermier },
 ];
 // Petit déjeuner - Crêpes salées
 const crepesSalees = [
@@ -224,7 +225,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "petit-dejeuner":
       return (
         <div className="space-y-5">
-          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgPancakesNature} imagePosition="right" />
+          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgDejFermier} imagePosition="right" />
           <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeSalee} imagePosition="left" />
           <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeFettNutella} imagePosition="right" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
