@@ -8,6 +8,7 @@ import catDejeuner from "@/assets/cat-dejeuner.jpg";
 import catDiner from "@/assets/cat-diner.jpg";
 import catDessert from "@/assets/cat-dessert.jpg";
 import catBoissons from "@/assets/cat-boissons.jpg";
+import imgCrepeSalee from "@/assets/food/crepe-salee.png";
 import MenuSection from "@/components/MenuSection";
 
 
@@ -128,10 +129,10 @@ const dejFermier = [
 ];
 // Petit déjeuner - Crêpes salées
 const crepesSalees = [
-  { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes", image: imgCrepeNature },
-  { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés", image: imgCrepeNature },
-  { name: "Crêpe Viande Hachée", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeNature },
-  { name: "Crêpe Blanc de Poulet", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeNature },
+  { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes", image: imgCrepeSalee },
+  { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés", image: imgCrepeSalee },
+  { name: "Crêpe Viande Hachée", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeSalee },
+  { name: "Crêpe Blanc de Poulet", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeSalee },
 ];
 // Crêpes sucrées (petit déj)
 const crepesSucrees = [
@@ -224,7 +225,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
       return (
         <div className="space-y-5">
           <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgPancakesNature} imagePosition="right" />
-          <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeNature} imagePosition="left" />
+          <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeSalee} imagePosition="left" />
           <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeFettNutella} imagePosition="right" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
