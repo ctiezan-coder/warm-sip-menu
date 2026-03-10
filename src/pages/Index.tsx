@@ -296,15 +296,10 @@ const GoldOrnament = () => (
 // ─── MAIN COMPONENT ───────────────────────────────────────
 const whatsappMessage = `Bonjour Neriya ! 🍽️ Je souhaite passer une commande.
 
-Voici les catégories disponibles :
+📋 Consultez notre menu complet ici :
+👉 https://warm-sip-menu.lovable.app
 
-🍳 Petit Déjeuner (Déj Fermier, Crêpes Salées & Sucrées)
-🍛 Déjeuner (Sauce Feuille, Poulet Rôti, Chawama, Burgers)
-🌙 Dîner (Spaghetti Kiosque, Grill)
-🍰 Desserts (Pain Perdu, Pancakes, Croissant Gauffre, Dêguê)
-☕ Boissons (Cafés, Thés, Chocolats, Milkshakes, Jus)
-
-Merci de m'envoyer le menu complet ou de m'indiquer la catégorie souhaitée pour que je puisse choisir mon plat. 😊`;
+Merci de me confirmer ma commande ! 😊`;
 
 const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whatsappMessage)}`;
 
