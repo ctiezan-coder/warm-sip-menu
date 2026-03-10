@@ -47,7 +47,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSecti
       </div>
 
       {/* Items */}
-      <ul className="space-y-3">
+      <ul className="space-y-4">
         {items.map((item, i) => (
           <motion.li
             key={item.name + i}
@@ -57,10 +57,10 @@ const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSecti
             transition={{ duration: 0.3, delay: delay + i * 0.03 }}
             className="group"
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 sm:gap-4">
               {/* Food photo */}
               {item.image && (
-                <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-primary/20 shadow-md group-hover:border-primary/40 transition-all">
+                <div className="shrink-0 w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] rounded-full overflow-hidden border-2 border-primary/25 shadow-lg group-hover:border-primary/50 transition-all group-hover:shadow-primary/20 group-hover:shadow-xl">
                   <img
                     src={item.image}
                     alt={item.name}

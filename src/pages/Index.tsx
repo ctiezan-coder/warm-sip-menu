@@ -11,7 +11,8 @@ import catBoissons from "@/assets/cat-boissons.jpg";
 import MenuSection from "@/components/MenuSection";
 import MenuSoupeSection from "@/components/MenuSoupeSection";
 
-// Food images
+// ─── FOOD IMAGES ──────────────────────────────────────────
+// Petit déjeuner / Desserts
 import imgPainPerdu from "@/assets/food/pain-perdu.png";
 import imgPainPerduCaramel from "@/assets/food/pain-perdu-caramel.png";
 import imgFeuilletePain from "@/assets/food/feuillete-pain.png";
@@ -32,59 +33,101 @@ import imgCrepeFettFruits from "@/assets/food/crepe-fettuccine-fruits.png";
 import imgCrepePralin from "@/assets/food/crepe-pralin.png";
 import imgDegue from "@/assets/food/degue.png";
 import imgPainLaitCaille from "@/assets/food/pain-lait-caille.png";
+// Déjeuner / Dîner
+import imgTchepPoulet from "@/assets/food/tchep-poulet.png";
+import imgTchepPoisson from "@/assets/food/tchep-poisson.png";
+import imgTchepBoeuf from "@/assets/food/tchep-boeuf.png";
+import imgTchepMouton from "@/assets/food/tchep-mouton.png";
+import imgTchepBoulette from "@/assets/food/tchep-boulette.png";
+import imgYassaPoulet from "@/assets/food/yassa-poulet.png";
+import imgYassaPoisson from "@/assets/food/yassa-poisson.png";
+import imgYassaMouton from "@/assets/food/yassa-mouton.png";
+import imgMafePondeuse from "@/assets/food/mafe-pondeuse.png";
+import imgMafePoisson from "@/assets/food/mafe-poisson.png";
+import imgMafeBoeuf from "@/assets/food/mafe-boeuf.png";
+import imgSauceTomate from "@/assets/food/sauce-tomate.png";
+import imgSauceFeuille from "@/assets/food/sauce-feuille.png";
+import imgSauceLegume from "@/assets/food/sauce-legume.png";
+import imgSoupePoulet from "@/assets/food/soupe-poulet.png";
+import imgSoupePoisson from "@/assets/food/soupe-poisson.png";
+// Boissons
+import imgCafeExpresso from "@/assets/food/cafe-expresso.png";
+import imgCafeLatte from "@/assets/food/cafe-latte.png";
+import imgCappuccino from "@/assets/food/cappuccino.png";
+import imgCafeMoca from "@/assets/food/cafe-moca.png";
+import imgCafeGlace from "@/assets/food/cafe-glace.png";
+import imgCafeCaramelSpeculoos from "@/assets/food/cafe-caramel-speculoos.png";
+import imgTheChaud from "@/assets/food/the-chaud.png";
+import imgTheGingembreMenthe from "@/assets/food/the-gingembre-menthe.png";
+import imgTheMojito from "@/assets/food/the-mojito.png";
+import imgChocolatChaud from "@/assets/food/chocolat-chaud.png";
+import imgChocolatCrazy from "@/assets/food/chocolat-crazy.png";
+import imgMilkshakeVanille from "@/assets/food/milkshake-vanille.png";
+import imgMilkshakeMenthe from "@/assets/food/milkshake-menthe.png";
+import imgMilkshakeFraise from "@/assets/food/milkshake-fraise.png";
+import imgMilkshakeKinder from "@/assets/food/milkshake-kinder.png";
+import imgMilkshakeSpeculoos from "@/assets/food/milkshake-speculoos.png";
+import imgMilkshakeOreo from "@/assets/food/milkshake-oreo.png";
+import imgMilkshakeCoco from "@/assets/food/milkshake-coco.png";
+import imgJusBissap from "@/assets/food/jus-bissap.png";
+import imgJusGingembre from "@/assets/food/jus-gingembre.png";
+import imgJusCitron from "@/assets/food/jus-citron.png";
+import imgJusPassion from "@/assets/food/jus-passion.png";
+import imgJusCocktail from "@/assets/food/jus-cocktail.png";
+import imgEauMinerale from "@/assets/food/eau-minerale.png";
 
 const MenuPlatDuJourSection = MenuSoupeSection;
 
 // ─── DATA ─────────────────────────────────────────────────
 const cafeChaud = [
-  { name: "Expresso", price: "500 Fr" },
-  { name: "Double Expresso", price: "1 000 Fr" },
-  { name: "Americano", price: "1 000 Fr" },
-  { name: "Café Latté", price: "1 500 Fr" },
-  { name: "Cappuccino", price: "1 500 Fr" },
-  { name: "Moca", price: "2 000 Fr" },
+  { name: "Expresso", price: "500 Fr", image: imgCafeExpresso },
+  { name: "Double Expresso", price: "1 000 Fr", image: imgCafeExpresso },
+  { name: "Americano", price: "1 000 Fr", image: imgCafeExpresso },
+  { name: "Café Latté", price: "1 500 Fr", image: imgCafeLatte },
+  { name: "Cappuccino", price: "1 500 Fr", image: imgCappuccino },
+  { name: "Moca", price: "2 000 Fr", image: imgCafeMoca },
 ];
 const cafeGlace = [
-  { name: "Americano", price: "2 000 Fr" },
-  { name: "Café Latté", price: "2 500 Fr" },
-  { name: "Caramel Expresso", price: "2 500 Fr" },
-  { name: "Moca", price: "2 500 Fr" },
-  { name: "Café Latté Caramel Spéculoos", price: "3 000 Fr" },
+  { name: "Americano", price: "2 000 Fr", image: imgCafeGlace },
+  { name: "Café Latté", price: "2 500 Fr", image: imgCafeGlace },
+  { name: "Caramel Expresso", price: "2 500 Fr", image: imgCafeGlace },
+  { name: "Moca", price: "2 500 Fr", image: imgCafeMoca },
+  { name: "Café Latté Caramel Spéculoos", price: "3 000 Fr", image: imgCafeCaramelSpeculoos },
 ];
 const theChaud = [
-  { name: "Thé Lipton", price: "500 Fr" },
-  { name: "Thé Infusion Neriya", price: "1 000 Fr" },
-  { name: "Thé Infusion Gingembre Menthe", price: "1 500 Fr" },
+  { name: "Thé Lipton", price: "500 Fr", image: imgTheChaud },
+  { name: "Thé Infusion Neriya", price: "1 000 Fr", image: imgTheChaud },
+  { name: "Thé Infusion Gingembre Menthe", price: "1 500 Fr", image: imgTheGingembreMenthe },
 ];
 const theFroid = [
-  { name: "Thé Mojito Citron", price: "1 500 Fr", emoji: "🍋" },
-  { name: "Thé Mojito Pêche", price: "1 500 Fr", emoji: "🍑" },
-  { name: "Thé Mojito Fraise", price: "1 500 Fr", emoji: "🍓" },
-  { name: "Thé Mojito Orange", price: "1 500 Fr", emoji: "🍊" },
-  { name: "Thé Fruit de la Passion Coco", price: "2 000 Fr", emoji: "🥥" },
+  { name: "Thé Mojito Citron", price: "1 500 Fr", emoji: "🍋", image: imgTheMojito },
+  { name: "Thé Mojito Pêche", price: "1 500 Fr", emoji: "🍑", image: imgTheMojito },
+  { name: "Thé Mojito Fraise", price: "1 500 Fr", emoji: "🍓", image: imgTheMojito },
+  { name: "Thé Mojito Orange", price: "1 500 Fr", emoji: "🍊", image: imgTheMojito },
+  { name: "Thé Fruit de la Passion Coco", price: "2 000 Fr", emoji: "🥥", image: imgJusPassion },
 ];
 const chocolatChaud = [
-  { name: "Chocolat Chaud Classique", price: "2 000 Fr" },
-  { name: "Chocolat Chaud Chantilly", price: "2 500 Fr" },
-  { name: "Crazy Chocolat – Guimauve & Chantilly", price: "3 500 Fr" },
+  { name: "Chocolat Chaud Classique", price: "2 000 Fr", image: imgChocolatChaud },
+  { name: "Chocolat Chaud Chantilly", price: "2 500 Fr", image: imgChocolatChaud },
+  { name: "Crazy Chocolat – Guimauve & Chantilly", price: "3 500 Fr", image: imgChocolatCrazy },
 ];
 const milkshakes = [
-  { name: "Vanille", price: "2 000 Fr" },
-  { name: "Menthe", price: "2 000 Fr" },
-  { name: "Fraise", price: "2 500 Fr", emoji: "🍓" },
-  { name: "Kinder Bueno", price: "2 500 Fr" },
-  { name: "Spéculoos Caramel Beurre Salé", price: "2 500 Fr" },
-  { name: "Chocolat Oreo", price: "2 500 Fr" },
-  { name: "Coco Bounty", price: "2 500 Fr" },
+  { name: "Vanille", price: "2 000 Fr", image: imgMilkshakeVanille },
+  { name: "Menthe", price: "2 000 Fr", image: imgMilkshakeMenthe },
+  { name: "Fraise", price: "2 500 Fr", emoji: "🍓", image: imgMilkshakeFraise },
+  { name: "Kinder Bueno", price: "2 500 Fr", image: imgMilkshakeKinder },
+  { name: "Spéculoos Caramel Beurre Salé", price: "2 500 Fr", image: imgMilkshakeSpeculoos },
+  { name: "Chocolat Oreo", price: "2 500 Fr", image: imgMilkshakeOreo },
+  { name: "Coco Bounty", price: "2 500 Fr", image: imgMilkshakeCoco },
 ];
 const jusNaturel = [
-  { name: "Bissap", price: "1 000 Fr" },
-  { name: "Gingembre", price: "1 000 Fr" },
-  { name: "Citron", price: "1 000 Fr" },
-  { name: "Sucrerie", price: "1 000 Fr" },
-  { name: "Eau Minérale", price: "1 000 Fr" },
-  { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr" },
-  { name: "Cocktail de Fruits", price: "2 000 Fr" },
+  { name: "Bissap", price: "1 000 Fr", image: imgJusBissap },
+  { name: "Gingembre", price: "1 000 Fr", image: imgJusGingembre },
+  { name: "Citron", price: "1 000 Fr", image: imgJusCitron },
+  { name: "Sucrerie", price: "1 000 Fr", image: imgJusGingembre },
+  { name: "Eau Minérale", price: "1 000 Fr", image: imgEauMinerale },
+  { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr", image: imgJusPassion },
+  { name: "Cocktail de Fruits", price: "2 000 Fr", image: imgJusCocktail },
 ];
 const painsPerdu = [
   { name: "Pain Perdu Nature", price: "2 500 Fr", image: imgPainPerdu },
@@ -121,43 +164,43 @@ const degue = [
   { name: "Dêguê Caramel Granola", price: "2 000 Fr", image: imgDegue },
 ];
 const tchep = [
-  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr" },
-  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr" },
-  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr" },
-  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr" },
-  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr" },
+  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
+  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
+  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr", image: imgTchepBoeuf },
+  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr", image: imgTchepMouton },
+  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr", image: imgTchepBoulette },
 ];
 const yassa = [
-  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚" },
-  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr" },
-  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚" },
-  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr" },
-  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚" },
-  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr" },
+  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚", image: imgYassaPoulet },
+  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoulet },
+  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚", image: imgYassaPoisson },
+  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoisson },
+  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚", image: imgYassaMouton },
+  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr", image: imgYassaMouton },
 ];
 const mafe = [
-  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚" },
-  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr" },
-  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr" },
-  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", emoji: "🍚" },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
+  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚", image: imgMafePondeuse },
+  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgMafePondeuse },
+  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr", image: imgMafePondeuse },
+  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", emoji: "🍚", image: imgMafePoisson },
+  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgMafeBoeuf },
 ];
 const sauceTomate = [
-  { name: "Sauce Tomate Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚" },
-  { name: "Sauce Feuille de Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚" },
+  { name: "Sauce Tomate Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceTomate },
+  { name: "Sauce Feuille de Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceFeuille },
 ];
 const sauceLegume = [
-  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚" },
-  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr" },
-  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr" },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
+  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚", image: imgSauceLegume },
+  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgSauceLegume },
+  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr", image: imgSauceLegume },
+  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgMafeBoeuf },
 ];
 const soupe = [
-  { name: "½ Pondeuse (riz, attiéké)", price: "5 000 Fr" },
-  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr" },
-  { name: "Soupe Poulet Chair ½ (attiéké, riz)", price: "3 500 Fr" },
-  { name: "Soupe Poulet Chair 1 entier (attiéké, riz)", price: "6 500 Fr" },
-  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", description: "Prix selon le poisson du jour" },
+  { name: "½ Pondeuse (riz, attiéké)", price: "5 000 Fr", image: imgSoupePoulet },
+  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poulet Chair ½ (attiéké, riz)", price: "3 500 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poulet Chair 1 entier (attiéké, riz)", price: "6 500 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", description: "Prix selon le poisson du jour", image: imgSoupePoisson },
 ];
 
 // ─── CATEGORIES ────────────────────────────────────────────
@@ -254,7 +297,6 @@ const Index = () => {
   return (
     <div className="min-h-screen chalkboard-bg">
       <AnimatePresence mode="wait">
-        {/* ═══ CATEGORY DETAIL VIEW ═══ */}
         {activeCategory && activeCat ? (
           <motion.div
             key={activeCategory}
@@ -263,7 +305,6 @@ const Index = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            {/* Header with image */}
             <div className="relative h-52 sm:h-72 overflow-hidden">
               <motion.img
                 src={activeCat.image}
@@ -302,20 +343,16 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Content */}
             <main className="max-w-2xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-6 mt-4">
               <GoldOrnament />
               <CategoryContent category={activeCategory} />
               <GoldOrnament />
-              
-              {/* Bottom FCFA note */}
               <p className="font-body text-xs text-muted-foreground text-center italic tracking-wide pt-2">
                 Tous les prix sont en FCFA · Service compris
               </p>
             </main>
           </motion.div>
         ) : (
-          /* ═══ HOME / HERO VIEW ═══ */
           <motion.div
             key="home"
             initial={{ opacity: 0 }}
@@ -323,7 +360,6 @@ const Index = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Hero Section */}
             <div className="relative h-[50vh] sm:h-[55vh] overflow-hidden grain-overlay">
               <motion.img
                 src={heroImg}
@@ -336,7 +372,6 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               
-              {/* Tagline overlay */}
               <motion.div
                 className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center"
                 initial={{ opacity: 0, y: 15 }}
@@ -347,7 +382,6 @@ const Index = () => {
               </motion.div>
             </div>
 
-            {/* Section title */}
             <div className="max-w-3xl mx-auto px-4 sm:px-6 -mt-2 relative z-10">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -361,7 +395,6 @@ const Index = () => {
               </motion.div>
             </div>
 
-            {/* Category Cards */}
             <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 relative z-10">
               <div className="grid gap-4 sm:gap-5">
                 {categories.map((cat, i) => (
@@ -376,16 +409,13 @@ const Index = () => {
                     }}
                     className="group relative overflow-hidden rounded-xl h-28 sm:h-32 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    {/* Background image */}
                     <img
                       src={cat.image}
                       alt={cat.label}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25 group-hover:from-black/70 transition-all duration-500" />
 
-                    {/* Content */}
                     <div className="relative h-full flex items-center justify-between px-5 sm:px-8">
                       <div className="space-y-1">
                         <div className="flex items-center gap-3">
@@ -403,7 +433,6 @@ const Index = () => {
               </div>
             </main>
 
-            {/* Footer */}
             <footer className="relative border-t border-primary/10 py-10 px-4">
               <div className="max-w-md mx-auto text-center space-y-3">
                 <div className="flex items-center justify-center gap-3 mb-4">
@@ -424,7 +453,6 @@ const Index = () => {
         )}
       </AnimatePresence>
 
-      {/* WhatsApp Floating Button */}
       <a
         href="https://wa.me/2250789288202?text=Bonjour%20Neriya%20!%20Je%20souhaite%20passer%20une%20commande%20🍽️"
         target="_blank"
