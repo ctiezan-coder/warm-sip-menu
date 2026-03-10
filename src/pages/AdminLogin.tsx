@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Lock, Mail } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
