@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ShoppingBag } from "lucide-react";
 
 interface MenuItem {
   name: string;
@@ -16,6 +17,11 @@ interface MenuSectionProps {
   backgroundImage?: string;
   imagePosition?: "left" | "right";
 }
+
+const getWhatsAppUrl = (itemName: string, price: string) => {
+  const message = `Bonjour Neriya ! 🍽️ Je souhaite commander :\n\n🍴 *${itemName}* — ${price}\n\nMerci de me confirmer ma commande ! 😊`;
+  return `https://wa.me/2250789288202?text=${encodeURIComponent(message)}`;
+};
 
 const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundImage, imagePosition = "right" }: MenuSectionProps) => {
   const imageBlock = backgroundImage && (
@@ -53,7 +59,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
               className="menu-item-row-v2"
             >
               <div className="flex-1 min-w-0">
-                <div className="flex items-baseline gap-1.5">
+                <div className="flex items-center gap-1.5">
                   <span className="menu-item-name-v2">
                     {item.emoji && <span className="mr-1.5 text-base">{item.emoji}</span>}
                     {item.name}
@@ -62,6 +68,16 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
                   <span className="menu-item-price-v2">
                     {item.price}
                   </span>
+                  <a
+                    href={getWhatsAppUrl(item.name, item.price)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-1.5 shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-[#25D366]/15 hover:bg-[#25D366]/30 border border-[#25D366]/20 hover:border-[#25D366]/40 text-[#25D366] text-[10px] font-body font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
+                    title={`Commander ${item.name}`}
+                  >
+                    <ShoppingBag size={12} />
+                    <span className="hidden sm:inline">Commander</span>
+                  </a>
                 </div>
                 {item.description && (
                   <p className="menu-item-desc-v2">
