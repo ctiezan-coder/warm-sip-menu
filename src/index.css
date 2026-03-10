@@ -303,7 +303,7 @@
 .dotted-leader {
   flex: 1;
   min-width: 12px;
-  border-bottom: 1.5px dotted hsl(42 65% 65% / 0.2);
+  border-bottom: 1.5px dotted hsl(var(--primary) / 0.2);
   transform: translateY(-3px);
 }
 
