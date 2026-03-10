@@ -191,6 +191,22 @@ const degue = [
   { name: "Dêguê Café Cappuccino", price: "2 000 Fr", image: imgDegue },
   { name: "Dêguê Caramel Granola", price: "2 000 Fr", image: imgDegue },
 ];
+const sauceFeuilleDej = [
+  { name: "Sauce Feuille", price: "2 500 Fr", emoji: "🍚", description: "Viande de bœuf", image: imgSauceFeuille },
+];
+const pouletRoti = [
+  { name: "1/4 Poulet Rôti", price: "2 500 Fr", description: "Pomme de terre sautées, salade 🥗", image: imgPouletRoti },
+  { name: "1/2 Poulet Rôti", price: "4 000 Fr", description: "Pomme de terre sautées", image: imgPouletRoti },
+  { name: "1 Poulet Entier", price: "8 000 Fr", image: imgPouletRoti },
+];
+const chawama = [
+  { name: "Chawama Poulet", price: "2 000 Fr", image: imgChawama },
+  { name: "Chawama Viande", price: "2 500 Fr", image: imgChawama },
+];
+const burgers = [
+  { name: "Cheese Burger", price: "4 000 Fr", description: "1 steak, 1 œuf, oignon confit, 1 fromage, frites, cornichons, tomates, salade", image: imgBurger },
+  { name: "Burger NERIYA", price: "8 000 Fr", description: "2 steaks, 3 fromages, 2 œufs, oignons confits, salade, tomates, cornichons, frites", image: imgBurger },
+];
 const tchep = [
   { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
   { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
