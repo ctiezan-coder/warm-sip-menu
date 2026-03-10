@@ -437,33 +437,34 @@ const Index = () => {
                 {categories.map((cat, i) => (
                   <motion.button
                     key={cat.key}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 35 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: "easeOut" }}
+                    transition={{ delay: 0.35 + i * 0.1, duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
                     onClick={() => {
                       setActiveCategory(cat.key);
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
-                    className="group relative overflow-hidden rounded-xl h-28 sm:h-32 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    className="group relative overflow-hidden rounded-2xl h-28 sm:h-32 text-left gold-glow shimmer-hover hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <img
                       src={cat.image}
                       alt={cat.label}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25 group-hover:from-black/70 transition-all duration-500" />
+                    <div className="absolute inset-0 category-card-overlay group-hover:opacity-90 transition-opacity duration-500" />
 
                     <div className="relative h-full flex items-center justify-between px-5 sm:px-8">
                       <div className="space-y-1">
                         <div className="flex items-center gap-3">
                           <span className="text-3xl sm:text-4xl drop-shadow-md">{cat.emoji}</span>
-                          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
+                          <h2 className="font-display text-2xl sm:text-3xl font-bold text-foreground dark:text-white uppercase tracking-wider drop-shadow-sm">
                             {cat.label}
                           </h2>
                         </div>
-                        <p className="font-body text-xs sm:text-sm text-white/55 ml-12 sm:ml-[3.25rem] tracking-wide">{cat.description}</p>
+                        <p className="font-body text-xs sm:text-sm text-muted-foreground dark:text-white/50 ml-12 sm:ml-[3.25rem] tracking-wide">{cat.description}</p>
                       </div>
-                      <ChevronRight size={24} className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                      <ChevronRight size={24} className="text-primary/50 group-hover:text-primary group-hover:translate-x-1.5 transition-all duration-300 shrink-0" />
                     </div>
                   </motion.button>
                 ))}
