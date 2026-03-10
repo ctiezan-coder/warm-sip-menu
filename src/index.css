@@ -289,9 +289,9 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
-  color: hsl(42, 65%, 65%);
+  color: hsl(var(--primary));
   white-space: nowrap;
-  text-shadow: 0 1px 3px hsl(0 0% 0% / 0.3);
+  text-shadow: 0 1px 3px hsl(0 0% 0% / 0.1);
 }
 @media (min-width: 640px) {
   .price-tag {
