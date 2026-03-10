@@ -297,7 +297,7 @@ const GoldOrnament = () => (
 const whatsappMessage = `Bonjour Neriya ! 🍽️ Je souhaite passer une commande.
 
 📋 Consultez notre menu complet ici :
-👉 https://warm-sip-menu.lovable.app
+👉 https://neriya.ci
 
 Merci de me confirmer ma commande ! 😊`;
 
