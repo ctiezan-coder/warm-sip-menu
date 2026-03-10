@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, ShoppingBag } from "lucide-react";
 
 interface SoupeItem {
   name: string;
@@ -13,6 +13,24 @@ interface MenuPlatDuJourSectionProps {
   items: SoupeItem[];
   delay?: number;
 }
+
+const getWhatsAppUrl = (itemName: string, price: string) => {
+  const message = `Bonjour Neriya ! 🍽️ Je souhaite commander :\n\n🍴 *${itemName}* — ${price}\n\nMerci de me confirmer ma commande ! 😊`;
+  return `https://wa.me/2250789288202?text=${encodeURIComponent(message)}`;
+};
+
+const OrderButton = ({ name, price }: { name: string; price: string }) => (
+  <a
+    href={getWhatsAppUrl(name, price)}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-1.5 shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-[#25D366]/15 hover:bg-[#25D366]/30 border border-[#25D366]/20 hover:border-[#25D366]/40 text-[#25D366] text-[10px] font-body font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
+    title={`Commander ${name}`}
+  >
+    <ShoppingBag size={12} />
+    <span className="hidden sm:inline">Commander</span>
+  </a>
+);
 
 const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectionProps) => {
   const [platDuJour, setPlatDuJour] = useState<number | null>(null);
@@ -64,10 +82,11 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               <Star size={12} className="text-accent fill-accent" />
               <span className="font-body text-xs uppercase tracking-[0.2em] text-accent font-semibold">Plat du jour</span>
             </div>
-            <div className="flex items-baseline gap-1.5">
+            <div className="flex items-center gap-1.5">
               <span className="font-body text-base sm:text-lg text-foreground font-semibold">{items[platDuJour].name}</span>
               <span className="flex-1 border-b border-dotted border-accent/30 min-w-[12px] translate-y-[-2px]" />
               <span className="font-body text-base sm:text-lg font-bold text-accent whitespace-nowrap">{items[platDuJour].price}</span>
+              <OrderButton name={items[platDuJour].name} price={items[platDuJour].price} />
             </div>
             {items[platDuJour].description && (
               <p className="text-xs text-muted-foreground mt-0.5 italic">{items[platDuJour].description}</p>
@@ -85,10 +104,11 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               viewport={{ once: true }}
               transition={{ duration: 0.25, delay: delay + i * 0.02 }}
             >
-              <div className="flex items-baseline gap-1.5">
+              <div className="flex items-center gap-1.5">
                 <span className="font-body text-base sm:text-lg text-foreground leading-relaxed font-medium">{item.name}</span>
                 <span className="flex-1 border-b border-dotted border-foreground/15 min-w-[12px] translate-y-[-2px]" />
                 <span className="font-body text-base sm:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
+                <OrderButton name={item.name} price={item.price} />
               </div>
               {item.description && (
                 <p className="text-xs text-muted-foreground ml-1 italic leading-tight">{item.description}</p>
