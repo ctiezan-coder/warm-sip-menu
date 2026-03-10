@@ -273,12 +273,10 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "dejeuner":
       return (
         <div className="space-y-5">
-          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoulet} imagePosition="right" />
-          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaPoulet} imagePosition="left" />
-          <MenuSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} backgroundImage={imgMafePondeuse} imagePosition="right" />
-          <MenuSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} backgroundImage={imgSauceTomate} imagePosition="left" />
-          <MenuSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} backgroundImage={imgSauceLegume} imagePosition="right" />
-          <MenuSection title="Soupe 🍲" items={soupe} delay={0.35} backgroundImage={imgSoupePoulet} imagePosition="left" />
+          <MenuSection title="Sauce Feuille 🍚" items={sauceFeuilleDej} delay={0.1} backgroundImage={imgSauceFeuille} imagePosition="right" />
+          <MenuSection title="Poulet Rôti 🍗" items={pouletRoti} delay={0.15} backgroundImage={imgPouletRoti} imagePosition="left" />
+          <MenuSection title="Chawama 🌯" items={chawama} delay={0.2} backgroundImage={imgChawama} imagePosition="right" />
+          <MenuSection title="Burger 🍔" items={burgers} delay={0.25} backgroundImage={imgBurger} imagePosition="left" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
