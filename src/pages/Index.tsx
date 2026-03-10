@@ -34,6 +34,9 @@ import imgCrepePralin from "@/assets/food/crepe-pralin.png";
 import imgDegue from "@/assets/food/degue.png";
 import imgPainLaitCaille from "@/assets/food/pain-lait-caille.png";
 // Déjeuner / Dîner
+import imgPouletRoti from "@/assets/food/poulet-roti.png";
+import imgChawama from "@/assets/food/chawama.png";
+import imgBurger from "@/assets/food/burger.png";
 import imgTchepPoulet from "@/assets/food/tchep-poulet.png";
 import imgTchepPoisson from "@/assets/food/tchep-poisson.png";
 import imgTchepBoeuf from "@/assets/food/tchep-boeuf.png";
