@@ -311,10 +311,10 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
 
 // ─── DECORATIVE ORNAMENT ──────────────────────────────────
 const GoldOrnament = () => (
-  <div className="flex items-center justify-center gap-3 py-2">
-    <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/40" />
-    <Sparkles size={14} className="text-primary/50" />
-    <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/40" />
+  <div className="flex items-center justify-center gap-4 py-3">
+    <div className="h-px w-16 bg-gradient-to-r from-transparent via-primary/30 to-primary/50" />
+    <Sparkles size={14} className="text-primary/40" />
+    <div className="h-px w-16 bg-gradient-to-l from-transparent via-primary/30 to-primary/50" />
   </div>
 );
 
