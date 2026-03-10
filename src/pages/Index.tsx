@@ -286,13 +286,13 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
       return (
         <div className="space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
-            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} />
+            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} sectionImage={imgMenuPancakes} />
+            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} sectionImage={imgMenuPancakes} />
           </div>
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepesDessert} delay={0.2} />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepesDessert} delay={0.2} sectionImage={imgMenuPancakes} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} />
-            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
+            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} sectionImage={imgMenuPancakes} />
+            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} sectionImage={imgMenuPancakes} />
           </div>
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
