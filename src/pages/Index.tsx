@@ -64,29 +64,39 @@ const jusNaturel = [
   { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr" },
   { name: "Cocktail de Fruits", price: "2 000 Fr" },
 ];
+const painsPerdu = [
+  { name: "Pain Perdu Nature", price: "2 500 Fr" },
+  { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr" },
+  { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos" },
+];
 const pancakes = [
   { name: "Pancakes Nature", price: "1 000 Fr" },
-  { name: "Pancakes Miel ou Caramel", price: "1 500 Fr" },
+  { name: "Pancakes Miel ou Caramel", price: "1 500 Fr", emoji: "🍯" },
   { name: "Pancakes Nutella", price: "2 000 Fr" },
   { name: "Pancakes Caramel Fruit (saison)", price: "2 000 Fr" },
 ];
 const croissantGauffre = [
-  { name: "Vanille Spéculoos", price: "2 500 Fr" },
-  { name: "Oreo", price: "2 500 Fr" },
-  { name: "Fruits Rouges", price: "3 000 Fr" },
+  { name: "Croissant Gauffre Vanille Spéculoos", price: "2 500 Fr" },
+  { name: "Croissant Gauffre Oreo", price: "2 500 Fr" },
+  { name: "Croissant Gauffre Fruits Rouges", price: "3 000 Fr" },
+  { name: "Croissant Vanille Pistache", price: "2 500 Fr" },
 ];
 const crepes = [
   { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr" },
   { name: "Crêpe Nutella", price: "1 500 Fr" },
-  { name: "Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat" },
-  { name: "Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis chocolat" },
-  { name: "Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis chocolat" },
-  { name: "Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats" },
+  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats" },
   { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits, biscottes, boule de glace" },
 ];
-const autresDesserts = [
-  { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos" },
-  { name: "Croissant Vanille Pistache", price: "2 500 Fr" },
+const degue = [
+  { name: "Pain Fourré Lait Caillé", price: "1 500 Fr" },
+  { name: "Pain Fourré Dêguê", price: "1 500 Fr" },
+  { name: "Dêguê au Fruit de la Passion", price: "2 000 Fr" },
+  { name: "Dêguê au Lait de Coco", price: "2 000 Fr" },
+  { name: "Dêguê Café Cappuccino", price: "2 000 Fr" },
+  { name: "Dêguê Caramel Granola", price: "2 000 Fr" },
 ];
 const tchep = [
   { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr" },
