@@ -76,7 +76,7 @@ import imgJusPassion from "@/assets/food/jus-passion.png";
 import imgJusCocktail from "@/assets/food/jus-cocktail.png";
 import imgEauMinerale from "@/assets/food/eau-minerale.png";
 
-const MenuPlatDuJourSection = MenuSoupeSection;
+
 
 // ─── DATA ─────────────────────────────────────────────────
 const cafeChaud = [
