@@ -323,6 +323,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
+  }
 };
 
 // ─── DECORATIVE ORNAMENT ──────────────────────────────────
