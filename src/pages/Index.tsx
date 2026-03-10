@@ -252,7 +252,7 @@ type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boisso
 
 const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
   { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "🍳", image: catPetitDej, description: "Déj fermier, crêpes salées & sucrées" },
-  { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Tchêp, Yassa, Mafé, Sauces & Soupes" },
+  { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Sauce Feuille, Poulet Rôti, Chawama & Burgers" },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
   { key: "dessert", label: "Desserts", emoji: "🍰", image: catDessert, description: "Pancakes, crêpes, gaufres & spécialités" },
   { key: "boissons", label: "Boissons", emoji: "☕", image: catBoissons, description: "Cafés, thés, chocolats, milkshakes & jus" },
