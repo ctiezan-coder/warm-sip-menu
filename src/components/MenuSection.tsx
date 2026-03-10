@@ -13,57 +13,57 @@ interface MenuSectionProps {
   variant?: "hot" | "cold" | "default";
   delay?: number;
   backgroundImage?: string;
+  imagePosition?: "left" | "right";
 }
 
-const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundImage }: MenuSectionProps) => {
+const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundImage, imagePosition = "right" }: MenuSectionProps) => {
+  const imageBlock = backgroundImage && (
+    <div className="menu-section-hero-img">
+      <img src={backgroundImage} alt={title} loading="lazy" />
+    </div>
+  );
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, delay }}
-      className="menu-section-card overflow-hidden"
+      transition={{ duration: 0.5, delay }}
+      className="menu-section-card-v2"
     >
-      {/* Background image */}
-      {backgroundImage && (
-        <div className="menu-section-bg">
-          <img src={backgroundImage} alt="" loading="lazy" />
-        </div>
-      )}
+      {/* Title */}
+      <div className="menu-section-title-v2">
+        <div className="menu-section-title-line" />
+        <h3>{title}</h3>
+        <div className="menu-section-title-line" />
+      </div>
 
-      {/* Content overlay */}
-      <div className="relative z-10">
-        {/* Section title */}
-        <div className="section-title-banner">
-          <h3 className="font-display text-sm sm:text-base font-bold uppercase tracking-[0.15em] text-primary">
-            {title}
-          </h3>
-        </div>
-
-        {/* Items */}
-        <div className="space-y-2">
+      {/* Content: image + items */}
+      <div className={`menu-section-content-v2 ${imagePosition === "left" ? "flex-row-reverse" : ""}`}>
+        {/* Items list */}
+        <div className="menu-section-items-v2">
           {items.map((item, i) => (
             <motion.div
               key={item.name + i}
-              initial={{ opacity: 0, x: -8 }}
+              initial={{ opacity: 0, x: imagePosition === "left" ? 8 : -8 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: delay + i * 0.04 }}
-              className="menu-item-row"
+              transition={{ duration: 0.3, delay: delay + i * 0.05 }}
+              className="menu-item-row-v2"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="font-body text-sm sm:text-base text-foreground font-bold leading-tight uppercase">
-                    {item.emoji && <span className="mr-1">{item.emoji}</span>}
+                  <span className="menu-item-name-v2">
+                    {item.emoji && <span className="mr-1.5 text-base">{item.emoji}</span>}
                     {item.name}
                   </span>
-                  <span className="dotted-leader" />
-                  <span className="price-tag">
+                  <span className="menu-item-dots-v2" />
+                  <span className="menu-item-price-v2">
                     {item.price}
                   </span>
                 </div>
                 {item.description && (
-                  <p className="text-[11px] text-muted-foreground mt-0.5 italic leading-snug">
+                  <p className="menu-item-desc-v2">
                     {item.description}
                   </p>
                 )}
@@ -71,6 +71,9 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
             </motion.div>
           ))}
         </div>
+
+        {/* Hero image */}
+        {imageBlock}
       </div>
     </motion.div>
   );
