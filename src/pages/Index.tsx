@@ -288,7 +288,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
             <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
             <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} />
           </div>
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepesDessert} delay={0.2} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} />
             <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
