@@ -64,29 +64,39 @@ const jusNaturel = [
   { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr" },
   { name: "Cocktail de Fruits", price: "2 000 Fr" },
 ];
+const painsPerdu = [
+  { name: "Pain Perdu Nature", price: "2 500 Fr" },
+  { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr" },
+  { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos" },
+];
 const pancakes = [
   { name: "Pancakes Nature", price: "1 000 Fr" },
-  { name: "Pancakes Miel ou Caramel", price: "1 500 Fr" },
+  { name: "Pancakes Miel ou Caramel", price: "1 500 Fr", emoji: "🍯" },
   { name: "Pancakes Nutella", price: "2 000 Fr" },
   { name: "Pancakes Caramel Fruit (saison)", price: "2 000 Fr" },
 ];
 const croissantGauffre = [
-  { name: "Vanille Spéculoos", price: "2 500 Fr" },
-  { name: "Oreo", price: "2 500 Fr" },
-  { name: "Fruits Rouges", price: "3 000 Fr" },
+  { name: "Croissant Gauffre Vanille Spéculoos", price: "2 500 Fr" },
+  { name: "Croissant Gauffre Oreo", price: "2 500 Fr" },
+  { name: "Croissant Gauffre Fruits Rouges", price: "3 000 Fr" },
+  { name: "Croissant Vanille Pistache", price: "2 500 Fr" },
 ];
 const crepes = [
   { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr" },
   { name: "Crêpe Nutella", price: "1 500 Fr" },
-  { name: "Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat" },
-  { name: "Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis chocolat" },
-  { name: "Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis chocolat" },
-  { name: "Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats" },
+  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats" },
   { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits, biscottes, boule de glace" },
 ];
-const autresDesserts = [
-  { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos" },
-  { name: "Croissant Vanille Pistache", price: "2 500 Fr" },
+const degue = [
+  { name: "Pain Fourré Lait Caillé", price: "1 500 Fr" },
+  { name: "Pain Fourré Dêguê", price: "1 500 Fr" },
+  { name: "Dêguê au Fruit de la Passion", price: "2 000 Fr" },
+  { name: "Dêguê au Lait de Coco", price: "2 000 Fr" },
+  { name: "Dêguê Café Cappuccino", price: "2 000 Fr" },
+  { name: "Dêguê Caramel Granola", price: "2 000 Fr" },
 ];
 const tchep = [
   { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr" },
@@ -132,11 +142,11 @@ const soupe = [
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
 const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
-  { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "☕", image: catPetitDej, description: "Cafés, thés, chocolats & viennoiseries" },
+  { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "🥞", image: catPetitDej, description: "Pains perdu, pancakes, crêpes & dêguê" },
   { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Tchêp, Yassa, Mafé, Sauces & Soupes" },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
   { key: "dessert", label: "Desserts", emoji: "🍰", image: catDessert, description: "Pancakes, crêpes, gaufres & spécialités" },
-  { key: "boissons", label: "Boissons", emoji: "🧃", image: catBoissons, description: "Jus naturels, milkshakes & boissons fraîches" },
+  { key: "boissons", label: "Boissons", emoji: "☕", image: catBoissons, description: "Cafés, thés, chocolats, milkshakes & jus" },
 ];
 
 // ─── CATEGORY CONTENT ─────────────────────────────────────
@@ -145,14 +155,13 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "petit-dejeuner":
       return (
         <div className="space-y-6">
-          <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest">🔥 Chaud</h3>
-          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
-          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
-          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
+          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.1} />
+          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.15} />
+          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} />
           <div className="chalk-line my-4" />
-          <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
-          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.1} />
-          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.15} />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} />
+          <div className="chalk-line my-4" />
+          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
         </div>
       );
     case "dejeuner":
@@ -180,17 +189,26 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "dessert":
       return (
         <div className="space-y-6">
-          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
-          <MenuSection title="Croissant Gauffre" items={croissantGauffre} delay={0.15} />
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
-          <MenuSection title="Spécialités" items={autresDesserts} delay={0.25} />
+          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.1} />
+          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.15} />
+          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} />
+          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
         </div>
       );
     case "boissons":
       return (
         <div className="space-y-6">
-          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.1} />
-          <MenuSection title="Jus & Boissons Fraîches 🧃" items={jusNaturel} delay={0.15} />
+          <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest">🔥 Chaud</h3>
+          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
+          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
+          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
+          <div className="chalk-line my-4" />
+          <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
+          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} />
+          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} />
+          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} />
+          <MenuSection title="Jus & Boissons Fraîches 🧃" items={jusNaturel} delay={0.4} />
         </div>
       );
   }
