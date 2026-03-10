@@ -365,7 +365,7 @@ const Index = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="relative h-[50vh] sm:h-[55vh] overflow-hidden grain-overlay">
+            <div className="relative h-[55vh] sm:h-[60vh] overflow-hidden grain-overlay">
               <motion.img
                 src={heroImg}
                 alt="Neriya — La bouchée gourmande"
@@ -378,12 +378,12 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               
               <motion.div
-                className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center"
+                className="absolute bottom-10 sm:bottom-14 left-0 right-0 text-center"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                <p className="font-script text-primary text-2xl sm:text-3xl drop-shadow-lg">La bouchée gourmande</p>
+                <p className="font-script text-primary text-3xl sm:text-4xl drop-shadow-lg">La bouchée gourmande</p>
               </motion.div>
             </div>
 
@@ -392,16 +392,16 @@ const Index = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="flex items-center justify-center gap-4 mb-6"
+                className="flex items-center justify-center gap-4 mb-8"
               >
-                <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-transparent to-primary/40" />
-                <span className="font-display text-sm uppercase tracking-[0.3em] text-primary/70">Notre Carte</span>
-                <div className="h-px flex-1 max-w-[60px] bg-gradient-to-l from-transparent to-primary/40" />
+                <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-primary/40" />
+                <span className="font-display text-base uppercase tracking-[0.3em] text-primary/80">Notre Carte</span>
+                <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-primary/40" />
               </motion.div>
             </div>
 
             <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 relative z-10">
-              <div className="grid gap-4 sm:gap-5">
+              <div className="grid gap-5 sm:gap-6">
                 {categories.map((cat, i) => (
                   <motion.button
                     key={cat.key}
@@ -412,26 +412,26 @@ const Index = () => {
                       setActiveCategory(cat.key);
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
-                    className="group relative overflow-hidden rounded-xl h-28 sm:h-32 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    className="group relative overflow-hidden rounded-2xl h-36 sm:h-40 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <img
                       src={cat.image}
                       alt={cat.label}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25 group-hover:from-black/70 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20 group-hover:from-black/70 transition-all duration-500" />
 
-                    <div className="relative h-full flex items-center justify-between px-5 sm:px-8">
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl sm:text-4xl drop-shadow-md">{cat.emoji}</span>
-                          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
+                    <div className="relative h-full flex items-center justify-between px-6 sm:px-10">
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-3.5">
+                          <span className="text-4xl sm:text-5xl drop-shadow-md">{cat.emoji}</span>
+                          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
                             {cat.label}
                           </h2>
                         </div>
-                        <p className="font-body text-xs sm:text-sm text-white/55 ml-12 sm:ml-[3.25rem] tracking-wide">{cat.description}</p>
+                        <p className="font-body text-sm sm:text-base text-white/55 ml-14 sm:ml-[4rem] tracking-wide">{cat.description}</p>
                       </div>
-                      <ChevronRight size={24} className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                      <ChevronRight size={28} className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0" />
                     </div>
                   </motion.button>
                 ))}
