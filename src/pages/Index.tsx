@@ -146,7 +146,7 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
   { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Tchêp, Yassa, Mafé, Sauces & Soupes" },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
   { key: "dessert", label: "Desserts", emoji: "🍰", image: catDessert, description: "Pancakes, crêpes, gaufres & spécialités" },
-  { key: "boissons", label: "Boissons", emoji: "🧃", image: catBoissons, description: "Jus naturels, milkshakes & boissons fraîches" },
+  { key: "boissons", label: "Boissons", emoji: "☕", image: catBoissons, description: "Cafés, thés, chocolats, milkshakes & jus" },
 ];
 
 // ─── CATEGORY CONTENT ─────────────────────────────────────
