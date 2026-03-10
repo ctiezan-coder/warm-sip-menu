@@ -393,27 +393,27 @@ const Index = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="relative h-[50vh] sm:h-[55vh] overflow-hidden grain-overlay">
+            <div className="relative h-[52vh] sm:h-[58vh] overflow-hidden grain-overlay">
               <motion.img
                 src={heroImg}
                 alt="Neriya — La bouchée gourmande"
                 className="w-full h-full object-cover object-center"
-                initial={{ scale: 1.05 }}
+                initial={{ scale: 1.08 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-background" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
               
               <div className="absolute top-4 right-4 z-10">
                 <ThemeToggle />
               </div>
 
               <motion.div
-                className="absolute bottom-8 sm:bottom-12 left-0 right-0 text-center"
-                initial={{ opacity: 0, y: 15 }}
+                className="absolute bottom-10 sm:bottom-14 left-0 right-0 text-center"
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
+                transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
               >
                 <p className="font-script text-primary text-2xl sm:text-3xl drop-shadow-lg">La bouchée gourmande</p>
               </motion.div>
