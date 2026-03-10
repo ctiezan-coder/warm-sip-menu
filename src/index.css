@@ -234,7 +234,7 @@
 /* ── Hero image block ── */
 .menu-section-hero-img {
   width: 100%;
-  max-height: 220px;
+  aspect-ratio: 4 / 3;
   border-radius: 1rem;
   overflow: hidden;
   border: 2px solid hsl(42 65% 55% / 0.2);
