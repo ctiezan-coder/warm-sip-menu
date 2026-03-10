@@ -1,7 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
-import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
-import ThemeToggle from "@/components/ThemeToggle";
+import { MessageCircle, ArrowLeft, ChevronRight } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
@@ -9,151 +8,62 @@ import catDejeuner from "@/assets/cat-dejeuner.jpg";
 import catDiner from "@/assets/cat-diner.jpg";
 import catDessert from "@/assets/cat-dessert.jpg";
 import catBoissons from "@/assets/cat-boissons.jpg";
-
 import MenuSection from "@/components/MenuSection";
 import MenuSoupeSection from "@/components/MenuSoupeSection";
-
-// ─── FOOD IMAGES ──────────────────────────────────────────
-// Petit déjeuner / Desserts
-import imgPainPerdu from "@/assets/food/pain-perdu.png";
-import imgPainPerduCaramel from "@/assets/food/pain-perdu-caramel.png";
-import imgFeuilletePain from "@/assets/food/feuillete-pain.png";
-import imgPancakesNature from "@/assets/food/pancakes-nature.png";
-import imgPancakesCaramel from "@/assets/food/pancakes-caramel.png";
-import imgPancakesNutella from "@/assets/food/pancakes-nutella.png";
-import imgPancakesFruit from "@/assets/food/pancakes-fruit.png";
-import imgCroissantSpeculoos from "@/assets/food/croissant-gauffre-speculoos.png";
-import imgCroissantOreo from "@/assets/food/croissant-gauffre-oreo.png";
-import imgCroissantFruits from "@/assets/food/croissant-gauffre-fruits.png";
-import imgCroissantPistache from "@/assets/food/croissant-pistache.png";
-import imgCrepeNature from "@/assets/food/crepe-nature.png";
-import imgCrepeNutella from "@/assets/food/crepe-nutella.png";
-import imgCrepeFettNutella from "@/assets/food/crepe-fettuccine-nutella.png";
-import imgCrepeFettOreo from "@/assets/food/crepe-fettuccine-oreo.png";
-import imgCrepeFettSpeculoos from "@/assets/food/crepe-fettuccine-speculoos.png";
-import imgCrepeFettFruits from "@/assets/food/crepe-fettuccine-fruits.png";
-import imgCrepePralin from "@/assets/food/crepe-pralin.png";
-import imgDegue from "@/assets/food/degue.png";
-import imgPainLaitCaille from "@/assets/food/pain-lait-caille.png";
-// Déjeuner / Dîner
-import imgTchepPoulet from "@/assets/food/tchep-poulet.png";
-import imgTchepPoisson from "@/assets/food/tchep-poisson.png";
-import imgTchepBoeuf from "@/assets/food/tchep-boeuf.png";
-import imgTchepMouton from "@/assets/food/tchep-mouton.png";
-import imgTchepBoulette from "@/assets/food/tchep-boulette.png";
-import imgYassaPoulet from "@/assets/food/yassa-poulet.png";
-import imgYassaPoisson from "@/assets/food/yassa-poisson.png";
-import imgYassaMouton from "@/assets/food/yassa-mouton.png";
-import imgMafePondeuse from "@/assets/food/mafe-pondeuse.png";
-import imgMafePoisson from "@/assets/food/mafe-poisson.png";
-import imgMafeBoeuf from "@/assets/food/mafe-boeuf.png";
-import imgSauceTomate from "@/assets/food/sauce-tomate.png";
-import imgSauceFeuille from "@/assets/food/sauce-feuille.png";
-import imgSauceLegume from "@/assets/food/sauce-legume.png";
-import imgSoupePoulet from "@/assets/food/soupe-poulet.png";
-import imgSoupePoisson from "@/assets/food/soupe-poisson.png";
-// Boissons
-import imgCafeExpresso from "@/assets/food/cafe-expresso.png";
-import imgCafeLatte from "@/assets/food/cafe-latte.png";
-import imgCappuccino from "@/assets/food/cappuccino.png";
-import imgCafeMoca from "@/assets/food/cafe-moca.png";
-import imgCafeGlace from "@/assets/food/cafe-glace.png";
-import imgCafeCaramelSpeculoos from "@/assets/food/cafe-caramel-speculoos.png";
-import imgTheChaud from "@/assets/food/the-chaud.png";
-import imgTheGingembreMenthe from "@/assets/food/the-gingembre-menthe.png";
-import imgTheMojito from "@/assets/food/the-mojito.png";
-import imgChocolatChaud from "@/assets/food/chocolat-chaud.png";
-import imgChocolatCrazy from "@/assets/food/chocolat-crazy.png";
-import imgMilkshakeVanille from "@/assets/food/milkshake-vanille.png";
-import imgMilkshakeMenthe from "@/assets/food/milkshake-menthe.png";
-import imgMilkshakeFraise from "@/assets/food/milkshake-fraise.png";
-import imgMilkshakeKinder from "@/assets/food/milkshake-kinder.png";
-import imgMilkshakeSpeculoos from "@/assets/food/milkshake-speculoos.png";
-import imgMilkshakeOreo from "@/assets/food/milkshake-oreo.png";
-import imgMilkshakeCoco from "@/assets/food/milkshake-coco.png";
-import imgJusBissap from "@/assets/food/jus-bissap.png";
-import imgJusGingembre from "@/assets/food/jus-gingembre.png";
-import imgJusCitron from "@/assets/food/jus-citron.png";
-import imgJusPassion from "@/assets/food/jus-passion.png";
-import imgJusCocktail from "@/assets/food/jus-cocktail.png";
-import imgEauMinerale from "@/assets/food/eau-minerale.png";
 
 const MenuPlatDuJourSection = MenuSoupeSection;
 
 // ─── DATA ─────────────────────────────────────────────────
 const cafeChaud = [
-  { name: "Expresso", price: "500 Fr", image: imgCafeExpresso },
-  { name: "Double Expresso", price: "1 000 Fr", image: imgCafeExpresso },
-  { name: "Americano", price: "1 000 Fr", image: imgCafeExpresso },
-  { name: "Café Latté", price: "1 500 Fr", image: imgCafeLatte },
-  { name: "Cappuccino", price: "1 500 Fr", image: imgCappuccino },
-  { name: "Moca", price: "2 000 Fr", image: imgCafeMoca },
+  { name: "Expresso", price: "500 Fr" },
+  { name: "Double Expresso", price: "1 000 Fr" },
+  { name: "Americano", price: "1 000 Fr" },
+  { name: "Café Latté", price: "1 500 Fr" },
+  { name: "Cappuccino", price: "1 500 Fr" },
+  { name: "Moca", price: "2 000 Fr" },
 ];
 const cafeGlace = [
-  { name: "Americano", price: "2 000 Fr", image: imgCafeGlace },
-  { name: "Café Latté", price: "2 500 Fr", image: imgCafeGlace },
-  { name: "Caramel Expresso", price: "2 500 Fr", image: imgCafeGlace },
-  { name: "Moca", price: "2 500 Fr", image: imgCafeMoca },
-  { name: "Café Latté Caramel Spéculoos", price: "3 000 Fr", image: imgCafeCaramelSpeculoos },
+  { name: "Americano", price: "2 000 Fr" },
+  { name: "Café Latté", price: "2 500 Fr" },
+  { name: "Caramel Expresso", price: "2 500 Fr" },
+  { name: "Moca", price: "2 500 Fr" },
+  { name: "Café Latté Caramel Spéculoos", price: "3 000 Fr" },
 ];
 const theChaud = [
-  { name: "Thé Lipton", price: "500 Fr", image: imgTheChaud },
-  { name: "Thé Infusion Neriya", price: "1 000 Fr", image: imgTheChaud },
-  { name: "Thé Infusion Gingembre Menthe", price: "1 500 Fr", image: imgTheGingembreMenthe },
+  { name: "Thé Lipton", price: "500 Fr" },
+  { name: "Thé Infusion Neriya", price: "1 000 Fr" },
+  { name: "Thé Infusion Gingembre Menthe", price: "1 500 Fr" },
 ];
 const theFroid = [
-  { name: "Thé Mojito Citron", price: "1 500 Fr", emoji: "🍋", image: imgTheMojito },
-  { name: "Thé Mojito Pêche", price: "1 500 Fr", emoji: "🍑", image: imgTheMojito },
-  { name: "Thé Mojito Fraise", price: "1 500 Fr", emoji: "🍓", image: imgTheMojito },
-  { name: "Thé Mojito Orange", price: "1 500 Fr", emoji: "🍊", image: imgTheMojito },
-  { name: "Thé Fruit de la Passion Coco", price: "2 000 Fr", emoji: "🥥", image: imgJusPassion },
+  { name: "Thé Mojito Citron", price: "1 500 Fr", emoji: "🍋" },
+  { name: "Thé Mojito Pêche", price: "1 500 Fr", emoji: "🍑" },
+  { name: "Thé Mojito Fraise", price: "1 500 Fr", emoji: "🍓" },
+  { name: "Thé Mojito Orange", price: "1 500 Fr", emoji: "🍊" },
+  { name: "Thé Fruit de la Passion Coco", price: "2 000 Fr", emoji: "🥥" },
 ];
 const chocolatChaud = [
-  { name: "Chocolat Chaud Classique", price: "2 000 Fr", image: imgChocolatChaud },
-  { name: "Chocolat Chaud Chantilly", price: "2 500 Fr", image: imgChocolatChaud },
-  { name: "Crazy Chocolat – Guimauve & Chantilly", price: "3 500 Fr", image: imgChocolatCrazy },
+  { name: "Chocolat Chaud Classique", price: "2 000 Fr" },
+  { name: "Chocolat Chaud Chantilly", price: "2 500 Fr" },
+  { name: "Crazy Chocolat – Guimauve & Chantilly", price: "3 500 Fr" },
 ];
 const milkshakes = [
-  { name: "Vanille", price: "2 000 Fr", image: imgMilkshakeVanille },
-  { name: "Menthe", price: "2 000 Fr", image: imgMilkshakeMenthe },
-  { name: "Fraise", price: "2 500 Fr", emoji: "🍓", image: imgMilkshakeFraise },
-  { name: "Kinder Bueno", price: "2 500 Fr", image: imgMilkshakeKinder },
-  { name: "Spéculoos Caramel Beurre Salé", price: "2 500 Fr", image: imgMilkshakeSpeculoos },
-  { name: "Chocolat Oreo", price: "2 500 Fr", image: imgMilkshakeOreo },
-  { name: "Coco Bounty", price: "2 500 Fr", image: imgMilkshakeCoco },
+  { name: "Vanille", price: "2 000 Fr" },
+  { name: "Menthe", price: "2 000 Fr" },
+  { name: "Fraise", price: "2 500 Fr", emoji: "🍓" },
+  { name: "Kinder Bueno", price: "2 500 Fr" },
+  { name: "Spéculoos Caramel Beurre Salé", price: "2 500 Fr" },
+  { name: "Chocolat Oreo", price: "2 500 Fr" },
+  { name: "Coco Bounty", price: "2 500 Fr" },
 ];
 const jusNaturel = [
-  { name: "Bissap", price: "1 000 Fr", image: imgJusBissap },
-  { name: "Gingembre", price: "1 000 Fr", image: imgJusGingembre },
-  { name: "Citron", price: "1 000 Fr", image: imgJusCitron },
-  { name: "Sucrerie", price: "1 000 Fr", image: imgJusGingembre },
-  { name: "Eau Minérale", price: "1 000 Fr", image: imgEauMinerale },
-  { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr", image: imgJusPassion },
-  { name: "Cocktail de Fruits", price: "2 000 Fr", image: imgJusCocktail },
+  { name: "Bissap", price: "1 000 Fr" },
+  { name: "Gingembre", price: "1 000 Fr" },
+  { name: "Citron", price: "1 000 Fr" },
+  { name: "Sucrerie", price: "1 000 Fr" },
+  { name: "Eau Minérale", price: "1 000 Fr" },
+  { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr" },
+  { name: "Cocktail de Fruits", price: "2 000 Fr" },
 ];
-// ─── PETIT DÉJEUNER ───
-const dejFermier = [
-  { name: "Café + Omelette", price: "1 500 Fr" },
-  { name: "Café + Œuf au Plat", price: "1 500 Fr" },
-  { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr" },
-  { name: "Café + Omelette Farcie", price: "3 500 Fr", description: "Viande hachée, champignons, fromage" },
-];
-const crepeSalee = [
-  { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes" },
-  { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés" },
-  { name: "Crêpe Viande Hachée", price: "3 000 Fr", description: "Fromage, champignons, légumes confits" },
-  { name: "Crêpe Blanc de Poulet", price: "3 000 Fr", description: "Fromage, champignons, légumes confits" },
-];
-const crepeSucree = [
-  { name: "Crêpe Nature", price: "1 000 Fr", description: "Miel facultatif", image: imgCrepeNature },
-  { name: "Crêpe Nutella", price: "1 500 Fr", image: imgCrepeNutella },
-  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis de chocolat", image: imgCrepeFettNutella },
-  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis de chocolat", image: imgCrepeFettOreo },
-  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis de chocolat", image: imgCrepeFettSpeculoos },
-  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits de saison, granulats, boule de glace, coulis 3 chocolats", image: imgCrepeFettFruits },
-  { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits de saison, biscottes, boule de glace", image: imgCrepePralin },
-];
-// ─── DESSERTS ───
 const painsPerdu = [
   { name: "Pain Perdu Nature", price: "2 500 Fr" },
   { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr" },
@@ -171,7 +81,7 @@ const croissantGauffre = [
   { name: "Croissant Gauffre Fruits Rouges", price: "3 000 Fr" },
   { name: "Croissant Vanille Pistache", price: "2 500 Fr" },
 ];
-const crepesDessert = [
+const crepes = [
   { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr" },
   { name: "Crêpe Nutella", price: "1 500 Fr" },
   { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat" },
@@ -189,50 +99,50 @@ const degue = [
   { name: "Dêguê Caramel Granola", price: "2 000 Fr" },
 ];
 const tchep = [
-  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
-  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
-  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr", image: imgTchepBoeuf },
-  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr", image: imgTchepMouton },
-  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr", image: imgTchepBoulette },
+  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr" },
+  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr" },
+  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr" },
+  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr" },
+  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr" },
 ];
 const yassa = [
-  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚", image: imgYassaPoulet },
-  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoulet },
-  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚", image: imgYassaPoisson },
-  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoisson },
-  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚", image: imgYassaMouton },
-  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr", image: imgYassaMouton },
+  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚" },
+  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr" },
+  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚" },
+  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr" },
+  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚" },
+  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr" },
 ];
 const mafe = [
-  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚", image: imgMafePondeuse },
-  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgMafePondeuse },
-  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr", image: imgMafePondeuse },
-  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", emoji: "🍚", image: imgMafePoisson },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgMafeBoeuf },
+  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚" },
+  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr" },
+  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr" },
+  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", emoji: "🍚" },
+  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
 ];
 const sauceTomate = [
-  { name: "Sauce Tomate Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceTomate },
-  { name: "Sauce Feuille de Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceFeuille },
+  { name: "Sauce Tomate Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚" },
+  { name: "Sauce Feuille de Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚" },
 ];
 const sauceLegume = [
-  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚", image: imgSauceLegume },
-  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgSauceLegume },
-  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr", image: imgSauceLegume },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgMafeBoeuf },
+  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚" },
+  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr" },
+  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr" },
+  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr" },
 ];
 const soupe = [
-  { name: "½ Pondeuse (riz, attiéké)", price: "5 000 Fr", image: imgSoupePoulet },
-  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poulet Chair ½ (attiéké, riz)", price: "3 500 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poulet Chair 1 entier (attiéké, riz)", price: "6 500 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", description: "Prix selon le poisson du jour", image: imgSoupePoisson },
+  { name: "½ Pondeuse (riz, attiéké)", price: "5 000 Fr" },
+  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr" },
+  { name: "Soupe Poulet Chair ½ (attiéké, riz)", price: "3 500 Fr" },
+  { name: "Soupe Poulet Chair 1 entier (attiéké, riz)", price: "6 500 Fr" },
+  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", description: "Prix selon le poisson du jour" },
 ];
 
 // ─── CATEGORIES ────────────────────────────────────────────
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
 const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
-  { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "🍳", image: catPetitDej, description: "Déj fermier, crêpes salées & sucrées" },
+  { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "🥞", image: catPetitDej, description: "Pains perdu, pancakes, crêpes & dêguê" },
   { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Tchêp, Yassa, Mafé, Sauces & Soupes" },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
   { key: "dessert", label: "Desserts", emoji: "🍰", image: catDessert, description: "Pancakes, crêpes, gaufres & spécialités" },
@@ -244,98 +154,65 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
   switch (category) {
     case "petit-dejeuner":
       return (
-        <div className="space-y-5">
-          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Crêpe Salée 🧂" items={crepeSalee} delay={0.15} />
-            <MenuSection title="Crêpe Sucrée 🍫" items={crepeSucree} delay={0.2} />
-          </div>
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+        <div className="space-y-6">
+          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.1} />
+          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.15} />
+          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} />
+          <div className="chalk-line my-4" />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} />
+          <div className="chalk-line my-4" />
+          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
         </div>
       );
     case "dejeuner":
       return (
-        <div className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
-            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
-            <div className="space-y-4">
-              <MenuPlatDuJourSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
-              <MenuPlatDuJourSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
-            </div>
-          </div>
+        <div className="space-y-6">
+          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
+          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
+          <div className="chalk-line my-4" />
+          <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
+          <MenuPlatDuJourSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
+          <MenuPlatDuJourSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
+          <div className="chalk-line my-4" />
           <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.35} />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "diner":
       return (
-        <div className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
-            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
-          </div>
+        <div className="space-y-6">
+          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} />
+          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} />
+          <div className="chalk-line my-4" />
           <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.2} />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "dessert":
       return (
-        <div className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
-            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} />
-          </div>
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepesDessert} delay={0.2} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} />
-            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
-          </div>
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+        <div className="space-y-6">
+          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.1} />
+          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.15} />
+          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} />
+          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
         </div>
       );
     case "boissons":
       return (
-        <div className="space-y-5">
-          <div className="section-title-banner !mb-4 !bg-accent/10 !border-accent/30">
-            <span className="font-display text-base font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
-            <div className="space-y-4">
-              <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
-              <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
-            </div>
-          </div>
+        <div className="space-y-6">
+          <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest">🔥 Chaud</h3>
+          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
+          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
+          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
           <div className="chalk-line my-4" />
-          <div className="section-title-banner !mb-4 !bg-primary/5 !border-primary/30">
-            <span className="font-display text-base font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} />
-            <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} />
-            <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} />
-          </div>
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
+          <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
+          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} />
+          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} />
+          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} />
+          <MenuSection title="Jus & Boissons Fraîches 🧃" items={jusNaturel} delay={0.4} />
         </div>
       );
   }
 };
-
-// ─── DECORATIVE ORNAMENT ──────────────────────────────────
-const GoldOrnament = () => (
-  <div className="flex items-center justify-center gap-4 py-3">
-    <div className="h-px w-16 bg-gradient-to-r from-transparent via-primary/30 to-primary/50" />
-    <Sparkles size={14} className="text-primary/40" />
-    <div className="h-px w-16 bg-gradient-to-l from-transparent via-primary/30 to-primary/50" />
-  </div>
-);
 
 // ─── MAIN COMPONENT ───────────────────────────────────────
 const Index = () => {
@@ -345,178 +222,116 @@ const Index = () => {
 
   return (
     <div className="min-h-screen chalkboard-bg">
-      <AnimatePresence mode="wait">
-        {activeCategory && activeCat ? (
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            <div className="relative h-56 sm:h-80 overflow-hidden">
-              <motion.img
-                src={activeCat.image}
-                alt={activeCat.label}
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.15 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-background" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-              
-              <motion.button
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.4 }}
-                onClick={() => setActiveCategory(null)}
-                className="absolute top-4 left-4 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-4 py-2.5 rounded-full hover:border-primary/20 active:scale-95"
-              >
-                <ArrowLeft size={16} />
-                Retour
-              </motion.button>
-              <div className="absolute top-4 right-4 z-10">
-                <ThemeToggle />
-              </div>
-              
-              <div className="absolute bottom-8 left-0 right-0 text-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
+      {/* ═══ CATEGORY DETAIL VIEW ═══ */}
+      {activeCategory && activeCat ? (
+        <motion.div
+          key={activeCategory}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.35 }}
+        >
+          {/* Header with image */}
+          <div className="relative h-48 sm:h-64 overflow-hidden">
+            <img
+              src={activeCat.image}
+              alt={activeCat.label}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-background" />
+            <button
+              onClick={() => setActiveCategory(null)}
+              className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-background/70 backdrop-blur-sm text-foreground font-body text-sm px-3 py-2 rounded-full hover:bg-background/90 transition-colors"
+            >
+              <ArrowLeft size={18} />
+              Retour
+            </button>
+            <div className="absolute bottom-4 left-0 right-0 text-center">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-wider drop-shadow-lg">
+                {activeCat.emoji} {activeCat.label}
+              </h1>
+            </div>
+          </div>
+
+          {/* Content */}
+          <main className="max-w-2xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 space-y-6 mt-6">
+            <CategoryContent category={activeCategory} />
+          </main>
+        </motion.div>
+      ) : (
+        /* ═══ HOME / HERO VIEW ═══ */
+        <>
+          {/* Hero Section */}
+          <div className="relative h-[45vh] sm:h-[50vh] overflow-hidden grain-overlay">
+            <img
+              src={heroImg}
+              alt="Neriya — La bouchée gourmande"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background" />
+          </div>
+
+          {/* Category Cards */}
+          <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-24 sm:pb-16 -mt-6 sm:-mt-8 relative z-10">
+            <div className="grid gap-4 sm:gap-5">
+              {categories.map((cat, i) => (
+                <motion.button
+                  key={cat.key}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.25, duration: 0.6, ease: "easeOut" }}
+                  transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
+                  onClick={() => {
+                    setActiveCategory(cat.key);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="group relative overflow-hidden rounded-xl h-28 sm:h-32 text-left transition-transform hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  <span className="text-4xl sm:text-5xl block mb-3 drop-shadow-lg">{activeCat.emoji}</span>
-                  <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-[0.18em] drop-shadow-lg">
-                    {activeCat.label}
-                  </h1>
-                  <p className="font-body text-sm text-white/50 mt-2 tracking-wide max-w-xs mx-auto">{activeCat.description}</p>
-                </motion.div>
-              </div>
-            </div>
+                  {/* Background image */}
+                  <img
+                    src={cat.image}
+                    alt={cat.label}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/30 group-hover:from-black/65 transition-colors" />
 
-            <main className="max-w-4xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-6 mt-4">
-              <GoldOrnament />
-              <CategoryContent category={activeCategory} />
-              <GoldOrnament />
-              <p className="font-body text-xs text-muted-foreground text-center italic tracking-wide pt-2">
-                Tous les prix sont en FCFA · Service compris
-              </p>
-            </main>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="home"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="relative h-[52vh] sm:h-[58vh] overflow-hidden grain-overlay">
-              <motion.img
-                src={heroImg}
-                alt="Neriya — La bouchée gourmande"
-                className="w-full h-full object-cover object-center"
-                initial={{ scale: 1.08 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-background" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
-              
-              <div className="absolute top-4 right-4 z-10">
-                <ThemeToggle />
-              </div>
-
-              <motion.div
-                className="absolute bottom-10 sm:bottom-14 left-0 right-0 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
-              >
-                <p className="font-script text-primary text-2xl sm:text-3xl drop-shadow-lg">La bouchée gourmande</p>
-              </motion.div>
-            </div>
-
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 -mt-2 relative z-10">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="flex items-center justify-center gap-4 mb-6"
-              >
-                <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-transparent to-primary/40" />
-                <span className="font-display text-sm uppercase tracking-[0.3em] text-primary/70">Notre Carte</span>
-                <div className="h-px flex-1 max-w-[60px] bg-gradient-to-l from-transparent to-primary/40" />
-              </motion.div>
-            </div>
-
-            <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 relative z-10">
-              <div className="grid gap-4 sm:gap-5">
-                {categories.map((cat, i) => (
-                  <motion.button
-                    key={cat.key}
-                    initial={{ opacity: 0, y: 35 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.35 + i * 0.1, duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
-                    onClick={() => {
-                      setActiveCategory(cat.key);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
-                    className="group relative overflow-hidden rounded-2xl h-28 sm:h-32 text-left gold-glow shimmer-hover hover:scale-[1.02] active:scale-[0.98]"
-                  >
-                    <img
-                      src={cat.image}
-                      alt={cat.label}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 category-card-overlay group-hover:opacity-90 transition-opacity duration-500" />
-
-                    <div className="relative h-full flex items-center justify-between px-5 sm:px-8">
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl sm:text-4xl drop-shadow-md">{cat.emoji}</span>
-                          <h2 className="font-display text-2xl sm:text-3xl font-bold text-foreground dark:text-white uppercase tracking-wider drop-shadow-sm">
-                            {cat.label}
-                          </h2>
-                        </div>
-                        <p className="font-body text-xs sm:text-sm text-muted-foreground dark:text-white/50 ml-12 sm:ml-[3.25rem] tracking-wide">{cat.description}</p>
-                      </div>
-                      <ChevronRight size={24} className="text-primary/50 group-hover:text-primary group-hover:translate-x-1.5 transition-all duration-300 shrink-0" />
+                  {/* Content */}
+                  <div className="relative h-full flex items-center justify-between px-5 sm:px-8">
+                    <div>
+                      <span className="text-3xl sm:text-4xl mr-3">{cat.emoji}</span>
+                      <h2 className="inline font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider">
+                        {cat.label}
+                      </h2>
+                      <p className="font-body text-sm text-white/70 mt-1">{cat.description}</p>
                     </div>
-                  </motion.button>
-                ))}
-              </div>
-            </main>
+                    <ChevronRight size={28} className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all shrink-0" />
+                  </div>
+                </motion.button>
+              ))}
+            </div>
+          </main>
 
-            <footer className="relative border-t border-primary/8 py-12 px-4">
-              <div className="max-w-md mx-auto text-center space-y-4">
-                <div className="flex items-center justify-center gap-4 mb-5">
-                  <div className="h-px w-20 bg-gradient-to-r from-transparent via-primary/20 to-primary/30" />
-                  <img src={logo} alt="Neriya" className="h-11 w-11 rounded-full object-cover opacity-80 ring-2 ring-primary/15 ring-offset-2 ring-offset-background" />
-                  <div className="h-px w-20 bg-gradient-to-l from-transparent via-primary/20 to-primary/30" />
-                </div>
-                <p className="font-script text-primary text-xl">Neriya</p>
-                <p className="font-body text-xs text-muted-foreground italic tracking-wide">
-                  Tous les prix sont en FCFA · Service compris
-                </p>
-                <p className="font-body text-[11px] text-muted-foreground/50">
-                  © 2026 — La bouchée gourmande
-                </p>
-              </div>
-            </footer>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          {/* Footer */}
+          <footer className="text-center py-8 border-t border-border space-y-2">
+            <p className="font-body text-xs text-muted-foreground italic tracking-wide">
+              Tous les prix sont en FCFA · Service compris
+            </p>
+            <p className="font-script text-primary text-lg">Neriya</p>
+            <p className="font-body text-xs text-muted-foreground">
+              © 2026 — La bouchée gourmande
+            </p>
+          </footer>
+        </>
+      )}
 
+      {/* WhatsApp Floating Button */}
       <a
         href="https://wa.me/2250789288202?text=Bonjour%20Neriya%20!%20Je%20souhaite%20passer%20une%20commande%20🍽️"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50 flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-bold text-xs sm:text-sm px-5 py-3 sm:px-6 sm:py-3.5 rounded-full shadow-xl transition-all hover:scale-105 active:scale-95 whatsapp-pulse"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-semibold text-xs sm:text-sm px-4 py-2.5 sm:px-5 sm:py-3 rounded-full shadow-lg shadow-black/30 transition-all hover:scale-105 active:scale-95"
       >
-        <MessageCircle size={20} fill="white" strokeWidth={0} />
+        <MessageCircle size={22} fill="white" strokeWidth={0} />
         Commander
       </a>
     </div>

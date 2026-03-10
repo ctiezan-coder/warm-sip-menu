@@ -48,7 +48,6 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         gold: "hsl(var(--gold))",
-        "gold-bright": "hsl(var(--gold-bright))",
         copper: "hsl(var(--copper))",
         chalk: "hsl(var(--chalk))",
         charcoal: "hsl(var(--charcoal))",
@@ -65,8 +64,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ["Playfair Display", "serif"],
-        body: ["Nunito", "sans-serif"],
+        display: ["Cormorant Garamond", "serif"],
+        body: ["Josefin Sans", "sans-serif"],
         script: ["Dancing Script", "cursive"],
       },
       borderRadius: {

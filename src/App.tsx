@@ -6,8 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import QRCode from "./pages/QRCode.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import AdminLogin from "./pages/AdminLogin.tsx";
-import Admin from "./pages/Admin.tsx";
 
 const queryClient = new QueryClient();
 
@@ -20,8 +18,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/qrcode" element={<QRCode />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
