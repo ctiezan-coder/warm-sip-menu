@@ -13,22 +13,9 @@ interface MenuSectionProps {
   items: MenuItem[];
   variant?: "hot" | "cold" | "default";
   delay?: number;
-  columns?: 1 | 2;
 }
 
 const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSectionProps) => {
-  const accentColor = {
-    hot: "text-accent",
-    cold: "text-primary",
-    default: "text-primary",
-  };
-
-  const priceColor = {
-    hot: "text-accent",
-    cold: "text-primary",
-    default: "text-primary",
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -37,57 +24,52 @@ const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSecti
       transition={{ duration: 0.45, delay }}
       className="menu-section-card"
     >
-      {/* Section sub-title */}
-      <div className="flex items-center gap-3 mb-5">
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent to-primary/25" />
-        <h3 className={`font-display text-lg sm:text-xl font-semibold uppercase tracking-[0.12em] ${accentColor[variant]}`}>
+      {/* Section title in decorative banner */}
+      <div className="section-title-banner">
+        <h3 className="font-display text-sm sm:text-base font-bold uppercase tracking-[0.15em] text-primary">
           {title}
         </h3>
-        <div className="h-px flex-1 bg-gradient-to-l from-transparent to-primary/25" />
       </div>
 
       {/* Items */}
-      <ul className="space-y-4">
+      <div className="space-y-2">
         {items.map((item, i) => (
-          <motion.li
+          <motion.div
             key={item.name + i}
             initial={{ opacity: 0, x: -8 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: delay + i * 0.03 }}
-            className="group"
+            transition={{ duration: 0.3, delay: delay + i * 0.04 }}
+            className="menu-item-row"
           >
-            <div className="flex items-center gap-3 sm:gap-4">
-              {/* Food photo */}
-              {item.image && (
-                <div className="shrink-0 w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] rounded-full overflow-hidden border-2 border-primary/25 shadow-lg group-hover:border-primary/50 transition-all group-hover:shadow-primary/20 group-hover:shadow-xl">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                </div>
-              )}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-body text-base sm:text-lg text-foreground leading-relaxed font-medium group-hover:text-chalk transition-colors">
-                    {item.emoji && <span className="mr-1.5">{item.emoji}</span>}
-                    {item.name}
-                  </span>
-                  <span className="flex-1 border-b border-dotted border-primary/15 min-w-[16px] translate-y-[-3px]" />
-                  <span className={`font-body text-base sm:text-lg font-bold ${priceColor[variant]} whitespace-nowrap`}>
-                    {item.price}
-                  </span>
-                </div>
-                {item.description && (
-                  <p className="text-xs text-muted-foreground ml-1 mt-0.5 italic leading-relaxed">{item.description}</p>
-                )}
+            {/* Thumbnail */}
+            {item.image && (
+              <div className="item-thumbnail">
+                <img src={item.image} alt={item.name} loading="lazy" />
               </div>
+            )}
+
+            {/* Name + Price */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-body text-sm sm:text-base text-foreground font-bold leading-tight uppercase">
+                  {item.emoji && <span className="mr-1">{item.emoji}</span>}
+                  {item.name}
+                </span>
+                <span className="dotted-leader" />
+                <span className="price-tag">
+                  {item.price}
+                </span>
+              </div>
+              {item.description && (
+                <p className="text-[11px] text-muted-foreground mt-0.5 italic leading-snug">
+                  {item.description}
+                </p>
+              )}
             </div>
-          </motion.li>
+          </motion.div>
         ))}
-      </ul>
+      </div>
     </motion.div>
   );
 };
