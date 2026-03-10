@@ -231,6 +231,7 @@ const Admin = () => {
           <h1 className="font-display text-lg font-bold text-primary">Gestion du Menu</h1>
         </div>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <Button variant="outline" size="sm" onClick={() => navigate("/")} className="text-foreground border-border">
             Voir le menu
           </Button>
