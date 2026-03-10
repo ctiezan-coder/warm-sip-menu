@@ -242,9 +242,8 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "diner":
       return (
         <div className="space-y-5">
-          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoisson} imagePosition="right" />
-          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaMouton} imagePosition="left" />
-          <MenuSection title="Soupe 🍲" items={soupe} delay={0.2} backgroundImage={imgSoupePoisson} imagePosition="right" />
+          <MenuSection title="Spaghetti Kiosque 🍝" items={spaghettiKiosque} delay={0.1} backgroundImage={imgSpaghettiKiosque} imagePosition="right" />
+          <MenuSection title="Grill 🐟" items={grill} delay={0.15} backgroundImage={imgGrillPoisson} imagePosition="left" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
