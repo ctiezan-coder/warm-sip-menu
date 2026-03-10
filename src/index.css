@@ -317,6 +317,6 @@
 /* ── Bon Appétit script ── */
 .bon-appetit {
   font-family: var(--font-script);
-  color: hsl(42, 65%, 65%);
-  text-shadow: 0 2px 6px hsl(0 0% 0% / 0.4);
+  color: hsl(var(--primary));
+  text-shadow: 0 2px 6px hsl(0 0% 0% / 0.15);
 }
