@@ -37,22 +37,9 @@ import imgPainLaitCaille from "@/assets/food/pain-lait-caille.png";
 import imgPouletRoti from "@/assets/food/poulet-roti.png";
 import imgChawama from "@/assets/food/chawama.png";
 import imgBurger from "@/assets/food/burger.png";
-import imgTchepPoulet from "@/assets/food/tchep-poulet.png";
-import imgTchepPoisson from "@/assets/food/tchep-poisson.png";
-import imgTchepBoeuf from "@/assets/food/tchep-boeuf.png";
-import imgTchepMouton from "@/assets/food/tchep-mouton.png";
-import imgTchepBoulette from "@/assets/food/tchep-boulette.png";
-import imgYassaPoulet from "@/assets/food/yassa-poulet.png";
-import imgYassaPoisson from "@/assets/food/yassa-poisson.png";
-import imgYassaMouton from "@/assets/food/yassa-mouton.png";
-import imgMafePondeuse from "@/assets/food/mafe-pondeuse.png";
-import imgMafePoisson from "@/assets/food/mafe-poisson.png";
-import imgMafeBoeuf from "@/assets/food/mafe-boeuf.png";
-import imgSauceTomate from "@/assets/food/sauce-tomate.png";
 import imgSauceFeuille from "@/assets/food/sauce-feuille.png";
-import imgSauceLegume from "@/assets/food/sauce-legume.png";
-import imgSoupePoulet from "@/assets/food/soupe-poulet.png";
-import imgSoupePoisson from "@/assets/food/soupe-poisson.png";
+import imgSpaghettiKiosque from "@/assets/food/spaghetti-kiosque.png";
+import imgGrillPoisson from "@/assets/food/grill-poisson.png";
 // Boissons
 import imgCafeExpresso from "@/assets/food/cafe-expresso.png";
 import imgCafeLatte from "@/assets/food/cafe-latte.png";
@@ -207,44 +194,16 @@ const burgers = [
   { name: "Cheese Burger", price: "4 000 Fr", description: "1 steak, 1 œuf, oignon confit, 1 fromage, frites, cornichons, tomates, salade", image: imgBurger },
   { name: "Burger NERIYA", price: "8 000 Fr", description: "2 steaks, 3 fromages, 2 œufs, oignons confits, salade, tomates, cornichons, frites", image: imgBurger },
 ];
-const tchep = [
-  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
-  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
-  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr", image: imgTchepBoeuf },
-  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr", image: imgTchepMouton },
-  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr", image: imgTchepBoulette },
+// Dîner
+const spaghettiKiosque = [
+  { name: "Spaghetti Rognon", price: "1 500 Fr", image: imgSpaghettiKiosque },
+  { name: "Spaghetti Viande de Bœuf", price: "2 000 Fr", image: imgSpaghettiKiosque },
+  { name: "Spaghetti Poulet", price: "2 000 Fr", image: imgSpaghettiKiosque },
 ];
-const yassa = [
-  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚", image: imgYassaPoulet },
-  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoulet },
-  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚", image: imgYassaPoisson },
-  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoisson },
-  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚", image: imgYassaMouton },
-  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr", image: imgYassaMouton },
-];
-const mafe = [
-  { name: "Pondeuse Fumée (riz / Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚", image: imgMafePondeuse },
-  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgMafePondeuse },
-  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr", image: imgMafePondeuse },
-  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", emoji: "🍚", image: imgMafePoisson },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgMafeBoeuf },
-];
-const sauceTomate = [
-  { name: "Sauce Tomate Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceTomate },
-  { name: "Sauce Feuille de Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceFeuille },
-];
-const sauceLegume = [
-  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", emoji: "🍚", image: imgSauceLegume },
-  { name: "½ Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgSauceLegume },
-  { name: "1 Pondeuse Entière (riz / Fonio)", price: "9 000 / 11 000 Fr", image: imgSauceLegume },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgMafeBoeuf },
-];
-const soupe = [
-  { name: "½ Pondeuse (riz, attiéké)", price: "5 000 Fr", image: imgSoupePoulet },
-  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poulet Chair ½ (attiéké, riz)", price: "3 500 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poulet Chair 1 entier (attiéké, riz)", price: "6 500 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", description: "Prix selon le poisson du jour", image: imgSoupePoisson },
+const grill = [
+  { name: "Sole Braisé", price: "Sur demande", image: imgGrillPoisson },
+  { name: "Thon Frit", price: "1 500 / 2 000 / 2 500 / 3 000 Fr", image: imgGrillPoisson },
+  { name: "Sosso Frit", price: "Sur demande", image: imgGrillPoisson },
 ];
 
 // ─── CATEGORIES ────────────────────────────────────────────
@@ -283,9 +242,8 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "diner":
       return (
         <div className="space-y-5">
-          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoisson} imagePosition="right" />
-          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaMouton} imagePosition="left" />
-          <MenuSection title="Soupe 🍲" items={soupe} delay={0.2} backgroundImage={imgSoupePoisson} imagePosition="right" />
+          <MenuSection title="Spaghetti Kiosque 🍝" items={spaghettiKiosque} delay={0.1} backgroundImage={imgSpaghettiKiosque} imagePosition="right" />
+          <MenuSection title="Grill 🐟" items={grill} delay={0.15} backgroundImage={imgGrillPoisson} imagePosition="left" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
