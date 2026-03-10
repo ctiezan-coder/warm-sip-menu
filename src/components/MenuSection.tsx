@@ -5,6 +5,7 @@ interface MenuItem {
   price: string;
   emoji?: string;
   description?: string;
+  image?: string;
 }
 
 interface MenuSectionProps {
