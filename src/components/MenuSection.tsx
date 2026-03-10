@@ -13,9 +13,10 @@ interface MenuSectionProps {
   items: MenuItem[];
   variant?: "hot" | "cold" | "default";
   delay?: number;
+  sectionImage?: string;
 }
 
-const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSectionProps) => {
+const MenuSection = ({ title, items, variant = "default", delay = 0, sectionImage }: MenuSectionProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,11 +25,18 @@ const MenuSection = ({ title, items, variant = "default", delay = 0 }: MenuSecti
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
       className="menu-section-card"
     >
-      {/* Section title */}
-      <div className="section-title-banner">
-        <h3 className="font-display text-sm sm:text-base font-bold uppercase tracking-[0.15em] text-primary">
-          {title}
-        </h3>
+      {/* Section title with optional image */}
+      <div className="flex items-center gap-3 mb-3">
+        {sectionImage && (
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-primary/20 flex-shrink-0 shadow-md">
+            <img src={sectionImage} alt={title} loading="lazy" className="w-full h-full object-cover" />
+          </div>
+        )}
+        <div className="section-title-banner flex-1">
+          <h3 className="font-display text-sm sm:text-base font-bold uppercase tracking-[0.15em] text-primary">
+            {title}
+          </h3>
+        </div>
       </div>
 
       {/* Items */}
