@@ -155,14 +155,13 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "petit-dejeuner":
       return (
         <div className="space-y-6">
-          <h3 className="font-display text-xl sm:text-2xl text-accent text-center uppercase tracking-widest">🔥 Chaud</h3>
-          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} />
-          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} />
-          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} />
+          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.1} />
+          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.15} />
+          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} />
           <div className="chalk-line my-4" />
-          <h3 className="font-display text-xl sm:text-2xl text-primary text-center uppercase tracking-widest">❄️ Froid</h3>
-          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.1} />
-          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.15} />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} />
+          <div className="chalk-line my-4" />
+          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
         </div>
       );
     case "dejeuner":
