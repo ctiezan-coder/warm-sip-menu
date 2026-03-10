@@ -760,6 +760,20 @@ const Index = () => {
                 <p className="font-body text-sm text-muted-foreground italic tracking-wide">
                   Tous les prix sont en FCFA · Service compris
                 </p>
+                <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
+                    📍 Yopougon, Abidjan
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
+                    🏠 Sur place
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
+                    🏍 Livraison
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
+                    🔓 Ouvert au public
+                  </span>
+                </div>
                 <p className="font-body text-xs text-muted-foreground/60">© 2026 — La bouchée gourmande</p>
               </div>
             </footer>
