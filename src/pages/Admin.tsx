@@ -46,8 +46,11 @@ const Admin = () => {
   const [generatingImage, setGeneratingImage] = useState(false);
 
   useEffect(() => {
-    checkAuth();
-    fetchData();
+    const init = async () => {
+      await checkAuth();
+      await fetchData();
+    };
+    init();
   }, []);
 
   const checkAuth = async () => {
@@ -59,15 +62,23 @@ const Admin = () => {
 
   const fetchData = async () => {
     setLoading(true);
-    const [catRes, secRes, itemRes] = await Promise.all([
-      supabase.from("menu_categories").select("*").order("sort_order"),
-      supabase.from("menu_sections").select("*").order("sort_order"),
-      supabase.from("menu_items").select("*").order("sort_order"),
-    ]);
-    if (catRes.data) setCategories(catRes.data);
-    if (secRes.data) setSections(secRes.data);
-    if (itemRes.data) setItems(itemRes.data);
-    setLoading(false);
+    try {
+      const [catRes, secRes, itemRes] = await Promise.all([
+        supabase.from("menu_categories").select("*").order("sort_order"),
+        supabase.from("menu_sections").select("*").order("sort_order"),
+        supabase.from("menu_items").select("*").order("sort_order"),
+      ]);
+      if (catRes.error) throw catRes.error;
+      if (secRes.error) throw secRes.error;
+      if (itemRes.error) throw itemRes.error;
+      setCategories(catRes.data);
+      setSections(secRes.data);
+      setItems(itemRes.data);
+    } catch (error: any) {
+      toast.error(error.message || "Erreur de chargement des données");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLogout = async () => {
@@ -110,7 +121,13 @@ const Admin = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) { setImageFile(file); setImagePreview(URL.createObjectURL(file)); }
+    if (file) {
+      if (imagePreview && imagePreview.startsWith("blob:")) {
+        URL.revokeObjectURL(imagePreview);
+      }
+      setImageFile(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
   };
 
   // ── AI Image generation ──
@@ -283,7 +300,7 @@ const Admin = () => {
       setExpandedCats(new Set(categories.map(c => c.id)));
       setExpandedSections(new Set(sections.map(s => s.id)));
     }
-  }, [search]);
+  }, [search, categories, sections]);
 
   if (loading) return <div className="min-h-screen bg-background flex items-center justify-center text-foreground">Chargement...</div>;
 
@@ -385,18 +402,21 @@ const Admin = () => {
 
                         {expandedSections.has(sec.id) && (
                           <div className="p-3 space-y-2">
-                            {sectionItems.map((item, itemIdx) => (
+                            {sectionItems.map((item, itemIdx) => {
+                              const realIdx = allSectionItems.findIndex(i => i.id === item.id);
+                              return (
                               <AdminItemCard
                                 key={item.id}
                                 item={item}
                                 onEdit={() => openItemDialog(sec.id, item)}
                                 onDelete={() => deleteItem(item.id)}
-                                onMoveUp={() => { const pair = moveItem(allSectionItems, itemIdx, -1); if (pair) swapOrder("menu_items", pair.a, pair.b); }}
-                                onMoveDown={() => { const pair = moveItem(allSectionItems, itemIdx, 1); if (pair) swapOrder("menu_items", pair.a, pair.b); }}
-                                isFirst={itemIdx === 0}
-                                isLast={itemIdx === sectionItems.length - 1}
+                                onMoveUp={() => { const pair = moveItem(allSectionItems, realIdx, -1); if (pair) swapOrder("menu_items", pair.a, pair.b); }}
+                                onMoveDown={() => { const pair = moveItem(allSectionItems, realIdx, 1); if (pair) swapOrder("menu_items", pair.a, pair.b); }}
+                                isFirst={realIdx === 0}
+                                isLast={realIdx === allSectionItems.length - 1}
                               />
-                            ))}
+                              );
+                            })}
                             <Button variant="outline" size="sm" onClick={() => openItemDialog(sec.id)} className="w-full text-foreground border-border border-dashed">
                               <Plus className="w-3 h-3 mr-1" /> Ajouter un plat
                             </Button>
@@ -468,7 +488,7 @@ const Admin = () => {
               {imagePreview && (
                 <div className="relative w-20 h-20">
                   <img src={imagePreview} alt="Preview" className="w-20 h-20 rounded-full object-cover border border-primary/30" />
-                  <button onClick={() => { setImageFile(null); setImagePreview(null); }} className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full p-0.5">
+                  <button onClick={() => { if (imagePreview?.startsWith("blob:")) URL.revokeObjectURL(imagePreview); setImageFile(null); setImagePreview(null); }} className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full p-0.5">
                     <X className="w-3 h-3" />
                   </button>
                 </div>
