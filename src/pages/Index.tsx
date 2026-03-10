@@ -245,53 +245,41 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "petit-dejeuner":
       return (
         <div className="space-y-5">
-          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgPancakesNature} />
-          <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeNature} />
-          <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeFettNutella} />
+          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} backgroundImage={imgPancakesNature} imagePosition="right" />
+          <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} backgroundImage={imgCrepeNature} imagePosition="left" />
+          <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} backgroundImage={imgCrepeFettNutella} imagePosition="right" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "dejeuner":
       return (
         <div className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoulet} />
-            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaPoulet} />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuPlatDuJourSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} />
-            <div className="space-y-4">
-              <MenuPlatDuJourSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} />
-              <MenuPlatDuJourSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} />
-            </div>
-          </div>
-          <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.35} />
+          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoulet} imagePosition="right" />
+          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaPoulet} imagePosition="left" />
+          <MenuSection title="Mafé 🥜 — Sauce Arachide" items={mafe} delay={0.2} backgroundImage={imgMafePondeuse} imagePosition="right" />
+          <MenuSection title="Sauce Tomate 🍅" items={sauceTomate} delay={0.25} backgroundImage={imgSauceTomate} imagePosition="left" />
+          <MenuSection title="Sauce Légume 🥬" items={sauceLegume} delay={0.3} backgroundImage={imgSauceLegume} imagePosition="right" />
+          <MenuSection title="Soupe 🍲" items={soupe} delay={0.35} backgroundImage={imgSoupePoulet} imagePosition="left" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "diner":
       return (
         <div className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoisson} />
-            <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaMouton} />
-          </div>
-          <MenuPlatDuJourSection title="Soupe 🍲" items={soupe} delay={0.2} />
+          <MenuSection title="Tchêp 🍛" items={tchep} delay={0.1} backgroundImage={imgTchepPoisson} imagePosition="right" />
+          <MenuSection title="Yassa 🍗" items={yassa} delay={0.15} backgroundImage={imgYassaMouton} imagePosition="left" />
+          <MenuSection title="Soupe 🍲" items={soupe} delay={0.2} backgroundImage={imgSoupePoisson} imagePosition="right" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
     case "dessert":
       return (
         <div className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} backgroundImage={imgPancakesFruit} />
-            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} backgroundImage={imgCroissantFruits} />
-          </div>
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} backgroundImage={imgCrepePralin} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} backgroundImage={imgFeuilletePain} />
-            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} backgroundImage={imgDegue} />
-          </div>
+          <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} backgroundImage={imgPancakesFruit} imagePosition="right" />
+          <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.15} backgroundImage={imgPainPerduCaramel} imagePosition="left" />
+          <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.2} backgroundImage={imgCroissantFruits} imagePosition="right" />
+          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.25} backgroundImage={imgCrepePralin} imagePosition="left" />
+          <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} backgroundImage={imgDegue} imagePosition="right" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
@@ -301,25 +289,17 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
           <div className="section-title-banner !mb-4 !bg-accent/10 !border-accent/30">
             <span className="font-display text-base font-bold uppercase tracking-widest text-accent">🔥 Boissons Chaudes</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} backgroundImage={imgCappuccino} />
-            <div className="space-y-4">
-              <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} backgroundImage={imgTheChaud} />
-              <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} backgroundImage={imgChocolatCrazy} />
-            </div>
-          </div>
+          <MenuSection title="Cafés ☕" items={cafeChaud} variant="hot" delay={0.1} backgroundImage={imgCappuccino} imagePosition="right" />
+          <MenuSection title="Thés 🍵" items={theChaud} variant="hot" delay={0.15} backgroundImage={imgTheGingembreMenthe} imagePosition="left" />
+          <MenuSection title="Chocolats 🍫" items={chocolatChaud} variant="hot" delay={0.2} backgroundImage={imgChocolatCrazy} imagePosition="right" />
           <div className="chalk-line my-4" />
           <div className="section-title-banner !mb-4 !bg-primary/5 !border-primary/30">
             <span className="font-display text-base font-bold uppercase tracking-widest text-primary">❄️ Boissons Froides</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} backgroundImage={imgCafeGlace} />
-            <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} backgroundImage={imgTheMojito} />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} backgroundImage={imgMilkshakeOreo} />
-            <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} backgroundImage={imgJusCocktail} />
-          </div>
+          <MenuSection title="Cafés Glacés ☕" items={cafeGlace} variant="cold" delay={0.25} backgroundImage={imgCafeGlace} imagePosition="left" />
+          <MenuSection title="Thés Froids 🍵" items={theFroid} variant="cold" delay={0.3} backgroundImage={imgTheMojito} imagePosition="right" />
+          <MenuSection title="Milkshakes 🥤" items={milkshakes} variant="cold" delay={0.35} backgroundImage={imgMilkshakeOreo} imagePosition="left" />
+          <MenuSection title="Jus & Boissons 🧃" items={jusNaturel} delay={0.4} backgroundImage={imgJusCocktail} imagePosition="right" />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
