@@ -6,45 +6,35 @@
 
 @layer base {
   :root {
-    --background: 28 30% 22%;
-    --foreground: 35 50% 92%;
-
-    --card: 26 28% 26%;
-    --card-foreground: 35 50% 92%;
-
-    --popover: 26 28% 26%;
-    --popover-foreground: 35 50% 92%;
-
-    --primary: 42 60% 68%;
-    --primary-foreground: 25 35% 12%;
-
-    --secondary: 28 22% 30%;
-    --secondary-foreground: 35 40% 85%;
-
-    --muted: 28 18% 32%;
-    --muted-foreground: 30 18% 58%;
-
-    --accent: 30 65% 55%;
+    --background: 28 30% 18%;
+    --foreground: 38 45% 90%;
+    --card: 28 25% 22%;
+    --card-foreground: 38 45% 90%;
+    --popover: 28 25% 22%;
+    --popover-foreground: 38 45% 90%;
+    --primary: 42 65% 65%;
+    --primary-foreground: 25 35% 10%;
+    --secondary: 28 20% 28%;
+    --secondary-foreground: 38 35% 82%;
+    --muted: 28 16% 30%;
+    --muted-foreground: 32 16% 55%;
+    --accent: 32 70% 52%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 28 18% 34%;
-    --input: 28 18% 34%;
-    --ring: 42 60% 68%;
-
-    --radius: 0.5rem;
-
-    --gold: 42 60% 68%;
-    --copper: 30 65% 55%;
-    --chalk: 35 50% 92%;
-    --charcoal: 28 30% 22%;
-    --slate-warm: 28 22% 30%;
+    --border: 30 16% 30%;
+    --input: 30 16% 30%;
+    --ring: 42 65% 65%;
+    --radius: 0.75rem;
+    --gold: 42 65% 65%;
+    --gold-bright: 45 80% 58%;
+    --copper: 32 70% 52%;
+    --chalk: 38 45% 90%;
+    --charcoal: 28 30% 18%;
+    --slate-warm: 28 20% 28%;
     --font-display: 'Playfair Display', serif;
     --font-body: 'Nunito', sans-serif;
     --font-script: 'Dancing Script', cursive;
-
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -57,81 +47,225 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
   }
-  h1, h2, h3, h4 {
-    font-family: var(--font-display);
-  }
+  h1, h2, h3, h4 { font-family: var(--font-display); }
 }
 
-/* Light brown wood texture */
+/* ── Rich dark wood background ── */
 .chalkboard-bg {
   background-image:
-    radial-gradient(ellipse at 20% 40%, hsla(28, 35%, 28%, 0.6) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 60%, hsla(26, 30%, 25%, 0.5) 0%, transparent 50%),
-    repeating-linear-gradient(
-      85deg,
-      hsla(28, 25%, 24%, 0.04) 0px,
-      hsla(28, 30%, 28%, 0.07) 1px,
-      transparent 2px,
-      transparent 6px
-    );
-  background-color: hsl(28, 30%, 22%);
+    radial-gradient(ellipse at 15% 30%, hsla(30, 40%, 24%, 0.7) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 70%, hsla(25, 35%, 20%, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, hsla(28, 30%, 22%, 0.3) 0%, transparent 70%),
+    repeating-linear-gradient(87deg, hsla(28, 25%, 22%, 0.05) 0px, hsla(28, 30%, 26%, 0.08) 1px, transparent 2px, transparent 5px);
+  background-color: hsl(28, 30%, 18%);
 }
 
-/* Chalk line effect */
+/* ── Chalk line divider ── */
 .chalk-line {
-  background: linear-gradient(90deg, transparent, hsl(40 30% 90% / 0.15), hsl(40 30% 90% / 0.3), hsl(40 30% 90% / 0.15), transparent);
+  position: relative;
   height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(42 65% 65% / 0.2), hsl(42 65% 65% / 0.35), hsl(42 65% 65% / 0.2), transparent);
+}
+.chalk-line::before {
+  content: '✦';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  color: hsl(42 65% 65% / 0.4);
+  background: hsl(28, 30%, 18%);
+  padding: 0 8px;
 }
 
-/* Gold ornament divider */
-.ornament-divider {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+/* ── Glass card effect ── */
+.glass-card {
+  background: linear-gradient(135deg, hsl(28 25% 22% / 0.85), hsl(28 20% 20% / 0.7));
+  backdrop-filter: blur(12px);
+  border: 1px solid hsl(42 65% 65% / 0.12);
+  box-shadow: 0 4px 24px -4px hsl(0 0% 0% / 0.4), inset 0 1px 0 hsl(42 65% 65% / 0.06);
 }
-.ornament-divider::before,
-.ornament-divider::after {
+
+/* ── Gold glow border on hover ── */
+.gold-glow {
+  position: relative;
+  overflow: hidden;
+}
+.gold-glow::before {
   content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, hsl(38 72% 58% / 0.5), transparent);
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, hsl(42 65% 65% / 0.3), transparent 40%, transparent 60%, hsl(42 65% 65% / 0.15));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  opacity: 0.5;
+}
+.gold-glow:hover::before { opacity: 1; }
+
+/* ── Shimmer animation ── */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.shimmer-hover:hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, hsl(42 65% 65% / 0.08), transparent);
+  animation: shimmer 0.8s ease-in-out;
+  pointer-events: none;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(28, 30%, 22%);
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(38, 72%, 58%, 0.3);
-  border-radius: 3px;
-}
+/* ── Scrollbar styling ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: hsl(28, 30%, 18%); }
+::-webkit-scrollbar-thumb { background: hsl(42, 65%, 65%, 0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(42, 65%, 65%, 0.4); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Hide scrollbar for nav */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Subtle film grain overlay */
+/* ── Film grain overlay ── */
 .grain-overlay::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.04;
+  opacity: 0.035;
   pointer-events: none;
   z-index: 2;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ══════════════════════════════════════════════
+   MENU SECTION CARD — Golden framed style
+   ══════════════════════════════════════════════ */
+.menu-section-card {
+  background: linear-gradient(180deg, hsl(28 22% 21% / 0.75), hsl(28 22% 19% / 0.5));
+  border: 1.5px solid hsl(42 65% 65% / 0.18);
+  border-radius: 1rem;
+  padding: 1.25rem 1rem;
+  position: relative;
+  box-shadow:
+    0 2px 16px -4px hsl(0 0% 0% / 0.3),
+    inset 0 1px 0 hsl(42 65% 65% / 0.06);
+}
+
+/* ── Section title banner ── */
+.section-title-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(90deg, hsl(28 30% 16% / 0.9), hsl(28 25% 20% / 0.95), hsl(28 30% 16% / 0.9));
+  border: 1px solid hsl(42 65% 65% / 0.25);
+  border-radius: 0.5rem;
+  margin: 0 auto 1rem;
+  width: fit-content;
+  position: relative;
+}
+.section-title-banner::before,
+.section-title-banner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(42 65% 65% / 0.4));
+}
+.section-title-banner::before { right: 100%; margin-right: 4px; }
+.section-title-banner::after { left: 100%; margin-left: 4px; transform: rotate(180deg); }
+
+/* ── Individual menu item row ── */
+.menu-item-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 0.6rem;
+  background: linear-gradient(135deg, hsl(28 22% 20% / 0.5), hsl(28 18% 18% / 0.3));
+  border: 1px solid hsl(42 65% 65% / 0.06);
+  transition: all 0.3s ease;
+}
+.menu-item-row:hover {
+  background: linear-gradient(135deg, hsl(28 22% 22% / 0.7), hsl(28 18% 20% / 0.5));
+  border-color: hsl(42 65% 65% / 0.15);
+  transform: translateX(2px);
+}
+
+/* ── Item thumbnail ── */
+.item-thumbnail {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid hsl(42 65% 65% / 0.2);
+  box-shadow: 0 2px 8px hsl(0 0% 0% / 0.3);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+@media (min-width: 640px) {
+  .item-thumbnail {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+.menu-item-row:hover .item-thumbnail {
+  border-color: hsl(42 65% 65% / 0.4);
+  box-shadow: 0 2px 12px hsl(42 65% 65% / 0.15);
+}
+.item-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.menu-item-row:hover .item-thumbnail img {
+  transform: scale(1.15);
+}
+
+/* ── Price tag styling ── */
+.price-tag {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: hsl(42, 65%, 65%);
+  white-space: nowrap;
+  text-shadow: 0 1px 3px hsl(0 0% 0% / 0.3);
+}
+@media (min-width: 640px) {
+  .price-tag {
+    font-size: 1.1rem;
+  }
+}
+
+/* ── Dotted leader line ── */
+.dotted-leader {
+  flex: 1;
+  min-width: 12px;
+  border-bottom: 1.5px dotted hsl(42 65% 65% / 0.2);
+  transform: translateY(-3px);
+}
+
+/* ── Floating button pulse ── */
+@keyframes gentle-pulse {
+  0%, 100% { box-shadow: 0 4px 20px -4px hsl(142 70% 45% / 0.4); }
+  50% { box-shadow: 0 4px 28px -2px hsl(142 70% 45% / 0.6); }
+}
+.whatsapp-pulse { animation: gentle-pulse 3s ease-in-out infinite; }
+
+/* ── Bon Appétit script ── */
+.bon-appetit {
+  font-family: var(--font-script);
+  color: hsl(42, 65%, 65%);
+  text-shadow: 0 2px 6px hsl(0 0% 0% / 0.4);
 }
