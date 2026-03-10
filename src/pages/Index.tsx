@@ -129,6 +129,31 @@ const jusNaturel = [
   { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr", image: imgJusPassion },
   { name: "Cocktail de Fruits", price: "2 000 Fr", image: imgJusCocktail },
 ];
+// Petit déjeuner - Déj Fermier
+const dejFermier = [
+  { name: "Café + Omelette", price: "1 500 Fr", image: imgPancakesNature },
+  { name: "Café + Œuf au Plat", price: "1 500 Fr", image: imgPancakesNature },
+  { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr", image: imgPancakesNature },
+  { name: "Café + Omelette Farcie", price: "3 500 Fr", description: "Viande hachée, champignons, fromage", image: imgPancakesNature },
+];
+// Petit déjeuner - Crêpes salées
+const crepesSalees = [
+  { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes", image: imgCrepeNature },
+  { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés", image: imgCrepeNature },
+  { name: "Crêpe Viande Hachée", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeNature },
+  { name: "Crêpe Blanc de Poulet", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeNature },
+];
+// Crêpes sucrées (petit déj)
+const crepesSucrees = [
+  { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr", image: imgCrepeNature },
+  { name: "Crêpe Nutella", price: "1 500 Fr", image: imgCrepeNutella },
+  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis de chocolat", image: imgCrepeFettNutella },
+  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis de chocolat", image: imgCrepeFettOreo },
+  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis de chocolat", image: imgCrepeFettSpeculoos },
+  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits de saison, granulats, boule de glace, coulis aux 3 chocolats", image: imgCrepeFettFruits },
+  { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits de saison, biscottes, boule de glace", image: imgCrepePralin },
+];
+// Desserts
 const painsPerdu = [
   { name: "Pain Perdu Nature", price: "2 500 Fr", image: imgPainPerdu },
   { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr", image: imgPainPerduCaramel },
@@ -207,7 +232,7 @@ const soupe = [
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
 const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
-  { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "🥞", image: catPetitDej, description: "Pains perdu, pancakes, crêpes & dêguê" },
+  { key: "petit-dejeuner", label: "Petit Déjeuner", emoji: "🍳", image: catPetitDej, description: "Déj fermier, crêpes salées & sucrées" },
   { key: "dejeuner", label: "Déjeuner", emoji: "🍛", image: catDejeuner, description: "Tchêp, Yassa, Mafé, Sauces & Soupes" },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
   { key: "dessert", label: "Desserts", emoji: "🍰", image: catDessert, description: "Pancakes, crêpes, gaufres & spécialités" },
@@ -220,16 +245,11 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
     case "petit-dejeuner":
       return (
         <div className="space-y-5">
-          {/* 2-column grid for short sections */}
+          <MenuSection title="Déj Fermier 🍳" items={dejFermier} delay={0.1} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pancakes 🥞" items={pancakes} delay={0.1} />
-            <MenuSection title="Croissant Gauffre 🧇" items={croissantGauffre} delay={0.15} />
+            <MenuSection title="Crêpe Salée 🧂" items={crepesSalees} delay={0.15} />
           </div>
-          <MenuSection title="Crêpes Sucrées 🥞" items={crepes} delay={0.2} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <MenuSection title="Pains Perdu 🍞" items={painsPerdu} delay={0.25} />
-            <MenuSection title="Dêguê & Lait Caillé 🥛" items={degue} delay={0.3} />
-          </div>
+          <MenuSection title="Crêpe Sucrée 🥞" items={crepesSucrees} delay={0.2} />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-2">Bon Appétit !</p>
         </div>
       );
