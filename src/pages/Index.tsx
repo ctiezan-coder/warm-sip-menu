@@ -129,6 +129,31 @@ const jusNaturel = [
   { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr", image: imgJusPassion },
   { name: "Cocktail de Fruits", price: "2 000 Fr", image: imgJusCocktail },
 ];
+// Petit déjeuner - Déj Fermier
+const dejFermier = [
+  { name: "Café + Omelette", price: "1 500 Fr", image: imgPancakesNature },
+  { name: "Café + Œuf au Plat", price: "1 500 Fr", image: imgPancakesNature },
+  { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr", image: imgPancakesNature },
+  { name: "Café + Omelette Farcie", price: "3 500 Fr", description: "Viande hachée, champignons, fromage", image: imgPancakesNature },
+];
+// Petit déjeuner - Crêpes salées
+const crepesSalees = [
+  { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes", image: imgCrepeNature },
+  { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés", image: imgCrepeNature },
+  { name: "Crêpe Viande Hachée", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeNature },
+  { name: "Crêpe Blanc de Poulet", price: "3 000 Fr", description: "Fromage, champignons, légumes confits", image: imgCrepeNature },
+];
+// Crêpes sucrées (petit déj)
+const crepesSucrees = [
+  { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr", image: imgCrepeNature },
+  { name: "Crêpe Nutella", price: "1 500 Fr", image: imgCrepeNutella },
+  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis de chocolat", image: imgCrepeFettNutella },
+  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis de chocolat", image: imgCrepeFettOreo },
+  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis de chocolat", image: imgCrepeFettSpeculoos },
+  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits de saison, granulats, boule de glace, coulis aux 3 chocolats", image: imgCrepeFettFruits },
+  { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits de saison, biscottes, boule de glace", image: imgCrepePralin },
+];
+// Desserts
 const painsPerdu = [
   { name: "Pain Perdu Nature", price: "2 500 Fr", image: imgPainPerdu },
   { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr", image: imgPainPerduCaramel },
