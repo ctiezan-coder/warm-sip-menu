@@ -155,38 +155,38 @@ const crepeSucree = [
 ];
 // ─── DESSERTS ───
 const painsPerdu = [
-  { name: "Pain Perdu Nature", price: "2 500 Fr", image: imgPainPerdu },
-  { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr", image: imgPainPerduCaramel },
-  { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos", image: imgFeuilletePain },
+  { name: "Pain Perdu Nature", price: "2 500 Fr" },
+  { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr" },
+  { name: "Feuilleté de Pain Fourré", price: "6 000 Fr", description: "Crème pâtissière, boule de glace, fruits, spéculoos" },
 ];
 const pancakes = [
-  { name: "Pancakes Nature", price: "1 000 Fr", image: imgPancakesNature },
-  { name: "Pancakes Miel ou Caramel", price: "1 500 Fr", emoji: "🍯", image: imgPancakesCaramel },
-  { name: "Pancakes Nutella", price: "2 000 Fr", image: imgPancakesNutella },
-  { name: "Pancakes Caramel Fruit (saison)", price: "2 000 Fr", image: imgPancakesFruit },
+  { name: "Pancakes Nature", price: "1 000 Fr" },
+  { name: "Pancakes Miel ou Caramel", price: "1 500 Fr", emoji: "🍯" },
+  { name: "Pancakes Nutella", price: "2 000 Fr" },
+  { name: "Pancakes Caramel Fruit (saison)", price: "2 000 Fr" },
 ];
 const croissantGauffre = [
-  { name: "Croissant Gauffre Vanille Spéculoos", price: "2 500 Fr", image: imgCroissantSpeculoos },
-  { name: "Croissant Gauffre Oreo", price: "2 500 Fr", image: imgCroissantOreo },
-  { name: "Croissant Gauffre Fruits Rouges", price: "3 000 Fr", image: imgCroissantFruits },
-  { name: "Croissant Vanille Pistache", price: "2 500 Fr", image: imgCroissantPistache },
+  { name: "Croissant Gauffre Vanille Spéculoos", price: "2 500 Fr" },
+  { name: "Croissant Gauffre Oreo", price: "2 500 Fr" },
+  { name: "Croissant Gauffre Fruits Rouges", price: "3 000 Fr" },
+  { name: "Croissant Vanille Pistache", price: "2 500 Fr" },
 ];
 const crepesDessert = [
-  { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr", image: imgCrepeNature },
-  { name: "Crêpe Nutella", price: "1 500 Fr", image: imgCrepeNutella },
-  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat", image: imgCrepeFettNutella },
-  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis chocolat", image: imgCrepeFettOreo },
-  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis chocolat", image: imgCrepeFettSpeculoos },
-  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats", image: imgCrepeFettFruits },
-  { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits, biscottes, boule de glace", image: imgCrepePralin },
+  { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr" },
+  { name: "Crêpe Nutella", price: "1 500 Fr" },
+  { name: "Crêpe Fettuccine Nutella", price: "3 000 Fr", description: "Nutella, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Oreo", price: "4 000 Fr", description: "Biscuits Oreo, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Spéculoos", price: "4 000 Fr", description: "Biscuits spéculoos, boule de glace, coulis chocolat" },
+  { name: "Crêpe Fettuccine Fruits Saisonniers", price: "5 500 Fr", description: "Fruits, granulats, glace, coulis 3 chocolats" },
+  { name: "Crêpe Pralin", price: "6 000 Fr", description: "Crème pâtissière, fruits, biscottes, boule de glace" },
 ];
 const degue = [
-  { name: "Pain Fourré Lait Caillé", price: "1 500 Fr", image: imgPainLaitCaille },
-  { name: "Pain Fourré Dêguê", price: "1 500 Fr", image: imgPainLaitCaille },
-  { name: "Dêguê au Fruit de la Passion", price: "2 000 Fr", image: imgDegue },
-  { name: "Dêguê au Lait de Coco", price: "2 000 Fr", image: imgDegue },
-  { name: "Dêguê Café Cappuccino", price: "2 000 Fr", image: imgDegue },
-  { name: "Dêguê Caramel Granola", price: "2 000 Fr", image: imgDegue },
+  { name: "Pain Fourré Lait Caillé", price: "1 500 Fr" },
+  { name: "Pain Fourré Dêguê", price: "1 500 Fr" },
+  { name: "Dêguê au Fruit de la Passion", price: "2 000 Fr" },
+  { name: "Dêguê au Lait de Coco", price: "2 000 Fr" },
+  { name: "Dêguê Café Cappuccino", price: "2 000 Fr" },
+  { name: "Dêguê Caramel Granola", price: "2 000 Fr" },
 ];
 const tchep = [
   { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
