@@ -420,30 +420,72 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
       return (
         <div className="space-y-6">
           <MenuSection
-            title="Sauce Feuille 🍚"
-            items={sauceFeuilleDej}
+            title="Tchêp 🍚"
+            items={tchep}
             delay={0.1}
+            backgroundImage={imgTchepPoulet}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Yassa 🍋"
+            items={yassa}
+            delay={0.15}
+            backgroundImage={imgYassaPoulet}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Mafé (Sauce Arachide) 🥜"
+            items={mafe}
+            delay={0.2}
+            backgroundImage={imgMafePondeuse}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Sauce Légume 🥬"
+            items={sauceLegumeDej}
+            delay={0.25}
+            backgroundImage={imgSauceLegume}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Sauce Tomate 🍅"
+            items={sauceTomateDej}
+            delay={0.3}
+            backgroundImage={imgSauceTomate}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Sauce Feuille 🍃"
+            items={sauceFeuilleDej}
+            delay={0.35}
             backgroundImage={imgSauceFeuille}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Soupe 🍲"
+            items={soupeDej}
+            delay={0.4}
+            backgroundImage={imgSoupePoulet}
             imagePosition="right"
           />
           <MenuSection
             title="Poulet Rôti 🍗"
             items={pouletRoti}
-            delay={0.15}
+            delay={0.45}
             backgroundImage={imgPouletRoti}
             imagePosition="left"
           />
           <MenuSection
             title="Chawama 🌯"
             items={chawama}
-            delay={0.2}
+            delay={0.5}
             backgroundImage={imgChawama}
             imagePosition="right"
           />
           <MenuSection
             title="Burger 🍔"
             items={burgers}
-            delay={0.25}
+            delay={0.55}
             backgroundImage={imgBurger}
             imagePosition="left"
           />
