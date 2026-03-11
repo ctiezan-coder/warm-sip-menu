@@ -749,36 +749,9 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
-  const [livePrices, setLivePrices] = useState<Record<string, string>>({});
+  const liveData = useMenuData();
   const { selections: dailySelections } = useDailySelections();
   const { getSectionImage } = useSectionImages();
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchLivePrices = async () => {
-      const { data } = await supabase.from("menu_items").select("name, price");
-      if (!isMounted || !data) return;
-
-      const map: Record<string, string> = {};
-      data.forEach((item) => {
-        map[item.name] = item.price;
-      });
-      setLivePrices(map);
-    };
-
-    fetchLivePrices();
-
-    const channel = supabase
-      .channel("menu-items-live-prices")
-      .on("postgres_changes", { event: "*", schema: "public", table: "menu_items" }, fetchLivePrices)
-      .subscribe();
-
-    return () => {
-      isMounted = false;
-      supabase.removeChannel(channel);
-    };
-  }, []);
 
   const activeCat = categories.find((c) => c.key === activeCategory);
 
