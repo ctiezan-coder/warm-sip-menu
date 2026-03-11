@@ -270,8 +270,46 @@ const degue = [
   { name: "Dêguê Café Cappuccino", price: "2 000 Fr", image: imgDegue },
   { name: "Dêguê Caramel Granola", price: "2 000 Fr", image: imgDegue },
 ];
+// Déjeuner - Spécialités Sénégalaises
+const tchep = [
+  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr", image: imgTchepMouton },
+  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
+  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
+  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr", image: imgTchepBoeuf },
+  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr", image: imgTchepBoulette },
+];
+const yassa = [
+  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚", image: imgYassaPoisson },
+  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoisson },
+  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚", image: imgYassaPoulet },
+  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoulet },
+  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚", image: imgYassaMouton },
+  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr", image: imgYassaMouton },
+];
+const mafe = [
+  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", image: imgMafePondeuse },
+  { name: "1/2 Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgMafePondeuse },
+  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr", image: imgMafePondeuse },
+  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", image: imgMafePoisson },
+];
+const sauceLegumeDej = [
+  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", image: imgSauceLegume },
+  { name: "1/2 Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgSauceLegume },
+  { name: "1 Pondeuse (riz, Fonio)", price: "9 000 / 11 000 Fr", image: imgSauceLegume },
+  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgSauceLegume },
+];
+const sauceTomateDej = [
+  { name: "Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceTomate },
+];
 const sauceFeuilleDej = [
-  { name: "Sauce Feuille", price: "2 500 Fr", emoji: "🍚", description: "Viande de bœuf", image: imgSauceFeuille },
+  { name: "Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceFeuille },
+];
+const soupeDej = [
+  { name: "1/2 Pondeuse (riz, attiéké)", price: "5 000 Fr", image: imgSoupePoulet },
+  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poulet Chair 1/2 (attiéké, riz)", price: "3 500 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poulet Chair 1 Entier (attiéké, riz)", price: "6 500 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", image: imgSoupePoisson },
 ];
 const pouletRoti = [
   {
