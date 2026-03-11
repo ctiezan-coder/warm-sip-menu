@@ -48,6 +48,7 @@ import imgSauceFeuille from "@/assets/food/sauce-feuille.png";
 import imgSpaghettiKiosque from "@/assets/food/spaghetti-kiosque.png";
 import imgGrillPoisson from "@/assets/food/grill-poisson.png";
 // Boissons
+import imgCafeSection from "@/assets/food/cafe-section.jpg";
 import imgCafeExpresso from "@/assets/food/cafe-expresso.png";
 import imgCafeLatte from "@/assets/food/cafe-latte.png";
 import imgCappuccino from "@/assets/food/cappuccino.png";
@@ -469,7 +470,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
             items={cafeChaud}
             variant="hot"
             delay={0.1}
-            backgroundImage={imgCappuccino}
+            backgroundImage={imgCafeSection}
             imagePosition="right"
           />
           <MenuSection
