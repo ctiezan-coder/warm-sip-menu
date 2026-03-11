@@ -8,7 +8,7 @@ const CartFloatingButton = () => {
   return (
     <motion.button
       onClick={() => setIsOpen(true)}
-      className="fixed bottom-5 left-5 sm:bottom-7 sm:left-7 z-50 flex items-center justify-center w-16 h-16 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-xl transition-all hover:scale-110 active:scale-95"
+      className="fixed bottom-5 left-5 sm:bottom-7 sm:left-7 z-50 flex items-center justify-center w-16 h-16 bg-[#25D366] hover:bg-[#1ebe57] text-destructive rounded-full shadow-xl transition-all hover:scale-110 active:scale-95"
       title="Mon Panier"
       whileTap={{ scale: 0.9 }}
     >
