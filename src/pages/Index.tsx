@@ -368,37 +368,47 @@ const SupplementsGrid = () => {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="ml-auto w-full sm:w-[380px] md:w-[420px]"
+      className="glass-card rounded-2xl p-5 border border-primary/20 bg-gradient-to-br from-card/80 via-card/60 to-primary/5 backdrop-blur-md shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.2)]"
     >
-      <div className="glass-card rounded-2xl p-6 border border-primary/20 bg-gradient-to-br from-card/80 via-card/60 to-primary/5 backdrop-blur-md shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.2)]">
-        <div className="flex items-center justify-center gap-2 mb-5">
-          <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
-          <h3 className="font-display text-sm sm:text-base font-bold text-primary uppercase tracking-[0.2em] text-center">
-            ✨ Suppléments
-          </h3>
-          <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/50" />
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          {supplements.map((s, i) => (
-            <motion.button
-              key={s.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.08 }}
-              onClick={() => addItem(s.name, s.price)}
-              className="group flex flex-col items-center gap-2 p-4 rounded-xl bg-secondary/20 border border-border/40 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.25)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-            >
-              <span className="text-3xl group-hover:scale-110 transition-transform duration-300">{s.emoji}</span>
-              <span className="font-body font-bold text-sm text-foreground tracking-wide">{s.name}</span>
-              <span className="font-display font-bold text-primary text-base">{s.price}</span>
-            </motion.button>
-          ))}
-        </div>
+      <div className="flex items-center justify-center gap-2 mb-4">
+        <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
+        <h3 className="font-display text-xs sm:text-sm font-bold text-primary uppercase tracking-[0.2em] text-center">
+          ✨ Suppléments
+        </h3>
+        <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/50" />
+      </div>
+      <div className="grid grid-cols-2 gap-2.5">
+        {supplements.map((s, i) => (
+          <motion.button
+            key={s.name}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: i * 0.08 }}
+            onClick={() => addItem(s.name, s.price)}
+            className="group flex flex-col items-center gap-1.5 p-3 rounded-xl bg-secondary/20 border border-border/40 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.25)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <span className="text-2xl group-hover:scale-110 transition-transform duration-300">{s.emoji}</span>
+            <span className="font-body font-bold text-xs text-foreground tracking-wide">{s.name}</span>
+            <span className="font-display font-bold text-primary text-sm">{s.price}</span>
+          </motion.button>
+        ))}
       </div>
     </motion.div>
   );
 };
+
+// Wrapper that places supplements as sticky sidebar on desktop
+const MenuWithSupplements = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-col lg:flex-row gap-6 items-start">
+    <div className="flex-1 min-w-0 space-y-6">
+      {children}
+    </div>
+    <div className="w-full lg:w-[240px] xl:w-[280px] shrink-0 lg:sticky lg:top-4 order-first lg:order-last">
+      <SupplementsGrid />
+    </div>
+  </div>
+);
 
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
