@@ -453,15 +453,41 @@ const CategoryContent = ({
   category,
   dailySelections,
   getSectionImage,
-  livePrices,
+  liveData,
 }: {
   category: CategoryKey;
   dailySelections: Record<string, string[]>;
   getSectionImage: (name: string, fallback: string) => string;
-  livePrices: Record<string, string>;
+  liveData: LiveMenuData;
 }) => {
-  const withLivePrices = <T extends { name: string; price: string }>(items: T[]): T[] =>
-    items.map((item) => ({ ...item, price: livePrices[item.name] ?? item.price }));
+  /**
+   * Merges DB data with hardcoded items.
+   * DB provides: name, price, description, emoji (overrides hardcoded).
+   * Hardcoded provides: image (fallback, matched by name).
+   * If DB has items for a section, use DB order; otherwise use hardcoded.
+   */
+  const withLiveData = <T extends { name: string; price: string; image?: string }>(
+    sectionTitle: string,
+    fallbackItems: T[]
+  ): T[] => {
+    const dbItems = liveData[sectionTitle];
+    if (!dbItems || dbItems.length === 0) return fallbackItems;
+
+    // Build image map from hardcoded items
+    const imageMap: Record<string, string | undefined> = {};
+    fallbackItems.forEach((item) => {
+      imageMap[item.name] = (item as any).image;
+    });
+
+    return dbItems.map((dbItem) => ({
+      ...({} as T),
+      name: dbItem.name,
+      price: dbItem.price,
+      description: dbItem.description,
+      emoji: dbItem.emoji,
+      image: imageMap[dbItem.name] ?? fallbackItems[0]?.image,
+    } as unknown as T));
+  };
 
   switch (category) {
     case "petit-dejeuner":
