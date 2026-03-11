@@ -469,7 +469,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
             items={cafeChaud}
             variant="hot"
             delay={0.1}
-            backgroundImage={imgCappuccino}
+            backgroundImage={imgCafeSection}
             imagePosition="right"
           />
           <MenuSection
