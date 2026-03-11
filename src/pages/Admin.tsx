@@ -130,12 +130,15 @@ const Admin = () => {
 
   // ── Section CRUD ──
   const openSectionDialog = (catId: string, sec?: MenuSection) => {
+    setSectionImageFile(null);
+    setSectionImagePreview(null);
     if (sec) {
       setEditingSection(sec);
-      setSectionForm({ name: sec.name, category_id: sec.category_id, sort_order: sec.sort_order });
+      setSectionForm({ name: sec.name, category_id: sec.category_id, sort_order: sec.sort_order, image_url: (sec as any).image_url || "" });
+      if ((sec as any).image_url) setSectionImagePreview((sec as any).image_url);
     } else {
       setEditingSection(null);
-      setSectionForm({ name: "", category_id: catId, sort_order: sections.filter(s => s.category_id === catId).length });
+      setSectionForm({ name: "", category_id: catId, sort_order: sections.filter(s => s.category_id === catId).length, image_url: "" });
     }
     setSectionDialogOpen(true);
   };
