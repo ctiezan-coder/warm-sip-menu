@@ -32,6 +32,30 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_selections: {
+        Row: {
+          created_at: string
+          id: string
+          item_name: string
+          section_key: string
+          selection_date: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          item_name: string
+          section_key: string
+          selection_date?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          item_name?: string
+          section_key?: string
+          selection_date?: string
+        }
+        Relationships: []
+      }
       menu_categories: {
         Row: {
           created_at: string

@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import logo from "@/assets/neriya-logo.png";
 import type { Tables } from "@/integrations/supabase/types";
+import DailySelectionAdmin from "@/components/DailySelectionAdmin";
 
 type MenuItem = Tables<"menu_items">;
 type MenuSection = Tables<"menu_sections">;
@@ -243,6 +244,11 @@ const Admin = () => {
       </header>
 
       <main className="max-w-4xl mx-auto p-4 space-y-4">
+        {/* Daily selection */}
+        <div className="glass-card rounded-xl p-4">
+          <DailySelectionAdmin />
+        </div>
+
         {/* Add category button */}
         <div className="flex justify-end">
           <Button onClick={() => openCategoryDialog()} className="bg-primary text-primary-foreground">
