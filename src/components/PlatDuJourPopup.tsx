@@ -179,7 +179,7 @@ const PlatDuJourPopup = ({ name, price, description, image, variants }: PlatDuJo
                 {/* Commander button */}
                 <div className="flex items-center justify-center pt-1">
                   <a
-                    href={getWhatsAppUrl(name, price)}
+                    href={getWhatsAppUrl(currentLabel, currentPrice)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex flex-col items-center gap-2.5"
