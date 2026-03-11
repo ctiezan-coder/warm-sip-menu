@@ -324,8 +324,8 @@ const pouletRoti = [
   { name: "1 Poulet Entier", price: "8 000 Fr", image: imgPouletRoti },
 ];
 const chawama = [
-  { name: "Chawama Poulet", price: "2 000 Fr", image: imgChawama },
-  { name: "Chawama Viande", price: "2 500 Fr", image: imgChawama },
+  { name: "CHAWARMA Poulet", price: "2 000 Fr", image: imgChawama },
+  { name: "CHAWARMA Viande", price: "2 500 Fr", image: imgChawama },
 ];
 const burgers = [
   {
