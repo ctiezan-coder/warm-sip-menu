@@ -24,6 +24,20 @@ const getWhatsAppUrl = (itemName: string, price: string) => {
   return `https://wa.me/2250789288202?text=${encodeURIComponent(message)}`;
 };
 
+const AddToCartButton = ({ name, price }: { name: string; price: string }) => {
+  const { addItem } = useCart();
+  return (
+    <button
+      onClick={() => addItem(name, price)}
+      className="ml-1.5 shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary/15 hover:bg-primary/30 border border-primary/20 hover:border-primary/40 text-primary text-[10px] font-body font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
+      title={`Ajouter ${name} au panier`}
+    >
+      <Plus size={12} />
+      <span className="hidden sm:inline">Ajouter</span>
+    </button>
+  );
+};
+
 const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundImage, imagePosition = "right" }: MenuSectionProps) => {
   const imageBlock = backgroundImage && (
     <div className="menu-section-hero-img">
