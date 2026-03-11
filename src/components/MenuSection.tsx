@@ -46,11 +46,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
   );
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay }}
+    <div
       className="menu-section-card-v2"
     >
       {/* Title */}
@@ -65,12 +61,8 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
         {/* Items list */}
         <div className="menu-section-items-v2">
           {items.map((item, i) => (
-            <motion.div
+            <div
               key={item.name + i}
-              initial={{ opacity: 0, x: imagePosition === "left" ? 8 : -8 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: delay + i * 0.05 }}
               className="menu-item-row-v2"
             >
               <div className="flex-1 min-w-0">
@@ -91,14 +83,14 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
                   </p>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Hero image */}
         {imageBlock}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
