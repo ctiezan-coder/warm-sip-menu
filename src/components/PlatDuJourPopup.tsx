@@ -206,6 +206,19 @@ const PlatDuJourPopup = ({ name, price, description, image, variants }: PlatDuJo
                     </span>
                   </a>
                 </div>
+
+                {/* Info badges */}
+                <div className="flex items-center justify-center gap-2 pt-3 flex-wrap">
+                  <span className="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 font-body text-[11px] font-bold uppercase tracking-wider text-primary/80">
+                    🍽️ Sur place
+                  </span>
+                  <span className="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 font-body text-[11px] font-bold uppercase tracking-wider text-primary/80">
+                    🛵 Livraison
+                  </span>
+                  <span className="px-3 py-1.5 rounded-full bg-accent/15 border border-accent/25 font-body text-[11px] font-bold uppercase tracking-wider text-accent">
+                    ✅ Ouvert au public
+                  </span>
+                </div>
               </div>
             </div>
           </motion.div>
