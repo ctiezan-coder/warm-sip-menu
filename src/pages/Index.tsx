@@ -426,7 +426,7 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
     label: "Déjeuner",
     emoji: "🍛",
     image: catDejeuner,
-    description: "Sauce Feuille, Poulet Rôti, Chawama & Burgers",
+    description: "Sauce Feuille, Poulet Rôti, CHAWARMA & Burgers",
   },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
   {
