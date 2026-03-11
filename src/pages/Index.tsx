@@ -495,6 +495,20 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             backgroundImage={imgGrillPoisson}
             imagePosition="left"
           />
+          <MenuSection
+            title="Chawama 🌯"
+            items={chawama}
+            delay={0.2}
+            backgroundImage={imgChawama}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Burger 🍔"
+            items={burgers}
+            delay={0.25}
+            backgroundImage={imgBurger}
+            imagePosition="left"
+          />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
