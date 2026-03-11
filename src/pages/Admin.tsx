@@ -244,6 +244,11 @@ const Admin = () => {
       </header>
 
       <main className="max-w-4xl mx-auto p-4 space-y-4">
+        {/* Daily selection */}
+        <div className="glass-card rounded-xl p-4">
+          <DailySelectionAdmin />
+        </div>
+
         {/* Add category button */}
         <div className="flex justify-end">
           <Button onClick={() => openCategoryDialog()} className="bg-primary text-primary-foreground">
