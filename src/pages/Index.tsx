@@ -219,10 +219,11 @@ const painsPerdu = [
   },
 ];
 const pancakes = [
-  { name: "Pancakes Nature", price: "1 000 Fr", image: imgPancakesNature },
-  { name: "Pancakes Miel ou Caramel", price: "1 500 Fr", emoji: "🍯", image: imgPancakesCaramel },
-  { name: "Pancakes Nutella", price: "2 000 Fr", image: imgPancakesNutella },
-  { name: "Pancakes Caramel Fruit (saison)", price: "2 000 Fr", image: imgPancakesFruit },
+  { name: "Pancakes Nature", price: "2 000 Fr", image: imgPancakesNature },
+  { name: "Pancakes Miel, Caramel ou Sirop de Rabe", price: "2 500 Fr", emoji: "🍯", image: imgPancakesCaramel },
+  { name: "Pancakes Nutella", price: "3 000 Fr", image: imgPancakesNutella },
+  { name: "Pancakes Nutella Oreo", price: "4 000 Fr", image: imgPancakesNutella },
+  { name: "Pancakes Saisonnier (fruit, coulis au choix, boule de glace, spéculoos)", price: "5 000 Fr", image: imgPancakesFruit },
 ];
 const croissantGauffre = [
   { name: "Croissant Gauffre Vanille Spéculoos", price: "2 500 Fr", image: imgCroissantSpeculoos },
