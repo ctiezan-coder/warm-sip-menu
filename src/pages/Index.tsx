@@ -669,6 +669,19 @@ const Index = () => {
               </motion.div>
             </div>
 
+            {/* ── Bannière défilante événements ── */}
+            <div className="w-full overflow-hidden bg-primary/10 border-y border-primary/20 py-2.5">
+              <div className="animate-marquee whitespace-nowrap flex items-center gap-8">
+                {[...Array(3)].map((_, i) => (
+                  <span key={i} className="inline-flex items-center gap-3 font-body text-sm sm:text-base text-primary tracking-wide">
+                    <span>🎉</span>
+                    Pour tous vos baptêmes, réceptions, mariages, soutenances et autres événements, faites confiance à Neriya – La Bouchée Gourmande. Commandes et informations disponibles sur notre site.
+                    <span className="text-accent">✦</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
             {/* ── Section Présentation ── */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
