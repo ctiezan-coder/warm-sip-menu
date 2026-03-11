@@ -415,13 +415,14 @@ const MenuWithSupplements = ({ children }: { children: React.ReactNode }) => (
 
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
-const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
+const defaultCategories: { key: CategoryKey; label: string; emoji: string; image: string; description: string; dbName: string }[] = [
   {
     key: "petit-dejeuner",
     label: "Petit Déjeuner",
     emoji: "🍳",
     image: catPetitDej,
     description: "Déj fermier, crêpes salées & sucrées",
+    dbName: "Petit Déjeuner",
   },
   {
     key: "dejeuner",
@@ -429,14 +430,16 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
     emoji: "🍛",
     image: catDejeuner,
     description: "Sauce Feuille, Poulet Rôti, CHAWARMA & Burgers",
+    dbName: "Déjeuner",
   },
-  { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
+  { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir", dbName: "Dîner" },
   {
     key: "dessert",
     label: "Desserts",
     emoji: "🍰",
     image: catDessert,
     description: "Pancakes, crêpes, gaufres & spécialités",
+    dbName: "Desserts",
   },
   {
     key: "boissons",
@@ -444,6 +447,7 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
     emoji: "☕",
     image: catBoissons,
     description: "Cafés, thés, chocolats, milkshakes & jus",
+    dbName: "Boissons",
   },
 ];
 
