@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
+import imgTchepPlatDuJour from "@/assets/food/tchep-poulet-plat-jour.jpg";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
@@ -557,7 +558,7 @@ const Index = () => {
         name="Tchep Poulet"
         price="2 500 Fr"
         description="Notre célèbre riz au poulet grillé, mijoté avec des légumes frais et des épices africaines."
-        image={imgPouletRoti}
+        image={imgTchepPlatDuJour}
       />
       <AnimatePresence mode="wait">
         {activeCategory && activeCat ? (
