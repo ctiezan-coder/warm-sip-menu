@@ -90,7 +90,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
         {/* Hero image */}
         {imageBlock}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
