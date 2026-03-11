@@ -561,19 +561,6 @@ const Index = () => {
   return (
     <CartProvider>
     <div className="min-h-screen chalkboard-bg">
-      <PlatDuJourPopup
-        name="TCHEP"
-        price="2 500 Fr"
-        description="Notre célèbre thiéboudienne, mijotée avec des légumes frais et des épices africaines."
-        image={imgTchepPlatDuJour}
-        variants={[
-          { label: "Tchep Poisson", price: "2 500 Fr" },
-          { label: "Tchep Poulet", price: "2 000 Fr" },
-          { label: "Tchep Boulette", price: "2 000 Fr" },
-          { label: "Tchep au Mouton", price: "2 500 Fr" },
-          { label: "Tchep au Bœuf", price: "2 500 Fr" },
-        ]}
-      />
       <AnimatePresence mode="wait">
         {activeCategory && activeCat ? (
           <motion.div
