@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
 import { useSectionImages } from "@/hooks/useSectionImages";
 import { useMenuData, LiveMenuData } from "@/hooks/useMenuData";
@@ -415,13 +416,14 @@ const MenuWithSupplements = ({ children }: { children: React.ReactNode }) => (
 
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
-const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
+const defaultCategories: { key: CategoryKey; label: string; emoji: string; image: string; description: string; dbName: string }[] = [
   {
     key: "petit-dejeuner",
     label: "Petit Déjeuner",
     emoji: "🍳",
     image: catPetitDej,
     description: "Déj fermier, crêpes salées & sucrées",
+    dbName: "Petit Déjeuner",
   },
   {
     key: "dejeuner",
@@ -429,14 +431,16 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
     emoji: "🍛",
     image: catDejeuner,
     description: "Sauce Feuille, Poulet Rôti, CHAWARMA & Burgers",
+    dbName: "Déjeuner",
   },
-  { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
+  { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir", dbName: "Dîner" },
   {
     key: "dessert",
     label: "Desserts",
     emoji: "🍰",
     image: catDessert,
     description: "Pancakes, crêpes, gaufres & spécialités",
+    dbName: "Desserts",
   },
   {
     key: "boissons",
@@ -444,6 +448,7 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
     emoji: "☕",
     image: catBoissons,
     description: "Cafés, thés, chocolats, milkshakes & jus",
+    dbName: "Boissons",
   },
 ];
 
@@ -748,9 +753,38 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
+  const [liveCategories, setLiveCategories] = useState<Record<string, { description?: string; emoji?: string }>>({});
   const liveData = useMenuData();
   const { selections: dailySelections } = useDailySelections();
   const { getSectionImage } = useSectionImages();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await supabase.from("menu_categories").select("name, description, emoji");
+      if (!data) return;
+      const map: Record<string, { description?: string; emoji?: string }> = {};
+      data.forEach((c) => {
+        map[c.name] = { description: c.description ?? undefined, emoji: c.emoji ?? undefined };
+      });
+      setLiveCategories(map);
+    };
+    fetchCategories();
+
+    const channel = supabase
+      .channel("menu-categories-live")
+      .on("postgres_changes", { event: "*", schema: "public", table: "menu_categories" }, fetchCategories)
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, []);
+
+  const categories = defaultCategories.map((cat) => {
+    const live = liveCategories[cat.dbName];
+    return {
+      ...cat,
+      description: live?.description ?? cat.description,
+      emoji: live?.emoji ?? cat.emoji,
+    };
+  });
 
   const activeCat = categories.find((c) => c.key === activeCategory);
 
