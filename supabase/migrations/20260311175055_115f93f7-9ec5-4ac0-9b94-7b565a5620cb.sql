@@ -1,0 +1,1 @@
+ALTER TABLE public.menu_sections ADD COLUMN image_url text;

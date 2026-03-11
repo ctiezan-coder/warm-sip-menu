@@ -35,7 +35,9 @@ const Admin = () => {
 
   // Form states
   const [itemForm, setItemForm] = useState({ name: "", price: "", emoji: "", description: "", section_id: "", sort_order: 0 });
-  const [sectionForm, setSectionForm] = useState({ name: "", category_id: "", sort_order: 0 });
+  const [sectionForm, setSectionForm] = useState({ name: "", category_id: "", sort_order: 0, image_url: "" });
+  const [sectionImageFile, setSectionImageFile] = useState<File | null>(null);
+  const [sectionImagePreview, setSectionImagePreview] = useState<string | null>(null);
   const [categoryForm, setCategoryForm] = useState({ name: "", emoji: "", description: "", sort_order: 0 });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -128,24 +130,44 @@ const Admin = () => {
 
   // ── Section CRUD ──
   const openSectionDialog = (catId: string, sec?: MenuSection) => {
+    setSectionImageFile(null);
+    setSectionImagePreview(null);
     if (sec) {
       setEditingSection(sec);
-      setSectionForm({ name: sec.name, category_id: sec.category_id, sort_order: sec.sort_order });
+      setSectionForm({ name: sec.name, category_id: sec.category_id, sort_order: sec.sort_order, image_url: (sec as any).image_url || "" });
+      if ((sec as any).image_url) setSectionImagePreview((sec as any).image_url);
     } else {
       setEditingSection(null);
-      setSectionForm({ name: "", category_id: catId, sort_order: sections.filter(s => s.category_id === catId).length });
+      setSectionForm({ name: "", category_id: catId, sort_order: sections.filter(s => s.category_id === catId).length, image_url: "" });
     }
     setSectionDialogOpen(true);
   };
 
+  const handleSectionImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (sectionImagePreview && sectionImagePreview.startsWith("blob:")) URL.revokeObjectURL(sectionImagePreview);
+      setSectionImageFile(file);
+      setSectionImagePreview(URL.createObjectURL(file));
+    }
+  };
+
   const saveSection = async () => {
     if (!sectionForm.name.trim()) { toast.error("Nom requis"); return; }
+    
+    let image_url = sectionForm.image_url || null;
+    if (sectionImageFile) {
+      image_url = await uploadImage(sectionImageFile);
+    }
+    
+    const payload = { name: sectionForm.name, category_id: sectionForm.category_id, sort_order: sectionForm.sort_order, image_url };
+
     if (editingSection) {
-      const { error } = await supabase.from("menu_sections").update(sectionForm).eq("id", editingSection.id);
+      const { error } = await supabase.from("menu_sections").update(payload).eq("id", editingSection.id);
       if (error) { toast.error(error.message); return; }
       toast.success("Section modifiée");
     } else {
-      const { error } = await supabase.from("menu_sections").insert(sectionForm);
+      const { error } = await supabase.from("menu_sections").insert(payload);
       if (error) { toast.error(error.message); return; }
       toast.success("Section ajoutée");
     }
@@ -368,6 +390,25 @@ const Admin = () => {
           <div className="space-y-4">
             <div><Label>Nom</Label><Input value={sectionForm.name} onChange={e => setSectionForm(p => ({ ...p, name: e.target.value }))} placeholder="Cafés ☕" className="bg-secondary border-border" /></div>
             <div><Label>Ordre</Label><Input type="number" value={sectionForm.sort_order} onChange={e => setSectionForm(p => ({ ...p, sort_order: parseInt(e.target.value) || 0 }))} className="bg-secondary border-border" /></div>
+            
+            {/* Image upload */}
+            <div className="space-y-2">
+              <Label>Image</Label>
+              {sectionImagePreview && (
+                <div className="relative w-20 h-20">
+                  <img src={sectionImagePreview} alt="Preview" className="w-20 h-20 rounded-full object-cover border border-primary/30" />
+                  <button onClick={() => { setSectionImageFile(null); setSectionImagePreview(null); setSectionForm(p => ({ ...p, image_url: "" })); }} className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full p-0.5">
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+              <label className="flex items-center gap-2 cursor-pointer text-sm text-primary hover:underline">
+                <Upload className="w-4 h-4" />
+                {sectionImagePreview ? "Changer l'image" : "Ajouter une image"}
+                <input type="file" accept="image/*" onChange={handleSectionImageChange} className="hidden" />
+              </label>
+            </div>
+
             <Button onClick={saveSection} className="w-full bg-primary text-primary-foreground">Enregistrer</Button>
           </div>
         </DialogContent>
