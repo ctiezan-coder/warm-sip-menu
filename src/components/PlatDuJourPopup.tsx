@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShoppingBag, Flame, Star } from "lucide-react";
+import { X, ShoppingBag, Flame, Star, ChevronDown } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
+
+interface TchepVariant {
+  label: string;
+  price: string;
+}
 
 interface PlatDuJourPopupProps {
   name: string;
   price: string;
   description?: string;
   image: string;
+  variants?: TchepVariant[];
 }
 
 const getWhatsAppUrl = (itemName: string, price: string) => {
