@@ -113,7 +113,7 @@ const milkshakes = [
   { name: "Kinder Bueno", price: "3 500 Fr", image: imgMilkshakeKinder },
   { name: "Spéculoos Caramel Beurre Salé", price: "3 500 Fr", image: imgMilkshakeSpeculoos },
   { name: "Chocolat Oreo", price: "3 500 Fr", image: imgMilkshakeOreo },
-  { name: "Coco Bounty", price: "2 500 Fr", image: imgMilkshakeCoco },
+  { name: "Coco Bounty", price: "3 500 Fr", image: imgMilkshakeCoco },
 ];
 const jusNaturel = [
   { name: "Bissap", price: "1 000 Fr", image: imgJusBissap },
