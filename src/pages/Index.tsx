@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
 import { useSectionImages } from "@/hooks/useSectionImages";
+import { useMenuData, LiveMenuData } from "@/hooks/useMenuData";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
@@ -452,15 +452,41 @@ const CategoryContent = ({
   category,
   dailySelections,
   getSectionImage,
-  livePrices,
+  liveData,
 }: {
   category: CategoryKey;
   dailySelections: Record<string, string[]>;
   getSectionImage: (name: string, fallback: string) => string;
-  livePrices: Record<string, string>;
+  liveData: LiveMenuData;
 }) => {
-  const withLivePrices = <T extends { name: string; price: string }>(items: T[]): T[] =>
-    items.map((item) => ({ ...item, price: livePrices[item.name] ?? item.price }));
+  /**
+   * Merges DB data with hardcoded items.
+   * DB provides: name, price, description, emoji (overrides hardcoded).
+   * Hardcoded provides: image (fallback, matched by name).
+   * If DB has items for a section, use DB order; otherwise use hardcoded.
+   */
+  const withLiveData = <T extends { name: string; price: string; image?: string }>(
+    sectionTitle: string,
+    fallbackItems: T[]
+  ): T[] => {
+    const dbItems = liveData[sectionTitle];
+    if (!dbItems || dbItems.length === 0) return fallbackItems;
+
+    // Build image map from hardcoded items
+    const imageMap: Record<string, string | undefined> = {};
+    fallbackItems.forEach((item) => {
+      imageMap[item.name] = (item as any).image;
+    });
+
+    return dbItems.map((dbItem) => ({
+      ...({} as T),
+      name: dbItem.name,
+      price: dbItem.price,
+      description: dbItem.description,
+      emoji: dbItem.emoji,
+      image: imageMap[dbItem.name] ?? fallbackItems[0]?.image,
+    } as unknown as T));
+  };
 
   switch (category) {
     case "petit-dejeuner":
@@ -468,23 +494,23 @@ const CategoryContent = ({
         <div className="space-y-6">
           <MenuSection
             title="Déj Fermier 🍳"
-            items={withLivePrices(dejFermier)}
+            items={withLiveData("Déj Fermier 🍳", dejFermier)}
             delay={0.1}
             backgroundImage={getSectionImage("Déj Fermier 🍳", imgDejFermier)}
             imagePosition="right"
           />
           <MenuSection
             title="Crêpe Salée 🧂"
-            items={withLivePrices(crepesSalees)}
+            items={withLiveData("Crêpe Salée 🧂", crepesSalees)}
             delay={0.15}
             backgroundImage={getSectionImage("Crêpe Salée 🧂", imgCrepeSalee)}
             imagePosition="left"
           />
           <MenuSection
-            title="Crêpe Sucrée 🥞"
-            items={withLivePrices(crepesSucrees)}
+            title="Crêpe Sucrée 🍫"
+            items={withLiveData("Crêpe Sucrée 🍫", crepesSucrees)}
             delay={0.2}
-            backgroundImage={getSectionImage("Crêpe Sucrée 🥞", imgCrepeSucree)}
+            backgroundImage={getSectionImage("Crêpe Sucrée 🍫", imgCrepeSucree)}
             imagePosition="right"
           />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
@@ -492,8 +518,8 @@ const CategoryContent = ({
       );
     case "dejeuner": {
       const dailySections: { key: string; title: string; allItems: typeof tchep; bg: string; pos: "left" | "right"; delay: number }[] = [
-        { key: "yassa", title: "Yassa 🍋", allItems: yassa, bg: getSectionImage("Yassa 🍋", imgYassaPoulet), pos: "left", delay: 0.15 },
-        { key: "mafe", title: "Mafé (Sauce Arachide) 🥜", allItems: mafe, bg: getSectionImage("Mafé (Sauce Arachide) 🥜", imgMafePondeuse), pos: "right", delay: 0.2 },
+        { key: "yassa", title: "Yassa 🍗", allItems: yassa, bg: getSectionImage("Yassa 🍗", imgYassaPoulet), pos: "left", delay: 0.15 },
+        { key: "mafe", title: "Mafé 🥜 — Sauce Arachide", allItems: mafe, bg: getSectionImage("Mafé 🥜 — Sauce Arachide", imgMafePondeuse), pos: "right", delay: 0.2 },
         { key: "sauce-legume", title: "Sauce Légume 🥬", allItems: sauceLegumeDej, bg: getSectionImage("Sauce Légume 🥬", imgSauceLegume), pos: "left", delay: 0.25 },
         { key: "sauce-tomate", title: "Sauce Tomate 🍅", allItems: sauceTomateDej, bg: getSectionImage("Sauce Tomate 🍅", imgSauceTomate), pos: "right", delay: 0.3 },
         { key: "sauce-feuille", title: "Sauce Feuille 🍃", allItems: sauceFeuilleDej, bg: getSectionImage("Sauce Feuille 🍃", imgSauceFeuille), pos: "left", delay: 0.35 },
@@ -503,22 +529,23 @@ const CategoryContent = ({
       return (
         <MenuWithSupplements>
           <MenuSection
-            title="Tchêp 🍚"
-            items={withLivePrices(tchep)}
+            title="Tchêp 🍛"
+            items={withLiveData("Tchêp 🍛", tchep)}
             delay={0.1}
-            backgroundImage={getSectionImage("Tchêp 🍚", imgTchepPoulet)}
+            backgroundImage={getSectionImage("Tchêp 🍛", imgTchepPoulet)}
             imagePosition="right"
           />
           {dailySections.map((sec) => {
+            const liveItems = withLiveData(sec.title, sec.allItems);
             const selectedNames = dailySelections[sec.key];
             if (!selectedNames || selectedNames.length === 0) return null;
-            const filtered = sec.allItems.filter((i) => selectedNames.includes(i.name));
+            const filtered = liveItems.filter((i) => selectedNames.includes(i.name));
             if (filtered.length === 0) return null;
             return (
               <MenuSection
                 key={sec.key}
                 title={sec.title}
-                items={withLivePrices(filtered)}
+                items={filtered}
                 delay={sec.delay}
                 backgroundImage={sec.bg}
                 imagePosition={sec.pos}
@@ -527,21 +554,21 @@ const CategoryContent = ({
           })}
           <MenuSection
             title="Poulet Rôti 🍗"
-            items={withLivePrices(pouletRoti)}
+            items={withLiveData("Poulet Rôti 🍗", pouletRoti)}
             delay={0.45}
             backgroundImage={getSectionImage("Poulet Rôti 🍗", imgPouletRoti)}
             imagePosition="left"
           />
           <MenuSection
             title="CHAWARMA 🌯"
-            items={withLivePrices(chawama)}
+            items={withLiveData("CHAWARMA 🌯", chawama)}
             delay={0.5}
             backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
             title="Burger 🍔"
-            items={withLivePrices(burgers)}
+            items={withLiveData("Burger 🍔", burgers)}
             delay={0.55}
             backgroundImage={getSectionImage("Burger 🍔", imgBurger)}
             imagePosition="left"
@@ -555,28 +582,28 @@ const CategoryContent = ({
         <MenuWithSupplements>
           <MenuSection
             title="Spaghetti Kiosque 🍝"
-            items={withLivePrices(spaghettiKiosque)}
+            items={withLiveData("Spaghetti Kiosque 🍝", spaghettiKiosque)}
             delay={0.1}
             backgroundImage={getSectionImage("Spaghetti Kiosque 🍝", imgSpaghettiKiosque)}
             imagePosition="right"
           />
           <MenuSection
             title="Grill 🐟"
-            items={withLivePrices(grill)}
+            items={withLiveData("Grill 🐟", grill)}
             delay={0.15}
             backgroundImage={getSectionImage("Grill 🐟", imgGrillPoisson)}
             imagePosition="left"
           />
           <MenuSection
             title="CHAWARMA 🌯"
-            items={withLivePrices(chawama)}
+            items={withLiveData("CHAWARMA 🌯", chawama)}
             delay={0.2}
             backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
             title="Burger 🍔"
-            items={withLivePrices(burgers)}
+            items={withLiveData("Burger 🍔", burgers)}
             delay={0.25}
             backgroundImage={getSectionImage("Burger 🍔", imgBurger)}
             imagePosition="left"
@@ -589,35 +616,35 @@ const CategoryContent = ({
         <div className="space-y-6">
           <MenuSection
             title="Pancakes 🥞"
-            items={withLivePrices(pancakes)}
+            items={withLiveData("Pancakes 🥞", pancakes)}
             delay={0.1}
             backgroundImage={getSectionImage("Pancakes 🥞", imgPancakesFruit)}
             imagePosition="right"
           />
           <MenuSection
             title="Pains Perdu 🍞"
-            items={withLivePrices(painsPerdu)}
+            items={withLiveData("Pains Perdu 🍞", painsPerdu)}
             delay={0.15}
             backgroundImage={getSectionImage("Pains Perdu 🍞", imgPainPerduCaramel)}
             imagePosition="left"
           />
           <MenuSection
             title="Croissant Gauffre 🧇"
-            items={withLivePrices(croissantGauffre)}
+            items={withLiveData("Croissant Gauffre 🧇", croissantGauffre)}
             delay={0.2}
             backgroundImage={getSectionImage("Croissant Gauffre 🧇", imgCroissantFruits)}
             imagePosition="right"
           />
           <MenuSection
             title="Crêpes Sucrées 🥞"
-            items={withLivePrices(crepes)}
+            items={withLiveData("Crêpes Sucrées 🥞", crepes)}
             delay={0.25}
             backgroundImage={getSectionImage("Crêpes Sucrées 🥞", imgCrepePralin)}
             imagePosition="left"
           />
           <MenuSection
             title="Dêguê & Lait Caillé 🥛"
-            items={withLivePrices(degue)}
+            items={withLiveData("Dêguê & Lait Caillé 🥛", degue)}
             delay={0.3}
             backgroundImage={getSectionImage("Dêguê & Lait Caillé 🥛", imgDegue)}
             imagePosition="right"
@@ -635,7 +662,7 @@ const CategoryContent = ({
           </div>
           <MenuSection
             title="Cafés ☕"
-            items={withLivePrices(cafeChaud)}
+            items={withLiveData("Cafés ☕", cafeChaud)}
             variant="hot"
             delay={0.1}
             backgroundImage={getSectionImage("Cafés ☕", imgCafeSection)}
@@ -643,7 +670,7 @@ const CategoryContent = ({
           />
           <MenuSection
             title="Thés 🍵"
-            items={withLivePrices(theChaud)}
+            items={withLiveData("Thés 🍵", theChaud)}
             variant="hot"
             delay={0.15}
             backgroundImage={getSectionImage("Thés 🍵", imgTheGingembreMenthe)}
@@ -651,7 +678,7 @@ const CategoryContent = ({
           />
           <MenuSection
             title="Chocolats 🍫"
-            items={withLivePrices(chocolatChaud)}
+            items={withLiveData("Chocolats 🍫", chocolatChaud)}
             variant="hot"
             delay={0.2}
             backgroundImage={getSectionImage("Chocolats 🍫", imgChocolatCrazy)}
@@ -665,7 +692,7 @@ const CategoryContent = ({
           </div>
           <MenuSection
             title="Cafés Glacés ☕"
-            items={withLivePrices(cafeGlace)}
+            items={withLiveData("Cafés Glacés ☕", cafeGlace)}
             variant="cold"
             delay={0.25}
             backgroundImage={getSectionImage("Cafés Glacés ☕", imgCafeGlace)}
@@ -673,7 +700,7 @@ const CategoryContent = ({
           />
           <MenuSection
             title="Thés Froids 🍵"
-            items={withLivePrices(theFroid)}
+            items={withLiveData("Thés Froids 🍵", theFroid)}
             variant="cold"
             delay={0.3}
             backgroundImage={getSectionImage("Thés Froids 🍵", imgTheMojito)}
@@ -681,7 +708,7 @@ const CategoryContent = ({
           />
           <MenuSection
             title="Milkshakes 🥤"
-            items={withLivePrices(milkshakes)}
+            items={withLiveData("Milkshakes 🥤", milkshakes)}
             variant="cold"
             delay={0.35}
             backgroundImage={getSectionImage("Milkshakes 🥤", imgMilkshakeSection)}
@@ -689,7 +716,7 @@ const CategoryContent = ({
           />
           <MenuSection
             title="Jus & Boissons 🧃"
-            items={withLivePrices(jusNaturel)}
+            items={withLiveData("Jus & Boissons 🧃", jusNaturel)}
             delay={0.4}
             backgroundImage={getSectionImage("Jus & Boissons 🧃", imgJusSection)}
             imagePosition="right"
@@ -721,36 +748,9 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
-  const [livePrices, setLivePrices] = useState<Record<string, string>>({});
+  const liveData = useMenuData();
   const { selections: dailySelections } = useDailySelections();
   const { getSectionImage } = useSectionImages();
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchLivePrices = async () => {
-      const { data } = await supabase.from("menu_items").select("name, price");
-      if (!isMounted || !data) return;
-
-      const map: Record<string, string> = {};
-      data.forEach((item) => {
-        map[item.name] = item.price;
-      });
-      setLivePrices(map);
-    };
-
-    fetchLivePrices();
-
-    const channel = supabase
-      .channel("menu-items-live-prices")
-      .on("postgres_changes", { event: "*", schema: "public", table: "menu_items" }, fetchLivePrices)
-      .subscribe();
-
-    return () => {
-      isMounted = false;
-      supabase.removeChannel(channel);
-    };
-  }, []);
 
   const activeCat = categories.find((c) => c.key === activeCategory);
 
@@ -808,7 +808,7 @@ const Index = () => {
 
             <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
               <GoldOrnament />
-              <CategoryContent category={activeCategory} dailySelections={dailySelections} getSectionImage={getSectionImage} livePrices={livePrices} />
+              <CategoryContent category={activeCategory} dailySelections={dailySelections} getSectionImage={getSectionImage} liveData={liveData} />
               <GoldOrnament />
               <p className="font-body text-xs text-muted-foreground text-center italic tracking-wide pt-2">
                 Tous les prix sont en FCFA · Service compris
