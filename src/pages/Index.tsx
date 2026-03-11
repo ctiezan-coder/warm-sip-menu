@@ -762,7 +762,7 @@ const Index = () => {
               </div>
             </div>
 
-            <main className="max-w-4xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
+            <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
               <GoldOrnament />
               <CategoryContent category={activeCategory} dailySelections={dailySelections} />
               <GoldOrnament />
