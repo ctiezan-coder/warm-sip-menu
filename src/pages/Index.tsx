@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
+import { useSectionImages } from "@/hooks/useSectionImages";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
