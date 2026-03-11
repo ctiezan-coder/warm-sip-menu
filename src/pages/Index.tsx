@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
 import { useSectionImages } from "@/hooks/useSectionImages";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
