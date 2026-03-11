@@ -519,6 +519,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
     case "diner":
       return (
         <div className="space-y-6">
+          <SupplementsGrid />
           <MenuSection
             title="Spaghetti Kiosque 🍝"
             items={spaghettiKiosque}
