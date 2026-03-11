@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShoppingBag, Flame, Star, ChevronDown } from "lucide-react";
+import { X, ShoppingBag, Flame, Star, ChevronDown, Plus } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
+import { useCart } from "@/contexts/CartContext";
 
 interface TchepVariant {
   label: string;
