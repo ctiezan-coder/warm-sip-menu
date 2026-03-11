@@ -864,8 +864,12 @@ const Index = () => {
                     <span className="font-body text-xs sm:text-sm text-foreground/80">Livraison</span>
                   </span>
                   <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
-                    <span>🔓</span>
-                    <span className="font-body text-xs sm:text-sm text-foreground/80">Ouvert au public</span>
+                    <span>🎉</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/80">Événements</span>
+                  </span>
+                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                    <span>📧</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/80">info@neriya.ci</span>
                   </span>
                 </div>
               </div>
