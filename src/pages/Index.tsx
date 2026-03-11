@@ -809,7 +809,7 @@ const Index = () => {
 
             <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
               <GoldOrnament />
-              <CategoryContent category={activeCategory} dailySelections={dailySelections} getSectionImage={getSectionImage} livePrices={livePrices} />
+              <CategoryContent category={activeCategory} dailySelections={dailySelections} getSectionImage={getSectionImage} liveData={liveData} />
               <GoldOrnament />
               <p className="font-body text-xs text-muted-foreground text-center italic tracking-wide pt-2">
                 Tous les prix sont en FCFA · Service compris
