@@ -556,6 +556,7 @@ const Index = () => {
   const activeCat = categories.find((c) => c.key === activeCategory);
 
   return (
+    <CartProvider>
     <div className="min-h-screen chalkboard-bg">
       <PlatDuJourPopup
         name="TCHEP"
