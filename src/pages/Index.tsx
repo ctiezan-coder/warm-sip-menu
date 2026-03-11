@@ -324,8 +324,8 @@ const pouletRoti = [
   { name: "1 Poulet Entier", price: "8 000 Fr", image: imgPouletRoti },
 ];
 const chawama = [
-  { name: "Chawama Poulet", price: "2 000 Fr", image: imgChawama },
-  { name: "Chawama Viande", price: "2 500 Fr", image: imgChawama },
+  { name: "CHAWARMA Poulet", price: "2 000 Fr", image: imgChawama },
+  { name: "CHAWARMA Viande", price: "2 500 Fr", image: imgChawama },
 ];
 const burgers = [
   {
@@ -426,7 +426,7 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
     label: "Déjeuner",
     emoji: "🍛",
     image: catDejeuner,
-    description: "Sauce Feuille, Poulet Rôti, Chawama & Burgers",
+    description: "Sauce Feuille, Poulet Rôti, CHAWARMA & Burgers",
   },
   { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir" },
   {
@@ -518,10 +518,10 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
             imagePosition="left"
           />
           <MenuSection
-            title="Chawama 🌯"
+            title="CHAWARMA 🌯"
             items={chawama}
             delay={0.5}
-            backgroundImage={getSectionImage("Chawama 🌯", imgChawama)}
+            backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
@@ -553,10 +553,10 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
             imagePosition="left"
           />
           <MenuSection
-            title="Chawama 🌯"
+            title="CHAWARMA 🌯"
             items={chawama}
             delay={0.2}
-            backgroundImage={getSectionImage("Chawama 🌯", imgChawama)}
+            backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
