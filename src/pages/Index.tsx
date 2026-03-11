@@ -107,12 +107,12 @@ const chocolatChaud = [
   { name: "Crazy Chocolat – Guimauve & Chantilly", price: "3 500 Fr", image: imgChocolatCrazy },
 ];
 const milkshakes = [
-  { name: "Vanille", price: "2 000 Fr", image: imgMilkshakeVanille },
-  { name: "Menthe", price: "2 000 Fr", image: imgMilkshakeMenthe },
+  { name: "Vanille", price: "2 500 Fr", image: imgMilkshakeVanille },
+  { name: "Menthe", price: "2 500 Fr", image: imgMilkshakeMenthe },
   { name: "Fraise", price: "2 500 Fr", emoji: "🍓", image: imgMilkshakeFraise },
-  { name: "Kinder Bueno", price: "2 500 Fr", image: imgMilkshakeKinder },
-  { name: "Spéculoos Caramel Beurre Salé", price: "2 500 Fr", image: imgMilkshakeSpeculoos },
-  { name: "Chocolat Oreo", price: "2 500 Fr", image: imgMilkshakeOreo },
+  { name: "Kinder Bueno", price: "3 500 Fr", image: imgMilkshakeKinder },
+  { name: "Spéculoos Caramel Beurre Salé", price: "3 500 Fr", image: imgMilkshakeSpeculoos },
+  { name: "Chocolat Oreo", price: "3 500 Fr", image: imgMilkshakeOreo },
   { name: "Coco Bounty", price: "2 500 Fr", image: imgMilkshakeCoco },
 ];
 const jusNaturel = [
