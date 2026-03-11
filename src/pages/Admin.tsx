@@ -45,6 +45,17 @@ const Admin = () => {
   useEffect(() => {
     checkAuth();
     fetchData();
+
+    // Realtime sync
+    const channel = supabase
+      .channel("admin-sync")
+      .on("postgres_changes", { event: "*", schema: "public", table: "menu_categories" }, () => fetchData())
+      .on("postgres_changes", { event: "*", schema: "public", table: "menu_sections" }, () => fetchData())
+      .on("postgres_changes", { event: "*", schema: "public", table: "menu_items" }, () => fetchData())
+      .on("postgres_changes", { event: "*", schema: "public", table: "daily_selections" }, () => fetchData())
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
   }, []);
 
   const checkAuth = async () => {
