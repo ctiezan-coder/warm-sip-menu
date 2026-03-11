@@ -504,6 +504,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             backgroundImage={imgBurger}
             imagePosition="left"
           />
+          <SupplementsGrid />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
