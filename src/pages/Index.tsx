@@ -45,8 +45,22 @@ import imgPouletRoti from "@/assets/food/poulet-roti.png";
 import imgChawama from "@/assets/food/chawama.png";
 import imgBurger from "@/assets/food/burger.png";
 import imgSauceFeuille from "@/assets/food/sauce-feuille.png";
+import imgSauceLegume from "@/assets/food/sauce-legume.png";
+import imgSauceTomate from "@/assets/food/sauce-tomate.png";
 import imgSpaghettiKiosque from "@/assets/food/spaghetti-kiosque.png";
 import imgGrillPoisson from "@/assets/food/grill-poisson.png";
+import imgTchepPoulet from "@/assets/food/tchep-poulet.png";
+import imgTchepMouton from "@/assets/food/tchep-mouton.png";
+import imgTchepPoisson from "@/assets/food/tchep-poisson.png";
+import imgTchepBoeuf from "@/assets/food/tchep-boeuf.png";
+import imgTchepBoulette from "@/assets/food/tchep-boulette.png";
+import imgYassaPoulet from "@/assets/food/yassa-poulet.png";
+import imgYassaPoisson from "@/assets/food/yassa-poisson.png";
+import imgYassaMouton from "@/assets/food/yassa-mouton.png";
+import imgMafePondeuse from "@/assets/food/mafe-pondeuse.png";
+import imgMafePoisson from "@/assets/food/mafe-poisson.png";
+import imgSoupePoulet from "@/assets/food/soupe-poulet.png";
+import imgSoupePoisson from "@/assets/food/soupe-poisson.png";
 // Boissons
 import imgCafeSection from "@/assets/food/cafe-section.jpg";
 import imgCafeExpresso from "@/assets/food/cafe-expresso.png";
@@ -256,8 +270,46 @@ const degue = [
   { name: "Dêguê Café Cappuccino", price: "2 000 Fr", image: imgDegue },
   { name: "Dêguê Caramel Granola", price: "2 000 Fr", image: imgDegue },
 ];
+// Déjeuner - Spécialités Sénégalaises
+const tchep = [
+  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr", image: imgTchepMouton },
+  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
+  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
+  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr", image: imgTchepBoeuf },
+  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr", image: imgTchepBoulette },
+];
+const yassa = [
+  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚", image: imgYassaPoisson },
+  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoisson },
+  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚", image: imgYassaPoulet },
+  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoulet },
+  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚", image: imgYassaMouton },
+  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr", image: imgYassaMouton },
+];
+const mafe = [
+  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", image: imgMafePondeuse },
+  { name: "1/2 Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgMafePondeuse },
+  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr", image: imgMafePondeuse },
+  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", image: imgMafePoisson },
+];
+const sauceLegumeDej = [
+  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", image: imgSauceLegume },
+  { name: "1/2 Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgSauceLegume },
+  { name: "1 Pondeuse (riz, Fonio)", price: "9 000 / 11 000 Fr", image: imgSauceLegume },
+  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgSauceLegume },
+];
+const sauceTomateDej = [
+  { name: "Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceTomate },
+];
 const sauceFeuilleDej = [
-  { name: "Sauce Feuille", price: "2 500 Fr", emoji: "🍚", description: "Viande de bœuf", image: imgSauceFeuille },
+  { name: "Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceFeuille },
+];
+const soupeDej = [
+  { name: "1/2 Pondeuse (riz, attiéké)", price: "5 000 Fr", image: imgSoupePoulet },
+  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poulet Chair 1/2 (attiéké, riz)", price: "3 500 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poulet Chair 1 Entier (attiéké, riz)", price: "6 500 Fr", image: imgSoupePoulet },
+  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", image: imgSoupePoisson },
 ];
 const pouletRoti = [
   {
@@ -368,30 +420,72 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
       return (
         <div className="space-y-6">
           <MenuSection
-            title="Sauce Feuille 🍚"
-            items={sauceFeuilleDej}
+            title="Tchêp 🍚"
+            items={tchep}
             delay={0.1}
+            backgroundImage={imgTchepPoulet}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Yassa 🍋"
+            items={yassa}
+            delay={0.15}
+            backgroundImage={imgYassaPoulet}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Mafé (Sauce Arachide) 🥜"
+            items={mafe}
+            delay={0.2}
+            backgroundImage={imgMafePondeuse}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Sauce Légume 🥬"
+            items={sauceLegumeDej}
+            delay={0.25}
+            backgroundImage={imgSauceLegume}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Sauce Tomate 🍅"
+            items={sauceTomateDej}
+            delay={0.3}
+            backgroundImage={imgSauceTomate}
+            imagePosition="right"
+          />
+          <MenuSection
+            title="Sauce Feuille 🍃"
+            items={sauceFeuilleDej}
+            delay={0.35}
             backgroundImage={imgSauceFeuille}
+            imagePosition="left"
+          />
+          <MenuSection
+            title="Soupe 🍲"
+            items={soupeDej}
+            delay={0.4}
+            backgroundImage={imgSoupePoulet}
             imagePosition="right"
           />
           <MenuSection
             title="Poulet Rôti 🍗"
             items={pouletRoti}
-            delay={0.15}
+            delay={0.45}
             backgroundImage={imgPouletRoti}
             imagePosition="left"
           />
           <MenuSection
             title="Chawama 🌯"
             items={chawama}
-            delay={0.2}
+            delay={0.5}
             backgroundImage={imgChawama}
             imagePosition="right"
           />
           <MenuSection
             title="Burger 🍔"
             items={burgers}
-            delay={0.25}
+            delay={0.55}
             backgroundImage={imgBurger}
             imagePosition="left"
           />
