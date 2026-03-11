@@ -752,9 +752,38 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
+  const [liveCategories, setLiveCategories] = useState<Record<string, { description?: string; emoji?: string }>>({});
   const liveData = useMenuData();
   const { selections: dailySelections } = useDailySelections();
   const { getSectionImage } = useSectionImages();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await supabase.from("menu_categories").select("name, description, emoji");
+      if (!data) return;
+      const map: Record<string, { description?: string; emoji?: string }> = {};
+      data.forEach((c) => {
+        map[c.name] = { description: c.description ?? undefined, emoji: c.emoji ?? undefined };
+      });
+      setLiveCategories(map);
+    };
+    fetchCategories();
+
+    const channel = supabase
+      .channel("menu-categories-live")
+      .on("postgres_changes", { event: "*", schema: "public", table: "menu_categories" }, fetchCategories)
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, []);
+
+  const categories = defaultCategories.map((cat) => {
+    const live = liveCategories[cat.dbName];
+    return {
+      ...cat,
+      description: live?.description ?? cat.description,
+      emoji: live?.emoji ?? cat.emoji,
+    };
+  });
 
   const activeCat = categories.find((c) => c.key === activeCategory);
 
