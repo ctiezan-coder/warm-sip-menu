@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 export const DAILY_SECTION_KEYS = ["yassa", "mafe", "sauce-legume", "sauce-tomate", "sauce-feuille", "soupe"];
 
 export function useDailySelections() {
-  const [selections, setSelections] = useState<Record<string, string>>({});
+  const [selections, setSelections] = useState<Record<string, string[]>>({});
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -15,9 +15,10 @@ export function useDailySelections() {
       .eq("selection_date", today)
       .then(({ data }) => {
         if (data) {
-          const map: Record<string, string> = {};
+          const map: Record<string, string[]> = {};
           data.forEach((d: { section_key: string; item_name: string }) => {
-            map[d.section_key] = d.item_name;
+            if (!map[d.section_key]) map[d.section_key] = [];
+            map[d.section_key].push(d.item_name);
           });
           setSelections(map);
         }
