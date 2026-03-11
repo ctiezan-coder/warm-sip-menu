@@ -5,7 +5,7 @@ import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
 import CartFloatingButton from "@/components/CartFloatingButton";
-import { CartProvider } from "@/contexts/CartContext";
+import { CartProvider, useCart } from "@/contexts/CartContext";
 import imgTchepPlatDuJour from "@/assets/food/tchep-poulet-plat-jour.jpg";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
