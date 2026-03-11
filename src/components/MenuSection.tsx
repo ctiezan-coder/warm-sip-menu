@@ -83,7 +83,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
                   </p>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
