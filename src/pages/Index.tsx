@@ -72,6 +72,7 @@ import imgJusBissap from "@/assets/food/jus-bissap.png";
 import imgJusGingembre from "@/assets/food/jus-gingembre.png";
 import imgJusCitron from "@/assets/food/jus-citron.png";
 import imgJusPassion from "@/assets/food/jus-passion.png";
+import imgJusSection from "@/assets/food/jus-section.png";
 import imgJusCocktail from "@/assets/food/jus-cocktail.png";
 import imgEauMinerale from "@/assets/food/eau-minerale.png";
 
@@ -524,7 +525,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
             title="Jus & Boissons 🧃"
             items={jusNaturel}
             delay={0.4}
-            backgroundImage={imgJusCocktail}
+            backgroundImage={imgJusSection}
             imagePosition="right"
           />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
