@@ -448,28 +448,41 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
 ];
 
 // ─── CATEGORY CONTENT ─────────────────────────────────────
-const CategoryContent = ({ category, dailySelections, getSectionImage }: { category: CategoryKey; dailySelections: Record<string, string[]>; getSectionImage: (name: string, fallback: string) => string }) => {
+const CategoryContent = ({
+  category,
+  dailySelections,
+  getSectionImage,
+  livePrices,
+}: {
+  category: CategoryKey;
+  dailySelections: Record<string, string[]>;
+  getSectionImage: (name: string, fallback: string) => string;
+  livePrices: Record<string, string>;
+}) => {
+  const withLivePrices = <T extends { name: string; price: string }>(items: T[]): T[] =>
+    items.map((item) => ({ ...item, price: livePrices[item.name] ?? item.price }));
+
   switch (category) {
     case "petit-dejeuner":
       return (
         <div className="space-y-6">
           <MenuSection
             title="Déj Fermier 🍳"
-            items={dejFermier}
+            items={withLivePrices(dejFermier)}
             delay={0.1}
             backgroundImage={getSectionImage("Déj Fermier 🍳", imgDejFermier)}
             imagePosition="right"
           />
           <MenuSection
             title="Crêpe Salée 🧂"
-            items={crepesSalees}
+            items={withLivePrices(crepesSalees)}
             delay={0.15}
             backgroundImage={getSectionImage("Crêpe Salée 🧂", imgCrepeSalee)}
             imagePosition="left"
           />
           <MenuSection
             title="Crêpe Sucrée 🥞"
-            items={crepesSucrees}
+            items={withLivePrices(crepesSucrees)}
             delay={0.2}
             backgroundImage={getSectionImage("Crêpe Sucrée 🥞", imgCrepeSucree)}
             imagePosition="right"
@@ -491,21 +504,21 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
         <MenuWithSupplements>
           <MenuSection
             title="Tchêp 🍚"
-            items={tchep}
+            items={withLivePrices(tchep)}
             delay={0.1}
             backgroundImage={getSectionImage("Tchêp 🍚", imgTchepPoulet)}
             imagePosition="right"
           />
-          {dailySections.map(sec => {
+          {dailySections.map((sec) => {
             const selectedNames = dailySelections[sec.key];
             if (!selectedNames || selectedNames.length === 0) return null;
-            const filtered = sec.allItems.filter(i => selectedNames.includes(i.name));
+            const filtered = sec.allItems.filter((i) => selectedNames.includes(i.name));
             if (filtered.length === 0) return null;
             return (
               <MenuSection
                 key={sec.key}
                 title={sec.title}
-                items={filtered}
+                items={withLivePrices(filtered)}
                 delay={sec.delay}
                 backgroundImage={sec.bg}
                 imagePosition={sec.pos}
@@ -514,21 +527,21 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
           })}
           <MenuSection
             title="Poulet Rôti 🍗"
-            items={pouletRoti}
+            items={withLivePrices(pouletRoti)}
             delay={0.45}
             backgroundImage={getSectionImage("Poulet Rôti 🍗", imgPouletRoti)}
             imagePosition="left"
           />
           <MenuSection
             title="CHAWARMA 🌯"
-            items={chawama}
+            items={withLivePrices(chawama)}
             delay={0.5}
             backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
             title="Burger 🍔"
-            items={burgers}
+            items={withLivePrices(burgers)}
             delay={0.55}
             backgroundImage={getSectionImage("Burger 🍔", imgBurger)}
             imagePosition="left"
@@ -542,28 +555,28 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
         <MenuWithSupplements>
           <MenuSection
             title="Spaghetti Kiosque 🍝"
-            items={spaghettiKiosque}
+            items={withLivePrices(spaghettiKiosque)}
             delay={0.1}
             backgroundImage={getSectionImage("Spaghetti Kiosque 🍝", imgSpaghettiKiosque)}
             imagePosition="right"
           />
           <MenuSection
             title="Grill 🐟"
-            items={grill}
+            items={withLivePrices(grill)}
             delay={0.15}
             backgroundImage={getSectionImage("Grill 🐟", imgGrillPoisson)}
             imagePosition="left"
           />
           <MenuSection
             title="CHAWARMA 🌯"
-            items={chawama}
+            items={withLivePrices(chawama)}
             delay={0.2}
             backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
             title="Burger 🍔"
-            items={burgers}
+            items={withLivePrices(burgers)}
             delay={0.25}
             backgroundImage={getSectionImage("Burger 🍔", imgBurger)}
             imagePosition="left"
@@ -576,35 +589,35 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
         <div className="space-y-6">
           <MenuSection
             title="Pancakes 🥞"
-            items={pancakes}
+            items={withLivePrices(pancakes)}
             delay={0.1}
             backgroundImage={getSectionImage("Pancakes 🥞", imgPancakesFruit)}
             imagePosition="right"
           />
           <MenuSection
             title="Pains Perdu 🍞"
-            items={painsPerdu}
+            items={withLivePrices(painsPerdu)}
             delay={0.15}
             backgroundImage={getSectionImage("Pains Perdu 🍞", imgPainPerduCaramel)}
             imagePosition="left"
           />
           <MenuSection
             title="Croissant Gauffre 🧇"
-            items={croissantGauffre}
+            items={withLivePrices(croissantGauffre)}
             delay={0.2}
             backgroundImage={getSectionImage("Croissant Gauffre 🧇", imgCroissantFruits)}
             imagePosition="right"
           />
           <MenuSection
             title="Crêpes Sucrées 🥞"
-            items={crepes}
+            items={withLivePrices(crepes)}
             delay={0.25}
             backgroundImage={getSectionImage("Crêpes Sucrées 🥞", imgCrepePralin)}
             imagePosition="left"
           />
           <MenuSection
             title="Dêguê & Lait Caillé 🥛"
-            items={degue}
+            items={withLivePrices(degue)}
             delay={0.3}
             backgroundImage={getSectionImage("Dêguê & Lait Caillé 🥛", imgDegue)}
             imagePosition="right"
@@ -622,7 +635,7 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
           </div>
           <MenuSection
             title="Cafés ☕"
-            items={cafeChaud}
+            items={withLivePrices(cafeChaud)}
             variant="hot"
             delay={0.1}
             backgroundImage={getSectionImage("Cafés ☕", imgCafeSection)}
@@ -630,7 +643,7 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
           />
           <MenuSection
             title="Thés 🍵"
-            items={theChaud}
+            items={withLivePrices(theChaud)}
             variant="hot"
             delay={0.15}
             backgroundImage={getSectionImage("Thés 🍵", imgTheGingembreMenthe)}
@@ -638,7 +651,7 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
           />
           <MenuSection
             title="Chocolats 🍫"
-            items={chocolatChaud}
+            items={withLivePrices(chocolatChaud)}
             variant="hot"
             delay={0.2}
             backgroundImage={getSectionImage("Chocolats 🍫", imgChocolatCrazy)}
@@ -652,7 +665,7 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
           </div>
           <MenuSection
             title="Cafés Glacés ☕"
-            items={cafeGlace}
+            items={withLivePrices(cafeGlace)}
             variant="cold"
             delay={0.25}
             backgroundImage={getSectionImage("Cafés Glacés ☕", imgCafeGlace)}
@@ -660,7 +673,7 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
           />
           <MenuSection
             title="Thés Froids 🍵"
-            items={theFroid}
+            items={withLivePrices(theFroid)}
             variant="cold"
             delay={0.3}
             backgroundImage={getSectionImage("Thés Froids 🍵", imgTheMojito)}
@@ -668,7 +681,7 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
           />
           <MenuSection
             title="Milkshakes 🥤"
-            items={milkshakes}
+            items={withLivePrices(milkshakes)}
             variant="cold"
             delay={0.35}
             backgroundImage={getSectionImage("Milkshakes 🥤", imgMilkshakeSection)}
@@ -676,7 +689,7 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
           />
           <MenuSection
             title="Jus & Boissons 🧃"
-            items={jusNaturel}
+            items={withLivePrices(jusNaturel)}
             delay={0.4}
             backgroundImage={getSectionImage("Jus & Boissons 🧃", imgJusSection)}
             imagePosition="right"
