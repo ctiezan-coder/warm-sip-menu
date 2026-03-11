@@ -553,10 +553,10 @@ const CategoryContent = ({ category, dailySelections, getSectionImage }: { categ
             imagePosition="left"
           />
           <MenuSection
-            title="Chawama 🌯"
+            title="CHAWARMA 🌯"
             items={chawama}
             delay={0.2}
-            backgroundImage={getSectionImage("Chawama 🌯", imgChawama)}
+            backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
