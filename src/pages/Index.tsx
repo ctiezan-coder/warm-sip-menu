@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
+import { useSectionImages } from "@/hooks/useSectionImages";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
@@ -445,7 +446,7 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
 ];
 
 // ─── CATEGORY CONTENT ─────────────────────────────────────
-const CategoryContent = ({ category, dailySelections }: { category: CategoryKey; dailySelections: Record<string, string[]> }) => {
+const CategoryContent = ({ category, dailySelections, getSectionImage }: { category: CategoryKey; dailySelections: Record<string, string[]>; getSectionImage: (name: string, fallback: string) => string }) => {
   switch (category) {
     case "petit-dejeuner":
       return (
@@ -454,35 +455,34 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             title="Déj Fermier 🍳"
             items={dejFermier}
             delay={0.1}
-            backgroundImage={imgDejFermier}
+            backgroundImage={getSectionImage("Déj Fermier 🍳", imgDejFermier)}
             imagePosition="right"
           />
           <MenuSection
             title="Crêpe Salée 🧂"
             items={crepesSalees}
             delay={0.15}
-            backgroundImage={imgCrepeSalee}
+            backgroundImage={getSectionImage("Crêpe Salée 🧂", imgCrepeSalee)}
             imagePosition="left"
           />
           <MenuSection
             title="Crêpe Sucrée 🥞"
             items={crepesSucrees}
             delay={0.2}
-            backgroundImage={imgCrepeSucree}
+            backgroundImage={getSectionImage("Crêpe Sucrée 🥞", imgCrepeSucree)}
             imagePosition="right"
           />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
     case "dejeuner": {
-      // Sections with daily selection: only show if admin selected a dish, and filter to that dish
       const dailySections: { key: string; title: string; allItems: typeof tchep; bg: string; pos: "left" | "right"; delay: number }[] = [
-        { key: "yassa", title: "Yassa 🍋", allItems: yassa, bg: imgYassaPoulet, pos: "left", delay: 0.15 },
-        { key: "mafe", title: "Mafé (Sauce Arachide) 🥜", allItems: mafe, bg: imgMafePondeuse, pos: "right", delay: 0.2 },
-        { key: "sauce-legume", title: "Sauce Légume 🥬", allItems: sauceLegumeDej, bg: imgSauceLegume, pos: "left", delay: 0.25 },
-        { key: "sauce-tomate", title: "Sauce Tomate 🍅", allItems: sauceTomateDej, bg: imgSauceTomate, pos: "right", delay: 0.3 },
-        { key: "sauce-feuille", title: "Sauce Feuille 🍃", allItems: sauceFeuilleDej, bg: imgSauceFeuille, pos: "left", delay: 0.35 },
-        { key: "soupe", title: "Soupe 🍲", allItems: soupeDej, bg: imgSoupePoulet, pos: "right", delay: 0.4 },
+        { key: "yassa", title: "Yassa 🍋", allItems: yassa, bg: getSectionImage("Yassa 🍋", imgYassaPoulet), pos: "left", delay: 0.15 },
+        { key: "mafe", title: "Mafé (Sauce Arachide) 🥜", allItems: mafe, bg: getSectionImage("Mafé (Sauce Arachide) 🥜", imgMafePondeuse), pos: "right", delay: 0.2 },
+        { key: "sauce-legume", title: "Sauce Légume 🥬", allItems: sauceLegumeDej, bg: getSectionImage("Sauce Légume 🥬", imgSauceLegume), pos: "left", delay: 0.25 },
+        { key: "sauce-tomate", title: "Sauce Tomate 🍅", allItems: sauceTomateDej, bg: getSectionImage("Sauce Tomate 🍅", imgSauceTomate), pos: "right", delay: 0.3 },
+        { key: "sauce-feuille", title: "Sauce Feuille 🍃", allItems: sauceFeuilleDej, bg: getSectionImage("Sauce Feuille 🍃", imgSauceFeuille), pos: "left", delay: 0.35 },
+        { key: "soupe", title: "Soupe 🍲", allItems: soupeDej, bg: getSectionImage("Soupe 🍲", imgSoupePoulet), pos: "right", delay: 0.4 },
       ];
 
       return (
@@ -491,7 +491,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             title="Tchêp 🍚"
             items={tchep}
             delay={0.1}
-            backgroundImage={imgTchepPoulet}
+            backgroundImage={getSectionImage("Tchêp 🍚", imgTchepPoulet)}
             imagePosition="right"
           />
           {dailySections.map(sec => {
@@ -514,21 +514,21 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             title="Poulet Rôti 🍗"
             items={pouletRoti}
             delay={0.45}
-            backgroundImage={imgPouletRoti}
+            backgroundImage={getSectionImage("Poulet Rôti 🍗", imgPouletRoti)}
             imagePosition="left"
           />
           <MenuSection
             title="Chawama 🌯"
             items={chawama}
             delay={0.5}
-            backgroundImage={imgChawama}
+            backgroundImage={getSectionImage("Chawama 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
             title="Burger 🍔"
             items={burgers}
             delay={0.55}
-            backgroundImage={imgBurger}
+            backgroundImage={getSectionImage("Burger 🍔", imgBurger)}
             imagePosition="left"
           />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
@@ -542,28 +542,28 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             title="Spaghetti Kiosque 🍝"
             items={spaghettiKiosque}
             delay={0.1}
-            backgroundImage={imgSpaghettiKiosque}
+            backgroundImage={getSectionImage("Spaghetti Kiosque 🍝", imgSpaghettiKiosque)}
             imagePosition="right"
           />
           <MenuSection
             title="Grill 🐟"
             items={grill}
             delay={0.15}
-            backgroundImage={imgGrillPoisson}
+            backgroundImage={getSectionImage("Grill 🐟", imgGrillPoisson)}
             imagePosition="left"
           />
           <MenuSection
             title="Chawama 🌯"
             items={chawama}
             delay={0.2}
-            backgroundImage={imgChawama}
+            backgroundImage={getSectionImage("Chawama 🌯", imgChawama)}
             imagePosition="right"
           />
           <MenuSection
             title="Burger 🍔"
             items={burgers}
             delay={0.25}
-            backgroundImage={imgBurger}
+            backgroundImage={getSectionImage("Burger 🍔", imgBurger)}
             imagePosition="left"
           />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
@@ -576,35 +576,35 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             title="Pancakes 🥞"
             items={pancakes}
             delay={0.1}
-            backgroundImage={imgPancakesFruit}
+            backgroundImage={getSectionImage("Pancakes 🥞", imgPancakesFruit)}
             imagePosition="right"
           />
           <MenuSection
             title="Pains Perdu 🍞"
             items={painsPerdu}
             delay={0.15}
-            backgroundImage={imgPainPerduCaramel}
+            backgroundImage={getSectionImage("Pains Perdu 🍞", imgPainPerduCaramel)}
             imagePosition="left"
           />
           <MenuSection
             title="Croissant Gauffre 🧇"
             items={croissantGauffre}
             delay={0.2}
-            backgroundImage={imgCroissantFruits}
+            backgroundImage={getSectionImage("Croissant Gauffre 🧇", imgCroissantFruits)}
             imagePosition="right"
           />
           <MenuSection
             title="Crêpes Sucrées 🥞"
             items={crepes}
             delay={0.25}
-            backgroundImage={imgCrepePralin}
+            backgroundImage={getSectionImage("Crêpes Sucrées 🥞", imgCrepePralin)}
             imagePosition="left"
           />
           <MenuSection
             title="Dêguê & Lait Caillé 🥛"
             items={degue}
             delay={0.3}
-            backgroundImage={imgDegue}
+            backgroundImage={getSectionImage("Dêguê & Lait Caillé 🥛", imgDegue)}
             imagePosition="right"
           />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
@@ -623,7 +623,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             items={cafeChaud}
             variant="hot"
             delay={0.1}
-            backgroundImage={imgCafeSection}
+            backgroundImage={getSectionImage("Cafés ☕", imgCafeSection)}
             imagePosition="right"
           />
           <MenuSection
@@ -631,7 +631,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             items={theChaud}
             variant="hot"
             delay={0.15}
-            backgroundImage={imgTheGingembreMenthe}
+            backgroundImage={getSectionImage("Thés 🍵", imgTheGingembreMenthe)}
             imagePosition="left"
           />
           <MenuSection
@@ -639,7 +639,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             items={chocolatChaud}
             variant="hot"
             delay={0.2}
-            backgroundImage={imgChocolatCrazy}
+            backgroundImage={getSectionImage("Chocolats 🍫", imgChocolatCrazy)}
             imagePosition="right"
           />
           <div className="chalk-line my-5" />
@@ -653,7 +653,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             items={cafeGlace}
             variant="cold"
             delay={0.25}
-            backgroundImage={imgCafeGlace}
+            backgroundImage={getSectionImage("Cafés Glacés ☕", imgCafeGlace)}
             imagePosition="left"
           />
           <MenuSection
@@ -661,7 +661,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             items={theFroid}
             variant="cold"
             delay={0.3}
-            backgroundImage={imgTheMojito}
+            backgroundImage={getSectionImage("Thés Froids 🍵", imgTheMojito)}
             imagePosition="right"
           />
           <MenuSection
@@ -669,14 +669,14 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             items={milkshakes}
             variant="cold"
             delay={0.35}
-            backgroundImage={imgMilkshakeSection}
+            backgroundImage={getSectionImage("Milkshakes 🥤", imgMilkshakeSection)}
             imagePosition="left"
           />
           <MenuSection
             title="Jus & Boissons 🧃"
             items={jusNaturel}
             delay={0.4}
-            backgroundImage={imgJusSection}
+            backgroundImage={getSectionImage("Jus & Boissons 🧃", imgJusSection)}
             imagePosition="right"
           />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
@@ -707,6 +707,7 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
   const { selections: dailySelections } = useDailySelections();
+  const { getSectionImage } = useSectionImages();
 
   const activeCat = categories.find((c) => c.key === activeCategory);
 
@@ -764,7 +765,7 @@ const Index = () => {
 
             <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
               <GoldOrnament />
-              <CategoryContent category={activeCategory} dailySelections={dailySelections} />
+              <CategoryContent category={activeCategory} dailySelections={dailySelections} getSectionImage={getSectionImage} />
               <GoldOrnament />
               <p className="font-body text-xs text-muted-foreground text-center italic tracking-wide pt-2">
                 Tous les prix sont en FCFA · Service compris
