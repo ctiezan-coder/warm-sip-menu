@@ -388,7 +388,7 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
 ];
 
 // ─── CATEGORY CONTENT ─────────────────────────────────────
-const CategoryContent = ({ category, dailySelections }: { category: CategoryKey; dailySelections: Record<string, string> }) => {
+const CategoryContent = ({ category, dailySelections }: { category: CategoryKey; dailySelections: Record<string, string[]> }) => {
   switch (category) {
     case "petit-dejeuner":
       return (
