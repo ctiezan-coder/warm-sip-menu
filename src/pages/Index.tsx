@@ -417,7 +417,17 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
-    case "dejeuner":
+    case "dejeuner": {
+      // Sections with daily selection: only show if admin selected a dish, and filter to that dish
+      const dailySections: { key: string; title: string; allItems: typeof tchep; bg: string; pos: "left" | "right"; delay: number }[] = [
+        { key: "yassa", title: "Yassa 🍋", allItems: yassa, bg: imgYassaPoulet, pos: "left", delay: 0.15 },
+        { key: "mafe", title: "Mafé (Sauce Arachide) 🥜", allItems: mafe, bg: imgMafePondeuse, pos: "right", delay: 0.2 },
+        { key: "sauce-legume", title: "Sauce Légume 🥬", allItems: sauceLegumeDej, bg: imgSauceLegume, pos: "left", delay: 0.25 },
+        { key: "sauce-tomate", title: "Sauce Tomate 🍅", allItems: sauceTomateDej, bg: imgSauceTomate, pos: "right", delay: 0.3 },
+        { key: "sauce-feuille", title: "Sauce Feuille 🍃", allItems: sauceFeuilleDej, bg: imgSauceFeuille, pos: "left", delay: 0.35 },
+        { key: "soupe", title: "Soupe 🍲", allItems: soupeDej, bg: imgSoupePoulet, pos: "right", delay: 0.4 },
+      ];
+
       return (
         <div className="space-y-6">
           <MenuSection
@@ -427,48 +437,22 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             backgroundImage={imgTchepPoulet}
             imagePosition="right"
           />
-          <MenuSection
-            title="Yassa 🍋"
-            items={yassa}
-            delay={0.15}
-            backgroundImage={imgYassaPoulet}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Mafé (Sauce Arachide) 🥜"
-            items={mafe}
-            delay={0.2}
-            backgroundImage={imgMafePondeuse}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Sauce Légume 🥬"
-            items={sauceLegumeDej}
-            delay={0.25}
-            backgroundImage={imgSauceLegume}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Sauce Tomate 🍅"
-            items={sauceTomateDej}
-            delay={0.3}
-            backgroundImage={imgSauceTomate}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Sauce Feuille 🍃"
-            items={sauceFeuilleDej}
-            delay={0.35}
-            backgroundImage={imgSauceFeuille}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Soupe 🍲"
-            items={soupeDej}
-            delay={0.4}
-            backgroundImage={imgSoupePoulet}
-            imagePosition="right"
-          />
+          {dailySections.map(sec => {
+            const selectedName = dailySelections[sec.key];
+            if (!selectedName) return null; // Not selected today → hide section
+            const filtered = sec.allItems.filter(i => i.name === selectedName);
+            if (filtered.length === 0) return null;
+            return (
+              <MenuSection
+                key={sec.key}
+                title={sec.title}
+                items={filtered}
+                delay={sec.delay}
+                backgroundImage={sec.bg}
+                imagePosition={sec.pos}
+              />
+            );
+          })}
           <MenuSection
             title="Poulet Rôti 🍗"
             items={pouletRoti}
@@ -493,6 +477,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
+    }
     case "diner":
       return (
         <div className="space-y-6">
