@@ -143,14 +143,31 @@ const Admin = () => {
     setSectionDialogOpen(true);
   };
 
+  const handleSectionImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (sectionImagePreview && sectionImagePreview.startsWith("blob:")) URL.revokeObjectURL(sectionImagePreview);
+      setSectionImageFile(file);
+      setSectionImagePreview(URL.createObjectURL(file));
+    }
+  };
+
   const saveSection = async () => {
     if (!sectionForm.name.trim()) { toast.error("Nom requis"); return; }
+    
+    let image_url = sectionForm.image_url || null;
+    if (sectionImageFile) {
+      image_url = await uploadImage(sectionImageFile);
+    }
+    
+    const payload = { name: sectionForm.name, category_id: sectionForm.category_id, sort_order: sectionForm.sort_order, image_url };
+
     if (editingSection) {
-      const { error } = await supabase.from("menu_sections").update(sectionForm).eq("id", editingSection.id);
+      const { error } = await supabase.from("menu_sections").update(payload).eq("id", editingSection.id);
       if (error) { toast.error(error.message); return; }
       toast.success("Section modifiée");
     } else {
-      const { error } = await supabase.from("menu_sections").insert(sectionForm);
+      const { error } = await supabase.from("menu_sections").insert(payload);
       if (error) { toast.error(error.message); return; }
       toast.success("Section ajoutée");
     }
