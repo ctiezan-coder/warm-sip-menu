@@ -467,6 +467,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
 
       return (
         <div className="space-y-6">
+          <SupplementsGrid />
           <MenuSection
             title="Tchêp 🍚"
             items={tchep}
