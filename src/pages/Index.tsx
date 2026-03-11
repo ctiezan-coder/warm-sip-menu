@@ -557,7 +557,7 @@ const Index = () => {
         name="Tchep Poulet"
         price="2 500 Fr"
         description="Notre célèbre riz au poulet grillé, mijoté avec des légumes frais et des épices africaines."
-        image={imgPouletRoti}
+        image={imgTchepPlatDuJour}
       />
       <AnimatePresence mode="wait">
         {activeCategory && activeCat ? (
