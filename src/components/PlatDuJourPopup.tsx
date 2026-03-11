@@ -26,6 +26,7 @@ const PlatDuJourPopup = ({ name, price, description, image, variants }: PlatDuJo
   const [isOpen, setIsOpen] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState<number>(0);
   const [selectOpen, setSelectOpen] = useState(false);
+  const { addItem, setIsOpen: setCartOpen } = useCart();
 
   const currentPrice = variants && variants.length > 0 ? variants[selectedVariant].price : price;
   const currentLabel = variants && variants.length > 0 ? variants[selectedVariant].label : name;
