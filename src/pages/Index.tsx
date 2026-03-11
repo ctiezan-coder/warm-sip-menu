@@ -525,7 +525,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
             title="Jus & Boissons 🧃"
             items={jusNaturel}
             delay={0.4}
-            backgroundImage={imgJusCocktail}
+            backgroundImage={imgJusSection}
             imagePosition="right"
           />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
