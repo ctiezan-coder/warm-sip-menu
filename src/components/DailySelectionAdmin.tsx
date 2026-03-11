@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Check, CalendarDays } from "lucide-react";
 
-// These must match the section keys used in Index.tsx
 const DAILY_SECTIONS = [
   {
     key: "yassa",
@@ -52,10 +51,9 @@ const DAILY_SECTIONS = [
   },
 ];
 
-type Selection = { section_key: string; item_name: string };
-
 const DailySelectionAdmin = () => {
-  const [selections, setSelections] = useState<Record<string, string>>({});
+  // selections[sectionKey] = Set of selected item names
+  const [selections, setSelections] = useState<Record<string, Set<string>>>({});
   const [saving, setSaving] = useState(false);
   const today = new Date().toISOString().split("T")[0];
 
@@ -69,31 +67,37 @@ const DailySelectionAdmin = () => {
       .select("section_key, item_name")
       .eq("selection_date", today);
     if (data) {
-      const map: Record<string, string> = {};
-      data.forEach((d: Selection) => { map[d.section_key] = d.item_name; });
+      const map: Record<string, Set<string>> = {};
+      data.forEach((d: { section_key: string; item_name: string }) => {
+        if (!map[d.section_key]) map[d.section_key] = new Set();
+        map[d.section_key].add(d.item_name);
+      });
       setSelections(map);
     }
   };
 
   const toggleSelection = (sectionKey: string, itemName: string) => {
-    setSelections(prev => ({
-      ...prev,
-      [sectionKey]: prev[sectionKey] === itemName ? "" : itemName,
-    }));
+    setSelections(prev => {
+      const current = new Set(prev[sectionKey] || []);
+      if (current.has(itemName)) {
+        current.delete(itemName);
+      } else {
+        current.add(itemName);
+      }
+      return { ...prev, [sectionKey]: current };
+    });
   };
 
   const saveSelections = async () => {
     setSaving(true);
-    // Delete today's selections, then insert new ones
     await supabase.from("daily_selections").delete().eq("selection_date", today);
 
-    const inserts = Object.entries(selections)
-      .filter(([, name]) => name)
-      .map(([section_key, item_name]) => ({
-        section_key,
-        item_name,
-        selection_date: today,
-      }));
+    const inserts: { section_key: string; item_name: string; selection_date: string }[] = [];
+    Object.entries(selections).forEach(([section_key, names]) => {
+      names.forEach(item_name => {
+        inserts.push({ section_key, item_name, selection_date: today });
+      });
+    });
 
     if (inserts.length > 0) {
       const { error } = await supabase.from("daily_selections").insert(inserts);
@@ -110,42 +114,48 @@ const DailySelectionAdmin = () => {
         <h2 className="font-display text-lg font-bold text-primary">Menu du Jour — {today}</h2>
       </div>
       <p className="text-sm text-muted-foreground">
-        Sélectionnez un plat par section à afficher aujourd'hui. Les sections sans sélection seront masquées.
+        Sélectionnez les plats à afficher aujourd'hui pour chaque section. Les sections sans sélection seront masquées.
       </p>
 
-      {DAILY_SECTIONS.map(section => (
-        <div key={section.key} className="border border-border rounded-lg overflow-hidden">
-          <div className="bg-secondary/30 p-3">
-            <span className="font-body font-semibold text-sm text-foreground">{section.label}</span>
-            {!selections[section.key] && (
-              <span className="ml-2 text-xs text-muted-foreground italic">(masquée — aucun plat sélectionné)</span>
-            )}
+      {DAILY_SECTIONS.map(section => {
+        const selected = selections[section.key] || new Set();
+        return (
+          <div key={section.key} className="border border-border rounded-lg overflow-hidden">
+            <div className="bg-secondary/30 p-3 flex items-center justify-between">
+              <span className="font-body font-semibold text-sm text-foreground">{section.label}</span>
+              {selected.size === 0 && (
+                <span className="text-xs text-muted-foreground italic">(masquée)</span>
+              )}
+              {selected.size > 0 && (
+                <span className="text-xs text-primary font-medium">{selected.size} plat(s)</span>
+              )}
+            </div>
+            <div className="p-3 space-y-1">
+              {section.items.map(item => {
+                const isSelected = selected.has(item);
+                return (
+                  <button
+                    key={item}
+                    onClick={() => toggleSelection(section.key, item)}
+                    className={`w-full flex items-center gap-3 p-2 rounded-lg text-left text-sm transition-colors ${
+                      isSelected
+                        ? "bg-primary/15 text-primary font-semibold border border-primary/30"
+                        : "hover:bg-secondary/40 text-foreground"
+                    }`}
+                  >
+                    <div className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 ${
+                      isSelected ? "border-primary bg-primary" : "border-muted-foreground/40"
+                    }`}>
+                      {isSelected && <Check className="w-3 h-3 text-primary-foreground" />}
+                    </div>
+                    {item}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-          <div className="p-3 space-y-1">
-            {section.items.map(item => {
-              const isSelected = selections[section.key] === item;
-              return (
-                <button
-                  key={item}
-                  onClick={() => toggleSelection(section.key, item)}
-                  className={`w-full flex items-center gap-3 p-2 rounded-lg text-left text-sm transition-colors ${
-                    isSelected
-                      ? "bg-primary/15 text-primary font-semibold border border-primary/30"
-                      : "hover:bg-secondary/40 text-foreground"
-                  }`}
-                >
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                    isSelected ? "border-primary bg-primary" : "border-muted-foreground/40"
-                  }`}>
-                    {isSelected && <Check className="w-3 h-3 text-primary-foreground" />}
-                  </div>
-                  {item}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      ))}
+        );
+      })}
 
       <Button onClick={saveSelections} disabled={saving} className="w-full bg-primary text-primary-foreground">
         {saving ? "Enregistrement..." : "Enregistrer le menu du jour"}

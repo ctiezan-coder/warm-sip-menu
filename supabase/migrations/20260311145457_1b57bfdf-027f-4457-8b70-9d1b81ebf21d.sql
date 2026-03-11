@@ -1,0 +1,1 @@
+ALTER TABLE public.daily_selections DROP CONSTRAINT daily_selections_section_key_selection_date_key;

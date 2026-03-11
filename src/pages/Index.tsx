@@ -388,7 +388,7 @@ const categories: { key: CategoryKey; label: string; emoji: string; image: strin
 ];
 
 // ─── CATEGORY CONTENT ─────────────────────────────────────
-const CategoryContent = ({ category, dailySelections }: { category: CategoryKey; dailySelections: Record<string, string> }) => {
+const CategoryContent = ({ category, dailySelections }: { category: CategoryKey; dailySelections: Record<string, string[]> }) => {
   switch (category) {
     case "petit-dejeuner":
       return (
@@ -438,9 +438,9 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             imagePosition="right"
           />
           {dailySections.map(sec => {
-            const selectedName = dailySelections[sec.key];
-            if (!selectedName) return null; // Not selected today → hide section
-            const filtered = sec.allItems.filter(i => i.name === selectedName);
+            const selectedNames = dailySelections[sec.key];
+            if (!selectedNames || selectedNames.length === 0) return null;
+            const filtered = sec.allItems.filter(i => selectedNames.includes(i.name));
             if (filtered.length === 0) return null;
             return (
               <MenuSection
