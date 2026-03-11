@@ -467,6 +467,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
 
       return (
         <div className="space-y-6">
+          <SupplementsGrid />
           <MenuSection
             title="Tchêp 🍚"
             items={tchep}
@@ -511,7 +512,6 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             backgroundImage={imgBurger}
             imagePosition="left"
           />
-          <SupplementsGrid />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
@@ -519,6 +519,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
     case "diner":
       return (
         <div className="space-y-6">
+          <SupplementsGrid />
           <MenuSection
             title="Spaghetti Kiosque 🍝"
             items={spaghettiKiosque}
@@ -547,7 +548,6 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             backgroundImage={imgBurger}
             imagePosition="left"
           />
-          <SupplementsGrid />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
