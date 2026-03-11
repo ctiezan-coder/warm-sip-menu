@@ -1,15 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
-import { useSectionImages } from "@/hooks/useSectionImages";
-import { useMenuData, LiveMenuData } from "@/hooks/useMenuData";
+import { useMenuData, LiveSection, LiveCategory } from "@/hooks/useMenuData";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
 import CartFloatingButton from "@/components/CartFloatingButton";
 import { CartProvider, useCart } from "@/contexts/CartContext";
-import imgTchepPlatDuJour from "@/assets/food/tchep-poulet-plat-jour.jpg";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
@@ -17,13 +14,12 @@ import catDejeuner from "@/assets/cat-dejeuner.jpg";
 import catDiner from "@/assets/cat-diner.jpg";
 import catDessert from "@/assets/cat-dessert.jpg";
 import catBoissons from "@/assets/cat-boissons.jpg";
+import MenuSection from "@/components/MenuSection";
+
+// ─── FOOD IMAGE IMPORTS (fallback map) ────────────────────
 import imgCrepeSalee from "@/assets/food/crepe-salee.png";
 import imgDejFermier from "@/assets/food/dej-fermier.png";
 import imgCrepeSucree from "@/assets/food/crepe-sucree.png";
-import MenuSection from "@/components/MenuSection";
-
-// ─── FOOD IMAGES ──────────────────────────────────────────
-// Petit déjeuner / Desserts
 import imgPainPerdu from "@/assets/food/pain-perdu.png";
 import imgPainPerduCaramel from "@/assets/food/pain-perdu-caramel.png";
 import imgFeuilletePain from "@/assets/food/feuillete-pain.png";
@@ -44,7 +40,6 @@ import imgCrepeFettFruits from "@/assets/food/crepe-fettuccine-fruits.png";
 import imgCrepePralin from "@/assets/food/crepe-pralin.png";
 import imgDegue from "@/assets/food/degue.png";
 import imgPainLaitCaille from "@/assets/food/pain-lait-caille.png";
-// Déjeuner / Dîner
 import imgPouletRoti from "@/assets/food/poulet-roti.png";
 import imgChawama from "@/assets/food/chawama.png";
 import imgBurger from "@/assets/food/burger.png";
@@ -63,9 +58,9 @@ import imgYassaPoisson from "@/assets/food/yassa-poisson.png";
 import imgYassaMouton from "@/assets/food/yassa-mouton.png";
 import imgMafePondeuse from "@/assets/food/mafe-pondeuse.png";
 import imgMafePoisson from "@/assets/food/mafe-poisson.png";
+import imgMafeBoeuf from "@/assets/food/mafe-boeuf.png";
 import imgSoupePoulet from "@/assets/food/soupe-poulet.png";
 import imgSoupePoisson from "@/assets/food/soupe-poisson.png";
-// Boissons
 import imgCafeSection from "@/assets/food/cafe-section.jpg";
 import imgCafeExpresso from "@/assets/food/cafe-expresso.png";
 import imgCafeLatte from "@/assets/food/cafe-latte.png";
@@ -94,267 +89,112 @@ import imgJusSection from "@/assets/food/jus-section.png";
 import imgJusCocktail from "@/assets/food/jus-cocktail.png";
 import imgEauMinerale from "@/assets/food/eau-minerale.png";
 
-// ─── DATA ─────────────────────────────────────────────────
-const cafeChaud = [
-  { name: "Expresso", price: "500 Fr", image: imgCafeExpresso },
-  { name: "Double Expresso", price: "1 000 Fr", image: imgCafeExpresso },
-  { name: "Americano", price: "1 000 Fr", image: imgCafeExpresso },
-  { name: "Café Latté", price: "1 500 Fr", image: imgCafeLatte },
-  { name: "Cappuccino", price: "1 500 Fr", image: imgCappuccino },
-  { name: "Moca", price: "2 000 Fr", image: imgCafeMoca },
-];
-const cafeGlace = [
-  { name: "Americano", price: "2 000 Fr", image: imgCafeGlace },
-  { name: "Café Latté", price: "2 500 Fr", image: imgCafeGlace },
-  { name: "Caramel Expresso", price: "2 500 Fr", image: imgCafeGlace },
-  { name: "Moca", price: "2 500 Fr", image: imgCafeMoca },
-  { name: "Café Latté Caramel Spéculoos", price: "3 000 Fr", image: imgCafeCaramelSpeculoos },
-];
-const theChaud = [
-  { name: "Thé Lipton", price: "500 Fr", image: imgTheChaud },
-  { name: "Thé Infusion Neriya", price: "1 000 Fr", image: imgTheChaud },
-  { name: "Thé Infusion Gingembre Menthe", price: "1 500 Fr", image: imgTheGingembreMenthe },
-];
-const theFroid = [
-  { name: "Thé Mojito Citron", price: "1 500 Fr", emoji: "🍋", image: imgTheMojito },
-  { name: "Thé Mojito Pêche", price: "1 500 Fr", emoji: "🍑", image: imgTheMojito },
-  { name: "Thé Mojito Fraise", price: "1 500 Fr", emoji: "🍓", image: imgTheMojito },
-  { name: "Thé Mojito Orange", price: "1 500 Fr", emoji: "🍊", image: imgTheMojito },
-  { name: "Thé Fruit de la Passion Coco", price: "2 000 Fr", emoji: "🥥", image: imgJusPassion },
-];
-const chocolatChaud = [
-  { name: "Chocolat Chaud Classique", price: "2 000 Fr", image: imgChocolatChaud },
-  { name: "Chocolat Chaud Chantilly", price: "2 500 Fr", image: imgChocolatChaud },
-  { name: "Crazy Chocolat – Guimauve & Chantilly", price: "3 500 Fr", image: imgChocolatCrazy },
-];
-const milkshakes = [
-  { name: "Vanille", price: "2 500 Fr", image: imgMilkshakeVanille },
-  { name: "Menthe", price: "2 500 Fr", image: imgMilkshakeMenthe },
-  { name: "Fraise", price: "2 500 Fr", emoji: "🍓", image: imgMilkshakeFraise },
-  { name: "Kinder Bueno", price: "3 500 Fr", image: imgMilkshakeKinder },
-  { name: "Spéculoos Caramel Beurre Salé", price: "3 500 Fr", image: imgMilkshakeSpeculoos },
-  { name: "Chocolat Oreo", price: "3 500 Fr", image: imgMilkshakeOreo },
-  { name: "Coco Bounty", price: "3 500 Fr", image: imgMilkshakeCoco },
-];
-const jusNaturel = [
-  { name: "Bissap", price: "1 000 Fr", image: imgJusBissap },
-  { name: "Gingembre", price: "1 000 Fr", image: imgJusGingembre },
-  { name: "Citron", price: "1 000 Fr", image: imgJusCitron },
-  { name: "Sucrerie", price: "1 000 Fr", image: imgJusGingembre },
-  { name: "Eau Minérale", price: "1 000 Fr", image: imgEauMinerale },
-  { name: "Passion (selon saison)", price: "1 500 / 2 000 Fr", image: imgJusPassion },
-  { name: "Cocktail de Fruits", price: "2 000 Fr", image: imgJusCocktail },
-];
-// Petit déjeuner - Déj Fermier
-const dejFermier = [
-  { name: "Café + Omelette", price: "1 500 Fr", image: imgDejFermier },
-  { name: "Café + Œuf au Plat", price: "1 500 Fr", image: imgDejFermier },
-  { name: "Café + Œuf au Plat (Jambon, Fromage)", price: "3 000 Fr", image: imgDejFermier },
-  {
-    name: "Café + Omelette Farcie",
-    price: "3 500 Fr",
-    description: "Viande hachée, champignons, fromage",
-    image: imgDejFermier,
-  },
-];
-// Petit déjeuner - Crêpes salées
-const crepesSalees = [
-  { name: "Crêpe Fromage", price: "2 000 Fr", description: "Sauté de légumes", image: imgCrepeSalee },
-  { name: "Crêpe Jambon de Dinde", price: "2 500 Fr", description: "Fromage, légumes sautés", image: imgCrepeSalee },
-  {
-    name: "Crêpe Viande Hachée",
-    price: "3 000 Fr",
-    description: "Fromage, champignons, légumes confits",
-    image: imgCrepeSalee,
-  },
-  {
-    name: "Crêpe Blanc de Poulet",
-    price: "3 000 Fr",
-    description: "Fromage, champignons, légumes confits",
-    image: imgCrepeSalee,
-  },
-];
-// Crêpes sucrées (petit déj)
-const crepesSucrees = [
-  { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr", image: imgCrepeNature },
-  { name: "Crêpe Nutella", price: "1 500 Fr", image: imgCrepeNutella },
-  {
-    name: "Crêpe Fettuccine Nutella",
-    price: "3 000 Fr",
-    description: "Nutella, boule de glace, coulis de chocolat",
-    image: imgCrepeFettNutella,
-  },
-  {
-    name: "Crêpe Fettuccine Oreo",
-    price: "4 000 Fr",
-    description: "Biscuits Oreo, boule de glace, coulis de chocolat",
-    image: imgCrepeFettOreo,
-  },
-  {
-    name: "Crêpe Fettuccine Spéculoos",
-    price: "4 000 Fr",
-    description: "Biscuits spéculoos, boule de glace, coulis de chocolat",
-    image: imgCrepeFettSpeculoos,
-  },
-  {
-    name: "Crêpe Fettuccine Fruits Saisonniers",
-    price: "5 500 Fr",
-    description: "Fruits de saison, granulats, boule de glace, coulis aux 3 chocolats",
-    image: imgCrepeFettFruits,
-  },
-  {
-    name: "Crêpe Pralin",
-    price: "6 000 Fr",
-    description: "Crème pâtissière, fruits de saison, biscottes, boule de glace",
-    image: imgCrepePralin,
-  },
-];
-// Desserts
-const painsPerdu = [
-  { name: "Pain Perdu Nature", price: "2 500 Fr", image: imgPainPerdu },
-  { name: "Pain Perdu Caramel (boule de glace)", price: "4 000 Fr", image: imgPainPerduCaramel },
-  {
-    name: "Feuilleté de Pain Fourré",
-    price: "6 000 Fr",
-    description: "Crème pâtissière, boule de glace, fruits, spéculoos",
-    image: imgFeuilletePain,
-  },
-];
-const pancakes = [
-  { name: "Pancakes Nature", price: "2 000 Fr", image: imgPancakesNature },
-  { name: "Pancakes Miel, Caramel ou Sirop de Rabe", price: "2 500 Fr", emoji: "🍯", image: imgPancakesCaramel },
-  { name: "Pancakes Nutella", price: "3 000 Fr", image: imgPancakesNutella },
-  { name: "Pancakes Nutella Oreo", price: "4 000 Fr", image: imgPancakesNutella },
-  { name: "Pancakes Saisonnier (fruit, coulis au choix, boule de glace, spéculoos)", price: "5 000 Fr", image: imgPancakesFruit },
-];
-const croissantGauffre = [
-  { name: "Croissant Gauffre Vanille Spéculoos", price: "2 500 Fr", image: imgCroissantSpeculoos },
-  { name: "Croissant Gauffre Oreo", price: "2 500 Fr", image: imgCroissantOreo },
-  { name: "Croissant Gauffre Fruits Rouges", price: "3 000 Fr", image: imgCroissantFruits },
-  { name: "Croissant Vanille Pistache", price: "2 500 Fr", image: imgCroissantPistache },
-];
-const crepes = [
-  { name: "Crêpe Nature (miel facultatif)", price: "1 000 Fr", image: imgCrepeNature },
-  { name: "Crêpe Nutella", price: "1 500 Fr", image: imgCrepeNutella },
-  {
-    name: "Crêpe Fettuccine Nutella",
-    price: "3 000 Fr",
-    description: "Nutella, boule de glace, coulis chocolat",
-    image: imgCrepeFettNutella,
-  },
-  {
-    name: "Crêpe Fettuccine Oreo",
-    price: "4 000 Fr",
-    description: "Biscuits Oreo, boule de glace, coulis chocolat",
-    image: imgCrepeFettOreo,
-  },
-  {
-    name: "Crêpe Fettuccine Spéculoos",
-    price: "4 000 Fr",
-    description: "Biscuits spéculoos, boule de glace, coulis chocolat",
-    image: imgCrepeFettSpeculoos,
-  },
-  {
-    name: "Crêpe Fettuccine Fruits Saisonniers",
-    price: "5 500 Fr",
-    description: "Fruits, granulats, glace, coulis 3 chocolats",
-    image: imgCrepeFettFruits,
-  },
-  {
-    name: "Crêpe Pralin",
-    price: "6 000 Fr",
-    description: "Crème pâtissière, fruits, biscottes, boule de glace",
-    image: imgCrepePralin,
-  },
-];
-const degue = [
-  { name: "Pain Fourré Lait Caillé", price: "1 500 Fr", image: imgPainLaitCaille },
-  { name: "Pain Fourré Dêguê", price: "1 500 Fr", image: imgPainLaitCaille },
-  { name: "Dêguê au Fruit de la Passion", price: "2 000 Fr", image: imgDegue },
-  { name: "Dêguê au Lait de Coco", price: "2 000 Fr", image: imgDegue },
-  { name: "Dêguê Café Cappuccino", price: "2 000 Fr", image: imgDegue },
-  { name: "Dêguê Caramel Granola", price: "2 000 Fr", image: imgDegue },
-];
-// Déjeuner - Spécialités Sénégalaises
-const tchep = [
-  { name: "Tchêp Mouton", price: "3 500 / 4 000 Fr", image: imgTchepMouton },
-  { name: "Tchêp Poulet", price: "2 000 / 2 500 Fr", image: imgTchepPoulet },
-  { name: "Tchêp Poisson", price: "2 000 / 2 500 Fr", image: imgTchepPoisson },
-  { name: "Tchêp Viande de Bœuf", price: "2 500 / 3 000 Fr", image: imgTchepBoeuf },
-  { name: "Tchêp Boulette de Viande", price: "2 500 / 3 000 Fr", image: imgTchepBoulette },
-];
-const yassa = [
-  { name: "Yassa Poisson Riz", price: "2 500 / 3 000 Fr", emoji: "🍚", image: imgYassaPoisson },
-  { name: "Yassa Poisson Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoisson },
-  { name: "Yassa Poulet Riz", price: "2 500 Fr", emoji: "🍚", image: imgYassaPoulet },
-  { name: "Yassa Poulet Fonio", price: "3 000 / 3 500 Fr", image: imgYassaPoulet },
-  { name: "Yassa Mouton Riz", price: "3 500 / 4 500 Fr", emoji: "🍚", image: imgYassaMouton },
-  { name: "Yassa Mouton Fonio", price: "4 000 / 5 000 Fr", image: imgYassaMouton },
-];
-const mafe = [
-  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", image: imgMafePondeuse },
-  { name: "1/2 Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgMafePondeuse },
-  { name: "1 Pondeuse Entière (riz ou Fonio)", price: "9 000 / 11 000 Fr", image: imgMafePondeuse },
-  { name: "Poisson Fumé (riz ou Fonio)", price: "2 500 / 3 500 Fr", image: imgMafePoisson },
-];
-const sauceLegumeDej = [
-  { name: "Pondeuse Fumée (riz ou Fonio)", price: "3 000 / 3 500 Fr", image: imgSauceLegume },
-  { name: "1/2 Pondeuse Fumée (riz ou Fonio)", price: "4 500 / 6 000 Fr", image: imgSauceLegume },
-  { name: "1 Pondeuse (riz, Fonio)", price: "9 000 / 11 000 Fr", image: imgSauceLegume },
-  { name: "Viande de Bœuf Fumée (riz / Fonio)", price: "2 500 / 3 500 Fr", image: imgSauceLegume },
-];
-const sauceTomateDej = [
-  { name: "Boulette de Viande Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceTomate },
-];
-const sauceFeuilleDej = [
-  { name: "Viande de Bœuf Riz", price: "2 500 Fr", emoji: "🍚", image: imgSauceFeuille },
-];
-const soupeDej = [
-  { name: "1/2 Pondeuse (riz, attiéké)", price: "5 000 Fr", image: imgSoupePoulet },
-  { name: "1 Pondeuse Entière (riz, attiéké)", price: "9 000 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poulet Chair 1/2 (attiéké, riz)", price: "3 500 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poulet Chair 1 Entier (attiéké, riz)", price: "6 500 Fr", image: imgSoupePoulet },
-  { name: "Soupe Poisson (riz, attiéké)", price: "3 000 / 4 000 / 5 000 Fr", image: imgSoupePoisson },
-];
-const pouletRoti = [
-  {
-    name: "1/4 Poulet Rôti",
-    price: "2 500 Fr",
-    description: "Pomme de terre sautées, salade 🥗",
-    image: imgPouletRoti,
-  },
-  { name: "1/2 Poulet Rôti", price: "4 000 Fr", description: "Pomme de terre sautées", image: imgPouletRoti },
-  { name: "1 Poulet Entier", price: "8 000 Fr", image: imgPouletRoti },
-];
-const chawama = [
-  { name: "CHAWARMA Poulet", price: "2 000 Fr", image: imgChawama },
-  { name: "CHAWARMA Viande", price: "2 500 Fr", image: imgChawama },
-];
-const burgers = [
-  {
-    name: "Cheese Burger",
-    price: "4 000 Fr",
-    description: "1 steak, 1 œuf, oignon confit, 1 fromage, frites, cornichons, tomates, salade",
-    image: imgBurger,
-  },
-  {
-    name: "Burger NERIYA",
-    price: "8 000 Fr",
-    description: "2 steaks, 3 fromages, 2 œufs, oignons confits, salade, tomates, cornichons, frites",
-    image: imgBurger,
-  },
-];
-// Dîner
-const spaghettiKiosque = [
-  { name: "Spaghetti Rognon", price: "1 500 Fr", image: imgSpaghettiKiosque },
-  { name: "Spaghetti Viande de Bœuf", price: "2 000 Fr", image: imgSpaghettiKiosque },
-  { name: "Spaghetti Poulet", price: "2 000 Fr", image: imgSpaghettiKiosque },
-];
-const grill = [
-  { name: "Sole Braisé", price: "Sur demande", image: imgGrillPoisson },
-  { name: "Thon Frit", price: "1 500 / 2 000 / 2 500 / 3 000 Fr", image: imgGrillPoisson },
-  { name: "Sosso Frit", price: "Sur demande", image: imgGrillPoisson },
-];
+// ─── IMAGE FALLBACK MAPS ─────────────────────────────────
+// Section name → fallback hero image
+const sectionImageFallback: Record<string, string> = {
+  "Déj Fermier 🍳": imgDejFermier,
+  "Crêpe Salée 🧂": imgCrepeSalee,
+  "Crêpe Sucrée 🍫": imgCrepeSucree,
+  "Tchêp 🍛": imgTchepPoulet,
+  "Yassa 🍗": imgYassaPoulet,
+  "Mafé 🥜 — Sauce Arachide": imgMafePondeuse,
+  "Sauce Légume 🥬": imgSauceLegume,
+  "Sauce Tomate 🍅": imgSauceTomate,
+  "Sauce Feuille 🍃": imgSauceFeuille,
+  "Soupe 🍲": imgSoupePoulet,
+  "Poulet Rôti 🍗": imgPouletRoti,
+  "CHAWARMA 🌯": imgChawama,
+  "Burger 🍔": imgBurger,
+  "Spaghetti Kiosque 🍝": imgSpaghettiKiosque,
+  "Grill 🐟": imgGrillPoisson,
+  "Pancakes 🥞": imgPancakesFruit,
+  "Pains Perdu 🍞": imgPainPerduCaramel,
+  "Croissant Gauffre 🧇": imgCroissantFruits,
+  "Crêpes Sucrées 🥞": imgCrepePralin,
+  "Dêguê & Lait Caillé 🥛": imgDegue,
+  "Cafés ☕": imgCafeSection,
+  "Thés 🍵": imgTheGingembreMenthe,
+  "Chocolats 🍫": imgChocolatCrazy,
+  "Cafés Glacés ☕": imgCafeGlace,
+  "Thés Froids 🍵": imgTheMojito,
+  "Milkshakes 🥤": imgMilkshakeSection,
+  "Jus & Boissons 🧃": imgJusSection,
+};
+
+// Item name → fallback item image
+const itemImageFallback: Record<string, string> = {
+  "Expresso": imgCafeExpresso, "Double Expresso": imgCafeExpresso, "Americano": imgCafeExpresso,
+  "Café Latté": imgCafeLatte, "Cappuccino": imgCappuccino, "Moca": imgCafeMoca,
+  "Caramel Expresso": imgCafeGlace, "Café Latté Caramel Spéculoos": imgCafeCaramelSpeculoos,
+  "Thé Lipton": imgTheChaud, "Thé Infusion Neriya": imgTheChaud, "Thé Infusion Gingembre Menthe": imgTheGingembreMenthe,
+  "Thé Mojito Citron": imgTheMojito, "Thé Mojito Pêche": imgTheMojito, "Thé Mojito Fraise": imgTheMojito,
+  "Thé Mojito Orange": imgTheMojito, "Thé Fruit de la Passion Coco": imgJusPassion,
+  "Chocolat Chaud Classique": imgChocolatChaud, "Chocolat Chaud Chantilly": imgChocolatChaud,
+  "Crazy Chocolat – Guimauve & Chantilly": imgChocolatCrazy,
+  "Vanille": imgMilkshakeVanille, "Menthe": imgMilkshakeMenthe, "Fraise": imgMilkshakeFraise,
+  "Kinder Bueno": imgMilkshakeKinder, "Spéculoos Caramel Beurre Salé": imgMilkshakeSpeculoos,
+  "Chocolat Oreo": imgMilkshakeOreo, "Coco Bounty": imgMilkshakeCoco,
+  "Bissap": imgJusBissap, "Gingembre": imgJusGingembre, "Citron": imgJusCitron,
+  "Sucrerie": imgJusGingembre, "Eau Minérale": imgEauMinerale, "Passion (selon saison)": imgJusPassion,
+  "Cocktail de Fruits": imgJusCocktail,
+  "Café + Omelette": imgDejFermier, "Café + Œuf au Plat": imgDejFermier,
+  "Café + Œuf au Plat (Jambon, Fromage)": imgDejFermier, "Café + Omelette Farcie": imgDejFermier,
+  "Crêpe Fromage": imgCrepeSalee, "Crêpe Jambon de Dinde": imgCrepeSalee,
+  "Crêpe Viande Hachée": imgCrepeSalee, "Crêpe Blanc de Poulet": imgCrepeSalee,
+  "Crêpe Nature (miel facultatif)": imgCrepeNature, "Crêpe Nutella": imgCrepeNutella,
+  "Crêpe Fettuccine Nutella": imgCrepeFettNutella, "Crêpe Fettuccine Oreo": imgCrepeFettOreo,
+  "Crêpe Fettuccine Spéculoos": imgCrepeFettSpeculoos, "Crêpe Fettuccine Fruits Saisonniers": imgCrepeFettFruits,
+  "Crêpe Pralin": imgCrepePralin,
+  "Tchêp Mouton": imgTchepMouton, "Tchêp Poulet": imgTchepPoulet, "Tchêp Poisson": imgTchepPoisson,
+  "Tchêp Viande de Bœuf": imgTchepBoeuf, "Tchêp Boulette de Viande": imgTchepBoulette,
+  "Yassa Poisson Riz": imgYassaPoisson, "Yassa Poisson Fonio": imgYassaPoisson,
+  "Yassa Poulet Riz": imgYassaPoulet, "Yassa Poulet Fonio": imgYassaPoulet,
+  "Yassa Mouton Riz": imgYassaMouton, "Yassa Mouton Fonio": imgYassaMouton,
+  "Pondeuse Fumée (riz ou Fonio)": imgMafePondeuse, "1/2 Pondeuse Fumée (riz ou Fonio)": imgMafePondeuse,
+  "1 Pondeuse Entière (riz ou Fonio)": imgMafePondeuse, "Poisson Fumé (riz ou Fonio)": imgMafePoisson,
+  "1 Pondeuse (riz, Fonio)": imgSauceLegume, "Viande de Bœuf Fumée (riz / Fonio)": imgSauceLegume,
+  "Boulette de Viande Riz": imgSauceTomate, "Viande de Bœuf Riz": imgSauceFeuille,
+  "1/2 Pondeuse (riz, attiéké)": imgSoupePoulet, "1 Pondeuse Entière (riz, attiéké)": imgSoupePoulet,
+  "Soupe Poulet Chair 1/2 (attiéké, riz)": imgSoupePoulet, "Soupe Poulet Chair 1 Entier (attiéké, riz)": imgSoupePoulet,
+  "Soupe Poisson (riz, attiéké)": imgSoupePoisson,
+  "1/4 Poulet Rôti": imgPouletRoti, "1/2 Poulet Rôti": imgPouletRoti, "1 Poulet Entier": imgPouletRoti,
+  "CHAWARMA Poulet": imgChawama, "CHAWARMA Viande": imgChawama,
+  "Cheese Burger": imgBurger, "Burger NERIYA": imgBurger,
+  "Spaghetti Rognon": imgSpaghettiKiosque, "Spaghetti Viande de Bœuf": imgSpaghettiKiosque, "Spaghetti Poulet": imgSpaghettiKiosque,
+  "Sole Braisé": imgGrillPoisson, "Thon Frit": imgGrillPoisson, "Sosso Frit": imgGrillPoisson,
+  "Pancakes Nature": imgPancakesNature, "Pancakes Miel, Caramel ou Sirop de Rabe": imgPancakesCaramel,
+  "Pancakes Nutella": imgPancakesNutella, "Pancakes Nutella Oreo": imgPancakesNutella,
+  "Pancakes Saisonnier (fruit, coulis au choix, boule de glace, spéculoos)": imgPancakesFruit,
+  "Pain Perdu Nature": imgPainPerdu, "Pain Perdu Caramel (boule de glace)": imgPainPerduCaramel,
+  "Feuilleté de Pain Fourré": imgFeuilletePain,
+  "Croissant Gauffre Vanille Spéculoos": imgCroissantSpeculoos, "Croissant Gauffre Oreo": imgCroissantOreo,
+  "Croissant Gauffre Fruits Rouges": imgCroissantFruits, "Croissant Vanille Pistache": imgCroissantPistache,
+  "Pain Fourré Lait Caillé": imgPainLaitCaille, "Pain Fourré Dêguê": imgPainLaitCaille,
+  "Dêguê au Fruit de la Passion": imgDegue, "Dêguê au Lait de Coco": imgDegue,
+  "Dêguê Café Cappuccino": imgDegue, "Dêguê Caramel Granola": imgDegue,
+};
+
+// Category name → fallback category image
+const categoryImageFallback: Record<string, string> = {
+  "Petit Déjeuner": catPetitDej,
+  "Déjeuner": catDejeuner,
+  "Dîner": catDiner,
+  "Desserts": catDessert,
+  "Boissons": catBoissons,
+};
+
+// Daily-selection section key mapping (section name → daily key)
+const sectionToDailyKey: Record<string, string> = {
+  "Yassa 🍗": "yassa",
+  "Mafé 🥜 — Sauce Arachide": "mafe",
+  "Sauce Légume 🥬": "sauce-legume",
+  "Sauce Tomate 🍅": "sauce-tomate",
+  "Sauce Feuille 🍃": "sauce-feuille",
+  "Soupe 🍲": "soupe",
+};
+
+// Sections that need the supplements sidebar
+const categoriesWithSupplements = ["Déjeuner", "Dîner"];
 
 // Suppléments & Accompagnements
 const supplements = [
@@ -402,7 +242,6 @@ const SupplementsGrid = () => {
   );
 };
 
-// Wrapper that places supplements as sticky sidebar on desktop
 const MenuWithSupplements = ({ children }: { children: React.ReactNode }) => (
   <div className="flex flex-col lg:flex-row gap-6 items-start">
     <div className="flex-1 min-w-0 space-y-6">
@@ -414,322 +253,65 @@ const MenuWithSupplements = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
-
-const defaultCategories: { key: CategoryKey; label: string; emoji: string; image: string; description: string; dbName: string }[] = [
-  {
-    key: "petit-dejeuner",
-    label: "Petit Déjeuner",
-    emoji: "🍳",
-    image: catPetitDej,
-    description: "Déj fermier, crêpes salées & sucrées",
-    dbName: "Petit Déjeuner",
-  },
-  {
-    key: "dejeuner",
-    label: "Déjeuner",
-    emoji: "🍛",
-    image: catDejeuner,
-    description: "Sauce Feuille, Poulet Rôti, CHAWARMA & Burgers",
-    dbName: "Déjeuner",
-  },
-  { key: "diner", label: "Dîner", emoji: "🌙", image: catDiner, description: "Nos plats du soir", dbName: "Dîner" },
-  {
-    key: "dessert",
-    label: "Desserts",
-    emoji: "🍰",
-    image: catDessert,
-    description: "Pancakes, crêpes, gaufres & spécialités",
-    dbName: "Desserts",
-  },
-  {
-    key: "boissons",
-    label: "Boissons",
-    emoji: "☕",
-    image: catBoissons,
-    description: "Cafés, thés, chocolats, milkshakes & jus",
-    dbName: "Boissons",
-  },
-];
-
-// ─── CATEGORY CONTENT ─────────────────────────────────────
+// ─── DYNAMIC CATEGORY CONTENT ─────────────────────────────
 const CategoryContent = ({
   category,
   dailySelections,
-  getSectionImage,
-  liveData,
 }: {
-  category: CategoryKey;
+  category: LiveCategory;
   dailySelections: Record<string, string[]>;
-  getSectionImage: (name: string, fallback: string) => string;
-  liveData: LiveMenuData;
 }) => {
-  /**
-   * Merges DB data with hardcoded items.
-   * DB provides: name, price, description, emoji (overrides hardcoded).
-   * Hardcoded provides: image (fallback, matched by name).
-   * If DB has items for a section, use DB order; otherwise use hardcoded.
-   */
-  const withLiveData = <T extends { name: string; price: string; image?: string }>(
-    sectionTitle: string,
-    fallbackItems: T[]
-  ): T[] => {
-    const dbItems = liveData[sectionTitle];
-    if (!dbItems || dbItems.length === 0) return fallbackItems;
-
-    // Build image map from hardcoded items
-    const imageMap: Record<string, string | undefined> = {};
-    fallbackItems.forEach((item) => {
-      imageMap[item.name] = (item as any).image;
-    });
-
-    return dbItems.map((dbItem) => ({
-      ...({} as T),
-      name: dbItem.name,
-      price: dbItem.price,
-      description: dbItem.description,
-      emoji: dbItem.emoji,
-      image: imageMap[dbItem.name] ?? fallbackItems[0]?.image,
-    } as unknown as T));
+  const getSectionImage = (section: LiveSection): string => {
+    return section.image_url || sectionImageFallback[section.name] || "";
   };
 
-  switch (category) {
-    case "petit-dejeuner":
-      return (
-        <div className="space-y-6">
-          <MenuSection
-            title="Déj Fermier 🍳"
-            items={withLiveData("Déj Fermier 🍳", dejFermier)}
-            delay={0.1}
-            backgroundImage={getSectionImage("Déj Fermier 🍳", imgDejFermier)}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Crêpe Salée 🧂"
-            items={withLiveData("Crêpe Salée 🧂", crepesSalees)}
-            delay={0.15}
-            backgroundImage={getSectionImage("Crêpe Salée 🧂", imgCrepeSalee)}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Crêpe Sucrée 🍫"
-            items={withLiveData("Crêpe Sucrée 🍫", crepesSucrees)}
-            delay={0.2}
-            backgroundImage={getSectionImage("Crêpe Sucrée 🍫", imgCrepeSucree)}
-            imagePosition="right"
-          />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
-        </div>
-      );
-    case "dejeuner": {
-      const dailySections: { key: string; title: string; allItems: typeof tchep; bg: string; pos: "left" | "right"; delay: number }[] = [
-        { key: "yassa", title: "Yassa 🍗", allItems: yassa, bg: getSectionImage("Yassa 🍗", imgYassaPoulet), pos: "left", delay: 0.15 },
-        { key: "mafe", title: "Mafé 🥜 — Sauce Arachide", allItems: mafe, bg: getSectionImage("Mafé 🥜 — Sauce Arachide", imgMafePondeuse), pos: "right", delay: 0.2 },
-        { key: "sauce-legume", title: "Sauce Légume 🥬", allItems: sauceLegumeDej, bg: getSectionImage("Sauce Légume 🥬", imgSauceLegume), pos: "left", delay: 0.25 },
-        { key: "sauce-tomate", title: "Sauce Tomate 🍅", allItems: sauceTomateDej, bg: getSectionImage("Sauce Tomate 🍅", imgSauceTomate), pos: "right", delay: 0.3 },
-        { key: "sauce-feuille", title: "Sauce Feuille 🍃", allItems: sauceFeuilleDej, bg: getSectionImage("Sauce Feuille 🍃", imgSauceFeuille), pos: "left", delay: 0.35 },
-        { key: "soupe", title: "Soupe 🍲", allItems: soupeDej, bg: getSectionImage("Soupe 🍲", imgSoupePoulet), pos: "right", delay: 0.4 },
-      ];
+  const buildItems = (section: LiveSection) =>
+    section.items.map((item) => ({
+      ...item,
+      image: item.image_url || itemImageFallback[item.name],
+    }));
 
-      return (
-        <MenuWithSupplements>
-          <MenuSection
-            title="Tchêp 🍛"
-            items={withLiveData("Tchêp 🍛", tchep)}
-            delay={0.1}
-            backgroundImage={getSectionImage("Tchêp 🍛", imgTchepPoulet)}
-            imagePosition="right"
-          />
-          {dailySections.map((sec) => {
-            const liveItems = withLiveData(sec.title, sec.allItems);
-            const selectedNames = dailySelections[sec.key];
-            if (!selectedNames || selectedNames.length === 0) return null;
-            const filtered = liveItems.filter((i) => selectedNames.includes(i.name));
-            if (filtered.length === 0) return null;
-            return (
-              <MenuSection
-                key={sec.key}
-                title={sec.title}
-                items={filtered}
-                delay={sec.delay}
-                backgroundImage={sec.bg}
-                imagePosition={sec.pos}
-              />
-            );
-          })}
-          <MenuSection
-            title="Poulet Rôti 🍗"
-            items={withLiveData("Poulet Rôti 🍗", pouletRoti)}
-            delay={0.45}
-            backgroundImage={getSectionImage("Poulet Rôti 🍗", imgPouletRoti)}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="CHAWARMA 🌯"
-            items={withLiveData("CHAWARMA 🌯", chawama)}
-            delay={0.5}
-            backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Burger 🍔"
-            items={withLiveData("Burger 🍔", burgers)}
-            delay={0.55}
-            backgroundImage={getSectionImage("Burger 🍔", imgBurger)}
-            imagePosition="left"
-          />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
-        </MenuWithSupplements>
+  const renderSections = () => {
+    const elements: React.ReactNode[] = [];
+
+    category.sections.forEach((section, i) => {
+      const dailyKey = sectionToDailyKey[section.name];
+      let items = buildItems(section);
+
+      // If this section uses daily selections, filter
+      if (dailyKey) {
+        const selectedNames = dailySelections[dailyKey];
+        if (!selectedNames || selectedNames.length === 0) return; // skip if none selected today
+        items = items.filter((item) => selectedNames.includes(item.name));
+        if (items.length === 0) return;
+      }
+
+      elements.push(
+        <MenuSection
+          key={section.id}
+          title={section.name}
+          items={items}
+          delay={0.1 + i * 0.05}
+          backgroundImage={getSectionImage(section)}
+          imagePosition={i % 2 === 0 ? "right" : "left"}
+        />
       );
-    }
-    case "diner":
-      return (
-        <MenuWithSupplements>
-          <MenuSection
-            title="Spaghetti Kiosque 🍝"
-            items={withLiveData("Spaghetti Kiosque 🍝", spaghettiKiosque)}
-            delay={0.1}
-            backgroundImage={getSectionImage("Spaghetti Kiosque 🍝", imgSpaghettiKiosque)}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Grill 🐟"
-            items={withLiveData("Grill 🐟", grill)}
-            delay={0.15}
-            backgroundImage={getSectionImage("Grill 🐟", imgGrillPoisson)}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="CHAWARMA 🌯"
-            items={withLiveData("CHAWARMA 🌯", chawama)}
-            delay={0.2}
-            backgroundImage={getSectionImage("CHAWARMA 🌯", imgChawama)}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Burger 🍔"
-            items={withLiveData("Burger 🍔", burgers)}
-            delay={0.25}
-            backgroundImage={getSectionImage("Burger 🍔", imgBurger)}
-            imagePosition="left"
-          />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
-        </MenuWithSupplements>
-      );
-    case "dessert":
-      return (
-        <div className="space-y-6">
-          <MenuSection
-            title="Pancakes 🥞"
-            items={withLiveData("Pancakes 🥞", pancakes)}
-            delay={0.1}
-            backgroundImage={getSectionImage("Pancakes 🥞", imgPancakesFruit)}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Pains Perdu 🍞"
-            items={withLiveData("Pains Perdu 🍞", painsPerdu)}
-            delay={0.15}
-            backgroundImage={getSectionImage("Pains Perdu 🍞", imgPainPerduCaramel)}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Croissant Gauffre 🧇"
-            items={withLiveData("Croissant Gauffre 🧇", croissantGauffre)}
-            delay={0.2}
-            backgroundImage={getSectionImage("Croissant Gauffre 🧇", imgCroissantFruits)}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Crêpes Sucrées 🥞"
-            items={withLiveData("Crêpes Sucrées 🥞", crepes)}
-            delay={0.25}
-            backgroundImage={getSectionImage("Crêpes Sucrées 🥞", imgCrepePralin)}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Dêguê & Lait Caillé 🥛"
-            items={withLiveData("Dêguê & Lait Caillé 🥛", degue)}
-            delay={0.3}
-            backgroundImage={getSectionImage("Dêguê & Lait Caillé 🥛", imgDegue)}
-            imagePosition="right"
-          />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
-        </div>
-      );
-    case "boissons":
-      return (
-        <div className="space-y-6">
-          <div className="section-title-banner !mb-5 !bg-accent/10 !border-accent/30">
-            <span className="font-display text-lg font-bold uppercase tracking-widest text-accent">
-              🔥 Boissons Chaudes
-            </span>
-          </div>
-          <MenuSection
-            title="Cafés ☕"
-            items={withLiveData("Cafés ☕", cafeChaud)}
-            variant="hot"
-            delay={0.1}
-            backgroundImage={getSectionImage("Cafés ☕", imgCafeSection)}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Thés 🍵"
-            items={withLiveData("Thés 🍵", theChaud)}
-            variant="hot"
-            delay={0.15}
-            backgroundImage={getSectionImage("Thés 🍵", imgTheGingembreMenthe)}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Chocolats 🍫"
-            items={withLiveData("Chocolats 🍫", chocolatChaud)}
-            variant="hot"
-            delay={0.2}
-            backgroundImage={getSectionImage("Chocolats 🍫", imgChocolatCrazy)}
-            imagePosition="right"
-          />
-          <div className="chalk-line my-5" />
-          <div className="section-title-banner !mb-5 !bg-primary/5 !border-primary/30">
-            <span className="font-display text-lg font-bold uppercase tracking-widest text-primary">
-              ❄️ Boissons Froides
-            </span>
-          </div>
-          <MenuSection
-            title="Cafés Glacés ☕"
-            items={withLiveData("Cafés Glacés ☕", cafeGlace)}
-            variant="cold"
-            delay={0.25}
-            backgroundImage={getSectionImage("Cafés Glacés ☕", imgCafeGlace)}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Thés Froids 🍵"
-            items={withLiveData("Thés Froids 🍵", theFroid)}
-            variant="cold"
-            delay={0.3}
-            backgroundImage={getSectionImage("Thés Froids 🍵", imgTheMojito)}
-            imagePosition="right"
-          />
-          <MenuSection
-            title="Milkshakes 🥤"
-            items={withLiveData("Milkshakes 🥤", milkshakes)}
-            variant="cold"
-            delay={0.35}
-            backgroundImage={getSectionImage("Milkshakes 🥤", imgMilkshakeSection)}
-            imagePosition="left"
-          />
-          <MenuSection
-            title="Jus & Boissons 🧃"
-            items={withLiveData("Jus & Boissons 🧃", jusNaturel)}
-            delay={0.4}
-            backgroundImage={getSectionImage("Jus & Boissons 🧃", imgJusSection)}
-            imagePosition="right"
-          />
-          <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
-        </div>
-      );
+    });
+
+    elements.push(
+      <p key="bon-appetit" className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
+    );
+
+    return elements;
+  };
+
+  const withSupplements = categoriesWithSupplements.includes(category.name);
+
+  if (withSupplements) {
+    return <MenuWithSupplements>{renderSections()}</MenuWithSupplements>;
   }
+
+  return <div className="space-y-6">{renderSections()}</div>;
 };
 
 // ─── DECORATIVE ORNAMENT ──────────────────────────────────
@@ -752,49 +334,19 @@ Merci de me confirmer ma commande ! 😊`;
 const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whatsappMessage)}`;
 
 const Index = () => {
-  const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
-  const [liveCategories, setLiveCategories] = useState<Record<string, { description?: string; emoji?: string }>>({});
-  const liveData = useMenuData();
+  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
+  const { categories, loading } = useMenuData();
   const { selections: dailySelections } = useDailySelections();
-  const { getSectionImage } = useSectionImages();
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const { data } = await supabase.from("menu_categories").select("name, description, emoji");
-      if (!data) return;
-      const map: Record<string, { description?: string; emoji?: string }> = {};
-      data.forEach((c) => {
-        map[c.name] = { description: c.description ?? undefined, emoji: c.emoji ?? undefined };
-      });
-      setLiveCategories(map);
-    };
-    fetchCategories();
-
-    const channel = supabase
-      .channel("menu-categories-live")
-      .on("postgres_changes", { event: "*", schema: "public", table: "menu_categories" }, fetchCategories)
-      .subscribe();
-    return () => { supabase.removeChannel(channel); };
-  }, []);
-
-  const categories = defaultCategories.map((cat) => {
-    const live = liveCategories[cat.dbName];
-    return {
-      ...cat,
-      description: live?.description ?? cat.description,
-      emoji: live?.emoji ?? cat.emoji,
-    };
-  });
-
-  const activeCat = categories.find((c) => c.key === activeCategory);
+  const activeCat = categories.find((c) => c.id === activeCategoryId);
 
   return (
     <CartProvider>
     <div className="min-h-screen chalkboard-bg">
       <AnimatePresence mode="wait">
-        {activeCategory && activeCat ? (
+        {activeCategoryId && activeCat ? (
           <motion.div
-            key={activeCategory}
+            key={activeCategoryId}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -802,8 +354,8 @@ const Index = () => {
           >
             <div className="relative h-60 sm:h-80 overflow-hidden">
               <motion.img
-                src={activeCat.image}
-                alt={activeCat.label}
+                src={activeCat.image_url || categoryImageFallback[activeCat.name] || catDejeuner}
+                alt={activeCat.name}
                 className="w-full h-full object-cover"
                 initial={{ scale: 1.1 }}
                 animate={{ scale: 1 }}
@@ -816,7 +368,7 @@ const Index = () => {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                onClick={() => setActiveCategory(null)}
+                onClick={() => setActiveCategoryId(null)}
                 className="absolute top-5 left-5 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-5 py-3 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
               >
                 <ArrowLeft size={18} />
@@ -831,7 +383,7 @@ const Index = () => {
                 >
                   <span className="text-5xl sm:text-6xl block mb-3">{activeCat.emoji}</span>
                   <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
-                    {activeCat.label}
+                    {activeCat.name}
                   </h1>
                   <p className="font-body text-sm sm:text-base text-white/60 mt-3 tracking-wide">
                     {activeCat.description}
@@ -842,7 +394,7 @@ const Index = () => {
 
             <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
               <GoldOrnament />
-              <CategoryContent category={activeCategory} dailySelections={dailySelections} getSectionImage={getSectionImage} liveData={liveData} />
+              <CategoryContent category={activeCat} dailySelections={dailySelections} />
               <GoldOrnament />
               <p className="font-body text-xs text-muted-foreground text-center italic tracking-wide pt-2">
                 Tous les prix sont en FCFA · Service compris
@@ -969,19 +521,19 @@ const Index = () => {
               <div className="grid gap-5 sm:gap-6">
                 {categories.map((cat, i) => (
                   <motion.button
-                    key={cat.key}
+                    key={cat.id}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: "easeOut" }}
                     onClick={() => {
-                      setActiveCategory(cat.key);
+                      setActiveCategoryId(cat.id);
                       window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
                     className="group relative overflow-hidden rounded-2xl h-36 sm:h-40 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <img
-                      src={cat.image}
-                      alt={cat.label}
+                      src={cat.image_url || categoryImageFallback[cat.name] || catDejeuner}
+                      alt={cat.name}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20 group-hover:from-black/70 transition-all duration-500" />
@@ -991,7 +543,7 @@ const Index = () => {
                         <div className="flex items-center gap-3.5">
                           <span className="text-4xl sm:text-5xl drop-shadow-md">{cat.emoji}</span>
                           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
-                            {cat.label}
+                            {cat.name}
                           </h2>
                         </div>
                         <p className="font-body text-sm sm:text-base text-white/55 ml-14 sm:ml-[4rem] tracking-wide">
