@@ -707,6 +707,7 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
   const { selections: dailySelections } = useDailySelections();
+  const { getSectionImage } = useSectionImages();
 
   const activeCat = categories.find((c) => c.key === activeCategory);
 
