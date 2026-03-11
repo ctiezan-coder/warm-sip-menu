@@ -517,7 +517,7 @@ const CategoryContent = ({ category }: { category: CategoryKey }) => {
             items={milkshakes}
             variant="cold"
             delay={0.35}
-            backgroundImage={imgMilkshakeOreo}
+            backgroundImage={imgMilkshakeSection}
             imagePosition="left"
           />
           <MenuSection
