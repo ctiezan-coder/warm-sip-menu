@@ -21,8 +21,13 @@ const getWhatsAppUrl = (itemName: string, price: string) => {
   return `https://wa.me/2250789288202?text=${encodeURIComponent(message)}`;
 };
 
-const PlatDuJourPopup = ({ name, price, description, image }: PlatDuJourPopupProps) => {
+const PlatDuJourPopup = ({ name, price, description, image, variants }: PlatDuJourPopupProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState<number>(0);
+  const [selectOpen, setSelectOpen] = useState(false);
+
+  const currentPrice = variants && variants.length > 0 ? variants[selectedVariant].price : price;
+  const currentLabel = variants && variants.length > 0 ? variants[selectedVariant].label : name;
 
   useEffect(() => {
     const timer = setTimeout(() => setIsOpen(true), 2500);
