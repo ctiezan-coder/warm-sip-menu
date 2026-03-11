@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShoppingBag, Flame, Star, ChevronDown } from "lucide-react";
+import { X, ShoppingBag, Flame, Star, ChevronDown, Plus } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
+import { useCart } from "@/contexts/CartContext";
 
 interface TchepVariant {
   label: string;
@@ -25,6 +26,7 @@ const PlatDuJourPopup = ({ name, price, description, image, variants }: PlatDuJo
   const [isOpen, setIsOpen] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState<number>(0);
   const [selectOpen, setSelectOpen] = useState(false);
+  const { addItem, setIsOpen: setCartOpen } = useCart();
 
   const currentPrice = variants && variants.length > 0 ? variants[selectedVariant].price : price;
   const currentLabel = variants && variants.length > 0 ? variants[selectedVariant].label : name;
@@ -176,12 +178,14 @@ const PlatDuJourPopup = ({ name, price, description, image, variants }: PlatDuJo
                   </p>
                 )}
 
-                {/* Commander button */}
-                <div className="flex items-center justify-center pt-1">
-                  <a
-                    href={getWhatsAppUrl(currentLabel, currentPrice)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div className="flex items-center justify-center gap-4 pt-1">
+                  {/* Add to cart button */}
+                  <button
+                    onClick={() => {
+                      addItem(currentLabel, currentPrice);
+                      setIsOpen(false);
+                      setCartOpen(true);
+                    }}
                     className="group flex flex-col items-center gap-2.5"
                   >
                     <motion.div
@@ -189,22 +193,22 @@ const PlatDuJourPopup = ({ name, price, description, image, variants }: PlatDuJo
                       whileTap={{ scale: 0.92 }}
                       animate={{
                         boxShadow: [
-                          "0 0 20px 0px rgba(37,211,102,0.3)",
-                          "0 0 35px 5px rgba(37,211,102,0.5)",
-                          "0 0 20px 0px rgba(37,211,102,0.3)",
+                          "0 0 20px 0px hsl(42 65% 65% / 0.3)",
+                          "0 0 35px 5px hsl(42 65% 65% / 0.5)",
+                          "0 0 20px 0px hsl(42 65% 65% / 0.3)",
                         ],
                       }}
                       transition={{
                         boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
                       }}
-                      className="w-[72px] h-[72px] rounded-full flex items-center justify-center bg-[#25D366] border-[3px] border-[#25D366]/40 transition-all"
+                      className="w-[72px] h-[72px] rounded-full flex items-center justify-center bg-primary border-[3px] border-primary/40 transition-all"
                     >
-                      <ShoppingBag size={28} className="text-white" />
+                      <Plus size={28} className="text-primary-foreground" />
                     </motion.div>
                     <span className="font-body text-xs font-bold uppercase tracking-[0.15em] text-primary/70 group-hover:text-primary transition-colors">
-                      Commander
+                      Ajouter au panier
                     </span>
-                  </a>
+                  </button>
                 </div>
 
                 {/* Info badges */}

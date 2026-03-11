@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, Plus } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 interface MenuItem {
   name: string;
@@ -21,6 +22,20 @@ interface MenuSectionProps {
 const getWhatsAppUrl = (itemName: string, price: string) => {
   const message = `Bonjour Neriya ! 🍽️ Je souhaite commander :\n\n🍴 *${itemName}* — ${price}\n\nMerci de me confirmer ma commande ! 😊`;
   return `https://wa.me/2250789288202?text=${encodeURIComponent(message)}`;
+};
+
+const AddToCartButton = ({ name, price }: { name: string; price: string }) => {
+  const { addItem } = useCart();
+  return (
+    <button
+      onClick={() => addItem(name, price)}
+      className="ml-1.5 shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary/15 hover:bg-primary/30 border border-primary/20 hover:border-primary/40 text-primary text-[10px] font-body font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
+      title={`Ajouter ${name} au panier`}
+    >
+      <Plus size={12} />
+      <span className="hidden sm:inline">Ajouter</span>
+    </button>
+  );
 };
 
 const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundImage, imagePosition = "right" }: MenuSectionProps) => {
@@ -68,16 +83,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
                   <span className="menu-item-price-v2">
                     {item.price}
                   </span>
-                  <a
-                    href={getWhatsAppUrl(item.name, item.price)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-1.5 shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-[#25D366]/15 hover:bg-[#25D366]/30 border border-[#25D366]/20 hover:border-[#25D366]/40 text-[#25D366] text-[10px] font-body font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
-                    title={`Commander ${item.name}`}
-                  >
-                    <ShoppingBag size={12} />
-                    <span className="hidden sm:inline">Commander</span>
-                  </a>
+                  <AddToCartButton name={item.name} price={item.price} />
                 </div>
                 {item.description && (
                   <p className="menu-item-desc-v2">

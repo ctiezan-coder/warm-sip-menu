@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Star, ShoppingBag } from "lucide-react";
+import { Star, Plus } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 interface SoupeItem {
   name: string;
@@ -14,23 +15,19 @@ interface MenuPlatDuJourSectionProps {
   delay?: number;
 }
 
-const getWhatsAppUrl = (itemName: string, price: string) => {
-  const message = `Bonjour Neriya ! 🍽️ Je souhaite commander :\n\n🍴 *${itemName}* — ${price}\n\nMerci de me confirmer ma commande ! 😊`;
-  return `https://wa.me/2250789288202?text=${encodeURIComponent(message)}`;
+const OrderButton = ({ name, price }: { name: string; price: string }) => {
+  const { addItem } = useCart();
+  return (
+    <button
+      onClick={() => addItem(name, price)}
+      className="ml-1.5 shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary/15 hover:bg-primary/30 border border-primary/20 hover:border-primary/40 text-primary text-[10px] font-body font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
+      title={`Ajouter ${name} au panier`}
+    >
+      <Plus size={12} />
+      <span className="hidden sm:inline">Ajouter</span>
+    </button>
+  );
 };
-
-const OrderButton = ({ name, price }: { name: string; price: string }) => (
-  <a
-    href={getWhatsAppUrl(name, price)}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="ml-1.5 shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-[#25D366]/15 hover:bg-[#25D366]/30 border border-[#25D366]/20 hover:border-[#25D366]/40 text-[#25D366] text-[10px] font-body font-bold uppercase tracking-wider transition-all hover:scale-105 active:scale-95"
-    title={`Commander ${name}`}
-  >
-    <ShoppingBag size={12} />
-    <span className="hidden sm:inline">Commander</span>
-  </a>
-);
 
 const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectionProps) => {
   const [platDuJour, setPlatDuJour] = useState<number | null>(null);

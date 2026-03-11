@@ -2,6 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
+import CartDrawer from "@/components/CartDrawer";
+import CartFloatingButton from "@/components/CartFloatingButton";
+import { CartProvider } from "@/contexts/CartContext";
 import imgTchepPlatDuJour from "@/assets/food/tchep-poulet-plat-jour.jpg";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
@@ -553,6 +556,7 @@ const Index = () => {
   const activeCat = categories.find((c) => c.key === activeCategory);
 
   return (
+    <CartProvider>
     <div className="min-h-screen chalkboard-bg">
       <PlatDuJourPopup
         name="TCHEP"
@@ -796,6 +800,9 @@ const Index = () => {
         )}
       </AnimatePresence>
 
+      <CartDrawer />
+      <CartFloatingButton />
+
       <a
         href={whatsappUrl}
         target="_blank"
@@ -806,6 +813,7 @@ const Index = () => {
         <MessageCircle size={28} fill="white" strokeWidth={0} />
       </a>
     </div>
+    </CartProvider>
   );
 };
 
