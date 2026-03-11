@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import logo from "@/assets/neriya-logo.png";
 import type { Tables } from "@/integrations/supabase/types";
+import DailySelectionAdmin from "@/components/DailySelectionAdmin";
 
 type MenuItem = Tables<"menu_items">;
 type MenuSection = Tables<"menu_sections">;
