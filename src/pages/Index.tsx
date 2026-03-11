@@ -5,7 +5,7 @@ import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
 import CartFloatingButton from "@/components/CartFloatingButton";
-import { CartProvider } from "@/contexts/CartContext";
+import { CartProvider, useCart } from "@/contexts/CartContext";
 import imgTchepPlatDuJour from "@/assets/food/tchep-poulet-plat-jour.jpg";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
@@ -360,28 +360,35 @@ const supplements = [
   { name: "Riz", price: "1 000 Fr", emoji: "🍚" },
 ];
 
-const SupplementsGrid = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 15 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-    className="glass-card rounded-xl p-5"
-  >
-    <h3 className="font-display text-base sm:text-lg font-bold text-primary uppercase tracking-widest text-center mb-4">
-      ✨ Nos Suppléments & Accompagnements
-    </h3>
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      {supplements.map(s => (
-        <div key={s.name} className="flex flex-col items-center gap-1 p-3 rounded-lg bg-secondary/30 border border-border/50">
-          <span className="text-2xl">{s.emoji}</span>
-          <span className="font-body font-semibold text-sm text-foreground">{s.name}</span>
-          <span className="font-display font-bold text-primary text-sm">{s.price}</span>
-        </div>
-      ))}
-    </div>
-  </motion.div>
-);
+const SupplementsGrid = () => {
+  const { addItem } = useCart();
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="glass-card rounded-xl p-5"
+    >
+      <h3 className="font-display text-base sm:text-lg font-bold text-primary uppercase tracking-widest text-center mb-4">
+        ✨ Nos Suppléments & Accompagnements
+      </h3>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {supplements.map(s => (
+          <button
+            key={s.name}
+            onClick={() => addItem(s.name, s.price)}
+            className="flex flex-col items-center gap-1 p-3 rounded-lg bg-secondary/30 border border-border/50 hover:bg-primary/15 hover:border-primary/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <span className="text-2xl">{s.emoji}</span>
+            <span className="font-body font-semibold text-sm text-foreground">{s.name}</span>
+            <span className="font-display font-bold text-primary text-sm">{s.price}</span>
+          </button>
+        ))}
+      </div>
+    </motion.div>
+  );
+};
 
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
