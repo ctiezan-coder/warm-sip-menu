@@ -35,7 +35,9 @@ const Admin = () => {
 
   // Form states
   const [itemForm, setItemForm] = useState({ name: "", price: "", emoji: "", description: "", section_id: "", sort_order: 0 });
-  const [sectionForm, setSectionForm] = useState({ name: "", category_id: "", sort_order: 0 });
+  const [sectionForm, setSectionForm] = useState({ name: "", category_id: "", sort_order: 0, image_url: "" });
+  const [sectionImageFile, setSectionImageFile] = useState<File | null>(null);
+  const [sectionImagePreview, setSectionImagePreview] = useState<string | null>(null);
   const [categoryForm, setCategoryForm] = useState({ name: "", emoji: "", description: "", sort_order: 0 });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
