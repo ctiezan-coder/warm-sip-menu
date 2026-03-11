@@ -670,7 +670,7 @@ const Index = () => {
             </div>
 
             {/* ── Bannière défilante événements ── */}
-            <div className="w-full overflow-hidden bg-primary/10 border-y border-primary/20 py-2.5">
+            <div className="w-full overflow-hidden bg-gold/15 border-y border-gold/30 py-2.5">
               <div className="animate-marquee whitespace-nowrap flex items-center gap-8">
                 {[...Array(3)].map((_, i) => (
                   <span key={i} className="inline-flex items-center gap-3 font-body text-sm sm:text-base text-primary tracking-wide">
