@@ -818,7 +818,10 @@ const Index = () => {
                 {[...Array(3)].map((_, i) => (
                   <span key={i} className="inline-flex items-center gap-3 font-body text-sm sm:text-base text-gold-bright font-semibold tracking-wide">
                     <span>🎉</span>
-                    Pour tous vos baptêmes, réceptions, mariages, soutenances et autres événements, faites confiance à Neriya – La Bouchée Gourmande. Commandes et informations disponibles sur notre site.
+                    Pour tous vos réceptions, mariage, baby shower, baptême, anniversaire, cocktail, buffet — faites confiance à Neriya – La Bouchée Gourmande.
+                    <span className="text-accent">✦</span>
+                    <span>📧</span>
+                    Contact : info@neriya.ci
                     <span className="text-accent">✦</span>
                   </span>
                 ))}
