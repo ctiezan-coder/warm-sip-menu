@@ -364,27 +364,37 @@ const SupplementsGrid = () => {
   const { addItem } = useCart();
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, x: 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="glass-card rounded-xl p-5"
+      className="ml-auto w-full sm:w-[380px] md:w-[420px]"
     >
-      <h3 className="font-display text-base sm:text-lg font-bold text-primary uppercase tracking-widest text-center mb-4">
-        ✨ Nos Suppléments & Accompagnements
-      </h3>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {supplements.map(s => (
-          <button
-            key={s.name}
-            onClick={() => addItem(s.name, s.price)}
-            className="flex flex-col items-center gap-1 p-3 rounded-lg bg-secondary/30 border border-border/50 hover:bg-primary/15 hover:border-primary/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-          >
-            <span className="text-2xl">{s.emoji}</span>
-            <span className="font-body font-semibold text-sm text-foreground">{s.name}</span>
-            <span className="font-display font-bold text-primary text-sm">{s.price}</span>
-          </button>
-        ))}
+      <div className="glass-card rounded-2xl p-6 border border-primary/20 bg-gradient-to-br from-card/80 via-card/60 to-primary/5 backdrop-blur-md shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.2)]">
+        <div className="flex items-center justify-center gap-2 mb-5">
+          <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/50" />
+          <h3 className="font-display text-sm sm:text-base font-bold text-primary uppercase tracking-[0.2em] text-center">
+            ✨ Suppléments
+          </h3>
+          <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/50" />
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          {supplements.map((s, i) => (
+            <motion.button
+              key={s.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: i * 0.08 }}
+              onClick={() => addItem(s.name, s.price)}
+              className="group flex flex-col items-center gap-2 p-4 rounded-xl bg-secondary/20 border border-border/40 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.25)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <span className="text-3xl group-hover:scale-110 transition-transform duration-300">{s.emoji}</span>
+              <span className="font-body font-bold text-sm text-foreground tracking-wide">{s.name}</span>
+              <span className="font-display font-bold text-primary text-base">{s.price}</span>
+            </motion.button>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
