@@ -62,6 +62,7 @@ import imgChocolatChaud from "@/assets/food/chocolat-chaud.png";
 import imgChocolatCrazy from "@/assets/food/chocolat-crazy.png";
 import imgMilkshakeVanille from "@/assets/food/milkshake-vanille.png";
 import imgMilkshakeMenthe from "@/assets/food/milkshake-menthe.png";
+import imgMilkshakeSection from "@/assets/food/milkshake-section.png";
 import imgMilkshakeFraise from "@/assets/food/milkshake-fraise.png";
 import imgMilkshakeKinder from "@/assets/food/milkshake-kinder.png";
 import imgMilkshakeSpeculoos from "@/assets/food/milkshake-speculoos.png";
