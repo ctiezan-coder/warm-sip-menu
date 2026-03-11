@@ -390,6 +390,25 @@ const Admin = () => {
           <div className="space-y-4">
             <div><Label>Nom</Label><Input value={sectionForm.name} onChange={e => setSectionForm(p => ({ ...p, name: e.target.value }))} placeholder="Cafés ☕" className="bg-secondary border-border" /></div>
             <div><Label>Ordre</Label><Input type="number" value={sectionForm.sort_order} onChange={e => setSectionForm(p => ({ ...p, sort_order: parseInt(e.target.value) || 0 }))} className="bg-secondary border-border" /></div>
+            
+            {/* Image upload */}
+            <div className="space-y-2">
+              <Label>Image</Label>
+              {sectionImagePreview && (
+                <div className="relative w-20 h-20">
+                  <img src={sectionImagePreview} alt="Preview" className="w-20 h-20 rounded-full object-cover border border-primary/30" />
+                  <button onClick={() => { setSectionImageFile(null); setSectionImagePreview(null); setSectionForm(p => ({ ...p, image_url: "" })); }} className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground rounded-full p-0.5">
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+              <label className="flex items-center gap-2 cursor-pointer text-sm text-primary hover:underline">
+                <Upload className="w-4 h-4" />
+                {sectionImagePreview ? "Changer l'image" : "Ajouter une image"}
+                <input type="file" accept="image/*" onChange={handleSectionImageChange} className="hidden" />
+              </label>
+            </div>
+
             <Button onClick={saveSection} className="w-full bg-primary text-primary-foreground">Enregistrer</Button>
           </div>
         </DialogContent>
