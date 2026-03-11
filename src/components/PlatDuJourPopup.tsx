@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShoppingBag, Flame, Star } from "lucide-react";
+import { X, ShoppingBag, Flame, Star, ChevronDown } from "lucide-react";
 import logo from "@/assets/neriya-logo.png";
+
+interface TchepVariant {
+  label: string;
+  price: string;
+}
 
 interface PlatDuJourPopupProps {
   name: string;
   price: string;
   description?: string;
   image: string;
+  variants?: TchepVariant[];
 }
 
 const getWhatsAppUrl = (itemName: string, price: string) => {
@@ -15,8 +21,13 @@ const getWhatsAppUrl = (itemName: string, price: string) => {
   return `https://wa.me/2250789288202?text=${encodeURIComponent(message)}`;
 };
 
-const PlatDuJourPopup = ({ name, price, description, image }: PlatDuJourPopupProps) => {
+const PlatDuJourPopup = ({ name, price, description, image, variants }: PlatDuJourPopupProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState<number>(0);
+  const [selectOpen, setSelectOpen] = useState(false);
+
+  const currentPrice = variants && variants.length > 0 ? variants[selectedVariant].price : price;
+  const currentLabel = variants && variants.length > 0 ? variants[selectedVariant].label : name;
 
   useEffect(() => {
     const timer = setTimeout(() => setIsOpen(true), 2500);
@@ -115,9 +126,46 @@ const PlatDuJourPopup = ({ name, price, description, image }: PlatDuJourPopupPro
                     </h3>
                   </div>
                   <div className="shrink-0 px-4 py-2 rounded-xl bg-accent/15 border border-accent/25">
-                    <span className="font-display text-xl sm:text-2xl font-bold text-accent">{price}</span>
+                    <span className="font-display text-xl sm:text-2xl font-bold text-accent">{currentPrice}</span>
                   </div>
                 </div>
+
+                {/* Variant selector */}
+                {variants && variants.length > 0 && (
+                  <div className="relative mb-3">
+                    <button
+                      onClick={() => setSelectOpen(!selectOpen)}
+                      className="w-full flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-card/50 border border-primary/20 text-foreground font-body text-sm hover:border-primary/40 transition-colors"
+                    >
+                      <span className="font-semibold">{currentLabel}</span>
+                      <ChevronDown size={16} className={`text-primary/60 transition-transform ${selectOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence>
+                      {selectOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute top-full left-0 right-0 mt-1 z-30 rounded-xl overflow-hidden border border-primary/20 bg-card/95 backdrop-blur-md shadow-xl"
+                        >
+                          {variants.map((v, i) => (
+                            <button
+                              key={i}
+                              onClick={() => { setSelectedVariant(i); setSelectOpen(false); }}
+                              className={`w-full flex items-center justify-between px-4 py-2.5 text-sm font-body transition-colors hover:bg-primary/10 ${
+                                i === selectedVariant ? 'bg-primary/15 text-primary font-semibold' : 'text-foreground/80'
+                              }`}
+                            >
+                              <span>{v.label}</span>
+                              <span className="text-accent font-semibold">{v.price}</span>
+                            </button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
 
                 {/* Divider */}
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/25 to-transparent mb-3" />
@@ -131,7 +179,7 @@ const PlatDuJourPopup = ({ name, price, description, image }: PlatDuJourPopupPro
                 {/* Commander button */}
                 <div className="flex items-center justify-center pt-1">
                   <a
-                    href={getWhatsAppUrl(name, price)}
+                    href={getWhatsAppUrl(currentLabel, currentPrice)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex flex-col items-center gap-2.5"
