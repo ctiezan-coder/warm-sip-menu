@@ -673,7 +673,7 @@ const Index = () => {
             <div className="w-full overflow-hidden bg-gold/15 border-y border-gold/30 py-2.5">
               <div className="animate-marquee whitespace-nowrap flex items-center gap-8">
                 {[...Array(3)].map((_, i) => (
-                  <span key={i} className="inline-flex items-center gap-3 font-body text-sm sm:text-base text-primary tracking-wide">
+                  <span key={i} className="inline-flex items-center gap-3 font-body text-sm sm:text-base text-gold-bright font-semibold tracking-wide">
                     <span>🎉</span>
                     Pour tous vos baptêmes, réceptions, mariages, soutenances et autres événements, faites confiance à Neriya – La Bouchée Gourmande. Commandes et informations disponibles sur notre site.
                     <span className="text-accent">✦</span>
