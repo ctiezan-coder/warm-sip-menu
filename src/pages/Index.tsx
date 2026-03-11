@@ -72,6 +72,7 @@ import imgJusBissap from "@/assets/food/jus-bissap.png";
 import imgJusGingembre from "@/assets/food/jus-gingembre.png";
 import imgJusCitron from "@/assets/food/jus-citron.png";
 import imgJusPassion from "@/assets/food/jus-passion.png";
+import imgJusSection from "@/assets/food/jus-section.png";
 import imgJusCocktail from "@/assets/food/jus-cocktail.png";
 import imgEauMinerale from "@/assets/food/eau-minerale.png";
 
