@@ -352,7 +352,37 @@ const grill = [
   { name: "Sosso Frit", price: "Sur demande", image: imgGrillPoisson },
 ];
 
-// ─── CATEGORIES ────────────────────────────────────────────
+// Suppléments & Accompagnements
+const supplements = [
+  { name: "Frites", price: "1 000 Fr", emoji: "🍟" },
+  { name: "Alloco", price: "1 000 Fr", emoji: "🍌" },
+  { name: "Attiéké", price: "1 000 Fr", emoji: "🥘" },
+  { name: "Riz", price: "1 000 Fr", emoji: "🍚" },
+];
+
+const SupplementsGrid = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 15 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="glass-card rounded-xl p-5"
+  >
+    <h3 className="font-display text-base sm:text-lg font-bold text-primary uppercase tracking-widest text-center mb-4">
+      ✨ Nos Suppléments & Accompagnements
+    </h3>
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {supplements.map(s => (
+        <div key={s.name} className="flex flex-col items-center gap-1 p-3 rounded-lg bg-secondary/30 border border-border/50">
+          <span className="text-2xl">{s.emoji}</span>
+          <span className="font-body font-semibold text-sm text-foreground">{s.name}</span>
+          <span className="font-display font-bold text-primary text-sm">{s.price}</span>
+        </div>
+      ))}
+    </div>
+  </motion.div>
+);
+
 type CategoryKey = "petit-dejeuner" | "dejeuner" | "diner" | "dessert" | "boissons";
 
 const categories: { key: CategoryKey; label: string; emoji: string; image: string; description: string }[] = [
@@ -474,6 +504,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             backgroundImage={imgBurger}
             imagePosition="left"
           />
+          <SupplementsGrid />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
@@ -509,6 +540,7 @@ const CategoryContent = ({ category, dailySelections }: { category: CategoryKey;
             backgroundImage={imgBurger}
             imagePosition="left"
           />
+          <SupplementsGrid />
           <p className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
         </div>
       );
