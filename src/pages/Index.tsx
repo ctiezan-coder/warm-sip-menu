@@ -800,6 +800,9 @@ const Index = () => {
         )}
       </AnimatePresence>
 
+      <CartDrawer />
+      <CartFloatingButton />
+
       <a
         href={whatsappUrl}
         target="_blank"
@@ -810,6 +813,7 @@ const Index = () => {
         <MessageCircle size={28} fill="white" strokeWidth={0} />
       </a>
     </div>
+    </CartProvider>
   );
 };
 
