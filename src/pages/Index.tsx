@@ -123,64 +123,118 @@ const sectionImageFallback: Record<string, string> = {
 
 // Item name → fallback item image
 const itemImageFallback: Record<string, string> = {
-  "Expresso": imgCafeExpresso, "Double Expresso": imgCafeExpresso, "Americano": imgCafeExpresso,
-  "Café Latté": imgCafeLatte, "Cappuccino": imgCappuccino, "Moca": imgCafeMoca,
-  "Caramel Expresso": imgCafeGlace, "Café Latté Caramel Spéculoos": imgCafeCaramelSpeculoos,
-  "Thé Lipton": imgTheChaud, "Thé Infusion Neriya": imgTheChaud, "Thé Infusion Gingembre Menthe": imgTheGingembreMenthe,
-  "Thé Mojito Citron": imgTheMojito, "Thé Mojito Pêche": imgTheMojito, "Thé Mojito Fraise": imgTheMojito,
-  "Thé Mojito Orange": imgTheMojito, "Thé Fruit de la Passion Coco": imgJusPassion,
-  "Chocolat Chaud Classique": imgChocolatChaud, "Chocolat Chaud Chantilly": imgChocolatChaud,
+  Expresso: imgCafeExpresso,
+  "Double Expresso": imgCafeExpresso,
+  Americano: imgCafeExpresso,
+  "Café Latté": imgCafeLatte,
+  Cappuccino: imgCappuccino,
+  Moca: imgCafeMoca,
+  "Caramel Expresso": imgCafeGlace,
+  "Café Latté Caramel Spéculoos": imgCafeCaramelSpeculoos,
+  "Thé Lipton": imgTheChaud,
+  "Thé Infusion Neriya": imgTheChaud,
+  "Thé Infusion Gingembre Menthe": imgTheGingembreMenthe,
+  "Thé Mojito Citron": imgTheMojito,
+  "Thé Mojito Pêche": imgTheMojito,
+  "Thé Mojito Fraise": imgTheMojito,
+  "Thé Mojito Orange": imgTheMojito,
+  "Thé Fruit de la Passion Coco": imgJusPassion,
+  "Chocolat Chaud Classique": imgChocolatChaud,
+  "Chocolat Chaud Chantilly": imgChocolatChaud,
   "Crazy Chocolat – Guimauve & Chantilly": imgChocolatCrazy,
-  "Vanille": imgMilkshakeVanille, "Menthe": imgMilkshakeMenthe, "Fraise": imgMilkshakeFraise,
-  "Kinder Bueno": imgMilkshakeKinder, "Spéculoos Caramel Beurre Salé": imgMilkshakeSpeculoos,
-  "Chocolat Oreo": imgMilkshakeOreo, "Coco Bounty": imgMilkshakeCoco,
-  "Bissap": imgJusBissap, "Gingembre": imgJusGingembre, "Citron": imgJusCitron,
-  "Sucrerie": imgJusGingembre, "Eau Minérale": imgEauMinerale, "Passion (selon saison)": imgJusPassion,
+  Vanille: imgMilkshakeVanille,
+  Menthe: imgMilkshakeMenthe,
+  Fraise: imgMilkshakeFraise,
+  "Kinder Bueno": imgMilkshakeKinder,
+  "Spéculoos Caramel Beurre Salé": imgMilkshakeSpeculoos,
+  "Chocolat Oreo": imgMilkshakeOreo,
+  "Coco Bounty": imgMilkshakeCoco,
+  Bissap: imgJusBissap,
+  Gingembre: imgJusGingembre,
+  Citron: imgJusCitron,
+  Sucrerie: imgJusGingembre,
+  "Eau Minérale": imgEauMinerale,
+  "Passion (selon saison)": imgJusPassion,
   "Cocktail de Fruits": imgJusCocktail,
-  "Café + Omelette": imgDejFermier, "Café + Œuf au Plat": imgDejFermier,
-  "Café + Œuf au Plat (Jambon, Fromage)": imgDejFermier, "Café + Omelette Farcie": imgDejFermier,
-  "Crêpe Fromage": imgCrepeSalee, "Crêpe Jambon de Dinde": imgCrepeSalee,
-  "Crêpe Viande Hachée": imgCrepeSalee, "Crêpe Blanc de Poulet": imgCrepeSalee,
-  "Crêpe Nature (miel facultatif)": imgCrepeNature, "Crêpe Nutella": imgCrepeNutella,
-  "Crêpe Fettuccine Nutella": imgCrepeFettNutella, "Crêpe Fettuccine Oreo": imgCrepeFettOreo,
-  "Crêpe Fettuccine Spéculoos": imgCrepeFettSpeculoos, "Crêpe Fettuccine Fruits Saisonniers": imgCrepeFettFruits,
+  "Café + Omelette": imgDejFermier,
+  "Café + Œuf au Plat": imgDejFermier,
+  "Café + Œuf au Plat (Jambon, Fromage)": imgDejFermier,
+  "Café + Omelette Farcie": imgDejFermier,
+  "Crêpe Fromage": imgCrepeSalee,
+  "Crêpe Jambon de Dinde": imgCrepeSalee,
+  "Crêpe Viande Hachée": imgCrepeSalee,
+  "Crêpe Blanc de Poulet": imgCrepeSalee,
+  "Crêpe Nature (miel facultatif)": imgCrepeNature,
+  "Crêpe Nutella": imgCrepeNutella,
+  "Crêpe Fettuccine Nutella": imgCrepeFettNutella,
+  "Crêpe Fettuccine Oreo": imgCrepeFettOreo,
+  "Crêpe Fettuccine Spéculoos": imgCrepeFettSpeculoos,
+  "Crêpe Fettuccine Fruits Saisonniers": imgCrepeFettFruits,
   "Crêpe Pralin": imgCrepePralin,
-  "Tchêp Mouton": imgTchepMouton, "Tchêp Poulet": imgTchepPoulet, "Tchêp Poisson": imgTchepPoisson,
-  "Tchêp Viande de Bœuf": imgTchepBoeuf, "Tchêp Boulette de Viande": imgTchepBoulette,
-  "Yassa Poisson Riz": imgYassaPoisson, "Yassa Poisson Fonio": imgYassaPoisson,
-  "Yassa Poulet Riz": imgYassaPoulet, "Yassa Poulet Fonio": imgYassaPoulet,
-  "Yassa Mouton Riz": imgYassaMouton, "Yassa Mouton Fonio": imgYassaMouton,
-  "Pondeuse Fumée (riz ou Fonio)": imgMafePondeuse, "1/2 Pondeuse Fumée (riz ou Fonio)": imgMafePondeuse,
-  "1 Pondeuse Entière (riz ou Fonio)": imgMafePondeuse, "Poisson Fumé (riz ou Fonio)": imgMafePoisson,
-  "1 Pondeuse (riz, Fonio)": imgSauceLegume, "Viande de Bœuf Fumée (riz / Fonio)": imgSauceLegume,
-  "Boulette de Viande Riz": imgSauceTomate, "Viande de Bœuf Riz": imgSauceFeuille,
-  "1/2 Pondeuse (riz, attiéké)": imgSoupePoulet, "1 Pondeuse Entière (riz, attiéké)": imgSoupePoulet,
-  "Soupe Poulet Chair 1/2 (attiéké, riz)": imgSoupePoulet, "Soupe Poulet Chair 1 Entier (attiéké, riz)": imgSoupePoulet,
+  "Tchêp Mouton": imgTchepMouton,
+  "Tchêp Poulet": imgTchepPoulet,
+  "Tchêp Poisson": imgTchepPoisson,
+  "Tchêp Viande de Bœuf": imgTchepBoeuf,
+  "Tchêp Boulette de Viande": imgTchepBoulette,
+  "Yassa Poisson Riz": imgYassaPoisson,
+  "Yassa Poisson Fonio": imgYassaPoisson,
+  "Yassa Poulet Riz": imgYassaPoulet,
+  "Yassa Poulet Fonio": imgYassaPoulet,
+  "Yassa Mouton Riz": imgYassaMouton,
+  "Yassa Mouton Fonio": imgYassaMouton,
+  "Pondeuse Fumée (riz ou Fonio)": imgMafePondeuse,
+  "1/2 Pondeuse Fumée (riz ou Fonio)": imgMafePondeuse,
+  "1 Pondeuse Entière (riz ou Fonio)": imgMafePondeuse,
+  "Poisson Fumé (riz ou Fonio)": imgMafePoisson,
+  "1 Pondeuse (riz, Fonio)": imgSauceLegume,
+  "Viande de Bœuf Fumée (riz / Fonio)": imgSauceLegume,
+  "Boulette de Viande Riz": imgSauceTomate,
+  "Viande de Bœuf Riz": imgSauceFeuille,
+  "1/2 Pondeuse (riz, attiéké)": imgSoupePoulet,
+  "1 Pondeuse Entière (riz, attiéké)": imgSoupePoulet,
+  "Soupe Poulet Chair 1/2 (attiéké, riz)": imgSoupePoulet,
+  "Soupe Poulet Chair 1 Entier (attiéké, riz)": imgSoupePoulet,
   "Soupe Poisson (riz, attiéké)": imgSoupePoisson,
-  "1/4 Poulet Rôti": imgPouletRoti, "1/2 Poulet Rôti": imgPouletRoti, "1 Poulet Entier": imgPouletRoti,
-  "CHAWARMA Poulet": imgChawama, "CHAWARMA Viande": imgChawama,
-  "Cheese Burger": imgBurger, "Burger NERIYA": imgBurger,
-  "Spaghetti Rognon": imgSpaghettiKiosque, "Spaghetti Viande de Bœuf": imgSpaghettiKiosque, "Spaghetti Poulet": imgSpaghettiKiosque,
-  "Sole Braisé": imgGrillPoisson, "Thon Frit": imgGrillPoisson, "Sosso Frit": imgGrillPoisson,
-  "Pancakes Nature": imgPancakesNature, "Pancakes Miel, Caramel ou Sirop de Rabe": imgPancakesCaramel,
-  "Pancakes Nutella": imgPancakesNutella, "Pancakes Nutella Oreo": imgPancakesNutella,
+  "1/4 Poulet Rôti": imgPouletRoti,
+  "1/2 Poulet Rôti": imgPouletRoti,
+  "1 Poulet Entier": imgPouletRoti,
+  "CHAWARMA Poulet": imgChawama,
+  "CHAWARMA Viande": imgChawama,
+  "Cheese Burger": imgBurger,
+  "Burger NERIYA": imgBurger,
+  "Spaghetti Rognon": imgSpaghettiKiosque,
+  "Spaghetti Viande de Bœuf": imgSpaghettiKiosque,
+  "Spaghetti Poulet": imgSpaghettiKiosque,
+  "Sole Braisé": imgGrillPoisson,
+  "Thon Frit": imgGrillPoisson,
+  "Sosso Frit": imgGrillPoisson,
+  "Pancakes Nature": imgPancakesNature,
+  "Pancakes Miel, Caramel ou Sirop de Rabe": imgPancakesCaramel,
+  "Pancakes Nutella": imgPancakesNutella,
+  "Pancakes Nutella Oreo": imgPancakesNutella,
   "Pancakes Saisonnier (fruit, coulis au choix, boule de glace, spéculoos)": imgPancakesFruit,
-  "Pain Perdu Nature": imgPainPerdu, "Pain Perdu Caramel (boule de glace)": imgPainPerduCaramel,
+  "Pain Perdu Nature": imgPainPerdu,
+  "Pain Perdu Caramel (boule de glace)": imgPainPerduCaramel,
   "Feuilleté de Pain Fourré": imgFeuilletePain,
-  "Croissant Gauffre Vanille Spéculoos": imgCroissantSpeculoos, "Croissant Gauffre Oreo": imgCroissantOreo,
-  "Croissant Gauffre Fruits Rouges": imgCroissantFruits, "Croissant Vanille Pistache": imgCroissantPistache,
-  "Pain Fourré Lait Caillé": imgPainLaitCaille, "Pain Fourré Dêguê": imgPainLaitCaille,
-  "Dêguê au Fruit de la Passion": imgDegue, "Dêguê au Lait de Coco": imgDegue,
-  "Dêguê Café Cappuccino": imgDegue, "Dêguê Caramel Granola": imgDegue,
+  "Croissant Gauffre Vanille Spéculoos": imgCroissantSpeculoos,
+  "Croissant Gauffre Oreo": imgCroissantOreo,
+  "Croissant Gauffre Fruits Rouges": imgCroissantFruits,
+  "Croissant Vanille Pistache": imgCroissantPistache,
+  "Pain Fourré Lait Caillé": imgPainLaitCaille,
+  "Pain Fourré Dêguê": imgPainLaitCaille,
+  "Dêguê au Fruit de la Passion": imgDegue,
+  "Dêguê au Lait de Coco": imgDegue,
+  "Dêguê Café Cappuccino": imgDegue,
+  "Dêguê Caramel Granola": imgDegue,
 };
 
 // Category name → fallback category image
 const categoryImageFallback: Record<string, string> = {
   "Petit Déjeuner": catPetitDej,
-  "Déjeuner": catDejeuner,
-  "Dîner": catDiner,
-  "Desserts": catDessert,
-  "Boissons": catBoissons,
+  Déjeuner: catDejeuner,
+  Dîner: catDiner,
+  Desserts: catDessert,
+  Boissons: catBoissons,
 };
 
 // Daily-selection section key mapping (section name → daily key)
@@ -244,9 +298,7 @@ const SupplementsGrid = () => {
 
 const MenuWithSupplements = ({ children }: { children: React.ReactNode }) => (
   <div className="flex flex-col lg:flex-row gap-6 items-start">
-    <div className="flex-1 min-w-0 space-y-6">
-      {children}
-    </div>
+    <div className="flex-1 min-w-0 space-y-6">{children}</div>
     <div className="w-full lg:w-[240px] xl:w-[280px] shrink-0 lg:sticky lg:top-4 order-first lg:order-last">
       <SupplementsGrid />
     </div>
@@ -294,12 +346,14 @@ const CategoryContent = ({
           delay={0.1 + i * 0.05}
           backgroundImage={getSectionImage(section)}
           imagePosition={i % 2 === 0 ? "right" : "left"}
-        />
+        />,
       );
     });
 
     elements.push(
-      <p key="bon-appetit" className="bon-appetit text-3xl sm:text-4xl text-center pt-3">Bon Appétit !</p>
+      <p key="bon-appetit" className="bon-appetit text-3xl sm:text-4xl text-center pt-3">
+        Bon Appétit !
+      </p>,
     );
 
     return elements;
@@ -342,270 +396,278 @@ const Index = () => {
 
   return (
     <CartProvider>
-    <div className="min-h-screen chalkboard-bg">
-      <AnimatePresence mode="wait">
-        {activeCategoryId && activeCat ? (
-          <motion.div
-            key={activeCategoryId}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            <div className="relative h-60 sm:h-80 overflow-hidden">
-              <motion.img
-                src={activeCat.image_url || categoryImageFallback[activeCat.name] || catDejeuner}
-                alt={activeCat.name}
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-background" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-
-              <motion.button
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-                onClick={() => setActiveCategoryId(null)}
-                className="absolute top-5 left-5 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-5 py-3 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
-              >
-                <ArrowLeft size={18} />
-                Retour
-              </motion.button>
-
-              <div className="absolute bottom-8 left-0 right-0 text-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                >
-                  <span className="text-5xl sm:text-6xl block mb-3">{activeCat.emoji}</span>
-                  <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
-                    {activeCat.name}
-                  </h1>
-                  <p className="font-body text-sm sm:text-base text-white/60 mt-3 tracking-wide">
-                    {activeCat.description}
-                  </p>
-                </motion.div>
-              </div>
-            </div>
-
-            <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
-              <GoldOrnament />
-              <CategoryContent category={activeCat} dailySelections={dailySelections} />
-              <GoldOrnament />
-              <p className="font-body text-xs text-muted-foreground text-center italic tracking-wide pt-2">
-                Tous les prix sont en FCFA · Service compris
-              </p>
-            </main>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="home"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="relative h-[55vh] sm:h-[60vh] overflow-hidden grain-overlay">
-              <motion.img
-                src={heroImg}
-                alt="Neriya — La bouchée gourmande"
-                className="w-full h-full object-cover object-center"
-                initial={{ scale: 1.05 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-
-              <motion.div
-                className="absolute bottom-10 sm:bottom-14 left-0 right-0 text-center"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-              >
-                <p className="font-script text-primary text-3xl sm:text-4xl drop-shadow-lg">La bouchée gourmande</p>
-                <div className="flex items-center justify-center gap-3 mt-3">
-                  <span className="inline-flex items-center gap-1.5 bg-black/40 backdrop-blur-sm border border-primary/20 rounded-full px-3 py-1">
-                    <span className="text-sm">🏠</span>
-                    <span className="font-body text-xs sm:text-sm text-foreground/90 tracking-wide">Sur place</span>
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 bg-black/40 backdrop-blur-sm border border-primary/20 rounded-full px-3 py-1">
-                    <span className="text-sm">🛵</span>
-                    <span className="font-body text-xs sm:text-sm text-foreground/90 tracking-wide">Livraison</span>
-                  </span>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* ── Bannière défilante événements ── */}
-            <div className="w-full overflow-hidden bg-gold/15 border-y border-gold/30 py-2.5">
-              <div className="animate-marquee whitespace-nowrap flex items-center gap-8">
-                {[...Array(3)].map((_, i) => (
-                  <span key={i} className="inline-flex items-center gap-3 font-body text-sm sm:text-base text-gold-bright font-semibold tracking-wide">
-                    <span>🎉</span>
-                    Pour toutes vos réceptions, mariage, baby shower, baptême, anniversaire, cocktail, buffet — faites confiance à Neriya – La Bouchée Gourmande.
-                    <span className="text-accent">✦</span>
-                    <span>📧</span>
-                    Contact : info@neriya.ci
-                    <span className="text-accent">✦</span>
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* ── Section Présentation ── */}
-            <motion.section
+      <div className="min-h-screen chalkboard-bg">
+        <AnimatePresence mode="wait">
+          {activeCategoryId && activeCat ? (
+            <motion.div
+              key={activeCategoryId}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10 mb-4"
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className="menu-section-card-v2 text-center py-8 sm:py-10">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-primary uppercase tracking-[0.15em] mb-4">
-                  Bienvenue chez Neriya - La Bouchée Gourmande
-                </h2>
-                <p className="font-body text-primary font-semibold text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
-                  Votre passeport gustatif pour Yopougon !
-                </p>
-                <p className="font-body text-foreground/85 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
-                  Découvrez une cuisine aux saveurs du monde, qui vous transporte à travers les continents. Chez <span className="font-semibold text-primary">Neriya_la bouchée gourmande</span> nous créons des expériences culinaires uniques, conçues pour éveiller vos sens et vous faire voyager.
-                </p>
-                <p className="font-body text-foreground/70 text-sm leading-relaxed max-w-xl mx-auto mb-5">
-                  Préparés avec des ingrédients frais et une passion authentique, nos plats sont une invitation à la découverte, du petit-déjeuner au dîner. Profitez de notre ambiance chaleureuse ou faites-vous livrer : chaque bouchée est non seulement une explosion de saveurs mais aussi un nouveau voyage.
-                </p>
-                <p className="font-body text-primary font-semibold text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-6">
-                  Neriya _la bouchée gourmande, Le monde à portée de goûts.
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
-                    <span>📍</span>
-                    <span className="font-body text-xs sm:text-sm text-foreground/80">Yopougon, Abidjan</span>
-                  </span>
-                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
-                    <span>🏠</span>
-                    <span className="font-body text-xs sm:text-sm text-foreground/80">Sur place</span>
-                  </span>
-                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
-                    <span>🛵</span>
-                    <span className="font-body text-xs sm:text-sm text-foreground/80">Livraison</span>
-                  </span>
-                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
-                    <span>🎉</span>
-                    <span className="font-body text-xs sm:text-sm text-foreground/80">Événements</span>
-                  </span>
-                  <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
-                    <span>📧</span>
-                    <span className="font-body text-xs sm:text-sm text-foreground/80">info@neriya.ci</span>
-                  </span>
-                </div>
-              </div>
-            </motion.section>
+              <div className="relative h-60 sm:h-80 overflow-hidden">
+                <motion.img
+                  src={activeCat.image_url || categoryImageFallback[activeCat.name] || catDejeuner}
+                  alt={activeCat.name}
+                  className="w-full h-full object-cover"
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-background" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex items-center justify-center gap-4 mb-8"
-              >
-                <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-primary/40" />
-                <span className="font-display text-base uppercase tracking-[0.3em] text-primary/80">Notre Carte</span>
-                <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-primary/40" />
-              </motion.div>
-            </div>
+                <motion.button
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                  onClick={() => setActiveCategoryId(null)}
+                  className="absolute top-5 left-5 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-5 py-3 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
+                >
+                  <ArrowLeft size={18} />
+                  Retour
+                </motion.button>
 
-            <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 relative z-10">
-              <div className="grid gap-5 sm:gap-6">
-                {categories.map((cat, i) => (
-                  <motion.button
-                    key={cat.id}
-                    initial={{ opacity: 0, y: 30 }}
+                <div className="absolute bottom-8 left-0 right-0 text-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: "easeOut" }}
-                    onClick={() => {
-                      setActiveCategoryId(cat.id);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
-                    className="group relative overflow-hidden rounded-2xl h-36 sm:h-40 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    transition={{ delay: 0.2, duration: 0.5 }}
                   >
-                    <img
-                      src={cat.image_url || categoryImageFallback[cat.name] || catDejeuner}
-                      alt={cat.name}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20 group-hover:from-black/70 transition-all duration-500" />
-
-                    <div className="relative h-full flex items-center justify-between px-6 sm:px-10">
-                      <div className="space-y-1.5">
-                        <div className="flex items-center gap-3.5">
-                          <span className="text-4xl sm:text-5xl drop-shadow-md">{cat.emoji}</span>
-                          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
-                            {cat.name}
-                          </h2>
-                        </div>
-                        <p className="font-body text-sm sm:text-base text-white/55 ml-14 sm:ml-[4rem] tracking-wide">
-                          {cat.description}
-                        </p>
-                      </div>
-                      <ChevronRight
-                        size={28}
-                        className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0"
-                      />
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
-            </main>
-
-            <footer className="relative border-t border-primary/10 py-12 px-4">
-              <div className="max-w-md mx-auto text-center space-y-4">
-                <div className="flex items-center justify-center gap-4 mb-5">
-                  <div className="h-px w-20 bg-gradient-to-r from-transparent to-primary/30" />
-                  <img src={logo} alt="Neriya" className="h-12 w-12 rounded-full object-cover opacity-75" />
-                  <div className="h-px w-20 bg-gradient-to-l from-transparent to-primary/30" />
+                    <span className="text-5xl sm:text-6xl block mb-3">{activeCat.emoji}</span>
+                    <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
+                      {activeCat.name}
+                    </h1>
+                    <p className="font-body text-sm sm:text-base text-white/60 mt-3 tracking-wide">
+                      {activeCat.description}
+                    </p>
+                  </motion.div>
                 </div>
-                <p className="font-script text-primary text-2xl">Neriya La Bouchée Gourmande</p>
-                <p className="font-body text-sm text-muted-foreground italic tracking-wide">
+              </div>
+
+              <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 space-y-7 mt-6">
+                <GoldOrnament />
+                <CategoryContent category={activeCat} dailySelections={dailySelections} />
+                <GoldOrnament />
+                <p className="font-body text-xs text-muted-foreground text-center italic tracking-wide pt-2">
                   Tous les prix sont en FCFA · Service compris
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
-                    📍 Yopougon, Abidjan
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
-                    🏠 Sur place
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
-                    🏍 Livraison
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
-                    🔓 Ouvert au public
-                  </span>
-                </div>
-                <p className="font-body text-xs text-muted-foreground/60">© 2026 — La bouchée gourmande</p>
+              </main>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="home"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="relative h-[55vh] sm:h-[60vh] overflow-hidden grain-overlay">
+                <motion.img
+                  src={heroImg}
+                  alt="Neriya — La bouchée gourmande"
+                  className="w-full h-full object-cover object-center"
+                  initial={{ scale: 1.05 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+
+                <motion.div
+                  className="absolute bottom-10 sm:bottom-14 left-0 right-0 text-center"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                >
+                  <p className="font-script text-primary text-3xl sm:text-4xl drop-shadow-lg">La bouchée gourmande</p>
+                  <div className="flex items-center justify-center gap-3 mt-3">
+                    {/* <span className="inline-flex items-center gap-1.5 bg-black/40 backdrop-blur-sm border border-primary/20 rounded-full px-3 py-1">
+                    <span className="text-sm">🏠</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/90 tracking-wide">Sur place</span>
+                  </span> */}
+                    {/* <span className="inline-flex items-center gap-1.5 bg-black/40 backdrop-blur-sm border border-primary/20 rounded-full px-3 py-1">
+                    <span className="text-sm">🛵</span>
+                    <span className="font-body text-xs sm:text-sm text-foreground/90 tracking-wide">Livraison</span>
+                  </span> */}
+                  </div>
+                </motion.div>
               </div>
-            </footer>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-      <CartDrawer />
-      <CartFloatingButton />
+              {/* ── Bannière défilante événements ── */}
+              <div className="w-full overflow-hidden bg-gold/15 border-y border-gold/30 py-2.5">
+                <div className="animate-marquee whitespace-nowrap flex items-center gap-8">
+                  {[...Array(3)].map((_, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center gap-3 font-body text-sm sm:text-base text-gold-bright font-semibold tracking-wide"
+                    >
+                      <span>🎉</span>
+                      Pour toutes vos réceptions, mariage, baby shower, baptême, anniversaire, cocktail, buffet — faites
+                      confiance à Neriya – La Bouchée Gourmande.
+                      <span className="text-accent">✦</span>
+                      <span>📧</span>
+                      Contact : info@neriya.ci
+                      <span className="text-accent">✦</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50 flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 bg-[#25D366] hover:bg-[#1ebe57] text-white rounded-full shadow-xl transition-all hover:scale-110 active:scale-95 whatsapp-pulse"
-        title="Commander sur WhatsApp"
-      >
-        <MessageCircle size={28} fill="white" strokeWidth={0} />
-      </a>
-    </div>
+              {/* ── Section Présentation ── */}
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10 mb-4"
+              >
+                <div className="menu-section-card-v2 text-center py-8 sm:py-10">
+                  <h2 className="font-display text-xl sm:text-2xl font-bold text-primary uppercase tracking-[0.15em] mb-4">
+                    Bienvenue chez Neriya - La Bouchée Gourmande
+                  </h2>
+                  <p className="font-body text-primary font-semibold text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
+                    Votre passeport gustatif pour Yopougon !
+                  </p>
+                  <p className="font-body text-foreground/85 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
+                    Découvrez une cuisine aux saveurs du monde, qui vous transporte à travers les continents. Chez{" "}
+                    <span className="font-semibold text-primary">Neriya_la bouchée gourmande</span> nous créons des
+                    expériences culinaires uniques, conçues pour éveiller vos sens et vous faire voyager.
+                  </p>
+                  <p className="font-body text-foreground/70 text-sm leading-relaxed max-w-xl mx-auto mb-5">
+                    Préparés avec des ingrédients frais et une passion authentique, nos plats sont une invitation à la
+                    découverte, du petit-déjeuner au dîner. Profitez de notre ambiance chaleureuse ou faites-vous livrer
+                    : chaque bouchée est non seulement une explosion de saveurs mais aussi un nouveau voyage.
+                  </p>
+                  <p className="font-body text-primary font-semibold text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-6">
+                    Neriya _la bouchée gourmande, Le monde à portée de goûts.
+                  </p>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                      <span>📍</span>
+                      <span className="font-body text-xs sm:text-sm text-foreground/80">Yopougon, Abidjan</span>
+                    </span>
+                    <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                      <span>🏠</span>
+                      <span className="font-body text-xs sm:text-sm text-foreground/80">Sur place</span>
+                    </span>
+                    <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                      <span>🛵</span>
+                      <span className="font-body text-xs sm:text-sm text-foreground/80">Livraison</span>
+                    </span>
+                    <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                      <span>🎉</span>
+                      <span className="font-body text-xs sm:text-sm text-foreground/80">Événements</span>
+                    </span>
+                    <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                      <span>📧</span>
+                      <span className="font-body text-xs sm:text-sm text-foreground/80">info@neriya.ci</span>
+                    </span>
+                  </div>
+                </div>
+              </motion.section>
+
+              <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex items-center justify-center gap-4 mb-8"
+                >
+                  <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-primary/40" />
+                  <span className="font-display text-base uppercase tracking-[0.3em] text-primary/80">Notre Carte</span>
+                  <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-primary/40" />
+                </motion.div>
+              </div>
+
+              <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-28 sm:pb-20 relative z-10">
+                <div className="grid gap-5 sm:gap-6">
+                  {categories.map((cat, i) => (
+                    <motion.button
+                      key={cat.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + i * 0.08, duration: 0.5, ease: "easeOut" }}
+                      onClick={() => {
+                        setActiveCategoryId(cat.id);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                      className="group relative overflow-hidden rounded-2xl h-36 sm:h-40 text-left gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <img
+                        src={cat.image_url || categoryImageFallback[cat.name] || catDejeuner}
+                        alt={cat.name}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20 group-hover:from-black/70 transition-all duration-500" />
+
+                      <div className="relative h-full flex items-center justify-between px-6 sm:px-10">
+                        <div className="space-y-1.5">
+                          <div className="flex items-center gap-3.5">
+                            <span className="text-4xl sm:text-5xl drop-shadow-md">{cat.emoji}</span>
+                            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white uppercase tracking-wider drop-shadow-sm">
+                              {cat.name}
+                            </h2>
+                          </div>
+                          <p className="font-body text-sm sm:text-base text-white/55 ml-14 sm:ml-[4rem] tracking-wide">
+                            {cat.description}
+                          </p>
+                        </div>
+                        <ChevronRight
+                          size={28}
+                          className="text-primary/60 group-hover:text-primary group-hover:translate-x-1 transition-all duration-300 shrink-0"
+                        />
+                      </div>
+                    </motion.button>
+                  ))}
+                </div>
+              </main>
+
+              <footer className="relative border-t border-primary/10 py-12 px-4">
+                <div className="max-w-md mx-auto text-center space-y-4">
+                  <div className="flex items-center justify-center gap-4 mb-5">
+                    <div className="h-px w-20 bg-gradient-to-r from-transparent to-primary/30" />
+                    <img src={logo} alt="Neriya" className="h-12 w-12 rounded-full object-cover opacity-75" />
+                    <div className="h-px w-20 bg-gradient-to-l from-transparent to-primary/30" />
+                  </div>
+                  <p className="font-script text-primary text-2xl">Neriya La Bouchée Gourmande</p>
+                  <p className="font-body text-sm text-muted-foreground italic tracking-wide">
+                    Tous les prix sont en FCFA · Service compris
+                  </p>
+                  <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
+                      📍 Yopougon, Abidjan
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
+                      🏠 Sur place
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
+                      🏍 Livraison
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
+                      🔓 Ouvert au public
+                    </span>
+                  </div>
+                  <p className="font-body text-xs text-muted-foreground/60">© 2026 — La bouchée gourmande</p>
+                </div>
+              </footer>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <CartDrawer />
+        <CartFloatingButton />
+
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50 flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 bg-[#25D366] hover:bg-[#1ebe57] text-white rounded-full shadow-xl transition-all hover:scale-110 active:scale-95 whatsapp-pulse"
+          title="Commander sur WhatsApp"
+        >
+          <MessageCircle size={28} fill="white" strokeWidth={0} />
+        </a>
+      </div>
     </CartProvider>
   );
 };
