@@ -391,6 +391,7 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 const Index = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [showEvenements, setShowEvenements] = useState(false);
+  const [showEventForm, setShowEventForm] = useState(false);
   const { categories, loading } = useMenuData();
   const { selections: dailySelections } = useDailySelections();
 
