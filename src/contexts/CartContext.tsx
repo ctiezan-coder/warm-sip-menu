@@ -9,8 +9,8 @@ export interface CartItem {
 interface CartContextType {
   items: CartItem[];
   addItem: (name: string, price: string) => void;
-  removeItem: (name: string) => void;
-  updateQuantity: (name: string, quantity: number) => void;
+  removeItem: (name: string, price: string) => void;
+  updateQuantity: (name: string, price: string, quantity: number) => void;
   clearCart: () => void;
   totalItems: number;
   isOpen: boolean;
@@ -26,29 +26,36 @@ export const useCart = () => {
   return ctx;
 };
 
+/** Unique key for a cart item (same dish can appear with different prices) */
+const itemKey = (name: string, price: string) => `${name}|||${price}`;
+
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const addItem = useCallback((name: string, price: string) => {
     setItems((prev) => {
-      const existing = prev.find((i) => i.name === name);
+      const existing = prev.find((i) => i.name === name && i.price === price);
       if (existing) {
-        return prev.map((i) => (i.name === name ? { ...i, quantity: i.quantity + 1 } : i));
+        return prev.map((i) =>
+          i.name === name && i.price === price ? { ...i, quantity: i.quantity + 1 } : i
+        );
       }
       return [...prev, { name, price, quantity: 1 }];
     });
   }, []);
 
-  const removeItem = useCallback((name: string) => {
-    setItems((prev) => prev.filter((i) => i.name !== name));
+  const removeItem = useCallback((name: string, price: string) => {
+    setItems((prev) => prev.filter((i) => !(i.name === name && i.price === price)));
   }, []);
 
-  const updateQuantity = useCallback((name: string, quantity: number) => {
+  const updateQuantity = useCallback((name: string, price: string, quantity: number) => {
     if (quantity <= 0) {
-      setItems((prev) => prev.filter((i) => i.name !== name));
+      setItems((prev) => prev.filter((i) => !(i.name === name && i.price === price)));
     } else {
-      setItems((prev) => prev.map((i) => (i.name === name ? { ...i, quantity } : i)));
+      setItems((prev) =>
+        prev.map((i) => (i.name === name && i.price === price ? { ...i, quantity } : i))
+      );
     }
   }, []);
 
