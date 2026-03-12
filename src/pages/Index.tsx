@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
 import { useMenuData, LiveSection, LiveCategory } from "@/hooks/useMenuData";
-import { MessageCircle, ArrowLeft, ChevronRight, Sparkles, FileText } from "lucide-react";
+import { MessageCircle, ArrowLeft, ChevronRight, Sparkles, FileText, Facebook } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
 import CartFloatingButton from "@/components/CartFloatingButton";
@@ -774,6 +774,29 @@ const Index = () => {
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary border border-border text-xs font-body font-semibold text-secondary-foreground">
                       🔓 Ouvert au public
                     </span>
+                  </div>
+                  {/* Social links */}
+                  <div className="flex items-center justify-center gap-3 pt-3">
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61575540825498"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-secondary border border-border text-foreground/70 hover:text-[#1877F2] hover:border-[#1877F2]/40 transition-all hover:scale-110"
+                      title="Facebook"
+                    >
+                      <Facebook size={20} />
+                    </a>
+                    <a
+                      href="https://www.tiktok.com/@neriya_laboucheegourmande"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-secondary border border-border text-foreground/70 hover:text-foreground hover:border-foreground/40 transition-all hover:scale-110"
+                      title="TikTok"
+                    >
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.71a8.21 8.21 0 0 0 4.76 1.51v-3.45a4.85 4.85 0 0 1-1-.08z" />
+                      </svg>
+                    </a>
                   </div>
                   <p className="font-body text-xs text-muted-foreground/60">© 2026 — La bouchée gourmande</p>
                 </div>
