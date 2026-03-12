@@ -5,6 +5,7 @@ import { useCart } from "@/contexts/CartContext";
 const CartFloatingButton = () => {
   const { totalItems, setIsOpen } = useCart();
 
+
   return (
     <motion.button
       onClick={() => setIsOpen(true)}
