@@ -79,20 +79,22 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
               <div key={item.name + i} className="menu-item-row-v2">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <span className="menu-item-name-v2 shrink-1 min-w-0">
-                      {item.emoji && <span className="mr-1.5 text-base">{item.emoji}</span>}
+                    <span className="menu-item-name-v2 shrink min-w-0" style={{ maxWidth: '55%' }}>
+                      {item.emoji && <span className="mr-1 text-base">{item.emoji}</span>}
                       {item.name}
                     </span>
                     <span className="menu-item-dots-v2" />
-                    <span className="menu-item-price-v2">{item.price}</span>
-                    {isDual ? (
-                      <>
-                        <AddToCartButton name={item.name} price={prices[0]} label={prices[0]} />
-                        <AddToCartButton name={item.name} price={prices[1]} label={prices[1]} />
-                      </>
-                    ) : (
-                      <AddToCartButton name={item.name} price={item.price} />
-                    )}
+                    <div className="shrink-0 flex items-center gap-1.5">
+                      <span className="menu-item-price-v2">{item.price}</span>
+                      {isDual ? (
+                        <>
+                          <AddToCartButton name={item.name} price={prices[0]} label={prices[0]} />
+                          <AddToCartButton name={item.name} price={prices[1]} label={prices[1]} />
+                        </>
+                      ) : (
+                        <AddToCartButton name={item.name} price={item.price} />
+                      )}
+                    </div>
                   </div>
                   {item.description && (
                     <p className="menu-item-desc-v2">{item.description}</p>
