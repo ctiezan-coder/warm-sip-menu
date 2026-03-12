@@ -127,7 +127,7 @@ const CartDrawer = () => {
                     className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-bold text-sm uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#25D366]/30"
                   >
                     <Truck size={22} />
-                    Commander sur WhatsApp – Livraison
+                    LIVRAISON
                   </button>
                   <p className="font-body text-[10px] text-muted-foreground text-center tracking-wide">
                     {totalItems} article{totalItems > 1 ? "s" : ""} dans le panier
