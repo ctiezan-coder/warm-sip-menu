@@ -10,7 +10,8 @@ interface DeliveryFormDialogProps {
 
 const DELIVERY_ZONES = [
   { label: "Yopougon", fee: 1000, feeLabel: "1 000 FCFA" },
-  { label: "Hors Yopougon (sauf Bingerville et Marcory)", fee: 1500, feeLabel: "1 500 FCFA" },
+  { label: "Hors Yopougon", fee: 1500, feeLabel: "1 500 FCFA" },
+  { label: "Faya / Bingerville / Port-Bouët", fee: 2000, feeLabel: "2 000 FCFA" },
 ];
 
 const parsePrice = (price: string): number => {
