@@ -453,13 +453,27 @@ const Index = () => {
               <main className="flex-1 max-w-2xl mx-auto px-4 sm:px-6 py-12 w-full">
                 <GoldOrnament />
                 <div className="grid gap-5 mt-8">
+                  {/* Commande Événementiels */}
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                    onClick={() => setShowEventForm(true)}
+                    className="group relative overflow-hidden rounded-2xl p-6 sm:p-8 text-center menu-section-card-v2 gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer w-full"
+                  >
+                    <span className="text-4xl sm:text-5xl block mb-3 group-hover:scale-110 transition-transform duration-300">🎊</span>
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-primary uppercase tracking-[0.1em] mb-2">
+                      Commande Événementiels
+                    </h3>
+                    <p className="font-body text-sm text-foreground/70">Buffets, cocktails & réceptions sur mesure</p>
+                    <div className="mt-4 inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm px-5 py-2.5 rounded-full group-hover:bg-primary/90 transition-colors">
+                      <FileText size={16} />
+                      Remplir formulaire
+                    </div>
+                  </motion.button>
+
+                  {/* Réservations Restauration */}
                   {[
-                    {
-                      label: "Commande Événementiels",
-                      emoji: "🎊",
-                      desc: "Buffets, cocktails & réceptions sur mesure",
-                      msg: "Bonjour Neriya ! 🎉 Je souhaite passer une commande événementielle.\n\nMerci de me recontacter ! 😊",
-                    },
                     {
                       label: "Réservations Restauration",
                       emoji: "🍽️",
@@ -480,7 +494,7 @@ const Index = () => {
                       rel="noopener noreferrer"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+                      transition={{ delay: 0.4 + i * 0.1, duration: 0.4 }}
                       className="group relative overflow-hidden rounded-2xl p-6 sm:p-8 text-center menu-section-card-v2 gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                     >
                       <span className="text-4xl sm:text-5xl block mb-3 group-hover:scale-110 transition-transform duration-300">{item.emoji}</span>
@@ -497,6 +511,8 @@ const Index = () => {
                 </div>
                 <GoldOrnament />
               </main>
+
+              <EventFormDialog open={showEventForm} onClose={() => setShowEventForm(false)} />
             </motion.div>
           ) : activeCategoryId && activeCat ? (
             <motion.div
