@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Minus, Plus, Trash2, ShoppingBag, MessageCircle, Truck } from "lucide-react";
+import { X, Minus, Plus, Trash2, ShoppingBag, Truck } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import DeliveryFormDialog from "@/components/DeliveryFormDialog";
 
 const CartDrawer = () => {
-  const { items, isOpen, setIsOpen, updateQuantity, removeItem, clearCart, totalItems, getWhatsAppUrl } = useCart();
+  const { items, isOpen, setIsOpen, updateQuantity, removeItem, clearCart, totalItems } = useCart();
   const [deliveryOpen, setDeliveryOpen] = useState(false);
 
   return (
@@ -13,7 +13,6 @@ const CartDrawer = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -22,7 +21,6 @@ const CartDrawer = () => {
               className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm"
             />
 
-            {/* Drawer */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -35,33 +33,33 @@ const CartDrawer = () => {
               }}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-primary/15">
-                <div className="flex items-center gap-2.5">
-                  <ShoppingBag size={20} className="text-primary" />
-                  <h2 className="font-display text-xl font-bold text-primary uppercase tracking-wider">
+              <div className="flex items-center justify-between px-5 py-5 border-b border-primary/15">
+                <div className="flex items-center gap-3">
+                  <ShoppingBag size={22} className="text-primary" />
+                  <h2 className="font-display text-2xl font-bold text-primary uppercase tracking-wider">
                     Mon Panier
                   </h2>
                   {totalItems > 0 && (
-                    <span className="ml-1 px-2 py-0.5 rounded-full bg-accent/20 text-accent text-xs font-bold">
+                    <span className="ml-1 px-2.5 py-1 rounded-full bg-accent/20 text-accent text-sm font-bold">
                       {totalItems}
                     </span>
                   )}
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-card/50 border border-primary/15 text-foreground/60 hover:text-foreground transition-colors"
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-card/50 border border-primary/15 text-foreground/60 hover:text-foreground transition-colors"
                 >
-                  <X size={18} />
+                  <X size={20} />
                 </button>
               </div>
 
               {/* Items */}
-              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3">
+              <div className="flex-1 overflow-y-auto px-5 py-5 space-y-3">
                 {items.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-full text-center gap-4 opacity-60">
-                    <ShoppingBag size={48} className="text-primary/30" />
-                    <p className="font-body text-muted-foreground text-sm">Votre panier est vide</p>
-                    <p className="font-body text-muted-foreground/60 text-xs">
+                    <ShoppingBag size={56} className="text-primary/30" />
+                    <p className="font-body text-muted-foreground text-base">Votre panier est vide</p>
+                    <p className="font-body text-muted-foreground/60 text-sm">
                       Ajoutez des plats depuis le menu
                     </p>
                   </div>
@@ -74,44 +72,43 @@ const CartDrawer = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, x: 50 }}
-                        className="flex items-center gap-3 p-3 rounded-xl bg-card/40 border border-primary/10"
+                        className="flex items-center gap-3 p-4 rounded-2xl bg-card/40 border border-primary/10"
                       >
                         <div className="flex-1 min-w-0">
-                          <p className="font-body text-sm font-semibold text-foreground truncate">{item.name}</p>
-                          <p className="font-body text-xs text-primary font-bold">{item.price}</p>
+                          <p className="font-body text-base font-semibold text-foreground truncate">{item.name}</p>
+                          <p className="font-body text-sm text-primary font-bold mt-0.5">{item.price}</p>
                         </div>
 
-                        {/* Quantity controls */}
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-2">
                           <button
                             onClick={() => updateQuantity(item.name, item.price, item.quantity - 1)}
-                            className="w-7 h-7 flex items-center justify-center rounded-lg bg-secondary/60 border border-primary/10 text-foreground/70 hover:text-foreground hover:bg-secondary transition-colors"
+                            className="w-8 h-8 flex items-center justify-center rounded-xl bg-secondary/60 border border-primary/10 text-foreground/70 hover:text-foreground hover:bg-secondary transition-colors"
                           >
-                            <Minus size={14} />
+                            <Minus size={16} />
                           </button>
-                          <span className="font-body text-sm font-bold text-foreground w-6 text-center">
+                          <span className="font-body text-base font-bold text-foreground w-7 text-center">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() => updateQuantity(item.name, item.price, item.quantity + 1)}
-                            className="w-7 h-7 flex items-center justify-center rounded-lg bg-secondary/60 border border-primary/10 text-foreground/70 hover:text-foreground hover:bg-secondary transition-colors"
+                            className="w-8 h-8 flex items-center justify-center rounded-xl bg-secondary/60 border border-primary/10 text-foreground/70 hover:text-foreground hover:bg-secondary transition-colors"
                           >
-                            <Plus size={14} />
+                            <Plus size={16} />
                           </button>
                         </div>
 
                         <button
                           onClick={() => removeItem(item.name, item.price)}
-                          className="w-7 h-7 flex items-center justify-center rounded-lg text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
+                          className="w-8 h-8 flex items-center justify-center rounded-xl text-destructive/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
                         >
-                          <Trash2 size={14} />
+                          <Trash2 size={16} />
                         </button>
                       </motion.div>
                     ))}
 
                     <button
                       onClick={clearCart}
-                      className="w-full mt-2 py-2 text-center font-body text-xs text-muted-foreground hover:text-destructive transition-colors uppercase tracking-wider"
+                      className="w-full mt-3 py-2.5 text-center font-body text-sm text-muted-foreground hover:text-destructive transition-colors uppercase tracking-wider"
                     >
                       Vider le panier
                     </button>
@@ -119,17 +116,17 @@ const CartDrawer = () => {
                 )}
               </div>
 
-              {/* Footer - order button */}
+              {/* Footer */}
               {items.length > 0 && (
-                <div className="px-5 py-4 border-t border-primary/15 space-y-3">
+                <div className="px-5 py-5 border-t border-primary/15 space-y-3">
                   <button
                     onClick={() => setDeliveryOpen(true)}
-                    className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-bold text-sm uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#25D366]/30"
+                    className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-[#25D366] hover:bg-[#1ebe57] text-white font-body font-bold text-base uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#25D366]/30"
                   >
-                    <Truck size={22} />
+                    <Truck size={24} />
                     LIVRAISON
                   </button>
-                  <p className="font-body text-[10px] text-muted-foreground text-center tracking-wide">
+                  <p className="font-body text-xs text-muted-foreground text-center tracking-wide">
                     {totalItems} article{totalItems > 1 ? "s" : ""} dans le panier
                   </p>
                 </div>
