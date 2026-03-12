@@ -283,6 +283,11 @@ const Admin = () => {
           <DailySelectionAdmin />
         </div>
 
+        {/* Event reservations */}
+        <div className="glass-card rounded-xl p-4">
+          <EventReservationsAdmin />
+        </div>
+
         {/* Add category button */}
         <div className="flex justify-end">
           <Button onClick={() => openCategoryDialog()} className="bg-primary text-primary-foreground">
