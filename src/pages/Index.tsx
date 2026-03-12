@@ -657,23 +657,26 @@ const Index = () => {
                       whileTap={{ scale: 0.9 }}
                       animate={{
                         boxShadow: [
-                          "0 0 0px 0px hsl(var(--primary) / 0)",
-                          "0 0 20px 6px hsl(var(--primary) / 0.5)",
-                          "0 0 0px 0px hsl(var(--primary) / 0)",
+                          "0 0 4px 2px hsl(var(--primary) / 0.3)",
+                          "0 0 35px 12px hsl(var(--primary) / 0.7)",
+                          "0 0 4px 2px hsl(var(--primary) / 0.3)",
                         ],
+                        scale: [1, 1.06, 1],
                       }}
                       transition={{
-                        boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                        boxShadow: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
+                        scale: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
                       }}
                       onClick={() => {
                         setShowEvenements(true);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
-                      className="relative inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/40 cursor-pointer hover:bg-primary/10 hover:border-primary/50 transition-all duration-300 hover:scale-105 active:scale-95 bg-primary/5"
+                      className="relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 border-2 border-primary/60 cursor-pointer hover:border-primary transition-all duration-300 active:scale-95 bg-primary/15"
                     >
-                      <span className="absolute inset-0 rounded-full bg-primary/10 animate-ping opacity-30 pointer-events-none" />
-                      <span>🎉</span>
-                      <span className="font-body text-xs sm:text-sm text-primary font-semibold">Événements</span>
+                      <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping pointer-events-none" />
+                      <span className="absolute inset-[-3px] rounded-full bg-gradient-to-r from-primary/40 via-primary/10 to-primary/40 blur-md pointer-events-none" />
+                      <span className="relative">🎉</span>
+                      <span className="relative font-body text-xs sm:text-sm text-primary font-bold tracking-wide">Événements</span>
                     </motion.button>
                     <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
                       <span>📧</span>
