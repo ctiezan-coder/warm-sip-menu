@@ -389,6 +389,7 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 
 const Index = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
+  const [showEvenements, setShowEvenements] = useState(false);
   const { categories, loading } = useMenuData();
   const { selections: dailySelections } = useDailySelections();
 
@@ -398,7 +399,104 @@ const Index = () => {
     <CartProvider>
       <div className="min-h-screen chalkboard-bg">
         <AnimatePresence mode="wait">
-          {activeCategoryId && activeCat ? (
+          {showEvenements ? (
+            <motion.div
+              key="evenements"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="min-h-screen flex flex-col"
+            >
+              <div className="relative h-60 sm:h-72 overflow-hidden grain-overlay">
+                <motion.img
+                  src={heroImg}
+                  alt="Événements Neriya"
+                  className="w-full h-full object-cover object-center"
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-background" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+
+                <motion.button
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                  onClick={() => setShowEvenements(false)}
+                  className="absolute top-5 left-5 z-10 flex items-center gap-2 glass-card text-foreground font-body text-sm px-5 py-3 rounded-full hover:bg-card/90 transition-all hover:scale-105 active:scale-95"
+                >
+                  <ArrowLeft size={18} />
+                  Retour
+                </motion.button>
+
+                <div className="absolute bottom-8 left-0 right-0 text-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                  >
+                    <span className="text-5xl sm:text-6xl block mb-3">🎉</span>
+                    <h1 className="font-display text-3xl sm:text-5xl font-bold text-white uppercase tracking-[0.15em] drop-shadow-lg">
+                      Événements
+                    </h1>
+                    <p className="font-body text-sm sm:text-base text-white/60 mt-3 tracking-wide">
+                      Mariages, baptêmes, anniversaires & plus
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
+
+              <main className="flex-1 max-w-2xl mx-auto px-4 sm:px-6 py-12 w-full">
+                <GoldOrnament />
+                <div className="grid gap-5 mt-8">
+                  {[
+                    {
+                      label: "Commande Événementiels",
+                      emoji: "🎊",
+                      desc: "Buffets, cocktails & réceptions sur mesure",
+                      msg: "Bonjour Neriya ! 🎉 Je souhaite passer une commande événementielle.\n\nMerci de me recontacter ! 😊",
+                    },
+                    {
+                      label: "Réservations Restauration",
+                      emoji: "🍽️",
+                      desc: "Réservez votre table pour un moment spécial",
+                      msg: "Bonjour Neriya ! 🍽️ Je souhaite faire une réservation au restaurant.\n\nMerci de me recontacter ! 😊",
+                    },
+                    {
+                      label: "Service Traiteur",
+                      emoji: "👨‍🍳",
+                      desc: "Notre équipe à votre service, où que vous soyez",
+                      msg: "Bonjour Neriya ! 👨‍🍳 Je suis intéressé(e) par votre service traiteur.\n\nMerci de me recontacter ! 😊",
+                    },
+                  ].map((item, i) => (
+                    <motion.a
+                      key={item.label}
+                      href={`https://wa.me/2250789288202?text=${encodeURIComponent(item.msg)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+                      className="group relative overflow-hidden rounded-2xl p-6 sm:p-8 text-center menu-section-card-v2 gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                    >
+                      <span className="text-4xl sm:text-5xl block mb-3 group-hover:scale-110 transition-transform duration-300">{item.emoji}</span>
+                      <h3 className="font-display text-lg sm:text-xl font-bold text-primary uppercase tracking-[0.1em] mb-2">
+                        {item.label}
+                      </h3>
+                      <p className="font-body text-sm text-foreground/70">{item.desc}</p>
+                      <div className="mt-4 inline-flex items-center gap-2 bg-[#25D366] text-white font-body font-semibold text-sm px-5 py-2.5 rounded-full group-hover:bg-[#1ebe57] transition-colors">
+                        <MessageCircle size={16} fill="white" strokeWidth={0} />
+                        Contacter sur WhatsApp
+                      </div>
+                    </motion.a>
+                  ))}
+                </div>
+                <GoldOrnament />
+              </main>
+            </motion.div>
+          ) : activeCategoryId && activeCat ? (
             <motion.div
               key={activeCategoryId}
               initial={{ opacity: 0, y: 20 }}
@@ -555,10 +653,17 @@ const Index = () => {
                       <span>🛵</span>
                       <span className="font-body text-xs sm:text-sm text-foreground/80">Livraison</span>
                     </span>
-                    <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => {
+                        setShowEvenements(true);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                      className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15 cursor-pointer hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-105 active:scale-95"
+                    >
                       <span>🎉</span>
                       <span className="font-body text-xs sm:text-sm text-foreground/80">Événements</span>
-                    </span>
+                    </motion.button>
                     <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
                       <span>📧</span>
                       <span className="font-body text-xs sm:text-sm text-foreground/80">info@neriya.ci</span>
