@@ -466,18 +466,19 @@ const Index = () => {
             >
               <div className="menu-section-card-v2 text-center py-8 sm:py-10">
                 <h2 className="font-display text-xl sm:text-2xl font-bold text-primary uppercase tracking-[0.15em] mb-4">
-                  Bienvenue chez Neriya
+                  Bienvenue chez Neriya - La Bouchée Gourmande
                 </h2>
-                <p className="font-body text-foreground/85 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
-                  <span className="font-semibold text-primary">Neriya — La Bouchée Gourmande</span>, votre restaurant
-                  situé à <span className="font-semibold">Yopougon, Abidjan</span>. Savourez une cuisine africaine
-                  authentique et généreuse, préparée chaque jour avec des produits frais et beaucoup de passion.
+                <p className="font-body text-primary font-semibold text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
+                  Votre passeport gustatif pour Yopougon !
                 </p>
-                <p className="font-body text-foreground/70 text-sm leading-relaxed max-w-xl mx-auto mb-6">
-                  Du petit-déjeuner au dîner, nos plats sont faits pour éveiller vos papilles. Que vous passiez pour un
-                  repas <span className="text-primary font-semibold">sur place</span> dans notre cadre chaleureux ou que
-                  vous préfériez la <span className="text-primary font-semibold">livraison</span> directement chez vous,
-                  Neriya vous régale à chaque bouchée&nbsp;!
+                <p className="font-body text-foreground/85 text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-5">
+                  Découvrez une cuisine aux saveurs du monde, qui vous transporte à travers les continents. Chez <span className="font-semibold text-primary">Neriya_la bouchée gourmande</span> nous créons des expériences culinaires uniques, conçues pour éveiller vos sens et vous faire voyager.
+                </p>
+                <p className="font-body text-foreground/70 text-sm leading-relaxed max-w-xl mx-auto mb-5">
+                  Préparés avec des ingrédients frais et une passion authentique, nos plats sont une invitation à la découverte, du petit-déjeuner au dîner. Profitez de notre ambiance chaleureuse ou faites-vous livrer : chaque bouchée est non seulement une explosion de saveurs mais aussi un nouveau voyage.
+                </p>
+                <p className="font-body text-primary font-semibold text-sm sm:text-base leading-relaxed max-w-xl mx-auto mb-6">
+                  Neriya _la bouchée gourmande, Le monde à portée de goûts.
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
