@@ -66,7 +66,7 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md border-primary/20 bg-card">
+      <DialogContent className="sm:max-w-md border-primary/20 bg-card z-[80]">
         <DialogHeader>
           <DialogTitle className="font-display text-primary text-xl uppercase tracking-wider">
             🚚 Livraison
