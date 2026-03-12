@@ -655,14 +655,25 @@ const Index = () => {
                     </span>
                     <motion.button
                       whileTap={{ scale: 0.9 }}
+                      animate={{
+                        boxShadow: [
+                          "0 0 0px 0px hsl(var(--primary) / 0)",
+                          "0 0 20px 6px hsl(var(--primary) / 0.5)",
+                          "0 0 0px 0px hsl(var(--primary) / 0)",
+                        ],
+                      }}
+                      transition={{
+                        boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                      }}
                       onClick={() => {
                         setShowEvenements(true);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
-                      className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15 cursor-pointer hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-105 active:scale-95"
+                      className="relative inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/40 cursor-pointer hover:bg-primary/10 hover:border-primary/50 transition-all duration-300 hover:scale-105 active:scale-95 bg-primary/5"
                     >
+                      <span className="absolute inset-0 rounded-full bg-primary/10 animate-ping opacity-30 pointer-events-none" />
                       <span>🎉</span>
-                      <span className="font-body text-xs sm:text-sm text-foreground/80">Événements</span>
+                      <span className="font-body text-xs sm:text-sm text-primary font-semibold">Événements</span>
                     </motion.button>
                     <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
                       <span>📧</span>
