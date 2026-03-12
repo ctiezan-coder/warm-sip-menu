@@ -78,8 +78,8 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
             return (
               <div key={item.name + i} className="menu-item-row-v2">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="menu-item-name-v2">
+                  <div className="flex items-center gap-1.5">
+                    <span className="menu-item-name-v2 shrink-1 min-w-0">
                       {item.emoji && <span className="mr-1.5 text-base">{item.emoji}</span>}
                       {item.name}
                     </span>
