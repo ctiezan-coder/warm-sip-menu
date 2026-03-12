@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
 import { useMenuData, LiveSection, LiveCategory } from "@/hooks/useMenuData";
-import { MessageCircle, ArrowLeft, ChevronRight, Sparkles, FileText } from "lucide-react";
+import { MessageCircle, ArrowLeft, ChevronRight, Sparkles, FileText, Facebook } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
 import CartFloatingButton from "@/components/CartFloatingButton";
