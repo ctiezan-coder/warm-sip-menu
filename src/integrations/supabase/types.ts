@@ -56,6 +56,60 @@ export type Database = {
         }
         Relationships: []
       }
+      event_reservations: {
+        Row: {
+          client_name: string
+          client_phone: string
+          created_at: string
+          decoration: string | null
+          deposit_amount: number
+          drinks: string | null
+          event_date: string | null
+          event_time: string | null
+          event_type: string
+          guest_count: number | null
+          id: string
+          menu_choice: string | null
+          music: string | null
+          other_services: string | null
+          status: string
+        }
+        Insert: {
+          client_name: string
+          client_phone: string
+          created_at?: string
+          decoration?: string | null
+          deposit_amount?: number
+          drinks?: string | null
+          event_date?: string | null
+          event_time?: string | null
+          event_type: string
+          guest_count?: number | null
+          id?: string
+          menu_choice?: string | null
+          music?: string | null
+          other_services?: string | null
+          status?: string
+        }
+        Update: {
+          client_name?: string
+          client_phone?: string
+          created_at?: string
+          decoration?: string | null
+          deposit_amount?: number
+          drinks?: string | null
+          event_date?: string | null
+          event_time?: string | null
+          event_type?: string
+          guest_count?: number | null
+          id?: string
+          menu_choice?: string | null
+          music?: string | null
+          other_services?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       menu_categories: {
         Row: {
           created_at: string

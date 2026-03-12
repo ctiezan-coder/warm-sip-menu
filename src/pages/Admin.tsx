@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import logo from "@/assets/neriya-logo.png";
 import type { Tables } from "@/integrations/supabase/types";
 import DailySelectionAdmin from "@/components/DailySelectionAdmin";
+import EventReservationsAdmin from "@/components/EventReservationsAdmin";
 
 type MenuItem = Tables<"menu_items">;
 type MenuSection = Tables<"menu_sections">;
@@ -280,6 +281,11 @@ const Admin = () => {
         {/* Daily selection */}
         <div className="glass-card rounded-xl p-4">
           <DailySelectionAdmin />
+        </div>
+
+        {/* Event reservations */}
+        <div className="glass-card rounded-xl p-4">
+          <EventReservationsAdmin />
         </div>
 
         {/* Add category button */}
