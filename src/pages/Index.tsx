@@ -2,11 +2,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useDailySelections, DAILY_SECTION_KEYS } from "@/hooks/useDailySelections";
 import { useMenuData, LiveSection, LiveCategory } from "@/hooks/useMenuData";
-import { MessageCircle, ArrowLeft, ChevronRight, Sparkles } from "lucide-react";
+import { MessageCircle, ArrowLeft, ChevronRight, Sparkles, FileText } from "lucide-react";
 import PlatDuJourPopup from "@/components/PlatDuJourPopup";
 import CartDrawer from "@/components/CartDrawer";
 import CartFloatingButton from "@/components/CartFloatingButton";
 import { CartProvider, useCart } from "@/contexts/CartContext";
+import EventFormDialog from "@/components/EventFormDialog";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
@@ -390,6 +391,7 @@ const whatsappUrl = `https://wa.me/2250789288202?text=${encodeURIComponent(whats
 const Index = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
   const [showEvenements, setShowEvenements] = useState(false);
+  const [showEventForm, setShowEventForm] = useState(false);
   const { categories, loading } = useMenuData();
   const { selections: dailySelections } = useDailySelections();
 
@@ -451,13 +453,27 @@ const Index = () => {
               <main className="flex-1 max-w-2xl mx-auto px-4 sm:px-6 py-12 w-full">
                 <GoldOrnament />
                 <div className="grid gap-5 mt-8">
+                  {/* Commande Événementiels */}
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                    onClick={() => setShowEventForm(true)}
+                    className="group relative overflow-hidden rounded-2xl p-6 sm:p-8 text-center menu-section-card-v2 gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer w-full"
+                  >
+                    <span className="text-4xl sm:text-5xl block mb-3 group-hover:scale-110 transition-transform duration-300">🎊</span>
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-primary uppercase tracking-[0.1em] mb-2">
+                      Commande Événementiels
+                    </h3>
+                    <p className="font-body text-sm text-foreground/70">Buffets, cocktails & réceptions sur mesure</p>
+                    <div className="mt-4 inline-flex items-center gap-2 bg-primary text-primary-foreground font-body font-semibold text-sm px-5 py-2.5 rounded-full group-hover:bg-primary/90 transition-colors">
+                      <FileText size={16} />
+                      Remplir formulaire
+                    </div>
+                  </motion.button>
+
+                  {/* Réservations Restauration */}
                   {[
-                    {
-                      label: "Commande Événementiels",
-                      emoji: "🎊",
-                      desc: "Buffets, cocktails & réceptions sur mesure",
-                      msg: "Bonjour Neriya ! 🎉 Je souhaite passer une commande événementielle.\n\nMerci de me recontacter ! 😊",
-                    },
                     {
                       label: "Réservations Restauration",
                       emoji: "🍽️",
@@ -478,7 +494,7 @@ const Index = () => {
                       rel="noopener noreferrer"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+                      transition={{ delay: 0.4 + i * 0.1, duration: 0.4 }}
                       className="group relative overflow-hidden rounded-2xl p-6 sm:p-8 text-center menu-section-card-v2 gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                     >
                       <span className="text-4xl sm:text-5xl block mb-3 group-hover:scale-110 transition-transform duration-300">{item.emoji}</span>
@@ -495,6 +511,8 @@ const Index = () => {
                 </div>
                 <GoldOrnament />
               </main>
+
+              <EventFormDialog open={showEventForm} onClose={() => setShowEventForm(false)} />
             </motion.div>
           ) : activeCategoryId && activeCat ? (
             <motion.div
@@ -657,23 +675,26 @@ const Index = () => {
                       whileTap={{ scale: 0.9 }}
                       animate={{
                         boxShadow: [
-                          "0 0 0px 0px hsl(var(--primary) / 0)",
-                          "0 0 20px 6px hsl(var(--primary) / 0.5)",
-                          "0 0 0px 0px hsl(var(--primary) / 0)",
+                          "0 0 4px 2px hsl(var(--primary) / 0.3)",
+                          "0 0 35px 12px hsl(var(--primary) / 0.7)",
+                          "0 0 4px 2px hsl(var(--primary) / 0.3)",
                         ],
+                        scale: [1, 1.06, 1],
                       }}
                       transition={{
-                        boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                        boxShadow: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
+                        scale: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
                       }}
                       onClick={() => {
                         setShowEvenements(true);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
-                      className="relative inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/40 cursor-pointer hover:bg-primary/10 hover:border-primary/50 transition-all duration-300 hover:scale-105 active:scale-95 bg-primary/5"
+                      className="relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 border-2 border-primary/60 cursor-pointer hover:border-primary transition-all duration-300 active:scale-95 bg-primary/15"
                     >
-                      <span className="absolute inset-0 rounded-full bg-primary/10 animate-ping opacity-30 pointer-events-none" />
-                      <span>🎉</span>
-                      <span className="font-body text-xs sm:text-sm text-primary font-semibold">Événements</span>
+                      <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping pointer-events-none" />
+                      <span className="absolute inset-[-3px] rounded-full bg-gradient-to-r from-primary/40 via-primary/10 to-primary/40 blur-md pointer-events-none" />
+                      <span className="relative">🎉</span>
+                      <span className="relative font-body text-xs sm:text-sm text-primary font-bold tracking-wide">Événements</span>
                     </motion.button>
                     <span className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 border border-primary/15">
                       <span>📧</span>
