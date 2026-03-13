@@ -519,6 +519,7 @@ const Index = () => {
 
               <EventFormDialog open={showEventForm} onClose={() => setShowEventForm(false)} />
               <ReservationFormDialog open={showReservationForm} onClose={() => setShowReservationForm(false)} />
+              <TraiteurFormDialog open={showTraiteurForm} onClose={() => setShowTraiteurForm(false)} />
             </motion.div>
           ) : activeCategoryId && activeCat ? (
             <motion.div
