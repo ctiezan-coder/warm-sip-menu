@@ -19,6 +19,8 @@ const checkboxLabelClass = "flex items-center gap-2.5 font-body text-sm text-for
 const TraiteurFormDialog = ({ open, onClose }: TraiteurFormDialogProps) => {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
+    typeEvenement: "",
+    nombrePersonnes: "",
     nom: "",
     lieu: "",
     date: "",
@@ -82,10 +84,12 @@ const TraiteurFormDialog = ({ open, onClose }: TraiteurFormDialogProps) => {
     const msg = `📋 *FORMULAIRE SERVICE TRAITEUR*
 
 🎉 *Informations sur la Cérémonie*
-• Nom du client : ${form.nom}
-• Lieu : ${form.lieu}
+• Type d'événement : ${form.typeEvenement || "Non précisé"}
+• Nombre de personnes : ${form.nombrePersonnes || "Non précisé"}
 • Date : ${form.date || "Non précisé"}
 • Heure : ${form.heure || "Non précisé"}
+• Nom du client : ${form.nom}
+• Lieu : ${form.lieu}
 
 🍽️ *Choix du Menu*
 • ${menus}
@@ -110,7 +114,7 @@ Merci de confirmer ma commande ! 😊`;
     toast.success("Commande envoyée !");
     setSaving(false);
     setForm({
-      nom: "", lieu: "", date: "", heure: "",
+      nom: "", lieu: "", date: "", heure: "", typeEvenement: "", nombrePersonnes: "",
       menu1: "", menu2: "", menu3: "",
       boissonJus: false, boissonEau: false, boissonAutre: false, boissonAutrePrecision: "",
       nombreInvites: "", serviceBuffet: false, serviceTable: false, remarques: "",
@@ -158,12 +162,12 @@ Merci de confirmer ma commande ! 😊`;
                 </h3>
                 <div className="grid gap-4">
                   <div>
-                    <label className={labelClass}>Nom du client *</label>
-                    <input type="text" value={form.nom} onChange={(e) => handleChange("nom", e.target.value)} placeholder="Votre nom complet" className={inputClass} />
+                    <label className={labelClass}>Type d'événement</label>
+                    <input type="text" value={form.typeEvenement} onChange={(e) => handleChange("typeEvenement", e.target.value)} placeholder="Ex: Anniversaire, Mariage..." className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass}>Lieu de la cérémonie *</label>
-                    <input type="text" value={form.lieu} onChange={(e) => handleChange("lieu", e.target.value)} placeholder="Adresse ou lieu" className={inputClass} />
+                    <label className={labelClass}>Nombre de personnes</label>
+                    <input type="number" value={form.nombrePersonnes} onChange={(e) => handleChange("nombrePersonnes", e.target.value)} placeholder="Ex: 50" className={inputClass} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -174,6 +178,14 @@ Merci de confirmer ma commande ! 😊`;
                       <label className={labelClass}>Heure</label>
                       <input type="time" value={form.heure} onChange={(e) => handleChange("heure", e.target.value)} className={inputClass} />
                     </div>
+                  </div>
+                  <div>
+                    <label className={labelClass}>Nom du client *</label>
+                    <input type="text" value={form.nom} onChange={(e) => handleChange("nom", e.target.value)} placeholder="Votre nom complet" className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Lieu de la cérémonie *</label>
+                    <input type="text" value={form.lieu} onChange={(e) => handleChange("lieu", e.target.value)} placeholder="Adresse ou lieu" className={inputClass} />
                   </div>
                 </div>
               </div>
