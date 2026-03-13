@@ -19,6 +19,8 @@ const checkboxLabelClass = "flex items-center gap-2.5 font-body text-sm text-for
 const EventFormDialog = ({ open, onClose }: EventFormDialogProps) => {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
+    typeEvenement: "",
+    nombrePersonnes: "",
     nom: "",
     lieu: "",
     date: "",
