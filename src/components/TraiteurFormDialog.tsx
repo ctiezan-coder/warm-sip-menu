@@ -20,11 +20,11 @@ const TraiteurFormDialog = ({ open, onClose }: TraiteurFormDialogProps) => {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
     typeEvenement: "",
-    nombrePersonnes: "",
-    nom: "",
-    lieu: "",
+    nombreInvites: "",
     date: "",
     heure: "",
+    nom: "",
+    telephone: "",
     menu1: "",
     menu2: "",
     menu3: "",
@@ -32,17 +32,15 @@ const TraiteurFormDialog = ({ open, onClose }: TraiteurFormDialogProps) => {
     boissonEau: false,
     boissonAutre: false,
     boissonAutrePrecision: "",
-    nombreInvites: "",
     serviceBuffet: false,
     serviceTable: false,
-    remarques: "",
   });
 
   const handleChange = (field: string, value: string | boolean) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const isValid = form.nom.trim() && form.lieu.trim();
+  const isValid = form.nom.trim() && form.telephone.trim();
 
   const handleSubmit = async () => {
     if (!isValid) return;
@@ -54,25 +52,23 @@ const TraiteurFormDialog = ({ open, onClose }: TraiteurFormDialogProps) => {
       form.boissonAutre && `Autre: ${form.boissonAutrePrecision || "Non précisé"}`,
     ].filter(Boolean).join(", ") || "Non précisé";
 
+    const menus = [form.menu1, form.menu2, form.menu3].filter(Boolean).join(" | ") || "Non précisé";
+
     const typeService = [
       form.serviceBuffet && "Buffet",
       form.serviceTable && "Service à table",
     ].filter(Boolean).join(", ") || "Non précisé";
 
-    const menus = [form.menu1, form.menu2, form.menu3].filter(Boolean).join(" | ") || "Non précisé";
-
     const { error } = await supabase.from("event_reservations").insert({
       event_type: "Service Traiteur",
       client_name: form.nom.trim(),
-      client_phone: "-",
+      client_phone: form.telephone.trim(),
       guest_count: form.nombreInvites ? parseInt(form.nombreInvites) : null,
       event_date: form.date || null,
       event_time: form.heure || null,
       menu_choice: menus,
       drinks: boissons,
       decoration: typeService,
-      other_services: form.remarques || null,
-      music: form.lieu.trim(),
     });
 
     if (error) {
@@ -81,15 +77,17 @@ const TraiteurFormDialog = ({ open, onClose }: TraiteurFormDialogProps) => {
       return;
     }
 
-    const msg = `📋 *FORMULAIRE SERVICE TRAITEUR*
+    const msg = `📋 *SERVICE TRAITEUR*
 
-🎉 *Informations sur la Cérémonie*
+🎉 *Informations sur l'Événement*
 • Type d'événement : ${form.typeEvenement || "Non précisé"}
-• Nombre de personnes : ${form.nombrePersonnes || "Non précisé"}
+• Nombre d'invités : ${form.nombreInvites || "Non précisé"}
 • Date : ${form.date || "Non précisé"}
 • Heure : ${form.heure || "Non précisé"}
-• Nom du client : ${form.nom}
-• Lieu : ${form.lieu}
+
+👤 *Informations de Contact*
+• Nom : ${form.nom}
+• Téléphone : ${form.telephone}
 
 🍽️ *Choix du Menu*
 • ${menus}
@@ -97,16 +95,16 @@ const TraiteurFormDialog = ({ open, onClose }: TraiteurFormDialogProps) => {
 🥤 *Boissons*
 • ${boissons}
 
-👥 *Options de Service*
-• Nombre d'invités : ${form.nombreInvites || "Non précisé"}
-• Type de service : ${typeService}
+🍴 *Options de Service*
+• ${typeService}
 
 💰 *Conditions de Paiement*
-• Acompte : 80% du montant total à la signature
+• Acompte : 80% du montant total à la signature du contrat
 • Solde : le jour de la cérémonie
 
-📝 *Remarques / Demandes Spéciales*
-${form.remarques || "Aucune"}
+📌 *Conditions de Réservation*
+• L'acompte doit être payé au plus tard 72h avant l'événement
+• NB : L'acompte versé, aucune annulation ne sera acceptée
 
 Merci de confirmer ma commande ! 😊`;
 
@@ -114,10 +112,11 @@ Merci de confirmer ma commande ! 😊`;
     toast.success("Commande envoyée !");
     setSaving(false);
     setForm({
-      nom: "", lieu: "", date: "", heure: "", typeEvenement: "", nombrePersonnes: "",
+      typeEvenement: "", nombreInvites: "", date: "", heure: "",
+      nom: "", telephone: "",
       menu1: "", menu2: "", menu3: "",
       boissonJus: false, boissonEau: false, boissonAutre: false, boissonAutrePrecision: "",
-      nombreInvites: "", serviceBuffet: false, serviceTable: false, remarques: "",
+      serviceBuffet: false, serviceTable: false,
     });
     onClose();
   };
@@ -155,10 +154,10 @@ Merci de confirmer ma commande ! 😊`;
 
             {/* Form */}
             <div className="px-5 sm:px-6 py-6 space-y-6 max-h-[55vh] sm:max-h-[60vh] overflow-y-auto">
-              {/* Infos Cérémonie */}
+              {/* Infos Événement */}
               <div>
                 <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <span className="text-lg">🎉</span> Informations sur la Cérémonie
+                  <span className="text-lg">🎉</span> Informations sur l'Événement
                 </h3>
                 <div className="grid gap-4">
                   <div>
@@ -166,8 +165,8 @@ Merci de confirmer ma commande ! 😊`;
                     <input type="text" value={form.typeEvenement} onChange={(e) => handleChange("typeEvenement", e.target.value)} placeholder="Ex: Anniversaire, Mariage..." className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass}>Nombre de personnes</label>
-                    <input type="number" value={form.nombrePersonnes} onChange={(e) => handleChange("nombrePersonnes", e.target.value)} placeholder="Ex: 50" className={inputClass} />
+                    <label className={labelClass}>Nombre d'invités</label>
+                    <input type="number" value={form.nombreInvites} onChange={(e) => handleChange("nombreInvites", e.target.value)} placeholder="Ex: 50" className={inputClass} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -179,13 +178,22 @@ Merci de confirmer ma commande ! 😊`;
                       <input type="time" value={form.heure} onChange={(e) => handleChange("heure", e.target.value)} className={inputClass} />
                     </div>
                   </div>
+                </div>
+              </div>
+
+              {/* Infos Contact */}
+              <div>
+                <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <span className="text-lg">👤</span> Informations de Contact
+                </h3>
+                <div className="grid gap-4">
                   <div>
-                    <label className={labelClass}>Nom du client *</label>
+                    <label className={labelClass}>Nom *</label>
                     <input type="text" value={form.nom} onChange={(e) => handleChange("nom", e.target.value)} placeholder="Votre nom complet" className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass}>Lieu de la cérémonie *</label>
-                    <input type="text" value={form.lieu} onChange={(e) => handleChange("lieu", e.target.value)} placeholder="Adresse ou lieu" className={inputClass} />
+                    <label className={labelClass}>Numéro de téléphone *</label>
+                    <input type="tel" value={form.telephone} onChange={(e) => handleChange("telephone", e.target.value)} placeholder="Ex: 07 XX XX XX XX" className={inputClass} />
                   </div>
                 </div>
               </div>
@@ -195,6 +203,7 @@ Merci de confirmer ma commande ! 😊`;
                 <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
                   <span className="text-lg">🍽️</span> Choix du Menu
                 </h3>
+                <p className="font-body text-xs text-muted-foreground mb-3 italic">Menu souhaité (veuillez remplir) :</p>
                 <div className="grid gap-4">
                   <div>
                     <label className={labelClass}>Menu 1</label>
@@ -216,6 +225,7 @@ Merci de confirmer ma commande ! 😊`;
                 <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
                   <span className="text-lg">🥤</span> Boissons
                 </h3>
+                <p className="font-body text-xs text-muted-foreground mb-3 italic">Veuillez cocher :</p>
                 <div className="grid gap-3">
                   <label className={checkboxLabelClass}>
                     <input type="checkbox" checked={form.boissonJus} onChange={(e) => handleChange("boissonJus", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
@@ -227,7 +237,7 @@ Merci de confirmer ma commande ! 😊`;
                   </label>
                   <label className={checkboxLabelClass}>
                     <input type="checkbox" checked={form.boissonAutre} onChange={(e) => handleChange("boissonAutre", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
-                    Autre
+                    Autre (préciser)
                   </label>
                   {form.boissonAutre && (
                     <input type="text" value={form.boissonAutrePrecision} onChange={(e) => handleChange("boissonAutrePrecision", e.target.value)} placeholder="Précisez..." className={inputClass} />
@@ -238,26 +248,18 @@ Merci de confirmer ma commande ! 😊`;
               {/* Options de Service */}
               <div>
                 <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <span className="text-lg">👥</span> Options de Service
+                  <span className="text-lg">🍴</span> Options de Service
                 </h3>
-                <div className="grid gap-4">
-                  <div>
-                    <label className={labelClass}>Nombre d'invités</label>
-                    <input type="number" value={form.nombreInvites} onChange={(e) => handleChange("nombreInvites", e.target.value)} placeholder="Ex: 100" className={inputClass} />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Type de service</label>
-                    <div className="grid gap-3 mt-1">
-                      <label className={checkboxLabelClass}>
-                        <input type="checkbox" checked={form.serviceBuffet} onChange={(e) => handleChange("serviceBuffet", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
-                        Buffet
-                      </label>
-                      <label className={checkboxLabelClass}>
-                        <input type="checkbox" checked={form.serviceTable} onChange={(e) => handleChange("serviceTable", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
-                        Service à table
-                      </label>
-                    </div>
-                  </div>
+                <p className="font-body text-xs text-muted-foreground mb-3 italic">Veuillez cocher :</p>
+                <div className="grid gap-3">
+                  <label className={checkboxLabelClass}>
+                    <input type="checkbox" checked={form.serviceBuffet} onChange={(e) => handleChange("serviceBuffet", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
+                    Buffet
+                  </label>
+                  <label className={checkboxLabelClass}>
+                    <input type="checkbox" checked={form.serviceTable} onChange={(e) => handleChange("serviceTable", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
+                    Service à table
+                  </label>
                 </div>
               </div>
 
@@ -267,23 +269,22 @@ Merci de confirmer ma commande ! 😊`;
                   <span className="text-lg">💰</span> Conditions de Paiement
                 </h3>
                 <ul className="font-body text-sm text-foreground/70 space-y-2">
-                  <li>• Un acompte de <span className="font-bold text-primary">80%</span> du montant total sera versé à la signature du contrat.</li>
+                  <li>• Un acompte de <span className="font-bold text-primary">80%</span> du montant total de la commande sera versé à la signature du contrat.</li>
                   <li>• Le solde sera payé le jour de la cérémonie.</li>
                 </ul>
               </div>
 
-              {/* Remarques */}
-              <div>
-                <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <span className="text-lg">📝</span> Remarques & Demandes Spéciales
+              {/* Conditions de Réservation */}
+              <div className="rounded-2xl bg-accent/10 border border-accent/20 p-5">
+                <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <span className="text-lg">📌</span> Conditions de Réservation
                 </h3>
-                <textarea
-                  value={form.remarques}
-                  onChange={(e) => handleChange("remarques", e.target.value)}
-                  placeholder="Précisez tout détail important pour votre événement..."
-                  rows={4}
-                  className={`${inputClass} min-h-[100px] resize-none`}
-                />
+                <ul className="font-body text-sm text-foreground/70 space-y-2">
+                  <li>• L'acompte doit être payé au plus tard <span className="font-bold text-primary">72 heures</span> avant l'événement.</li>
+                </ul>
+                <p className="font-body text-sm font-bold text-destructive mt-3">
+                  NB : L'acompte versé, aucune annulation ne sera acceptée.
+                </p>
               </div>
             </div>
 
