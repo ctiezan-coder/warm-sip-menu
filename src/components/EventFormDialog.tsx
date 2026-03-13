@@ -235,19 +235,6 @@ Merci de confirmer ma commande ! 😊`;
                     <label className={labelClass}>Nombre d'invités</label>
                     <input type="number" value={form.nombreInvites} onChange={(e) => handleChange("nombreInvites", e.target.value)} placeholder="Ex: 100" className={inputClass} />
                   </div>
-                  <div>
-                    <label className={labelClass}>Type de service</label>
-                    <div className="grid gap-3 mt-1">
-                      <label className={checkboxLabelClass}>
-                        <input type="checkbox" checked={form.serviceBuffet} onChange={(e) => handleChange("serviceBuffet", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
-                        Buffet
-                      </label>
-                      <label className={checkboxLabelClass}>
-                        <input type="checkbox" checked={form.serviceTable} onChange={(e) => handleChange("serviceTable", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
-                        Service à table
-                      </label>
-                    </div>
-                  </div>
                 </div>
               </div>
 
