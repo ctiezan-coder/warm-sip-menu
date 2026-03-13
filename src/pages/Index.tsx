@@ -9,6 +9,7 @@ import CartFloatingButton from "@/components/CartFloatingButton";
 import { CartProvider, useCart } from "@/contexts/CartContext";
 import EventFormDialog from "@/components/EventFormDialog";
 import ReservationFormDialog from "@/components/ReservationFormDialog";
+import TraiteurFormDialog from "@/components/TraiteurFormDialog";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
@@ -394,6 +395,7 @@ const Index = () => {
   const [showEvenements, setShowEvenements] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
   const [showReservationForm, setShowReservationForm] = useState(false);
+  const [showTraiteurForm, setShowTraiteurForm] = useState(false);
   const { categories, loading } = useMenuData();
   const { selections: dailySelections } = useDailySelections();
 
@@ -494,31 +496,30 @@ const Index = () => {
                   </motion.button>
 
                   {/* Service Traiteur */}
-                  <motion.a
-                    href={`https://wa.me/2250789288202?text=${encodeURIComponent("Bonjour Neriya ! 👨‍🍳 Je suis intéressé(e) par votre service traiteur.\n\nMerci de me recontacter ! 😊")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <motion.button
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.4 }}
-                    className="group relative overflow-hidden rounded-2xl p-6 sm:p-8 text-center menu-section-card-v2 gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                    onClick={() => setShowTraiteurForm(true)}
+                    className="group relative overflow-hidden rounded-2xl p-6 sm:p-8 text-center menu-section-card-v2 gold-glow shimmer-hover transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer w-full"
                   >
                     <span className="text-4xl sm:text-5xl block mb-3 group-hover:scale-110 transition-transform duration-300">👨‍🍳</span>
                     <h3 className="font-display text-lg sm:text-xl font-bold text-primary uppercase tracking-[0.1em] mb-2">
                       Service Traiteur
                     </h3>
                     <p className="font-body text-sm text-foreground/70">Notre équipe à votre service, où que vous soyez</p>
-                    <div className="mt-4 inline-flex items-center gap-2 bg-[#25D366] text-white font-body font-semibold text-sm px-5 py-2.5 rounded-full group-hover:bg-[#1ebe57] transition-colors">
-                      <MessageCircle size={16} fill="white" strokeWidth={0} />
-                      Contacter sur WhatsApp
+                    <div className="mt-4 inline-flex items-center gap-2 bg-primary/20 text-primary font-body font-semibold text-sm px-5 py-2.5 rounded-full group-hover:bg-primary/30 transition-colors">
+                      <FileText size={16} />
+                      Remplir formulaire
                     </div>
-                  </motion.a>
+                  </motion.button>
                 </div>
                 <GoldOrnament />
               </main>
 
               <EventFormDialog open={showEventForm} onClose={() => setShowEventForm(false)} />
               <ReservationFormDialog open={showReservationForm} onClose={() => setShowReservationForm(false)} />
+              <TraiteurFormDialog open={showTraiteurForm} onClose={() => setShowTraiteurForm(false)} />
             </motion.div>
           ) : activeCategoryId && activeCat ? (
             <motion.div
