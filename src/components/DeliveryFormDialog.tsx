@@ -34,6 +34,9 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
   const [clientName, setClientName] = useState("");
   const [zone, setZone] = useState("");
   const [phone, setPhone] = useState("");
+  const [lieuPrecis, setLieuPrecis] = useState("");
+
+  const needsPrecision = zone === "Hors Yopougon" || zone === "Faya / Bingerville / Port-Bouët";
 
   const selectedZone = DELIVERY_ZONES.find((z) => z.label === zone);
   const deliveryFee = selectedZone?.fee || 0;
@@ -44,7 +47,7 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
   );
 
   const total = subtotal + deliveryFee;
-  const isValid = clientName.trim() && zone && phone.trim() && items.length > 0;
+  const isValid = clientName.trim() && zone && phone.trim() && items.length > 0 && (!needsPrecision || lieuPrecis.trim());
 
   const buildWhatsAppUrl = () => {
     const lines = items.map((i) => `• ${i.name} x${i.quantity} — ${i.price}`).join("\n");
@@ -52,7 +55,7 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
       `Bonjour Neriya ! 🍽️ Commande Livraison`,
       ``,
       `👤 *Nom :* ${clientName.trim()}`,
-      `📍 *Lieu :* ${zone}`,
+      `📍 *Lieu :* ${zone}${needsPrecision && lieuPrecis.trim() ? ` — ${lieuPrecis.trim()}` : ""}`,
       `📞 *Téléphone :* ${phone.trim()}`,
       ``,
       `🛒 *Commande :*`,
@@ -109,7 +112,7 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
               </label>
               <select
                 value={zone}
-                onChange={(e) => setZone(e.target.value)}
+                onChange={(e) => { setZone(e.target.value); setLieuPrecis(""); }}
                 className={inputClass}
               >
                 <option value="">Choisir un lieu</option>
@@ -119,6 +122,15 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
                   </option>
                 ))}
               </select>
+              {needsPrecision && (
+                <input
+                  value={lieuPrecis}
+                  onChange={(e) => setLieuPrecis(e.target.value)}
+                  placeholder="Préciser le lieu exact (quartier, commune...)"
+                  className={`${inputClass} mt-3`}
+                  maxLength={150}
+                />
+              )}
             </div>
 
             {/* Phone */}
