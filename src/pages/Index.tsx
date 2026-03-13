@@ -9,6 +9,7 @@ import CartFloatingButton from "@/components/CartFloatingButton";
 import { CartProvider, useCart } from "@/contexts/CartContext";
 import EventFormDialog from "@/components/EventFormDialog";
 import ReservationFormDialog from "@/components/ReservationFormDialog";
+import TraiteurFormDialog from "@/components/TraiteurFormDialog";
 import logo from "@/assets/neriya-logo.png";
 import heroImg from "@/assets/hero-with-logo.jpg";
 import catPetitDej from "@/assets/cat-petit-dejeuner.jpg";
