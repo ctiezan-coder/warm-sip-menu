@@ -55,7 +55,7 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
       `Bonjour Neriya ! 🍽️ Commande Livraison`,
       ``,
       `👤 *Nom :* ${clientName.trim()}`,
-      `📍 *Lieu :* ${zone}`,
+      `📍 *Lieu :* ${zone}${needsPrecision && lieuPrecis.trim() ? ` — ${lieuPrecis.trim()}` : ""}`,
       `📞 *Téléphone :* ${phone.trim()}`,
       ``,
       `🛒 *Commande :*`,
