@@ -84,10 +84,12 @@ const TraiteurFormDialog = ({ open, onClose }: TraiteurFormDialogProps) => {
     const msg = `📋 *FORMULAIRE SERVICE TRAITEUR*
 
 🎉 *Informations sur la Cérémonie*
-• Nom du client : ${form.nom}
-• Lieu : ${form.lieu}
+• Type d'événement : ${form.typeEvenement || "Non précisé"}
+• Nombre de personnes : ${form.nombrePersonnes || "Non précisé"}
 • Date : ${form.date || "Non précisé"}
 • Heure : ${form.heure || "Non précisé"}
+• Nom du client : ${form.nom}
+• Lieu : ${form.lieu}
 
 🍽️ *Choix du Menu*
 • ${menus}
