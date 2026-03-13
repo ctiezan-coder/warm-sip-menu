@@ -112,7 +112,7 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
               </label>
               <select
                 value={zone}
-                onChange={(e) => setZone(e.target.value)}
+                onChange={(e) => { setZone(e.target.value); setLieuPrecis(""); }}
                 className={inputClass}
               >
                 <option value="">Choisir un lieu</option>
@@ -122,6 +122,15 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
                   </option>
                 ))}
               </select>
+              {needsPrecision && (
+                <input
+                  value={lieuPrecis}
+                  onChange={(e) => setLieuPrecis(e.target.value)}
+                  placeholder="Préciser le lieu exact (quartier, commune...)"
+                  className={`${inputClass} mt-3`}
+                  maxLength={150}
+                />
+              )}
             </div>
 
             {/* Phone */}
