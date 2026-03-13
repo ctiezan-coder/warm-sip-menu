@@ -14,45 +14,64 @@ const inputClass =
 
 const labelClass = "font-body text-sm font-semibold text-foreground/80 mb-1.5 block";
 
+const checkboxLabelClass = "flex items-center gap-2.5 font-body text-sm text-foreground/80 cursor-pointer";
+
 const EventFormDialog = ({ open, onClose }: EventFormDialogProps) => {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
-    typeEvenement: "",
-    nombrePersonnes: "",
+    nom: "",
+    lieu: "",
     date: "",
     heure: "",
-    nom: "",
-    telephone: "",
-    menu: "",
-    boissons: "",
-    decoration: "",
-    musique: "",
-    autresServices: "",
+    menu1: "",
+    menu2: "",
+    menu3: "",
+    boissonJus: false,
+    boissonEau: false,
+    boissonAutre: false,
+    boissonAutrePrecision: "",
+    nombreInvites: "",
+    serviceBuffet: false,
+    serviceTable: false,
+    remarques: "",
   });
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | boolean) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const isValid = form.nom.trim() && form.telephone.trim() && form.typeEvenement;
+  const isValid = form.nom.trim() && form.lieu.trim();
 
   const handleSubmit = async () => {
     if (!isValid) return;
     setSaving(true);
 
+    const boissons = [
+      form.boissonJus && "Jus",
+      form.boissonEau && "Eau",
+      form.boissonAutre && `Autre: ${form.boissonAutrePrecision || "Non précisé"}`,
+    ].filter(Boolean).join(", ") || "Non précisé";
+
+    const typeService = [
+      form.serviceBuffet && "Buffet",
+      form.serviceTable && "Service à table",
+    ].filter(Boolean).join(", ") || "Non précisé";
+
+    const menus = [form.menu1, form.menu2, form.menu3].filter(Boolean).join(" | ") || "Non précisé";
+
     // Save to database
-    const { error } = await supabase.from("event_reservations" as any).insert({
-      event_type: form.typeEvenement,
-      guest_count: form.nombrePersonnes ? parseInt(form.nombrePersonnes) : null,
+    const { error } = await supabase.from("event_reservations").insert({
+      event_type: "Réception",
+      client_name: form.nom.trim(),
+      client_phone: "-",
+      guest_count: form.nombreInvites ? parseInt(form.nombreInvites) : null,
       event_date: form.date || null,
       event_time: form.heure || null,
-      client_name: form.nom.trim(),
-      client_phone: form.telephone.trim(),
-      menu_choice: form.menu || null,
-      drinks: form.boissons || null,
-      decoration: form.decoration || null,
-      music: form.musique || null,
-      other_services: form.autresServices || null,
+      menu_choice: menus,
+      drinks: boissons,
+      decoration: typeService,
+      other_services: form.remarques || null,
+      music: form.lieu.trim(),
     });
 
     if (error) {
@@ -62,33 +81,42 @@ const EventFormDialog = ({ open, onClose }: EventFormDialogProps) => {
     }
 
     // Send WhatsApp
-    const msg = `📋 *Fiche de Réception - Réservation d'Événement*
+    const msg = `📋 *FORMULAIRE DE COMMANDE DE SERVICE DE RÉCEPTION*
 
-🎉 *Informations sur l'Événement*
-• Type : ${form.typeEvenement}
-• Personnes : ${form.nombrePersonnes || "Non précisé"}
+🎉 *Informations sur la Cérémonie*
+• Nom du client : ${form.nom}
+• Lieu : ${form.lieu}
 • Date : ${form.date || "Non précisé"}
 • Heure : ${form.heure || "Non précisé"}
 
-👤 *Contact*
-• Nom : ${form.nom}
-• Tél : ${form.telephone}
+🍽️ *Choix du Menu*
+• ${menus}
 
-💰 *Acompte* : 30 000 FCFA
+🥤 *Boissons*
+• ${boissons}
 
-🍽️ *Services*
-• Menu : ${form.menu || "Non précisé"}
-• Boissons : ${form.boissons || "Non précisé"}
-• Décoration : ${form.decoration || "Non précisé"}
-• Musique : ${form.musique || "Non précisé"}
-• Autres : ${form.autresServices || "Non précisé"}
+👥 *Options de Service*
+• Nombre d'invités : ${form.nombreInvites || "Non précisé"}
+• Type de service : ${typeService}
 
-Merci de confirmer ma réservation ! 😊`;
+💰 *Conditions de Paiement*
+• Acompte : 80% du montant total à la signature
+• Solde : le jour de la cérémonie
+
+📝 *Remarques / Demandes Spéciales*
+${form.remarques || "Aucune"}
+
+Merci de confirmer ma commande ! 😊`;
 
     window.open(`https://wa.me/2250789288202?text=${encodeURIComponent(msg)}`, "_blank");
-    toast.success("Réservation envoyée !");
+    toast.success("Commande envoyée !");
     setSaving(false);
-    setForm({ typeEvenement: "", nombrePersonnes: "", date: "", heure: "", nom: "", telephone: "", menu: "", boissons: "", decoration: "", musique: "", autresServices: "" });
+    setForm({
+      nom: "", lieu: "", date: "", heure: "",
+      menu1: "", menu2: "", menu3: "",
+      boissonJus: false, boissonEau: false, boissonAutre: false, boissonAutrePrecision: "",
+      nombreInvites: "", serviceBuffet: false, serviceTable: false, remarques: "",
+    });
     onClose();
   };
 
@@ -118,153 +146,134 @@ Merci de confirmer ma réservation ! 😊`;
                 <X size={18} />
               </button>
               <PartyPopper className="mx-auto text-primary mb-3" size={40} />
-              <h2 className="font-display text-xl sm:text-2xl font-bold text-primary uppercase tracking-[0.12em]">
-                Fiche de Réception
+              <h2 className="font-display text-lg sm:text-xl font-bold text-primary uppercase tracking-[0.1em]">
+                Commande de Service de Réception
               </h2>
-              <p className="font-body text-sm text-foreground/60 mt-1.5">
-                Réservation d'Événement
-              </p>
             </div>
 
             {/* Form */}
             <div className="px-5 sm:px-6 py-6 space-y-6 max-h-[55vh] sm:max-h-[60vh] overflow-y-auto">
-              {/* Infos Événement */}
+              {/* Infos Cérémonie */}
               <div>
                 <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <span className="text-lg">🎉</span> Informations sur l'Événement
+                  <span className="text-lg">🎉</span> Informations sur la Cérémonie
                 </h3>
                 <div className="grid gap-4">
                   <div>
-                    <label className={labelClass}>Type d'événement *</label>
-                    <select
-                      value={form.typeEvenement}
-                      onChange={(e) => handleChange("typeEvenement", e.target.value)}
-                      className={inputClass}
-                    >
-                      <option value="">Sélectionnez...</option>
-                      <option value="Mariage">Mariage</option>
-                      <option value="Baby Shower">Baby Shower</option>
-                      <option value="Baptême">Baptême</option>
-                      <option value="Anniversaire">Anniversaire</option>
-                      <option value="Cocktail">Cocktail</option>
-                      <option value="Buffet">Buffet</option>
-                      <option value="Réception">Réception</option>
-                      <option value="Autre">Autre</option>
-                    </select>
+                    <label className={labelClass}>Nom du client *</label>
+                    <input type="text" value={form.nom} onChange={(e) => handleChange("nom", e.target.value)} placeholder="Votre nom complet" className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass}>Nombre de personnes</label>
-                    <input
-                      type="number"
-                      value={form.nombrePersonnes}
-                      onChange={(e) => handleChange("nombrePersonnes", e.target.value)}
-                      placeholder="Ex: 50"
-                      className={inputClass}
-                    />
+                    <label className={labelClass}>Lieu de la cérémonie *</label>
+                    <input type="text" value={form.lieu} onChange={(e) => handleChange("lieu", e.target.value)} placeholder="Adresse ou lieu" className={inputClass} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className={labelClass}>Date</label>
-                      <input
-                        type="date"
-                        value={form.date}
-                        onChange={(e) => handleChange("date", e.target.value)}
-                        className={inputClass}
-                      />
+                      <input type="date" value={form.date} onChange={(e) => handleChange("date", e.target.value)} className={inputClass} />
                     </div>
                     <div>
                       <label className={labelClass}>Heure</label>
-                      <input
-                        type="time"
-                        value={form.heure}
-                        onChange={(e) => handleChange("heure", e.target.value)}
-                        className={inputClass}
-                      />
+                      <input type="time" value={form.heure} onChange={(e) => handleChange("heure", e.target.value)} className={inputClass} />
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Infos Contact */}
+              {/* Choix du Menu */}
               <div>
                 <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <span className="text-lg">👤</span> Informations de Contact
+                  <span className="text-lg">🍽️</span> Choix du Menu
                 </h3>
                 <div className="grid gap-4">
                   <div>
-                    <label className={labelClass}>Nom *</label>
-                    <input
-                      type="text"
-                      value={form.nom}
-                      onChange={(e) => handleChange("nom", e.target.value)}
-                      placeholder="Votre nom complet"
-                      className={inputClass}
-                    />
+                    <label className={labelClass}>Menu 1</label>
+                    <input type="text" value={form.menu1} onChange={(e) => handleChange("menu1", e.target.value)} placeholder="Décrivez le menu 1" className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass}>Numéro de téléphone *</label>
-                    <input
-                      type="tel"
-                      value={form.telephone}
-                      onChange={(e) => handleChange("telephone", e.target.value)}
-                      placeholder="Ex: 07 89 28 82 02"
-                      className={inputClass}
-                    />
+                    <label className={labelClass}>Menu 2</label>
+                    <input type="text" value={form.menu2} onChange={(e) => handleChange("menu2", e.target.value)} placeholder="Décrivez le menu 2" className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Menu 3</label>
+                    <input type="text" value={form.menu3} onChange={(e) => handleChange("menu3", e.target.value)} placeholder="Décrivez le menu 3" className={inputClass} />
                   </div>
                 </div>
               </div>
 
-              {/* Détails Réservation */}
+              {/* Boissons */}
+              <div>
+                <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <span className="text-lg">🥤</span> Boissons
+                </h3>
+                <div className="grid gap-3">
+                  <label className={checkboxLabelClass}>
+                    <input type="checkbox" checked={form.boissonJus} onChange={(e) => handleChange("boissonJus", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
+                    Jus
+                  </label>
+                  <label className={checkboxLabelClass}>
+                    <input type="checkbox" checked={form.boissonEau} onChange={(e) => handleChange("boissonEau", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
+                    Eau
+                  </label>
+                  <label className={checkboxLabelClass}>
+                    <input type="checkbox" checked={form.boissonAutre} onChange={(e) => handleChange("boissonAutre", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
+                    Autre
+                  </label>
+                  {form.boissonAutre && (
+                    <input type="text" value={form.boissonAutrePrecision} onChange={(e) => handleChange("boissonAutrePrecision", e.target.value)} placeholder="Précisez..." className={inputClass} />
+                  )}
+                </div>
+              </div>
+
+              {/* Options de Service */}
+              <div>
+                <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <span className="text-lg">👥</span> Options de Service
+                </h3>
+                <div className="grid gap-4">
+                  <div>
+                    <label className={labelClass}>Nombre d'invités</label>
+                    <input type="number" value={form.nombreInvites} onChange={(e) => handleChange("nombreInvites", e.target.value)} placeholder="Ex: 100" className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Type de service</label>
+                    <div className="grid gap-3 mt-1">
+                      <label className={checkboxLabelClass}>
+                        <input type="checkbox" checked={form.serviceBuffet} onChange={(e) => handleChange("serviceBuffet", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
+                        Buffet
+                      </label>
+                      <label className={checkboxLabelClass}>
+                        <input type="checkbox" checked={form.serviceTable} onChange={(e) => handleChange("serviceTable", e.target.checked)} className="w-4 h-4 accent-primary rounded" />
+                        Service à table
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Conditions de Paiement */}
               <div className="rounded-2xl bg-primary/8 border border-primary/15 p-5">
                 <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <span className="text-lg">💰</span> Détails de la Réservation
-                </h3>
-                <p className="font-body text-base text-foreground/80">
-                  Acompte : <span className="font-bold text-primary text-lg">30 000 FCFA</span>
-                </p>
-                <p className="font-body text-sm text-foreground/60 mt-1">
-                  Solde à payer : à déterminer selon les services choisis
-                </p>
-              </div>
-
-              {/* Services */}
-              <div>
-                <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <span className="text-lg">🍽️</span> Services et Options
-                </h3>
-                <div className="grid gap-4">
-                  <div>
-                    <label className={labelClass}>Menu choisi</label>
-                    <input type="text" value={form.menu} onChange={(e) => handleChange("menu", e.target.value)} placeholder="Décrivez le menu souhaité" className={inputClass} />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Boissons</label>
-                    <input type="text" value={form.boissons} onChange={(e) => handleChange("boissons", e.target.value)} placeholder="Boissons souhaitées" className={inputClass} />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Décoration</label>
-                    <input type="text" value={form.decoration} onChange={(e) => handleChange("decoration", e.target.value)} placeholder="Type de décoration" className={inputClass} />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Musique</label>
-                    <input type="text" value={form.musique} onChange={(e) => handleChange("musique", e.target.value)} placeholder="DJ, groupe, playlist..." className={inputClass} />
-                  </div>
-                  <div>
-                    <label className={labelClass}>Autres services</label>
-                    <input type="text" value={form.autresServices} onChange={(e) => handleChange("autresServices", e.target.value)} placeholder="Précisez vos besoins" className={inputClass} />
-                  </div>
-                </div>
-              </div>
-
-              {/* Conditions */}
-              <div className="rounded-2xl bg-destructive/5 border border-destructive/15 p-5">
-                <h3 className="font-display text-base font-bold text-destructive uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <span className="text-lg">📌</span> Conditions de Réservation
+                  <span className="text-lg">💰</span> Conditions de Paiement
                 </h3>
                 <ul className="font-body text-sm text-foreground/70 space-y-2">
-                  <li>• L'acompte est <span className="font-bold">non remboursable</span> en cas d'annulation.</li>
-                  <li>• Le solde doit être payé au plus tard <span className="font-bold">48 heures</span> avant l'événement.</li>
+                  <li>• Un acompte de <span className="font-bold text-primary">80%</span> du montant total sera versé à la signature du contrat.</li>
+                  <li>• Le solde sera payé le jour de la cérémonie.</li>
                 </ul>
+              </div>
+
+              {/* Remarques */}
+              <div>
+                <h3 className="font-display text-base font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <span className="text-lg">📝</span> Remarques & Demandes Spéciales
+                </h3>
+                <textarea
+                  value={form.remarques}
+                  onChange={(e) => handleChange("remarques", e.target.value)}
+                  placeholder="Précisez tout détail important pour votre événement..."
+                  rows={4}
+                  className={`${inputClass} min-h-[100px] resize-none`}
+                />
               </div>
             </div>
 
