@@ -395,6 +395,7 @@ const Index = () => {
   const [showEvenements, setShowEvenements] = useState(false);
   const [showEventForm, setShowEventForm] = useState(false);
   const [showReservationForm, setShowReservationForm] = useState(false);
+  const [showTraiteurForm, setShowTraiteurForm] = useState(false);
   const { categories, loading } = useMenuData();
   const { selections: dailySelections } = useDailySelections();
 
