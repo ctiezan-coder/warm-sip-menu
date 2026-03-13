@@ -34,6 +34,9 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
   const [clientName, setClientName] = useState("");
   const [zone, setZone] = useState("");
   const [phone, setPhone] = useState("");
+  const [lieuPrecis, setLieuPrecis] = useState("");
+
+  const needsPrecision = zone === "Hors Yopougon" || zone === "Faya / Bingerville / Port-Bouët";
 
   const selectedZone = DELIVERY_ZONES.find((z) => z.label === zone);
   const deliveryFee = selectedZone?.fee || 0;
