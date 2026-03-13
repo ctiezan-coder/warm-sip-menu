@@ -47,7 +47,7 @@ const DeliveryFormDialog = ({ open, onOpenChange }: DeliveryFormDialogProps) => 
   );
 
   const total = subtotal + deliveryFee;
-  const isValid = clientName.trim() && zone && phone.trim() && items.length > 0;
+  const isValid = clientName.trim() && zone && phone.trim() && items.length > 0 && (!needsPrecision || lieuPrecis.trim());
 
   const buildWhatsAppUrl = () => {
     const lines = items.map((i) => `• ${i.name} x${i.quantity} — ${i.price}`).join("\n");
