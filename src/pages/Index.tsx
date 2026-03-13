@@ -785,7 +785,7 @@ const Index = () => {
                   {/* Social links */}
                   <div className="flex items-center justify-center gap-3 pt-3">
                     <a
-                      href="https://www.facebook.com/profile.php?id=61575540825498"
+                      href="https://www.facebook.com/share/1bhyVn1MfC/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 flex items-center justify-center rounded-full bg-secondary border border-border text-foreground/70 hover:text-[#1877F2] hover:border-[#1877F2]/40 transition-all hover:scale-110"
