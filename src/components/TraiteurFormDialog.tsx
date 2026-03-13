@@ -160,12 +160,12 @@ Merci de confirmer ma commande ! 😊`;
                 </h3>
                 <div className="grid gap-4">
                   <div>
-                    <label className={labelClass}>Nom du client *</label>
-                    <input type="text" value={form.nom} onChange={(e) => handleChange("nom", e.target.value)} placeholder="Votre nom complet" className={inputClass} />
+                    <label className={labelClass}>Type d'événement</label>
+                    <input type="text" value={form.typeEvenement} onChange={(e) => handleChange("typeEvenement", e.target.value)} placeholder="Ex: Anniversaire, Mariage..." className={inputClass} />
                   </div>
                   <div>
-                    <label className={labelClass}>Lieu de la cérémonie *</label>
-                    <input type="text" value={form.lieu} onChange={(e) => handleChange("lieu", e.target.value)} placeholder="Adresse ou lieu" className={inputClass} />
+                    <label className={labelClass}>Nombre de personnes</label>
+                    <input type="number" value={form.nombrePersonnes} onChange={(e) => handleChange("nombrePersonnes", e.target.value)} placeholder="Ex: 50" className={inputClass} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -176,6 +176,14 @@ Merci de confirmer ma commande ! 😊`;
                       <label className={labelClass}>Heure</label>
                       <input type="time" value={form.heure} onChange={(e) => handleChange("heure", e.target.value)} className={inputClass} />
                     </div>
+                  </div>
+                  <div>
+                    <label className={labelClass}>Nom du client *</label>
+                    <input type="text" value={form.nom} onChange={(e) => handleChange("nom", e.target.value)} placeholder="Votre nom complet" className={inputClass} />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Lieu de la cérémonie *</label>
+                    <input type="text" value={form.lieu} onChange={(e) => handleChange("lieu", e.target.value)} placeholder="Adresse ou lieu" className={inputClass} />
                   </div>
                 </div>
               </div>
