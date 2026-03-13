@@ -112,7 +112,7 @@ Merci de confirmer ma commande ! 😊`;
     toast.success("Commande envoyée !");
     setSaving(false);
     setForm({
-      nom: "", lieu: "", date: "", heure: "",
+      nom: "", lieu: "", date: "", heure: "", typeEvenement: "", nombrePersonnes: "",
       menu1: "", menu2: "", menu3: "",
       boissonJus: false, boissonEau: false, boissonAutre: false, boissonAutrePrecision: "",
       nombreInvites: "", serviceBuffet: false, serviceTable: false, remarques: "",
