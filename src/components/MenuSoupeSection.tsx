@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Plus } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { formatMenuName } from "@/lib/utils";
 
 interface SoupeItem {
   name: string;
