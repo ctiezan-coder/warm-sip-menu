@@ -86,7 +86,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
                   <div className="flex items-center gap-1.5">
                     <span className="menu-item-name-v2 shrink min-w-0" style={{ maxWidth: '55%' }}>
                       {item.emoji && <span className="mr-1 text-base">{item.emoji}</span>}
-                      {lowercaseParens(item.name)}
+                      {uppercaseWithLowerParens(item.name)}
                     </span>
                     <span className="menu-item-dots-v2" />
                     <div className="shrink-0 flex items-center gap-1.5">
