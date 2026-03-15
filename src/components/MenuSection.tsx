@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
 import { ShoppingBag, Plus } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { formatMenuName } from "@/lib/utils";
 
 interface MenuItem {
   name: string;
@@ -19,10 +19,6 @@ interface MenuSectionProps {
   imagePosition?: "left" | "right";
 }
 
-/** Uppercase the text but keep content inside parentheses lowercase */
-const uppercaseWithLowerParens = (text: string): string => {
-  return text.toUpperCase().replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.toLowerCase()})`);
-};
 
 /** Parse a price string that may contain two prices separated by "/" */
 const parseDualPrice = (price: string): string[] => {
@@ -86,7 +82,7 @@ const MenuSection = ({ title, items, variant = "default", delay = 0, backgroundI
                   <div className="flex items-center gap-1.5">
                     <span className="menu-item-name-v2 shrink min-w-0" style={{ maxWidth: '55%' }}>
                       {item.emoji && <span className="mr-1 text-base">{item.emoji}</span>}
-                      {uppercaseWithLowerParens(item.name)}
+                      {formatMenuName(item.name)}
                     </span>
                     <span className="menu-item-dots-v2" />
                     <div className="shrink-0 flex items-center gap-1.5">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { formatMenuName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -348,7 +349,7 @@ const Admin = () => {
                               </div>
                             )}
                             <div className="flex-1 min-w-0">
-                              <span className="font-body font-semibold text-sm text-foreground">{item.emoji && `${item.emoji} `}{item.name}</span>
+                              <span className="font-body font-semibold text-sm text-foreground">{item.emoji && `${item.emoji} `}{formatMenuName(item.name)}</span>
                               {item.description && <p className="text-xs text-muted-foreground truncate">{item.description}</p>}
                             </div>
                             <span className="font-display font-bold text-primary text-sm whitespace-nowrap">{item.price}</span>

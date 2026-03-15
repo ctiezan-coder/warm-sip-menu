@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, Trash2, ShoppingBag, Truck } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { formatMenuName } from "@/lib/utils";
 import DeliveryFormDialog from "@/components/DeliveryFormDialog";
 
 const CartDrawer = () => {
@@ -75,7 +76,7 @@ const CartDrawer = () => {
                         className="flex items-center gap-3 p-4 rounded-2xl bg-card/40 border border-primary/10"
                       >
                         <div className="flex-1 min-w-0">
-                          <p className="font-body text-base font-semibold text-foreground truncate">{item.name}</p>
+                          <p className="font-body text-base font-semibold text-foreground truncate">{formatMenuName(item.name)}</p>
                           <p className="font-body text-sm text-primary font-bold mt-0.5">{item.price}</p>
                         </div>
 
