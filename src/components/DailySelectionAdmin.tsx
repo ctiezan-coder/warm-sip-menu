@@ -16,18 +16,18 @@ const DAILY_SECTIONS = [
   },
   {
     key: "mafe",
-    label: "Mafé (Sauce Arachide) 🥜",
+    label: "Mafé (sauce arachide) 🥜",
     items: [
-      "Pondeuse Fumée (riz ou Fonio)", "1/2 Pondeuse Fumée (riz ou Fonio)",
-      "1 Pondeuse Entière (riz ou Fonio)", "Poisson Fumé (riz ou Fonio)",
+      "Pondeuse Fumée (riz ou fonio)", "1/2 Pondeuse Fumée (riz ou fonio)",
+      "1 Pondeuse Entière (riz ou fonio)", "Poisson Fumé (riz ou fonio)",
     ],
   },
   {
     key: "sauce-legume",
     label: "Sauce Légume 🥬",
     items: [
-      "Pondeuse Fumée (riz ou Fonio)", "1/2 Pondeuse Fumée (riz ou Fonio)",
-      "1 Pondeuse (riz, Fonio)", "Viande de Bœuf Fumée (riz / Fonio)",
+      "Pondeuse Fumée (riz ou fonio)", "1/2 Pondeuse Fumée (riz ou fonio)",
+      "1 Pondeuse (riz, fonio)", "Viande de Bœuf Fumée (riz / fonio)",
     ],
   },
   {
