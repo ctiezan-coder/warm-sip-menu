@@ -19,6 +19,10 @@ interface MenuSectionProps {
   imagePosition?: "left" | "right";
 }
 
+/** Lowercase text inside parentheses */
+const lowercaseParens = (text: string): string =>
+  text.replace(/\(([^)]*)\)/g, (_, inner) => `(${inner.toLowerCase()})`);
+
 /** Parse a price string that may contain two prices separated by "/" */
 const parseDualPrice = (price: string): string[] => {
   // Match patterns like "2 500 / 3 000 FCFA" or "2 500 / 3 000 Fr"
