@@ -81,7 +81,7 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               <span className="font-body text-xs uppercase tracking-[0.2em] text-accent font-semibold">Plat du jour</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="font-body text-base sm:text-lg text-foreground font-semibold">{items[platDuJour].name}</span>
+              <span className="font-body text-base sm:text-lg text-foreground font-semibold">{formatMenuName(items[platDuJour].name)}</span>
               <span className="flex-1 border-b border-dotted border-accent/30 min-w-[12px] translate-y-[-2px]" />
               <span className="font-body text-base sm:text-lg font-bold text-accent whitespace-nowrap">{items[platDuJour].price}</span>
               <OrderButton name={items[platDuJour].name} price={items[platDuJour].price} />
