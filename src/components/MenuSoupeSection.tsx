@@ -103,7 +103,7 @@ const MenuPlatDuJourSection = ({ title, items, delay = 0 }: MenuPlatDuJourSectio
               transition={{ duration: 0.25, delay: delay + i * 0.02 }}
             >
               <div className="flex items-center gap-1.5">
-                <span className="font-body text-base sm:text-lg text-foreground leading-relaxed font-medium">{item.name}</span>
+                <span className="font-body text-base sm:text-lg text-foreground leading-relaxed font-medium">{formatMenuName(item.name)}</span>
                 <span className="flex-1 border-b border-dotted border-foreground/15 min-w-[12px] translate-y-[-2px]" />
                 <span className="font-body text-base sm:text-lg font-bold text-primary whitespace-nowrap">{item.price}</span>
                 <OrderButton name={item.name} price={item.price} />
