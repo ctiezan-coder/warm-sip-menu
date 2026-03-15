@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
 import { ShoppingBag, Plus } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { formatMenuName } from "@/lib/utils";
 
 interface MenuItem {
   name: string;
