@@ -290,7 +290,7 @@
   font-size: 0.92rem;
   font-weight: 700;
   color: hsl(38 45% 92%);
-  text-transform: uppercase;
+  /* uppercase handled in JS to allow lowercase inside parentheses */
   line-height: 1.35;
 }
 @media (min-width: 640px) {
